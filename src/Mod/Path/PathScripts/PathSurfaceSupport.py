@@ -491,7 +491,7 @@ class ProcessSelectedFaces:
         if self.obj.Base:
             if len(self.obj.Base) > 0:
                 self.checkBase = True
-                if self.obj.Algorithm in ['OCL Dropcutter', 'Experimental']:
+                if self.obj.Algorithm in ['OCL Dropcutter', 'Grid Dropcutter', 'Experimental']:
                     self.checkBase = False
                     FreeCAD.Console.PrintWarning(self.msgNoFaces)
 

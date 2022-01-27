@@ -31,6 +31,8 @@ __contributors__ = ""
 
 import FreeCAD
 from PySide import QtCore
+import numpy
+from PathScripts.PathLevelMap import LevelMap
 
 # OCL must be installed
 try:
@@ -393,7 +395,7 @@ class ObjectWaterline(PathOp.ObjectOp):
     def opPropertyEnumerations(self):
         # Enumeration lists for App::PropertyEnumeration properties
         return {
-            "Algorithm": ["OCL Dropcutter", "Experimental"],
+            "Algorithm": ["OCL Dropcutter", "Grid Dropcutter", "Experimental"],
             "BoundBox": ["BaseBoundBox", "Stock"],
             "PatternCenterAt": [
                 "CenterOfMass",
@@ -493,7 +495,7 @@ class ObjectWaterline(PathOp.ObjectOp):
         obj.setEditorMode("GapThreshold", hide)
         obj.setEditorMode("GapSizes", hide)
 
-        if obj.Algorithm == "OCL Dropcutter":
+        if obj.Algorithm == "OCL Dropcutter" or obj.Algorithm == "Grid Dropcutter":
             pass
         elif obj.Algorithm == "Experimental":
             A = B = C = 0
@@ -1033,6 +1035,10 @@ class ObjectWaterline(PathOp.ObjectOp):
                 final.extend(
                     self._oclWaterlineOp(JOB, obj, mdlIdx, COMP)
                 )  # independent method set for Waterline
+            elif obj.Algorithm == "Grid Dropcutter":
+                final.extend(
+                    self._gridWaterlineOp(JOB, obj, mdlIdx, COMP)
+                )  # independent method set for Waterline
             else:
                 final.extend(
                     self._experimentalWaterlineOp(JOB, obj, mdlIdx, COMP)
@@ -1060,6 +1066,10 @@ class ObjectWaterline(PathOp.ObjectOp):
                 if obj.Algorithm == "OCL Dropcutter":
                     final.extend(
                         self._oclWaterlineOp(JOB, obj, mdlIdx, COMP)
+                    )  # independent method set for Waterline
+                elif obj.Algorithm == "Grid Dropcutter":
+                    final.extend(
+                        self._gridWaterlineOp(JOB, obj, mdlIdx, COMP)
                     )  # independent method set for Waterline
                 else:
                     final.extend(
@@ -1687,6 +1697,232 @@ class ObjectWaterline(PathOp.ObjectOp):
         self.layerEndPnt = pnt
 
         return output
+
+    # Grid Dropcutter waterline functions
+    def _gridWaterlineOp(self, JOB, obj, mdlIdx, subShp=None):
+        commands = []
+
+        base = JOB.Model.Group[mdlIdx]
+        bb = self.boundBoxes[mdlIdx]
+        depOfst = obj.DepthOffset.Value
+
+        # Prepare global holdpoint and layerEndPnt containers
+        if self.holdPoint is None:
+            self.holdPoint = FreeCAD.Vector(0.0, 0.0, 0.0)
+        if self.layerEndPnt is None:
+            self.layerEndPnt = FreeCAD.Vector(0.0, 0.0, 0.0)
+
+        # Set extra offset to diameter of cutter to allow cutter to move around perimeter of model
+
+        if subShp is None:
+            # Get correct boundbox
+            if obj.BoundBox == 'Stock':
+                BS = JOB.Stock
+                bb = BS.Shape.BoundBox
+            elif obj.BoundBox == 'BaseBoundBox':
+                BS = base
+                bb = base.Shape.BoundBox
+
+            xmin = bb.XMin
+            xmax = bb.XMax
+            ymin = bb.YMin
+            ymax = bb.YMax
+        else:
+            xmin = subShp.BoundBox.XMin
+            xmax = subShp.BoundBox.XMax
+            ymin = subShp.BoundBox.YMin
+            ymax = subShp.BoundBox.YMax
+
+        smplInt = obj.SampleInterval.Value
+        minSampInt = 0.001  # value in mm
+        if smplInt < minSampInt:
+            smplInt = minSampInt
+
+        border = int(numpy.ceil(self.radius / smplInt))
+
+        # Compute number and size of stepdowns, and final depth
+        if obj.LayerMode == 'Single-pass':
+            depthparams = [obj.FinalDepth.Value]
+        else:
+            depthparams = [dp for dp in self.depthParams]
+        lenDP = len(depthparams)
+
+        # Create and process meshes
+        self.levelMap = LevelMap(xmin - 0.5 * smplInt, xmax + 0.5 * smplInt,
+                                 ymin - 0.5 * smplInt, ymax + 0.5 * smplInt,
+                                 obj.FinalDepth.Value, smplInt, border
+                                 )
+        rows = self.levelMap.rows()
+        cols = self.levelMap.columns()
+
+        model = JOB.Model.Group[mdlIdx]
+        if self.modelSTLs[mdlIdx] is False:
+            return
+
+        if self.modelTypes[mdlIdx] == 'M':
+            facets = model.Mesh.Facets.Points
+        else:
+            if hasattr(model, 'Shape'):
+                shape = model.Shape
+            else:
+                shape = model
+            vertices, facet_indices = shape.tessellate(
+                obj.LinearDeflection.Value)
+            facets = ((vertices[f[0]], vertices[f[1]], vertices[f[2]])
+                      for f in facet_indices)
+
+        for va, vb, vc in facets:
+            self.levelMap.add_facet(va, vb, vc)
+
+        # Apply tool shape
+        # For end mill:
+        self.levelMap.applyTool( self.radius, None )
+
+        # Extract Wl layers per depthparams
+        layTime = time.time()
+        self.topoMap = numpy.empty((rows + 2, cols + 2),
+                                    dtype = numpy.int8)
+        neighbour_sum = numpy.empty((rows, cols),
+                                    dtype = numpy.int8)
+        for layDep in depthparams:
+            loopList = []
+
+            # Create topo map with buffer
+            self.topoMap[:, :] = 0
+            self.topoMap[1:-1, 1:-1][self.levelMap.level() > layDep] = 2
+            nnn = self.topoMap.sum()/2
+
+            # Identify layer waterline
+            highFlag = 0
+
+            # ("--Convert data to ridges")
+            neighbour_sum[:,:] = self.topoMap[1:-1, :-2] + self.topoMap[1:-1, 2:]
+            neighbour_sum += self.topoMap[2:, 1:-1]
+            neighbour_sum += self.topoMap[:-2, 1:-1]
+            numpy.maximum( self.topoMap[1:-1, 1:-1], neighbour_sum > 0,
+                          out = self.topoMap[1:-1, 1:-1] )
+
+
+            # Extract waterline and convert to gcode
+            while True:
+                index = numpy.where(self.topoMap == 1)
+                if len(index[0]) == 0:
+                    break
+                r, c = index[0][0], index[1][0]
+                nodes = self._traceWaterLine(self.topoMap, r, c,
+                                              obj.CutMode == "Climb" )
+                if self.topoMap[r, c] == 1:
+                    nodes = self._traceWaterLine(self.topoMap, r, c,
+                                                 obj.CutMode != "Climb")[::-1] + nodes
+                self.topoMap[r, c] = 0
+
+                commands.extend( self._nodesToGcode(nodes,
+                                                    layDep,
+                                                    obj.ClearanceHeight.Value))
+
+        PathLog.debug("--All layer scans combined took " + str(time.time() - layTime) + " s")
+
+        return commands
+
+    #          ro  co  rd  cd
+    DELTAS = (( 0,  1,  1,  1),
+              ( 1,  0,  1,  1),
+              ( 1,  0,  1, -1),
+              ( 0, -1,  1, -1),
+              ( 0, -1, -1, -1),
+              (-1,  0, -1, -1),
+              (-1,  0, -1,  1),
+              ( 0,  1, -1,  1))
+
+    def _traceWaterLine( self, m, r0, c0, climb ):
+        r, c = r0, c0
+        R, C = m.shape
+        if climb:
+            d = 4
+        else:
+            d = 0
+        dro, dco, drd, dcd = self.DELTAS[d]
+        ans = []
+        while True:
+            t = 0
+            while True:
+                # check diagonal
+                if m[r + drd, c + dcd] == 1:
+                    ans.append((c + (dcd + 1)//2 - 1, r + (drd + 1)//2 - 1))
+                    r += drd
+                    c += dcd
+                    break
+                # check horizontal or vertical direction
+                elif m[r + dro, c + dco] == 1:
+                    r += dro
+                    c += dco
+                    break
+                elif t == 7:
+                    if r == r0 and c == c0 and ans != []:
+                        ans.append(ans[0])
+                    else:
+                        ans.append((c + (dcd + 1)//2 - 1, r + (drd + 1)//2 - 1))
+                    m[r, c] = 0
+                    return ans
+                else:
+                    t += 1
+                    if climb:
+                        d = (d - 1) % 8
+                    else:
+                        d = (d + 1) % 8
+                    dro, dco, drd, dcd = self.DELTAS[d]
+            m[r, c] = 0   # mark current cell
+        m[r, c] = 0   # mark current cell
+        return ans
+
+    def _nodesToGcode( self, nodes, layDep, clearanceHeight ):
+        """ ... Convert set of loop points to Gcode."""
+        # generate the path commands
+        output = []
+        if len(nodes) <= 1:
+            return []
+
+        xmin = self.levelMap.xmin
+        ymin = self.levelMap.ymin
+        si   = self.levelMap.sampleInterval
+
+        # Position cutter to begin loop
+        output.append(
+            Path.Command("G0", {"Z": clearanceHeight, "F": self.vertRapid})
+        )
+        output.append(
+            Path.Command("G0", {"X": xmin + nodes[0][0] * si,
+                                "Y": ymin + nodes[0][1] * si,
+                                "F": self.horizRapid})
+        )
+        output.append(Path.Command("G1", {"Z": layDep, "F": self.vertFeed}))
+
+        last = len(nodes) - 1
+        # Cycle through each point on loop
+        prev = nodes[0]
+        for i in range(1, last + 1):
+            this = nodes[i]
+            if i < last:
+                nxt = nodes[i + 1]
+                if ((nxt[0] - this[0]) * (this[1] - prev[1]) ==
+                    (nxt[1] - this[1]) * (this[0] - prev[0]) and
+                    (nxt[0] - this[0]) * (this[0] - prev[0]) > 0):
+                    continue
+
+            output.append(
+                Path.Command("G1", {"X": xmin + this[0] * si,
+                                    "Y": ymin + this[1] * si,
+                                    "F": self.horizFeed})
+            )
+            prev = this
+
+        # Save layer end point for use in transitioning to next layer
+        self.layerEndPnt = FreeCAD.Vector(xmin + prev[0] * si,
+                                          ymin + prev[1] * si,
+                                          layDep)
+
+        return output
+
 
     # Experimental waterline functions
     def _experimentalWaterlineOp(self, JOB, obj, mdlIdx, subShp=None):

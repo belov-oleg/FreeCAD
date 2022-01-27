@@ -114,7 +114,7 @@ class TaskPanelOpPage(PathOpGui.TaskPanelPage):
         Algorithm = self.form.algorithmSelect.currentText()
         self.form.optimizeEnabled.hide()  # Has no independent QLabel object
 
-        if Algorithm == 'OCL Dropcutter':
+        if Algorithm == 'OCL Dropcutter' or Algorithm == 'Grid Dropcutter':
             self.form.cutPattern.hide()
             self.form.cutPattern_label.hide()
             self.form.boundaryAdjustment.hide()
