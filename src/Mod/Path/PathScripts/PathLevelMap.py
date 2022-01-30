@@ -416,7 +416,29 @@ class LevelMap():
             job.append(( -j, index, i, 0 ))
             job.append(( j, index, -i - (bs - 1) * 2, 0 ))
             job.append(( -j, index, -i - (bs - 1) * 2, 0 ))
-        
+
+    def _paint_job(self, job, irt, filled = None):
+        # return numpy boolean array (irt*2+1, irt*2+1)
+        # Used both in algorithm and for test
+        if filled is None:
+            ans = numpy.zeros((irt*2+1, irt*2+1), dtype=bool)
+        else:
+            ans = filled
+
+        for ji in job:
+            j, k, i = ji[0:3]
+            if k == 0:
+                ans[irt+j, irt+i] = True
+            elif k % 2 == 1:
+                bs = 2 ** ((k + 1) // 2)
+                ans[irt+j:irt+j+bs, irt+i:irt+i+bs] = True
+            else:
+                bs = 2 ** (k // 2) + 1
+                for m in range(0, bs):
+                    ans[irt+j+m, irt+i+m:irt+i+bs*2-m-1] = True
+                    ans[irt+j-m, irt+i+m:irt+i+bs*2-m-1] = True
+        return ans
+
     def _create_coverage(self, job, partial, rt):  
         irt = min(self.border, int(numpy.ceil(rt)))
         # calculate row half width:
@@ -437,7 +459,7 @@ class LevelMap():
         self.bss = self.bss[:-1]
         
         # Cover top irt * (1-cos(22.5)) rows by maximum available blocks
-        top = int(math.floor(irt * 0.924))
+        top = int(math.floor(irt * 0.9))
         for r in range(irt - 1, top - 1, -1):
             width = hw[r] * 2 + 1
             ind = sum(t <= width for t in self.bss) - 1 # get the appropriate block size
@@ -492,9 +514,39 @@ class LevelMap():
                                             j - width + 2, ind )
             r += 1
             i -= 1
-            if j == top - 1 and hw[top] >= i:
+            if j == top - 1 and hw[top] > i:
                 break
         
+        #  Cover the center
+        #    Get cells to fill
+        filled = self._paint_job(job, irt)
+        #paint area outside the mill
+        for i in range(0, irt):
+            filled[irt + i + 1, :irt - hw[i]] = True
+            filled[irt + i + 1, irt + 1 + hw[i]:] = True
+            filled[irt - i - 1, :irt - hw[i]] = True
+            filled[irt - i - 1, irt + 1 + hw[i]:] = True
+
+        indj, indi = numpy.where(~filled)
+        if len(indj) > 0:
+            j0 = indj.min() -irt
+            j1 = indj.max() -irt + 1
+            i0 = indi.min() -irt
+            i1 = indi.max() -irt + 1
+            # get the appropriate block size
+            width = min(j1-i0, i1-i0)
+            ind = sum(t <= width for t in self.bss) - 1
+            if ind > 0 and (ind % 2 == 0):
+                ind -= 1
+            bs = self.bss[ind]
+            # if this block size was not used yet take the previous one
+            if sum([jj[1] == ind for jj in job]) == 0 and bs > 2:
+                ind = ind - 2
+                bs = bs // 2
+            for j in range(j0, j1, bs):
+                for i in range(i0, i1, bs):
+                    job.append((min(j, j1-bs), ind, min(i, i1-bs), 0))
+
         # remove unused block sizes
         for i in range(len(self.bss)-1, 0, -1):
             if sum([jj[1] == i for jj in job]) == 0:
