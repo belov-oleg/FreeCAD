@@ -44,23 +44,17 @@ def test_add_facet():
 
 
 
-def test_fill_job( border, rt ):
-    BLOCK_SIZE = (1, 3, 9, 27, 81, 243)
-    lm = PathLevelMap.LevelMap( -15, 15, -15, 15, -9, 0.1, border )
-    irt = min(border, int(numpy.ceil(rt)))
+def test_coverage( border, rt ):
+    lm = PathLevelMap.LevelMap( -15, 15, -15, 15, -9, 0.05, border )
+    border = lm.border
     job = []
-    bs = 3
-    while bs * 3 < math.sqrt(0.4) * rt and bs <= BLOCK_SIZE[-1]:
-        bs *= 3
-    j = -(bs // 2) - 1
-    while j < irt:
-        while irt - j < bs:
-            bs //= 3
-        lm._fill_job_row( job, rt, irt, bs, j, 0 )
-        j += bs
+    maxcol = max(border, (2000 - border) // 16 * 16)  # to fit in L1 cache
+    R, C = lm.z.shape
+    partial = [numpy.empty((R, min(maxcol + 2 * border, C)))]
+    lm._create_coverage(job, partial, rt)
     fp = open('job', 'w')
     for ji in job:
         fp.write( "%i, %i, %i, %.3f\n" % ji )
     fp.close
 
-test_fill_job( 20, 15)
+test_coverage( 250, 150)

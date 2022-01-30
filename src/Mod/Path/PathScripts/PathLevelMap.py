@@ -382,61 +382,151 @@ class LevelMap():
                                   out=self.z[j0:j1, i]
                                   )
 
-    BLOCK_SIZE = (1, 3, 9, 27, 81, 243)
+    # For rectangular mill an optimized algorithm is used.
+    # Several partial maximums ara calculated and stored in arrays organized in
+    # the "partial" list.
+    # partial[0] contains the original level map, while
+    # partial[1], partial[3] .. etc. contain square blocks and
+    # partial[2], partial[4] .. etc. contain diagonal blocks.
+    # Each cell marked here as + contains a maximum of cells from the original
+    # array marked as point.
+    #
+    #  [0]   [1]   [2]      [3]     [4]  .      ...
+    #                .      ....        ...
+    #         ..    ...     ....       ..... 
+    #   +     +.   +....    ....      ....... 
+    #               ...     +...     .........
+    #                .              +..........
+    #                                .........
+    #                                 .......
+    #                                  .....
+    #                                   ...
+    #                                    .
 
-    def _fill_job_row( self, job, rt, irt, bs, j, i ):
-        index = self.BLOCK_SIZE.index(bs)
-        bs2 = bs // 2
-        if i == 0 and (bs + j - 0.5) ** 2 + (bs2 - 0.5) ** 2 < rt ** 2:
-            job.append((j + bs2 + 1, index, 0, 0))
-            if j != -bs // 2 - 1:
-                job.append((-(j + bs2 + 1), index, 0, 0))
-            i = bs2
-        while i + bs <= irt and (i + bs - 1) ** 2 + (j + bs - 1) ** 2 < (rt - 0.3) ** 2:
-            job.append((j + bs2 + 1, index,   i + bs2 + 1, 0))
-            job.append((j + bs2 + 1, index, -(i + bs2 + 1), 0))
-            if j != -bs // 2 - 1:
-                job.append((-(j + bs2 + 1), index,   i + bs2 + 1, 0))
-                job.append((-(j + bs2 + 1), index, -(i + bs2 + 1), 0))
-            i += bs
-        bs = bs // 3
-        if bs > 0:
-            if j > 0:
-                self._fill_job_row( job, rt, irt, bs, j, i )
-            self._fill_job_row( job, rt, irt, bs, j + bs, i )
-            self._fill_job_row( job, rt, irt, bs, j + 2 * bs, i )
+    # BLOCK_SIZE = (1, 2, 3,  4, 5,  8, 9,  16, 17,  32, 33, 64)
+
+    def _symmetric_append(self, job, i, j, index):
+        bs = self.bss[index]
+        job.append(( j, index, i, 0 ))
+        if index % 2 == 1:
+            job.append(( -j - bs + 1, index, i, 0 ))
+            job.append(( i, index, j, 0 ))
+            job.append(( i, index, -j - bs + 1, 0 ))
+        else:
+            job.append(( -j, index, i, 0 ))
+            job.append(( j, index, -i - (bs - 1) * 2, 0 ))
+            job.append(( -j, index, -i - (bs - 1) * 2, 0 ))
         
-                     
+    def _create_coverage(self, job, partial, rt):  
+        irt = min(self.border, int(numpy.ceil(rt)))
+        # calculate row half width:
+        # Each row contains odd number of cells, and there are irt * 2 + 1 rows.
+        hw = []
+        for i in range(0, irt):
+            hw.append(min(self.border, 
+                          int(numpy.ceil(math.sqrt(rt ** 2 - (i) ** 2)))))
+
+        # Create blocks, maximum block size is rt * 2/3
+        self.bss = [1,2,3]
+        while True:
+            bs = self.bss[-2] * 2
+            if bs > irt * 2 // 3 or bs > self.border:
+                break
+            self.bss.append( bs )
+            self.bss.append( bs + 1 )
+        self.bss = self.bss[:-1]
+        
+        # Cover top irt * (1-cos(22.5)) rows by maximum available blocks
+        top = int(math.floor(irt * 0.924))
+        for r in range(irt - 1, top - 1, -1):
+            width = hw[r] * 2 + 1
+            ind = sum(t <= width for t in self.bss) - 1 # get the appropriate block size
+            if ind > 0 and (ind % 2 == 0):
+                ind -= 1
+            bs = self.bss[ind]
+            i = -hw[r]
+            if r == irt - 1:
+                while width > 0:
+                    self._symmetric_append( job, i, r - bs + 2, ind )
+                    width -= bs
+                    i += bs
+                    if width > 0 and width < bs:
+                        self._symmetric_append( job, i + width - bs, 
+                                                r - bs + 2, ind )
+                        break
+            else:
+                self._symmetric_append( job, i, r - bs + 2, ind )
+                if width > bs:
+                    self._symmetric_append( job, hw[r] - bs + 1, 
+                                            r - bs + 2, ind )
+
+        # locate diagonal cell and cover diagonal rows
+        j = 0
+        while j < len(hw) and hw[j] - 1 > j:  #index of the last cell
+            j += 1
+        i = hw[j] - 1
+        r = 0
+        while j < top and i > 0:
+            # trace diagonal elements
+            while hw[j + 1] == i and j < top - 1:
+                j += 1
+                i -= 1
+            width = j - i + 1
+            ind = sum(t <= width for t in self.bss) - 1 # get the appropriate block size
+            if ind % 2 == 1:
+                ind -= 1
+            bs = self.bss[ind]
+            if r == 0:
+                d = 0
+                while d < width:
+                    self._symmetric_append( job, i + d - bs + 2, j - d - bs + 2, ind )
+                    d += bs
+                    if d < width and width - d < bs:
+                        self._symmetric_append( job, i - 2 * bs + width + 2, 
+                                                j - width + 2, ind )
+                        break
+            else:
+                self._symmetric_append( job, i - bs + 2, j - bs + 2, ind )
+                if width > bs:
+                    self._symmetric_append( job, i - 2 * bs + width + 2, 
+                                            j - width + 2, ind )
+            r += 1
+            i -= 1
+            if j == top - 1 and hw[top] >= i:
+                break
+        
+        # remove unused block sizes
+        for i in range(len(self.bss)-1, 0, -1):
+            if sum([jj[1] == i for jj in job]) == 0:
+                self.bss = self.bss[0:-1]
+            else:
+                break
+              
+        # allocate memory
+        for i in range(1, len(self.bss)):
+            partial.append(numpy.zeros(partial[-1].shape))
+                         
+                         
     def applyTool( self, radius, profile ):
         # profile is None for square end mill or sorted list of (radius, elevation)
         # Make a job as a sorted list of (y, source_index, x, elevation)
         rt = radius / self.sampleInterval
         border = self.border
-        irt = min(border, int(numpy.ceil(rt)))
         job = []
-        maxcol = max(border, (2000 - border) // 16 * 16)
+        maxcol = max(border, (2000 - border) // 16 * 16)  # to fit in L1 cache
         R, C = self.z.shape
-        partial = [numpy.empty((R, min(maxcol + 2 * border, C)))]
+        partial = [numpy.zeros((R, min(maxcol + 2 * border, C)))]
         
         if C > maxcol:
             buff = numpy.empty((R, border))
             
         if profile is None:
-            bs = 1
-            while bs * 3 < math.sqrt(0.4) * rt and bs <= self.BLOCK_SIZE[-1]:
-                partial.append(numpy.empty(partial[-1].shape))
-                bs *= 3
-            j = -(bs // 2) - 1
-            while j < irt:
-                while irt - j < bs:
-                    bs //= 3
-                self._fill_job_row( job, rt, irt, bs, j, 0 )
-                j += bs
+            self._create_coverage(job, partial, rt)
                 
         else:
             pr = [p[0] for p in profile]
             pz = [p[1] for p in profile]
-            for i in range(1, irt+1):
+            for i in range(1, min(border, int(numpy.ceil(rt)) + 1)):
                 z = - numpy.interp((i-1) * self.sample_interval, pr, pz)
                 job.append(( i, 0,  0, z)) 
                 job.append((-i, 0,  0, z)) 
@@ -470,17 +560,71 @@ class LevelMap():
             
             bs = 1
             for k in range(1, len(partial)):
-                for m in range(bs, R-bs):
-                    partial[k][m,:cols+2*border] = partial[k-1][m,:cols+2*border]
-                    for i in range(-bs, bs+1, bs):
-                         for j in range(-bs, bs+1, bs):
-                             if i != 0 and j != 0:
-                                 numpy.maximum(
-                                     partial[k][m, bs:cols+2*border-bs],
-                                     partial[k-1][m+j, bs+i:cols+2*border-bs+i],
-                                     out = partial[k][m, bs:cols+2*border-bs]
-                                     )
-                bs *= 3
+                if k == 2:
+                    base = partial[1]
+                    orig = partial[0]
+                    for j in range(2, R-2):
+                        partial[2][j,1:-2] = numpy.maximum(      
+                                                base[j,1:-2],     
+                                                base[j,2:-1])     
+                        numpy.maximum(partial[2][j,1:-2],       
+                                      base[j-1,1:-2],              
+                                      out=partial[2][j,1:-2])   
+                        numpy.maximum(partial[2][j,1:-2],
+                                      base[j-1,2:-1],
+                                      out=partial[2][j,1:-2])
+                        numpy.maximum(partial[2][j,:],
+                                      orig[j,:],
+                                      out=partial[2][j,:])
+                        numpy.maximum(partial[2][j,:-4],
+                                      orig[j,4:],
+                                      out=partial[2][j,:-4])
+                        numpy.maximum(partial[2][j,:-2],
+                                      orig[j-2,2:],
+                                      out=partial[2][j,:-2])
+                        numpy.maximum(partial[2][j,:-2],
+                                      orig[j+2,2:],
+                                      out=partial[2][j,:-2])
+
+                else:
+                    if k == 1:
+                        bs = 1
+                        base = partial[0]
+                    else:
+                        bs = self.bss[k-2]
+                        base = partial[k-2]
+
+                    if bs % 2 == 1 and bs != 1:
+                        sh = bs - 1
+                        for j in range(0, R):
+                            if j >= sh:
+                                partial[k][j, :-sh] = numpy.maximum(
+                                                        base[j, :-sh],                                     base[j-sh, sh:])
+                            else:
+                                partial[k][j, :] = base[j, :]
+                                
+                            if j < R-sh:
+                                numpy.maximum(partial[k][j, :-sh],
+                                              base[j+sh, sh:],
+                                              out = partial[k][j, :-sh]
+                                             )
+                            numpy.maximum(partial[k][j, :-2*sh],
+                                          base[j, 2*sh:],
+                                          out = partial[k][j, :-2*sh]
+                                          )
+                    else:
+                        for j in range(0, R):
+                            partial[k][j, :-bs] = numpy.maximum(
+                                                    base[j, :-bs],                                     base[j, bs:])
+                            if j <= R - bs - 1:
+                                numpy.maximum(partial[k][j, :],
+                                              base[j+bs,:],
+                                              out = partial[k][j, :]
+                                             )
+                                numpy.maximum(partial[k][j, :-bs],
+                                              base[j+bs,bs:],
+                                              out = partial[k][j, :-bs]
+                                             )
 
             if offs + cols < C - border:
                 buff[:,:] = self.z[:, offs:offs+border]
