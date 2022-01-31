@@ -57,4 +57,4 @@ def test_coverage( border, rt ):
         fp.write( "%i, %i, %i, %.3f\n" % ji )
     fp.close
 
-test_coverage( 250, 150)
+test_coverage( 150, 150)

@@ -22,6 +22,7 @@
 
 import math
 import numpy
+import time
 
 # This is a square grid of elevations in given direction.
 # Each cell [i,j] holds a mxaimum value of the model elevation in a square region
@@ -539,7 +540,7 @@ class LevelMap():
             if ind > 0 and (ind % 2 == 0):
                 ind -= 1
             bs = self.bss[ind]
-            # if this block size was not used yet take the previous one
+            # if this block size was not used take the previous one
             if sum([jj[1] == ind for jj in job]) == 0 and bs > 2:
                 ind = ind - 2
                 bs = bs // 2
@@ -558,7 +559,6 @@ class LevelMap():
         for i in range(1, len(self.bss)):
             partial.append(numpy.zeros(partial[-1].shape))
                          
-                         
     def applyTool( self, radius, profile ):
         # profile is None for square end mill or sorted list of (radius, elevation)
         # Make a job as a sorted list of (y, source_index, x, elevation)
@@ -567,10 +567,34 @@ class LevelMap():
         job = []
         maxcol = max(border, (2000 - border) // 16 * 16)  # to fit in L1 cache
         R, C = self.z.shape
-        partial = [numpy.zeros((R, min(maxcol + 2 * border, C)))]
         
-        if C > maxcol:
-            buff = numpy.empty((R, border))
+        # For optimization find first and last significant row and column
+        R0 = R
+        R1 = 0
+        C0 = C
+        C1 = 0
+        for j in range(0, R):
+            ind = numpy.where(self.z[j,:] > self.zmin - 0.5)[0]
+            if len(ind) > 0:
+                R0 = min(R0, j)
+                R1 = j+1
+                C0 = min(C0, ind.min())
+                C1 = max(C1, ind.max()+1)
+        if R0 > R1:
+            return  # nothing to do
+        # Only part R0-border..R1+border, C0-border..C1+border should taken into
+        # account in calculation of the minimal mill elevation.
+        R0 = max(0, R0 - 2 * border)
+        R1 = min(R, R1 + 2 * border)
+        C0 = max(0, C0 - 2 * border)
+        C1 = min(C, C1 + 2 * border)
+        RA = R1 - R0
+        CA = C1 - C0
+        
+        partial = [numpy.zeros((RA, min(maxcol + 2 * border, CA)))]
+        
+        if CA > maxcol + 2 * border:
+            buff = numpy.empty((RA, border))
             
         if profile is None:
             self._create_coverage(job, partial, rt)
@@ -600,43 +624,49 @@ class LevelMap():
         
         job.sort()
         
-        offs = border
-        while offs < C - border:
-            cols = min( maxcol, C - border - offs )
-            if offs > border:
+        offs = C0 + border
+        
+        if len(partial) > 1:
+            TR = self.bss[-1]
+            temp = numpy.zeros((TR, partial[0].shape[1]))                         
+
+        while offs < C1 - border:
+            cols = min( maxcol, C1 - border - offs )
+            if offs > C0 + border:
                 partial[0][:,:cols+2*border] = numpy.column_stack(
-                                       (buff, self.z[:, offs:offs+cols+border])
+                                       (buff, self.z[R0:R1, offs:offs+cols+border])
                                      )
             else:
-                partial[0][:,:cols+2*border] = self.z[:, offs-border:offs+cols+border]
+                partial[0][:,:cols+2*border] = self.z[R0:R1, 
+                                                      offs-border:offs+cols+border]
             
-            bs = 1
+            PC = cols+2*border
             for k in range(1, len(partial)):
                 if k == 2:
                     base = partial[1]
                     orig = partial[0]
-                    for j in range(2, R-2):
-                        partial[2][j,1:-2] = numpy.maximum(      
-                                                base[j,1:-2],     
-                                                base[j,2:-1])     
-                        numpy.maximum(partial[2][j,1:-2],       
-                                      base[j-1,1:-2],              
-                                      out=partial[2][j,1:-2])   
-                        numpy.maximum(partial[2][j,1:-2],
-                                      base[j-1,2:-1],
-                                      out=partial[2][j,1:-2])
-                        numpy.maximum(partial[2][j,:],
-                                      orig[j,:],
-                                      out=partial[2][j,:])
-                        numpy.maximum(partial[2][j,:-4],
-                                      orig[j,4:],
-                                      out=partial[2][j,:-4])
-                        numpy.maximum(partial[2][j,:-2],
-                                      orig[j-2,2:],
-                                      out=partial[2][j,:-2])
-                        numpy.maximum(partial[2][j,:-2],
-                                      orig[j+2,2:],
-                                      out=partial[2][j,:-2])
+                    for j in range(2, RA-2):
+                        partial[2][j,1:PC] = numpy.maximum(      
+                                                base[j,0:PC-1],     
+                                                base[j,1:PC])     
+                        numpy.maximum(partial[2][j,1:PC],       
+                                      base[j-1,0:PC-1],              
+                                      out=partial[2][j,1:PC])   
+                        numpy.maximum(partial[2][j,1:PC],
+                                      base[j-1,1:PC],
+                                      out=partial[2][j,1:PC])
+                        numpy.maximum(partial[2][j,:PC],
+                                      orig[j,:PC],
+                                      out=partial[2][j,:PC])
+                        numpy.maximum(partial[2][j,:PC-4],
+                                      orig[j,4:PC],
+                                      out=partial[2][j,:PC-4])
+                        numpy.maximum(partial[2][j,:PC-2],
+                                      orig[j-2,2:PC],
+                                      out=partial[2][j,:PC-2])
+                        numpy.maximum(partial[2][j,:PC-2],
+                                      orig[j+2,2:PC],
+                                      out=partial[2][j,:PC-2])
 
                 else:
                     if k == 1:
@@ -646,42 +676,29 @@ class LevelMap():
                         bs = self.bss[k-2]
                         base = partial[k-2]
 
-                    if bs % 2 == 1 and bs != 1:
+                    if bs % 2 == 1 and bs != 1:   # diagonal elements
                         sh = bs - 1
-                        for j in range(0, R):
-                            if j >= sh:
-                                partial[k][j, :-sh] = numpy.maximum(
-                                                        base[j, :-sh],                                     base[j-sh, sh:])
-                            else:
-                                partial[k][j, :] = base[j, :]
-                                
-                            if j < R-sh:
-                                numpy.maximum(partial[k][j, :-sh],
-                                              base[j+sh, sh:],
-                                              out = partial[k][j, :-sh]
-                                             )
-                            numpy.maximum(partial[k][j, :-2*sh],
-                                          base[j, 2*sh:],
-                                          out = partial[k][j, :-2*sh]
-                                          )
+                        for j in range(0, RA-sh ):
+                            temp[j % TR, :PC-sh] = numpy.maximum(
+                                                    base[j, :PC-sh],
+                                                    base[j+sh, sh:PC])
+                            partial[k][j, :PC-sh] = numpy.maximum(
+                                                    temp[j % TR, :PC-sh],
+                                                    temp[(j-sh) % TR, sh:PC])
                     else:
-                        for j in range(0, R):
-                            partial[k][j, :-bs] = numpy.maximum(
-                                                    base[j, :-bs],                                     base[j, bs:])
-                            if j <= R - bs - 1:
-                                numpy.maximum(partial[k][j, :],
-                                              base[j+bs,:],
-                                              out = partial[k][j, :]
-                                             )
-                                numpy.maximum(partial[k][j, :-bs],
-                                              base[j+bs,bs:],
-                                              out = partial[k][j, :-bs]
-                                             )
+                        for j in range(RA-1, -1, -1):
+                            temp[j % TR, :PC-bs] = numpy.maximum(
+                                                    base[j, :PC-bs],
+                                                    base[j, bs:PC])
+                            partial[k][j, :PC] = numpy.maximum(
+                                                 temp[j % TR, :PC],
+                                                 temp[(j+bs) % TR,:PC]
+                                               )
 
-            if offs + cols < C - border:
-                buff[:,:] = self.z[:, offs:offs+border]
+            if offs + cols < C1 - border:
+                buff[:,:] = self.z[R0:R1, offs+cols-border:offs+cols]
                 
-            for m in range(border, R-border):
+            for m in range(R0+border, R1-border):
                 for j, k, i, z in job:
                     numpy.maximum(
                         self.z[m, offs:offs+cols],
@@ -689,4 +706,5 @@ class LevelMap():
                         out = self.z[m, offs:offs+cols]
                         )
             offs += cols
-                      
+ 
+
