@@ -22,12 +22,13 @@
 
 import math
 import numpy
-import time
+from PathScripts.PathContourMap import ContourMap
 
 # This is a square grid of elevations in given direction.
-# Each cell [i,j] holds a mxaimum value of the model elevation in a square region
-#   (xmin + i * sample_interval .. xmin + (i + 1) * sample_interval,
-#    ymin + i * sample_interval .. ymin + (i + 1) * sample_interval)
+# Each cell [i,j] holds a maximum value of the model elevation in a square region
+# with coordinates
+#   (xmin + (i - border) * sample_interval .. xmin + (i - border + 1) * sample_interval,
+#    ymin + (j - border) * sample_interval .. ymin + (j - border + 1) * sample_interval)
 
 class LevelMap():
     def __init__( self, xmin, xmax, ymin, ymax, zmin, sample_interval, border ):
@@ -70,19 +71,40 @@ class LevelMap():
         return self.z[self.border:-self.border, self.border:-self.border]
       
     def add_facet( self, va, vb, vc ):
-        #TODO if not self.matrix is Null: apply matrix
-        xva = (va[0] - self.xmin) / self.sampleInterval + self.border
-        xvb = (vb[0] - self.xmin) / self.sampleInterval + self.border
-        xvc = (vc[0] - self.xmin) / self.sampleInterval + self.border
-        yva = (va[1] - self.ymin) / self.sampleInterval + self.border
-        yvb = (vb[1] - self.ymin) / self.sampleInterval + self.border
-        yvc = (vc[1] - self.ymin) / self.sampleInterval + self.border
+        if not self.matrix is None:
+            mr = self.matrix[0]
+            xva = va[0] * mr[0] + va[1] * mr[1] + va[2] * mr[2] + self.border
+            xvb = vb[0] * mr[0] + vb[1] * mr[1] + vb[2] * mr[2] + self.border
+            xvc = vc[0] * mr[0] + vc[1] * mr[1] + vc[2] * mr[2] + self.border
+            mr = self.matrix[1]
+            yva = va[0] * mr[0] + va[1] * mr[1] + va[2] * mr[2] + self.border
+            yvb = vb[0] * mr[0] + vb[1] * mr[1] + vb[2] * mr[2] + self.border
+            yvc = vc[0] * mr[0] + vc[1] * mr[1] + vc[2] * mr[2] + self.border
+            mr = self.matrix[2]
+            zva = va[0] * mr[0] + va[1] * mr[1] + va[2] * mr[2]
+            zvb = vb[0] * mr[0] + vb[1] * mr[1] + vb[2] * mr[2]
+            zvc = vc[0] * mr[0] + vc[1] * mr[1] + vc[2] * mr[2]
+            
+        else:
+            xva = (va[0] - self.xmin) / self.sampleInterval + self.border
+            xvb = (vb[0] - self.xmin) / self.sampleInterval + self.border
+            xvc = (vc[0] - self.xmin) / self.sampleInterval + self.border
+            yva = (va[1] - self.ymin) / self.sampleInterval + self.border
+            yvb = (vb[1] - self.ymin) / self.sampleInterval + self.border
+            yvc = (vc[1] - self.ymin) / self.sampleInterval + self.border
+            zva = va[2]
+            zvb = vb[2]
+            zvc = vc[2]
         
-        b1 = self._add_edge( xva, yva, va[2], xvb, yvb, vb[2] )
-        b2 = self._add_edge( xvb, yvb, vb[2], xvc, yvc, vc[2] )
-        b3 = self._add_edge( xvc, yvc, vc[2], xva, yva, va[2] )
+        b1 = self._add_edge( xva, yva, zva, xvb, yvb, zvb )
+        b2 = self._add_edge( xvb, yvb, zvb, xvc, yvc, zvc )
+        b3 = self._add_edge( xvc, yvc, zvc, xva, yva, zva )
         if b1 or b2 or b3:
-            self._add_triangle( xva, yva, va[2], xvb, yvb, vb[2], xvc, yvc, vc[2] )   
+            self._add_triangle( xva, yva, zva, xvb, yvb, zvb, xvc, yvc, zvc ) 
+            
+    def getContourMap( self, z ):
+        return ContourMap(self.xmin, self.ymin, z, self.sampleInterval,
+                          self.z[self.border:-self.border, self.border:-self.border])
       
     def _add_edge( self, xa, ya, za, xb, yb, zb ):
         # This algorithm should be coded in C
@@ -383,6 +405,10 @@ class LevelMap():
                                   out=self.z[j0:j1, i]
                                   )
 
+    # Transformation of the level map to the lowest surface where the given
+    # toolbit can travel in any direction without cutting something from
+    # the original profile,
+    
     # For rectangular mill an optimized algorithm is used.
     # Several partial maximums ara calculated and stored in arrays organized in
     # the "partial" list.
@@ -603,7 +629,7 @@ class LevelMap():
             pr = [p[0] for p in profile]
             pz = [p[1] for p in profile]
             for i in range(1, min(border, int(numpy.ceil(rt)) + 1)):
-                z = - numpy.interp((i-1) * self.sample_interval, pr, pz)
+                z = - numpy.interp((i-1) * self.sampleInterval, pr, pz)
                 job.append(( i, 0,  0, z)) 
                 job.append((-i, 0,  0, z)) 
                 job.append(( 0, 0,  i, z)) 
@@ -611,7 +637,7 @@ class LevelMap():
                 for j in range(1, i + 1):
                     r = math.sqrt((i - 1)**2 + (j - 1)**2)
                     if r < rt:
-                        z = - numpy.interp(r * self.sample_interval, pr, pz)
+                        z = - numpy.interp(r * self.sampleInterval, pr, pz)
                         job.append(( j, 0,  i, z)) 
                         job.append(( j, 0, -i, z)) 
                         job.append((-j, 0,  i, z)) 

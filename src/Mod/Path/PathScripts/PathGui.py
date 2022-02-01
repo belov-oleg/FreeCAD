@@ -54,7 +54,9 @@ def updateInputField(obj, prop, widget, onBeforeChange=None):
     attrValue = attr.Value if hasattr(attr, 'Value') else attr
 
     isDiff = False
-    if not PathGeom.isRoughly(attrValue, value):
+    if value is None:
+        return
+    if attrValue is None or not PathGeom.isRoughly(attrValue, value):
         isDiff = True
     else:
         if hasattr(obj, 'ExpressionEngine'):
