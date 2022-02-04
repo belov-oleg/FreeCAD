@@ -22,7 +22,10 @@
 
 import math
 import numpy
-from PathScripts.PathContourMap import ContourMap
+try:
+    from PathScripts.PathContourMap import ContourMap
+except:
+    pass  # In case of stanalone test
 
 # This is a square grid of elevations in given direction.
 # Each cell [i,j] holds a maximum value of the model elevation in a square region
@@ -47,7 +50,7 @@ class LevelMap():
         self.matrix = None
         self.border = border
         self.z = numpy.full((rows + 2 * border, cols + 2 * border),  # elevation data
-                             zmin - 1.0,
+                             zmin,
                              dtype = numpy.single
                             )
         self.kk = numpy.zeros(max(rows, cols) + 2 * border, dtype=int)
@@ -432,6 +435,9 @@ class LevelMap():
 
     # BLOCK_SIZE = (1, 2, 3,  4, 5,  8, 9,  16, 17,  32, 33, 64)
 
+    # Job is a sorted list of (y, source_index, x, elevation, dzdxmin, dzdxmax, dzdymin, dzdymax)
+ 
+
     def _symmetric_append(self, job, i, j, index):
         bs = self.bss[index]
         job.append(( j, index, i, 0 ))
@@ -487,6 +493,7 @@ class LevelMap():
         
         # Cover top irt * (1-cos(22.5)) rows by maximum available blocks
         top = int(math.floor(irt * 0.9))
+        min_full_covered_row = irt
         for r in range(irt - 1, top - 1, -1):
             width = hw[r] * 2 + 1
             ind = sum(t <= width for t in self.bss) - 1 # get the appropriate block size
@@ -494,7 +501,8 @@ class LevelMap():
                 ind -= 1
             bs = self.bss[ind]
             i = -hw[r]
-            if r == irt - 1:
+            if (r == irt - 1 or r < min_full_covered_row or 
+                r == top and min_full_covered_row > hw[min_full_covered_row]):
                 while width > 0:
                     self._symmetric_append( job, i, r - bs + 2, ind )
                     width -= bs
@@ -503,6 +511,7 @@ class LevelMap():
                         self._symmetric_append( job, i + width - bs, 
                                                 r - bs + 2, ind )
                         break
+                min_full_covered_row = r - bs + 1
             else:
                 self._symmetric_append( job, i, r - bs + 2, ind )
                 if width > bs:
@@ -521,6 +530,8 @@ class LevelMap():
                 j += 1
                 i -= 1
             width = j - i + 1
+            if width == 2:
+                width = 3
             ind = sum(t <= width for t in self.bss) - 1 # get the appropriate block size
             if ind % 2 == 1:
                 ind -= 1
@@ -560,8 +571,13 @@ class LevelMap():
             j1 = indj.max() -irt + 1
             i0 = indi.min() -irt
             i1 = indi.max() -irt + 1
+#        if min_full_covered_row > 0:
+#            j0 = -min_full_covered_row
+#            j1 = min_full_covered_row + 1
+#            i0 = j0
+#            i1 = j1
             # get the appropriate block size
-            width = min(j1-i0, i1-i0)
+            width = min(j1-j0, i1-i0)
             ind = sum(t <= width for t in self.bss) - 1
             if ind > 0 and (ind % 2 == 0):
                 ind -= 1
@@ -587,7 +603,6 @@ class LevelMap():
                          
     def applyTool( self, radius, profile ):
         # profile is None for square end mill or sorted list of (radius, elevation)
-        # Make a job as a sorted list of (y, source_index, x, elevation)
         rt = radius / self.sampleInterval
         border = self.border
         job = []
@@ -600,7 +615,7 @@ class LevelMap():
         C0 = C
         C1 = 0
         for j in range(0, R):
-            ind = numpy.where(self.z[j,:] > self.zmin - 0.5)[0]
+            ind = numpy.where(self.z[j,:] > self.zmin)[0]
             if len(ind) > 0:
                 R0 = min(R0, j)
                 R1 = j+1
@@ -672,15 +687,13 @@ class LevelMap():
                     base = partial[1]
                     orig = partial[0]
                     for j in range(2, RA-2):
-                        partial[2][j,1:PC] = numpy.maximum(      
-                                                base[j,0:PC-1],     
-                                                base[j,1:PC])     
-                        numpy.maximum(partial[2][j,1:PC],       
-                                      base[j-1,0:PC-1],              
-                                      out=partial[2][j,1:PC])   
-                        numpy.maximum(partial[2][j,1:PC],
-                                      base[j-1,1:PC],
-                                      out=partial[2][j,1:PC])
+                        partial[2][j,:PC-2] = numpy.maximum(      
+                                                base[j-1,1:PC-1],     
+                                                base[j-1,2:PC])     
+                    for j in range(2, RA-2):
+                        numpy.maximum(partial[2][j,:],       
+                                      partial[2][j+1,:],              
+                                      out=partial[2][j,:])   
                         numpy.maximum(partial[2][j,:PC],
                                       orig[j,:PC],
                                       out=partial[2][j,:PC])
@@ -728,7 +741,7 @@ class LevelMap():
                 for j, k, i, z in job:
                     numpy.maximum(
                         self.z[m, offs:offs+cols],
-                        partial[k][m+j, border+i:cols+border+i] + z,
+                        partial[k][m-R0+j, border+i:cols+border+i] + z,
                         out = self.z[m, offs:offs+cols]
                         )
             offs += cols

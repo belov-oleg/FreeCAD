@@ -32,7 +32,7 @@ __contributors__ = ""
 import FreeCAD
 from PySide import QtCore
 import numpy
-from PathScripts.PathLevelMap import LevelMap
+from PathScripts.PathLevelMapOp import LevelMapOp
 
 # OCL must be installed
 try:
@@ -947,7 +947,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                         PathSurfaceSupport._makeSafeSTL(
                             self, JOB, obj, m, FACES[m], VOIDS[m], ocl
                         )
-                    # Process model/faces - OCL objects must be ready
+                    # Process model/faces - OCL objects must be ready (Except Grid Dropcutter)
                     CMDS.extend(
                         self._processWaterlineAreas(JOB, obj, m, FACES[m], VOIDS[m])
                     )
@@ -1737,104 +1737,53 @@ class ObjectWaterline(PathOp.ObjectOp):
             elif obj.BoundBox == 'BaseBoundBox':
                 BS = base
                 bb = base.Shape.BoundBox
-
-            xmin = bb.XMin
-            xmax = bb.XMax
-            ymin = bb.YMin
-            ymax = bb.YMax
         else:
-            xmin = subShp.BoundBox.XMin
-            xmax = subShp.BoundBox.XMax
-            ymin = subShp.BoundBox.YMin
-            ymax = subShp.BoundBox.YMax
+            bb = subShp.BoundBox
 
-        smplInt = obj.SampleInterval.Value
-        minSampInt = 0.001  # value in mm
-        if smplInt < minSampInt:
-            smplInt = minSampInt
-
-        border = int(numpy.ceil(self.radius / smplInt))
+        model = JOB.Model.Group[mdlIdx]
 
         # Compute number and size of stepdowns, and final depth
         depthparams = [dp for dp in self.depthParams]
         lenDP = len(depthparams)
+        
+        # Create LevelMap operations
+        t0 = time.time()
+        op = LevelMapOp(bb, 
+                        obj.SampleInterval.Value, 
+                        obj.FinalDepth.Value,
+                        self.tool)
 
-        # Create and process meshes
-        self.levelMap = LevelMap(xmin - 0.5 * smplInt, xmax + 0.5 * smplInt,
-                                 ymin - 0.5 * smplInt, ymax + 0.5 * smplInt,
-                                 obj.FinalDepth.Value, smplInt, border
-                                 )
-        rows = self.levelMap.rows()
-        cols = self.levelMap.columns()
-
-        model = JOB.Model.Group[mdlIdx]
-        if self.modelSTLs[mdlIdx] is False:
-            return
-
-        if self.modelTypes[mdlIdx] == 'M':
-            facets = model.Mesh.Facets.Points
-        else:
-            if hasattr(model, 'Shape'):
-                shape = model.Shape
-            else:
-                shape = model
-            vertices, facet_indices = shape.tessellate(
-                obj.LinearDeflection.Value)
-            facets = ((vertices[f[0]], vertices[f[1]], vertices[f[2]])
-                      for f in facet_indices)
-
-        for va, vb, vc in facets:
-            self.levelMap.add_facet(va, vb, vc)
-
-        # Apply tool shape
-        if hasattr(self.tool, 'ShapeName'):
-            tool_level_map = LevelMap(0, self.radius,
-                                      0, smplInt, -float(self.tool.Length),
-                                      smplInt, 0)
-            tool_level_map.matrix = [[1/smplInt, 0, 0],
-                                     [0, 1/smplInt, 0],
-                                     [0, 0,        -1]]
-            vertices, facet_indices = self.tool.Shape.tessellate(
-                obj.LinearDeflection.Value)
-            facets = ((vertices[f[0]], vertices[f[1]], vertices[f[2]])
-                      for f in facet_indices)
-            for va, vb, vc in facets:
-                tool_level_map.add_facet(va, vb, vc)
-            profile = []
-            for i in range (0, tool_level_map.columns()):
-                profile.append((i * smplInt, -tool_level_map.z[0, i]))
-                
-            self.levelMap.applyTool( self.radius, profile )
-            
-        else:
-            # For end mill:
-            self.levelMap.applyTool( self.radius, None )
-
+        op.raiseModel( model )
+        PathLog.log("LevelMap creation %.3f s" % (time.time() - t0))
+        
+        t0 = time.time()       
+        op.applyTool( self.tool )
+        PathLog.log("The tool application %.3f s" % (time.time() - t0))
+        
         if obj.LayerMode != 'Single-pass':
             outerMask = self.levelMap.getContourMap( obj.FinalDepth.Value )
             outerMask.highlightBorders()
 
-        # Extract Wl layers per depthparams
+        # Extract layers per depthparams
         layTime = time.time()
         for layDep in depthparams:
             loopList = []
 
-            contourMap = self.levelMap.getContourMap( layDep )
-            contourMap.z += obj.DepthOffset.Value
+            contourMap = op.getContourMap( layDep, obj.DepthOffset.value )
             
             traces = []
             while True:
                 # Extract waterline and convert to gcode
                 contourMap.highlightBorders()
-                anything = False
+                nothing = True
                 while True:
                     nodes = contourMap.getBorder( obj.CutMode == "Climb" )
                     if nodes == []:
                         break
                     traces.append(nodes)
-                    anything = True
+                    nothing = False
                     
-                if not anything:
+                if nothing:
                     break
                       
                 if obj.LayerMode == 'Single-pass':
