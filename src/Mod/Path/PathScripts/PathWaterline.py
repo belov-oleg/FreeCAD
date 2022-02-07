@@ -32,7 +32,7 @@ __contributors__ = ""
 import FreeCAD
 from PySide import QtCore
 import numpy
-from PathScripts.PathLevelMapOp import LevelMapOp
+from PathScripts.PathLevelMapOp import LevelMapOp, PathMesh
 
 # OCL must be installed
 try:
@@ -510,6 +510,10 @@ class ObjectWaterline(PathOp.ObjectOp):
             obj.setEditorMode("FinishingEnabled", hide)
         elif obj.Algorithm == "Grid Dropcutter":
             obj.setEditorMode("FinishingEnabled", 0)
+            obj.setEditorMode("BoundaryAdjustment", 0)
+            obj.setEditorMode("BoundaryEnforcement", 0)
+            obj.setEditorMode("AvoidLastX_Faces", 0)
+            obj.setEditorMode("HandleMultipleFeatures", 0)
             B = 0
             #obj.setEditorMode("FinishDepth", show)
         elif obj.Algorithm == "Experimental":
@@ -704,6 +708,12 @@ class ObjectWaterline(PathOp.ObjectOp):
     def opExecute(self, obj):
         """opExecute(obj) ... process surface operation"""
         PathLog.track()
+        
+        if obj.Algorithm == "Grid Dropcutter":
+            return self.opGridExecute( obj )
+            # It is a seperated branch needed to avoid both OCL library and
+            # a very slow computation of BoundBox for models with several
+            # thousand faces caused by area.makeSections routine.
 
         self.modelSTLs = list()
         self.safeSTLs = list()
@@ -776,6 +786,7 @@ class ObjectWaterline(PathOp.ObjectOp):
             )
             return
         self.toolDiam = self.cutter.getDiameter()
+            
         self.radius = self.toolDiam / 2.0
         self.cutOut = self.toolDiam * (float(obj.StepOver) / 100.0)
         self.gaps = [self.toolDiam, self.toolDiam, self.toolDiam]
@@ -902,11 +913,14 @@ class ObjectWaterline(PathOp.ObjectOp):
         # ######  MAIN COMMANDS FOR OPERATION ######
 
         # Begin processing obj.Base data and creating GCode
+        PathLog.info( "Begin PSF at %.3f" % (time.time() - startTime))
         PSF = PathSurfaceSupport.ProcessSelectedFaces(JOB, obj)
         PSF.setShowDebugObjects(tempGroup, self.showDebugObjects)
         PSF.radius = self.radius
         PSF.depthParams = self.depthParams
+        PathLog.info( "Begin pPM at %.3f" % (time.time() - startTime) )
         pPM = PSF.preProcessModel(self.module)
+        PathLog.info( "End pPM at %.3f" % (time.time() - startTime) )
         # Process selected faces, if available
         if pPM is False:
             PathLog.error("Unable to pre-process obj.Base.")
@@ -947,10 +961,16 @@ class ObjectWaterline(PathOp.ObjectOp):
                         PathSurfaceSupport._makeSafeSTL(
                             self, JOB, obj, m, FACES[m], VOIDS[m], ocl
                         )
-                    # Process model/faces - OCL objects must be ready (Except Grid Dropcutter)
-                    CMDS.extend(
-                        self._processWaterlineAreas(JOB, obj, m, FACES[m], VOIDS[m])
-                    )
+                    if obj.Algorithm == "Grid Dropcutter":
+                        CMDS.extend(
+                            self._processGridWaterlineAreas(JOB, obj, m, FACES[m], VOIDS[m])
+                        )
+                        # This branch is obsoleted by opGridExecute
+                    else:
+                        # Process model/faces - OCL objects must be ready (Except Grid Dropcutter)
+                        CMDS.extend(
+                            self._processWaterlineAreas(JOB, obj, m, FACES[m], VOIDS[m])
+                        )
 
             # Save gcode produced
             self.commandlist.extend(CMDS)
@@ -1027,7 +1047,7 @@ class ObjectWaterline(PathOp.ObjectOp):
         """_processWaterlineAreas(JOB, obj, mdlIdx, FCS, VDS)...
         This method applies any avoided faces or regions to the selected faces.
         It then calls the correct method."""
-        PathLog.debug("_processWaterlineAreas()")
+        PathLog.info("_processWaterlineAreas()")
 
         final = list()
 
@@ -1086,6 +1106,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                     final.extend(
                         self._gridWaterlineOp(JOB, obj, mdlIdx, COMP)
                     )  # independent method set for Waterline
+                    # This branch is obsoleted by processGridWaterlineEreas
                 else:
                     final.extend(
                         self._experimentalWaterlineOp(JOB, obj, mdlIdx, COMP)
@@ -1713,21 +1734,212 @@ class ObjectWaterline(PathOp.ObjectOp):
 
         return output
 
+    #--------------------------------------------------------------------------
     # Grid Dropcutter waterline functions
+    def opGridExecute(self, obj):
+        # It is a seperated branch needed to avoid both OCL library and
+        # a very slow computation of BoundBox for models with several
+        # thousand faces caused by area.makeSections routine.
+
+        CMDS = list()
+
+        # mark beginning of operation and identify parent Job
+        PathLog.info("\nBegin Grid Waterline operation...")
+        startTime = time.time()
+
+        # Identify parent Job
+        JOB = PathUtils.findParentJob(obj)
+        if JOB is None:
+            PathLog.error(translate("PathWaterline", "No JOB"))
+            return True
+        self.stockZMin = JOB.Stock.Shape.BoundBox.ZMin
+
+    #    self.toolDiam = self.cutter.getDiameter()
+            
+    #    self.radius = self.toolDiam / 2.0
+    #    self.cutOut = self.toolDiam * (float(obj.StepOver) / 100.0)
+    #    self.gaps = [self.toolDiam, self.toolDiam, self.toolDiam]
+
+        # Begin GCode for operation with basic information
+        # ... and move cutter to clearance height and startpoint
+        if obj.Comment != "":
+            self.commandlist.append(Path.Command("N ({})".format(str(obj.Comment)), {}))
+        self.commandlist.append(Path.Command("N ({})".format(obj.Label), {}))
+        self.commandlist.append(
+            Path.Command("N (Tool type: {})".format(self.tool.ShapeName), {})
+        )
+        self.commandlist.append(
+            Path.Command(
+                "N (Compensated Tool Path. Diameter: {})".format(self.tool.Diameter), {}
+            )
+        )
+        self.commandlist.append(
+            Path.Command(
+                "N (Sample interval: {})".format(str(obj.SampleInterval.Value)), {}
+            )
+        )
+        self.commandlist.append(
+            Path.Command("N (Step over %: {})".format(str(obj.StepOver)), {})
+        )
+        self.commandlist.append(Path.Command("N ()", {}))
+        self.commandlist.append(
+            Path.Command("G0", {"Z": obj.ClearanceHeight.Value, "F": self.vertRapid})
+        )
+        if obj.UseStartPoint:
+            self.commandlist.append(
+                Path.Command(
+                    "G0",
+                    {
+                        "X": obj.StartPoint.x,
+                        "Y": obj.StartPoint.y,
+                        "F": self.horizRapid,
+                    },
+                )
+            )
+
+        # Impose property limits
+        self.opApplyPropertyLimits(obj)
+
+        # Get height offset values for later use
+        self.SafeHeightOffset = JOB.SetupSheet.SafeHeightOffset.Value
+        self.ClearHeightOffset = JOB.SetupSheet.ClearanceHeightOffset.Value
+
+        # Calculate default depthparams for operation
+        self.depthParams = PathUtils.depth_params(
+            obj.ClearanceHeight.Value,
+            obj.SafeHeight.Value,
+            obj.StartDepth.Value,
+            obj.StepDown.Value,
+            0.0,
+            obj.FinalDepth.Value,
+        )
+
+        # ######  MAIN COMMANDS FOR OPERATION ######
+        for m in range(0, len(JOB.Model.Group)):
+            # Raise to clearance between models
+            model = JOB.Model.Group[m]
+            CMDS.append(
+                Path.Command(
+                    "N (Transition to base: {}.)".format(model.Label)
+                )
+            )
+            CMDS.append(
+                Path.Command(
+                    "G0",
+                    {"Z": obj.ClearanceHeight.Value, "F": self.vertRapid},
+                )
+            )
+            PathLog.info(
+                "Working on Model.Group[{}]: {}".format(m, model.Label)
+            )
+            CMDS.extend( self._processGridWaterlineAreas(JOB, obj, m))
+
+            # Save gcode produced
+            self.commandlist.extend(CMDS)
+
+        # clean up class variables
+        self.resetOpVariables()
+        self.deleteOpVariables()
+
+        self.SafeHeightOffset = None
+        self.ClearHeightOffset = None
+        self.depthParams = None
+        del self.SafeHeightOffset
+        del self.ClearHeightOffset
+        del self.depthParams
+
+        execTime = time.time() - startTime
+        msg = translate("PathWaterline", "operation time is")
+        PathLog.info("GridWaterline " + msg + " {} sec.".format(execTime))
+        return True
+
+    # Methods for constructing the cut area and creating path geometry
+    def _processGridWaterlineAreas(self, JOB, obj, mdlIdx):
+        """_processGridWaterlineAreas(JOB, obj, mdlIdx)...
+        This method applies any avoided faces or regions to the selected faces.
+        It then calls the correct method."""
+        # The only function of COMP variable in the original algorithm was
+        # a provision of BoundBox for _oclWaterlineOp. 
+        # The calculation of this variable uses:
+        # PSF.preProcessModel(self.module)
+        #   _preProcessEntireBase
+        #     getEnvelope
+        #       area.makeSections
+        # The last function is extremelly uneffective for models with 
+        # several thousand polygons. While this problem is not solved
+        # we use direct estimation of bounding box in this method.
+        
+        # The user has selected subobjects from the base.  Pre-Process
+        #TODO Allow selection of whole model group
+        selection = list()
+        for (base, SBS) in obj.Base:
+            for sb in SBS:  # Names of selected faces
+                selection.append((base, sb))
+
+        faces = list()   # list of Part.Face
+        voids = list()        
+        n_add = len(selection) - obj.AvoidLastX_Faces
+        for base, sb in selection:
+            n_add -= 1
+            shape = getattr(base.Shape, sb)
+            if isinstance(shape, Part.Face):
+                if n_add >= 0:
+                    if base is JOB.Model.Group[mdlIdx]:
+                        faces.append( shape )
+                else:
+                    voids.append( shape )
+                        
+        if len(selection) > 0 and len(faces) == 0:  
+            return list()   # Nothing is selected in this model group
+
+        PathLog.info("_processGridWaterlineAreas()")
+
+        final = list()
+
+        # Process faces Collectively or Individually
+        if obj.HandleMultipleFeatures == "Collectively":
+            if len(faces) == 0:
+                COMP = None
+            else:
+                COMP = (faces, voids)
+
+            final.append(
+                Path.Command("G0", {"Z": obj.SafeHeight.Value, "F": self.vertRapid})
+            )
+            final.extend(
+                    self._gridWaterlineOp(JOB, obj, mdlIdx, COMP)
+                )  # independent method set for Waterline
+ 
+        elif obj.HandleMultipleFeatures == "Individually":
+            for face in faces:
+                COMP = ((face,), voids)
+
+                final.append(
+                    Path.Command("G0", {"Z": obj.SafeHeight.Value, "F": self.vertRapid})
+                )
+ 
+                final.extend(
+                        self._gridWaterlineOp(JOB, obj, mdlIdx, COMP)
+                    )  # independent method set for Waterline
+        # Eif
+
+        return final
+
+
     def _gridWaterlineOp(self, JOB, obj, mdlIdx, subShp=None):
+        # From subShp only BoundBox is needed.
+        # Alternatively a tuple (faces, voids) can be specified, where
+        # faces and voids are lists of faces.
         commands = []
 
         base = JOB.Model.Group[mdlIdx]
-        bb = self.boundBoxes[mdlIdx]
         depOfst = obj.DepthOffset.Value
 
         # Prepare global holdpoint and layerEndPnt containers
-        if self.holdPoint is None:
-            self.holdPoint = FreeCAD.Vector(0.0, 0.0, 0.0)
-        if self.layerEndPnt is None:
-            self.layerEndPnt = FreeCAD.Vector(0.0, 0.0, 0.0)
-
-        # Set extra offset to diameter of cutter to allow cutter to move around perimeter of model
+        #if self.holdPoint is None:
+        #    self.holdPoint = FreeCAD.Vector(0.0, 0.0, 0.0)
+        #if self.layerEndPnt is None:
+        #    self.layerEndPnt = FreeCAD.Vector(0.0, 0.0, 0.0)
 
         if subShp is None:
             # Get correct boundbox
@@ -1737,6 +1949,8 @@ class ObjectWaterline(PathOp.ObjectOp):
             elif obj.BoundBox == 'BaseBoundBox':
                 BS = base
                 bb = base.Shape.BoundBox
+        elif isinstance(subShp, tuple):
+            bb = subShp
         else:
             bb = subShp.BoundBox
 
@@ -1748,33 +1962,67 @@ class ObjectWaterline(PathOp.ObjectOp):
         
         # Create LevelMap operations
         t0 = time.time()
-        op = LevelMapOp(bb, 
-                        obj.SampleInterval.Value, 
-                        obj.FinalDepth.Value,
-                        self.tool)
+        MIN = -1e37
+        z0 = obj.FinalDepth.Value
+        if isinstance(bb, tuple) and len(bb[0]) > 0: # There are selected faces
+            z0 = MIN
+        op = LevelMapOp(bb, obj.SampleInterval.Value, z0, self.tool,
+                        boundary_adjustment=obj.BoundaryAdjustment.Value)
 
-        op.raiseModel( model )
-        PathLog.log("LevelMap creation %.3f s" % (time.time() - t0))
+        mask = None
+        if isinstance(op.area, PathMesh):   # Create the mask by selected facets
+            op.raisePathMesh( op.area )
+            mask = op.getContourMap( 0.5 * MIN )
+            op.levelMap.reset(MIN)
+
+        void_mask = None
+        if isinstance(bb, tuple) and len(bb[1]) > 0:  # Exclude faces
+            op.raisePathMesh( PathMesh(bb[1]))
+            void_mask = op.getContourMap( 0.5 * MIN )
+            op.levelMap.reset(MIN)
+            
+        op.raiseModel( base )
+        if mask is None:
+            mask = op.getContourMap( 0.5 * MIN )  # 2 - inside, 
+                                                  # 0 - outside
+
+        if not void_mask is None:
+            if obj.BoundaryEnforcement:
+                mask.shiftBorder( -obj.BoundaryAdjustment.Value )
+                void_mask.shiftBorder( -op.radius )
+                mask.subtract( void_mask )
+            else:
+                mask.subtract( void_mask )
+                mask.shiftBorder( -obj.BoundaryAdjustment.Value )
+        else:
+            mask.shiftBorder( -obj.BoundaryAdjustment.Value )               
+        mask.highlightBorders()
+        
+        for m in range(0, len(JOB.Model.Group)):
+            if m != mdlIdx:
+                op.raiseModel( JOB.Model.Group[m] )
+        PathLog.info("LevelMap creation %.3f s" % (time.time() - t0))
         
         t0 = time.time()       
         op.applyTool( self.tool )
-        PathLog.log("The tool application %.3f s" % (time.time() - t0))
+        PathLog.info("The tool application %.3f s" % (time.time() - t0))
         
-        if obj.LayerMode != 'Single-pass':
-            outerMask = self.levelMap.getContourMap( obj.FinalDepth.Value )
-            outerMask.highlightBorders()
+     #   if obj.LayerMode != 'Single-pass':
+     #       outerMask = op.getContourMap( obj.FinalDepth.Value )
+     #       outerMask.highlightBorders()
 
         # Extract layers per depthparams
         layTime = time.time()
         for layDep in depthparams:
             loopList = []
 
-            contourMap = op.getContourMap( layDep, obj.DepthOffset.value )
+            contourMap = op.getContourMap( layDep, obj.DepthOffset.Value )
             
             traces = []
-            while True:
-                # Extract waterline and convert to gcode
+            while True:  # Collect traces of the single layer
                 contourMap.highlightBorders()
+                contourMap.or_not( mask )  # simulate material around the work area
+                # Extract waterline and convert to gcode
                 nothing = True
                 while True:
                     nodes = contourMap.getBorder( obj.CutMode == "Climb" )
@@ -1790,7 +2038,6 @@ class ObjectWaterline(PathOp.ObjectOp):
                     break
                   
                 contourMap.shiftBorder( self.radius * (float(obj.StepOver) / 50.0) )
-                contourMap.subtractMap( outerMask )
 
             for trace in traces[::-1]:
                 commands.extend(
@@ -1801,7 +2048,7 @@ class ObjectWaterline(PathOp.ObjectOp):
 
         return commands
 
-
+    #----------------------------------------------------------------------------
 
     # Experimental waterline functions
     def _experimentalWaterlineOp(self, JOB, obj, mdlIdx, subShp=None):

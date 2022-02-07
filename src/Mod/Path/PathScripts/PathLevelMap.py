@@ -22,10 +22,10 @@
 
 import math
 import numpy
-try:
-    from PathScripts.PathContourMap import ContourMap
-except:
-    pass  # In case of stanalone test
+#try:
+from PathScripts.PathContourMap import ContourMap
+#except:
+#    pass  # In case of stanalone test
 
 # This is a square grid of elevations in given direction.
 # Each cell [i,j] holds a maximum value of the model elevation in a square region
@@ -59,7 +59,9 @@ class LevelMap():
         pass
         #TODO set matrix in accordance with sample_interval and given rotation.
         
-    def reset(self):
+    def reset(self, z = None):
+        if not z is None:
+            self.zmin = z
         self.z[:] = self.zmin
       
     def rows(self):
@@ -72,6 +74,22 @@ class LevelMap():
       
     def level(self):
         return self.z[self.border:-self.border, self.border:-self.border]
+      
+    def includes(self, obj):   # True if this object is inside the map XY area
+        if hasattr(obj, "BoundBox"):
+            obj = obj.BoundBox
+        if not hasattr(obj, "XMin"):
+            return True
+        
+        brd = self.border * self.sampleInterval
+        if self.matrix is None:
+            if obj.XMax < self.xmin - brd or obj.XMin >= self.xmax + brd:
+                return False
+            if obj.YMax < self.ymin - brd or obj.YMin >= self.ymax + brd:
+                return False
+            return True
+        else:
+            return True    #TODO Make exact decision
       
     def add_facet( self, va, vb, vc ):
         if not self.matrix is None:
@@ -438,17 +456,17 @@ class LevelMap():
     # Job is a sorted list of (y, source_index, x, elevation, dzdxmin, dzdxmax, dzdymin, dzdymax)
  
 
-    def _symmetric_append(self, job, i, j, index):
+    def _symmetric_append(self, job, i, j, index, d0, d1, d2, d3):
         bs = self.bss[index]
-        job.append(( j, index, i, 0 ))
+        job.append(( j, index, i, 0, d0, d1, d2, d3 ))
         if index % 2 == 1:
-            job.append(( -j - bs + 1, index, i, 0 ))
-            job.append(( i, index, j, 0 ))
-            job.append(( i, index, -j - bs + 1, 0 ))
+            job.append(( -j - bs + 1, index, i, 0, d0, d1, -d3, -d2 ))
+            job.append(( i, index, j, 0, d2, d3, d0, d1 ))
+            job.append(( i, index, -j - bs + 1, 0, -d3, -d2, d0, d1 ))
         else:
-            job.append(( -j, index, i, 0 ))
-            job.append(( j, index, -i - (bs - 1) * 2, 0 ))
-            job.append(( -j, index, -i - (bs - 1) * 2, 0 ))
+            job.append(( -j, index, i, 0, d0, d1, -d3, -d2 ))
+            job.append(( j, index, -i - (bs - 1) * 2, 0 ), -d1, -d0, d2, d3)
+            job.append(( -j, index, -i - (bs - 1) * 2, 0 ), -d1, -d0, -d3, -d2)
 
     def _paint_job(self, job, irt, filled = None):
         # return numpy boolean array (irt*2+1, irt*2+1)
@@ -472,6 +490,7 @@ class LevelMap():
                     ans[irt+j-m, irt+i+m:irt+i+bs*2-m-1] = True
         return ans
 
+
     def _create_coverage(self, job, partial, rt):  
         irt = min(self.border, int(numpy.ceil(rt)))
         # calculate row half width:
@@ -479,7 +498,8 @@ class LevelMap():
         hw = []
         for i in range(0, irt):
             hw.append(min(self.border, 
-                          int(numpy.ceil(math.sqrt(rt ** 2 - (i) ** 2)))))
+                          int(numpy.ceil(math.sqrt(rt ** 2 - (i) ** 2)))),
+                     )
 
         # Create blocks, maximum block size is rt * 2/3
         self.bss = [1,2,3]
@@ -492,6 +512,7 @@ class LevelMap():
         self.bss = self.bss[:-1]
         
         # Cover top irt * (1-cos(22.5)) rows by maximum available blocks
+        MAX = 1e37
         top = int(math.floor(irt * 0.9))
         min_full_covered_row = irt
         for r in range(irt - 1, top - 1, -1):
@@ -504,19 +525,25 @@ class LevelMap():
             if (r == irt - 1 or r < min_full_covered_row or 
                 r == top and min_full_covered_row > hw[min_full_covered_row]):
                 while width > 0:
-                    self._symmetric_append( job, i, r - bs + 2, ind )
+                    dzxmin = 0 if i > 0 else -MAX
+                    dzxmax = 0 if i + bs - 1 < 0 else MAX
+                    self._symmetric_append( job, i, r - bs + 2, ind,
+                                            dzdxmin, dzdxmax, 0, MAX )
                     width -= bs
                     i += bs
                     if width > 0 and width < bs:
+                        dzxmin = 0 if i + width - bs > 0 else -MAX
                         self._symmetric_append( job, i + width - bs, 
-                                                r - bs + 2, ind )
+                                                r - bs + 2, ind,
+                                                dzdxmin, MAX, 0, MAX)
                         break
                 min_full_covered_row = r - bs + 1
             else:
-                self._symmetric_append( job, i, r - bs + 2, ind )
+                dzxmax = 0 if width > bs else MAX
+                self._symmetric_append( job, i, r - bs + 2, ind, -MAX, dzxmax, 0, MAX )
                 if width > bs:
                     self._symmetric_append( job, hw[r] - bs + 1, 
-                                            r - bs + 2, ind )
+                                            r - bs + 2, ind, 0, MAX, 0, MAX )
 
         # locate diagonal cell and cover diagonal rows
         j = 0
@@ -539,17 +566,31 @@ class LevelMap():
             if r == 0:
                 d = 0
                 while d < width:
-                    self._symmetric_append( job, i + d - bs + 2, j - d - bs + 2, ind )
+                    self._symmetric_append(job, 
+                                           i + d - bs + 2, 
+                                           j - d - bs + 2, 
+                                           ind, 
+                                           0, MAX, 0, MAX )
                     d += bs
                     if d < width and width - d < bs:
-                        self._symmetric_append( job, i - 2 * bs + width + 2, 
-                                                j - width + 2, ind )
+                        self._symmetric_append(job, 
+                                               i - 2 * bs + width + 2, 
+                                               j - width + 2, 
+                                               ind, 
+                                               0, MAX, 0, MAX )
                         break
             else:
-                self._symmetric_append( job, i - bs + 2, j - bs + 2, ind )
+                self._symmetric_append(job, 
+                                       i - bs + 2, 
+                                       j - bs + 2, 
+                                       ind, 
+                                       0, MAX, 0, MAX )
                 if width > bs:
-                    self._symmetric_append( job, i - 2 * bs + width + 2, 
-                                            j - width + 2, ind )
+                    self._symmetric_append(job, 
+                                           i - 2 * bs + width + 2, 
+                                           j - width + 2,
+                                           ind, 
+                                           0, MAX, 0, MAX )
             r += 1
             i -= 1
             if j == top - 1 and hw[top] > i:
@@ -588,7 +629,7 @@ class LevelMap():
                 bs = bs // 2
             for j in range(j0, j1, bs):
                 for i in range(i0, i1, bs):
-                    job.append((min(j, j1-bs), ind, min(i, i1-bs), 0))
+                    job.append((min(j, j1-bs), ind, min(i, i1-bs), 0, 0, 0, 0, 0))
 
         # remove unused block sizes
         for i in range(len(self.bss)-1, 0, -1):
@@ -609,7 +650,7 @@ class LevelMap():
         maxcol = max(border, (2000 - border) // 16 * 16)  # to fit in L1 cache
         R, C = self.z.shape
         
-        # For optimization find first and last significant row and column
+        # For optimization find the first and the last significant rows and columns
         R0 = R
         R1 = 0
         C0 = C
@@ -636,32 +677,56 @@ class LevelMap():
         
         if CA > maxcol + 2 * border:
             buff = numpy.empty((RA, border))
-            
+          
+        # minimum and maximum of derivatives by rows:
+        #   -min(dzdx) max(dzdx) -min(dzdy) max(dzdy)
+        dd = numpy.empty((RA, 4))
+        dz = numpy.empty((RA, min(maxcol + 2 * border, CA)))
+          
         if profile is None:
             self._create_coverage(job, partial, rt)
                 
         else:
             pr = [p[0] for p in profile]
             pz = [p[1] for p in profile]
-            for i in range(1, min(border, int(numpy.ceil(rt)) + 1)):
-                z = - numpy.interp((i-1) * self.sampleInterval, pr, pz)
-                job.append(( i, 0,  0, z)) 
-                job.append((-i, 0,  0, z)) 
-                job.append(( 0, 0,  i, z)) 
-                job.append(( 0, 0, -i, z)) 
+            # if the tool has flat surface around the center create
+            # coverage for it.
+            irc = 0
+            while irc < len(pz) - 1 and pz[irc+1] == pz[0]:
+                irc += 1
+            if irc > 4:
+                self._create_coverage(job, partial, irc)
+            else:
+                irc = 0
+            irt = int(numpy.ceil(rt))
+            zz =  numpy.interp(numpy.arange(0, irt+2) * self.sampleInterval, pr, pz)
+            dzz = numpy.diff(zz)
+            dzz[-2:-1] = 1e37
+            for i in range(irc+1, min(border, irt + 1)):
+                z = - zz[i-1]
+                dzm = dzz[i-1]
+                dzp = dzz[i]
+                job.append(( i, 0,  0, z, 0, 0, dzm, dzp)) 
+                job.append((-i, 0,  0, z, 0, 0, -dzp, -dzm)) 
+                job.append(( 0, 0,  i, z, dzm, dzp, 0, 0)) 
+                job.append(( 0, 0, -i, z, -dzp, -dzm, 0, 0)) 
                 for j in range(1, i + 1):
                     r = math.sqrt((i - 1)**2 + (j - 1)**2)
-                    if r < rt:
+                    if r < rt and r > irc:
                         z = - numpy.interp(r * self.sampleInterval, pr, pz)
-                        job.append(( j, 0,  i, z)) 
-                        job.append(( j, 0, -i, z)) 
-                        job.append((-j, 0,  i, z)) 
-                        job.append((-j, 0, -i, z)) 
+                        dzxm = i / r * dzz[int(r)]
+                        dzxp = i / r * dzz[int(r)+1]
+                        dzym = j / r * dzz[int(r)]
+                        dzyp = j / r * dzz[int(r)+1]
+                        job.append(( j, 0,  i, z, dzxm, dzxp, dzym, dzyp)) 
+                        job.append(( j, 0, -i, z, -dzxp, -dzxm, dzym, dzyp)) 
+                        job.append((-j, 0,  i, z, dzxm, dzxp, -dzyp, -dzym)) 
+                        job.append((-j, 0, -i, z, -dzxp, -dzxm, -dzyp, -dzym)) 
                         if j < i:
-                            job.append(( i, 0,  j, z)) 
-                            job.append(( i, 0, -j, z)) 
-                            job.append((-i, 0,  j, z)) 
-                            job.append((-i, 0, -j, z)) 
+                            job.append(( i, 0,  j, z, dzym, dzyp, dzxm, dzxp)) 
+                            job.append(( i, 0, -j, z, -dzyp, -dzym, dzxm, dzxp)) 
+                            job.append((-i, 0,  j, z, dzym, dzyp, -dzxp, -dzxm)) 
+                            job.append((-i, 0, -j, z, -dzyp, -dzym, -dzxp, -dzxm)) 
         
         job.sort()
         
@@ -736,9 +801,37 @@ class LevelMap():
 
             if offs + cols < C1 - border:
                 buff[:,:] = self.z[R0:R1, offs+cols-border:offs+cols]
-                
+            
+            # Calculate the range of slopes in x and y directions
+            dz[:,:cols+2*border-1] = numpy.diff(
+                            self.z[R0:R1, offs-border:offs+cols+border], 1, 1)
+            dd[:,0] = -numpy.min(dz[:,:cols+2*border-1], 1)
+            dd[:,1] = numpy.max(dz[:,:cols+2*border-1], 1)
+            dz[:-1,:cols+2*border] = numpy.diff(
+                            self.z[R0:R1, offs-border:offs+cols+border], 1, 0)
+            dd[:,2] = -numpy.min(dz[:,:cols+2*border], 1)
+            dd[:,3] = numpy.max(dz[:,:cols+2*border], 1)
+            dd[-1,2:3] = dd[-2,2:3]
+            
+            # Expand this range along the maximum block size
+            n = 1
+            for i in range(0, ((len(partial) - 1) // 2)):
+                dd[0:-n, :] = numpy.maximum(dd[0:-n, :], dd[n:, :])
+                n += n
+            if n > 0:
+                dd[n:, :] = numpy.maximum(dd[n:, :], dd[0:-n, :])
+            
+       #     fd = file.open("minmax", "w")
+       #     for ddi in dd:
+       #         fd.write( "%.3f, %.3f, %.3f, %.3f" % list(ddi))
+       #     fd.close
+            
             for m in range(R0+border, R1-border):
-                for j, k, i, z in job:
+                for j, k, i, z, dzdxmin, dzdxmax, dzdymin, dzdymax in job:
+                    ddi = dd[m-R0+j, :]
+                    if (dzdxmin > ddi[1] or dzdxmax < -ddi[0] or 
+                        dzdymin > ddi[3] or dzdymax < -ddi[2]):
+                        continue
                     numpy.maximum(
                         self.z[m, offs:offs+cols],
                         partial[k][m-R0+j, border+i:cols+border+i] + z,
@@ -746,4 +839,3 @@ class LevelMap():
                         )
             offs += cols
  
-
