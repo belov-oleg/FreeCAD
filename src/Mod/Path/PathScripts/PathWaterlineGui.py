@@ -150,7 +150,7 @@ class TaskPanelOpPage(PathOpGui.TaskPanelPage):
             self.form.stepOver_label.hide()
             self.form.sampleInterval.show()
             self.form.sampleInterval_label.show()
-        elif Algorithm == 'Grid Dropcutter':
+        elif Algorithm == "Grid Dropcutter":
             self.form.cutPattern.hide()
             self.form.cutPattern_label.hide()
             self.form.boundaryAdjustment.show()

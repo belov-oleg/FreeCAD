@@ -101,6 +101,7 @@ class ObjectWaterline(PathOp.ObjectOp):
         enums = {
             "Algorithm": [
                 (translate("path_waterline", "OCL Dropcutter"), "OCL Dropcutter"),
+                (translate("path_waterline", "Grid Dropcutter"), "Grid Dropcutter"),
                 (translate("path_waterline", "Experimental"), "Experimental"),
             ],
             "BoundBox": [
