@@ -29,25 +29,25 @@
 
 #include "Workbench.h"
 #include "WorkbenchPy.h"
-#include "PythonWorkbenchPy.h"
-#include "MenuManager.h"
-#include "ToolBarManager.h"
-#include "DockWindowManager.h"
-#include "Application.h"
 #include "Action.h"
+#include "Application.h"
 #include "Command.h"
 #include "Control.h"
+#include "DockWindowManager.h"
+#include "MainWindow.h"
+#include "MenuManager.h"
+#include "PythonWorkbenchPy.h"
+#include "Selection.h"
+#include "ToolBarManager.h"
 #include "ToolBoxManager.h"
 #include "Window.h"
-#include "Selection.h"
-#include "MainWindow.h"
-#include <Gui/ComboView.h>
-#include <Gui/TaskView/TaskView.h>
-#include <Gui/TaskView/TaskWatcher.h>
 
 #include <App/Application.h>
 #include <App/DocumentObject.h>
 #include <Base/Interpreter.h>
+#include <Gui/ComboView.h>
+#include <Gui/TaskView/TaskView.h>
+#include <Gui/TaskView/TaskWatcher.h>
 
 using namespace Gui;
 
@@ -370,6 +370,38 @@ void Workbench::createLinkMenu(MenuItem *item) {
     *item << linkMenu;
 }
 
+std::vector<std::pair<std::string, std::string>> Workbench::staticMenuItems;
+
+void Workbench::addPermanentMenuItem(const std::string& cmd, const std::string& after)
+{
+    staticMenuItems.emplace_back(cmd, after);
+}
+
+void Workbench::removePermanentMenuItem(const std::string& cmd)
+{
+    auto it = std::find_if(staticMenuItems.begin(), staticMenuItems.end(), [cmd](const std::pair<std::string, std::string>& p) {
+        return (p.first == cmd);
+    });
+
+    if (it != staticMenuItems.end())
+        staticMenuItems.erase(it);
+}
+
+void  Workbench::addPermanentMenuItems(MenuItem* mb) const
+{
+    for (const auto& it : staticMenuItems) {
+        MenuItem* par = mb->findParentOf(it.second);
+        if (par) {
+            Gui::MenuItem* item = par->findItem(it.second);
+            item = par->afterItem(item);
+
+            Gui::MenuItem* add = new Gui::MenuItem();
+            add->setCommand(it.first);
+            par->insertItem(item, add);
+        }
+    }
+}
+
 void Workbench::activated()
 {
 }
@@ -395,6 +427,7 @@ bool Workbench::activate()
     delete dw;
 
     MenuItem* mb = setupMenuBar();
+    addPermanentMenuItems(mb);
     MenuManager::getInstance()->setup( mb );
     delete mb;
 

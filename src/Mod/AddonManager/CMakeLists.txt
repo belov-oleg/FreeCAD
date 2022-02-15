@@ -8,17 +8,21 @@ SET(AddonManager_SRCS
     AddonManager.py
     AddonManagerRepo.py
     addonmanager_macro.py
-    addonmanager_metadata.py
     addonmanager_utilities.py
     addonmanager_workers.py
     AddonManager.ui
     AddonManagerOptions.ui
+    ALLOWED_PYTHON_PACKAGES.txt
+    change_branch.py
+    change_branch.ui
     first_run.ui
     compact_view.py
     dependency_resolution_dialog.ui
     expanded_view.py
+    NetworkManager.py
     package_list.py
     package_details.py
+    loading.html
 )
 
 SOURCE_GROUP("" FILES ${AddonManager_SRCS})

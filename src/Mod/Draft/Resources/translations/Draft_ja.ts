@@ -210,7 +210,7 @@ This property is read-only, as the number depends on the parameters of the array
     <message>
       <location filename="pathtwistedarray.py" line="100"/>
       <source>Number of copies to create.</source>
-      <translation type="unfinished">Number of copies to create.</translation>
+      <translation>作成するコピーの数。</translation>
     </message>
     <message>
       <location filename="pathtwistedarray.py" line="107"/>
@@ -729,14 +729,14 @@ This property is read-only, as the number depends on the points contained within
       <translation>このオブジェクトで使用されるパターンスケール</translation>
     </message>
     <message>
+      <location filename="hatch.py" line="49"/>
+      <source>The shape of this object</source>
+      <translation>オブジェクトの形</translation>
+    </message>
+    <message>
       <location filename="hatch.py" line="64"/>
       <source>The pattern rotation used by this object</source>
       <translation>このオブジェクトで使用されるパターンの回転</translation>
-    </message>
-    <message>
-      <location filename="hatch.py" line="49"/>
-      <source>The shape of this object</source>
-      <translation>このオブジェクトの形</translation>
     </message>
     <message>
       <location filename="hatch.py" line="67"/>
@@ -1131,6 +1131,16 @@ beyond the dimension line</source>
       <translation>線の色</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="106"/>
+      <source>Defines an SVG pattern.</source>
+      <translation type="unfinished">Defines an SVG pattern.</translation>
+    </message>
+    <message>
+      <location filename="view_base.py" line="116"/>
+      <source>Defines the size of the SVG pattern.</source>
+      <translation type="unfinished">Defines the size of the SVG pattern.</translation>
+    </message>
+    <message>
       <location filename="view_label.py" line="73"/>
       <source>The size of the text</source>
       <translation>テキストのサイズ</translation>
@@ -1204,44 +1214,9 @@ beyond the dimension line</source>
       <translation>オブジェクトの表示/非表示の状態を書き込み</translation>
     </message>
     <message>
-      <location filename="init_tools.py" line="145"/>
-      <source>Draft creation tools</source>
-      <translation>ドラフト作成ツール</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="148"/>
-      <source>Draft annotation tools</source>
-      <translation>ドラフト注釈ツール</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="151"/>
-      <source>Draft modification tools</source>
-      <translation>ドラフト修正ツール</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="107"/>
       <source>Draft utility tools</source>
       <translation>ドラフトユーティリティツール</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="166"/>
-      <source>&amp;Drafting</source>
-      <translation>2次元製図 (&amp;D)</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="168"/>
-      <source>&amp;Annotation</source>
-      <translation>注釈(&amp;A)</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="170"/>
-      <source>&amp;Modification</source>
-      <translation>変更(&amp;M)</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="172"/>
-      <source>&amp;Utilities</source>
-      <translation>ユーティリティ (&amp;U)</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="122"/>
@@ -1277,21 +1252,6 @@ beyond the dimension line</source>
       <location filename="init_draft_statusbar.py" line="340"/>
       <source>Toggles Constrain to Working Plane On/Off</source>
       <translation>作業平面への拘束のオン/オフを切り替え</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="48"/>
-      <source>Arc tools</source>
-      <translation>円弧ツール</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="56"/>
-      <source>Bezier tools</source>
-      <translation>ベジェツール</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="65"/>
-      <source>Array tools</source>
-      <translation>整列ツール</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="157"/>
@@ -1372,29 +1332,14 @@ from menu Tools -&gt; Addon Manager</source>
       <translation>傾斜</translation>
     </message>
     <message>
-      <location filename="gui_circulararray.py" line="66"/>
-      <source>Circular array</source>
-      <translation>円形整列</translation>
-    </message>
-    <message>
-      <location filename="gui_circulararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a radial pattern
-creating various circular layers.
-
-The array can be turned into an orthogonal or a polar array by changing its type.</source>
-      <translation>選択したオブジェクトのコピーを作成し、さまざまな円形レイヤーを作る放射パターンにそれらコピーを配置します。
-
-タイプを変更すると整列を矩形整列、軸周整列へ変えることができます。</translation>
-    </message>
-    <message>
       <location filename="gui_setstyle.py" line="273"/>
       <source>Save style</source>
-      <translation type="unfinished">Save style</translation>
+      <translation>スタイルを保存</translation>
     </message>
     <message>
       <location filename="gui_setstyle.py" line="274"/>
       <source>Name of this new style:</source>
-      <translation type="unfinished">Name of this new style:</translation>
+      <translation>この新しいスタイルの名前:</translation>
     </message>
     <message>
       <location filename="gui_setstyle.py" line="281"/>
@@ -1404,53 +1349,17 @@ The array can be turned into an orthogonal or a polar array by changing its type
     <message>
       <location filename="gui_setstyle.py" line="282"/>
       <source>Name exists. Overwrite?</source>
-      <translation type="unfinished">Name exists. Overwrite?</translation>
+      <translation>名前が存在します。上書きしますか？</translation>
     </message>
     <message>
       <location filename="gui_setstyle.py" line="317"/>
       <source>Error: json module not found. Unable to save style</source>
-      <translation type="unfinished">Error: json module not found. Unable to save style</translation>
-    </message>
-    <message>
-      <location filename="gui_polararray.py" line="66"/>
-      <source>Polar array</source>
-      <translation>軸周整列</translation>
-    </message>
-    <message>
-      <location filename="gui_polararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a polar pattern
-defined by a center of rotation and its angle.
-
-The array can be turned into an orthogonal or a circular array by changing its type.</source>
-      <translation>選択したオブジェクトのコピーを作成し、回転中心と角度で定義された軸周パターンにそれらを配置します。
-
-タイプを変更すると整列を格子整列、円形整列へ変えることができます。</translation>
+      <translation>エラー：json モジュールが見つかりません。スタイルを保存できません。</translation>
     </message>
     <message>
       <location filename="gui_hatch.py" line="48"/>
       <source>You must choose a base object before using this command</source>
       <translation>このコマンドを使用する前にベースオブジェクトを選択する必要があります</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="68"/>
-      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
-      <translation>格子、軸周、円形、経路、点など、さまざまな種類の整列を作成</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="66"/>
-      <source>Array</source>
-      <translation>配列</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
-meaning the copies follow the specified direction in the X, Y, Z axes.
-
-The array can be turned into a polar or a circular array by changing its type.</source>
-      <translation>選択したオブジェクトのコピーを作成し、矩形パターンそれらを配置することで
-X、Y、Zの軸の指定方向にコピーを並べます。
-
-タイプを変更すると整列を軸周整列、円形整列へ変えることができます。</translation>
     </message>
     <message>
       <location filename="gui_fillets.py" line="65"/>
@@ -1476,6 +1385,107 @@ X、Y、Zの軸の指定方向にコピーを並べます。
       <location filename="gui_offset.py" line="329"/>
       <source>Offset direction is not defined. Please move the mouse on either side of the object first to indicate a direction</source>
       <translation>オフセット方向が定義されていません。最初にオブジェクトのどちらか一方にマウスを動かして方向を指定してください。</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="48"/>
+      <source>Arc tools</source>
+      <translation>円弧ツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="56"/>
+      <source>Bezier tools</source>
+      <translation>ベジェツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="145"/>
+      <source>Draft creation tools</source>
+      <translation>ドラフト作成ツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="148"/>
+      <source>Draft annotation tools</source>
+      <translation>ドラフト注釈ツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="151"/>
+      <source>Draft modification tools</source>
+      <translation>ドラフト修正ツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="166"/>
+      <source>&amp;Drafting</source>
+      <translation>2次元製図 (&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="168"/>
+      <source>&amp;Annotation</source>
+      <translation>注釈(&amp;A)</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>&amp;Modification</source>
+      <translation>変更(&amp;M)</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>&amp;Utilities</source>
+      <translation>ユーティリティ (&amp;U)</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>整列ツール</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>格子、軸周、円形、経路、点など、さまざまな種類の整列を作成</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="66"/>
+      <source>Circular array</source>
+      <translation>円形整列</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、さまざまな円形レイヤーを作る放射パターンにそれらコピーを配置します。
+
+タイプを変更すると整列を矩形整列、軸周整列へ変えることができます。</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="66"/>
+      <source>Polar array</source>
+      <translation>軸周整列</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、回転中心と角度で定義された軸周パターンにそれらを配置します。
+
+タイプを変更すると整列を格子整列、円形整列へ変えることができます。</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="66"/>
+      <source>Array</source>
+      <translation>配列</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、矩形パターンそれらを配置することで
+X、Y、Zの軸の指定方向にコピーを並べます。
+
+タイプを変更すると整列を軸周整列、円形整列へ変えることができます。</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="154"/>
@@ -1563,6 +1573,11 @@ Create a group first to use this tool.</source>
       <source>Annotation styles...</source>
       <translation>注釈スタイル...</translation>
     </message>
+    <message>
+      <location filename="gui_annotationstyleeditor.py" line="82"/>
+      <source>Manage or create annotation styles</source>
+      <translation type="unfinished">Manage or create annotation styles</translation>
+    </message>
   </context>
   <context>
     <name>Draft_ApplyStyle</name>
@@ -1606,6 +1621,21 @@ CTRLでスナップ、SHIFTで拘束。</translation>
     </message>
   </context>
   <context>
+    <name>Draft_Arc_3Points</name>
+    <message>
+      <location filename="gui_arcs.py" line="487"/>
+      <source>Arc by 3 points</source>
+      <translation>3点から決まる円弧</translation>
+    </message>
+    <message>
+      <location filename="gui_arcs.py" line="490"/>
+      <source>Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Array</name>
     <message>
       <location filename="gui_array_simple.py" line="68"/>
@@ -1622,6 +1652,30 @@ to polar or circular, and its properties can be modified.</source>
 デフォルトでは2×2の矩形整列です。
 整列を作成した後、タイプを軸周または円形に変更したり、
 プロパティーを変更したりすることができます。</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、矩形パターンそれらを配置することで
+X、Y、Zの軸の指定方向にコピーを並べます。
+
+タイプを変更すると整列を軸周整列、円形整列へ変えることができます。</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_ArrayTools</name>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>整列ツール</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>格子、軸周、円形、経路、点など、さまざまな種類の整列を作成</translation>
     </message>
   </context>
   <context>
@@ -1654,8 +1708,20 @@ to polar or circular, and its properties can be modified.</source>
     <name>Draft_BezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="64"/>
+      <source>BÃ©zier curve</source>
+      <translation type="unfinished">BÃ©zier curve</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="64"/>
       <source>Bezier curve</source>
       <translation>ベジェ曲線</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="67"/>
+      <source>Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="67"/>
@@ -1669,8 +1735,18 @@ CTRLでスナップ、SHIFTで拘束します。</translation>
     <name>Draft_BezierTools</name>
     <message>
       <location filename="gui_beziers.py" line="475"/>
+      <source>BÃ©zier tools</source>
+      <translation type="unfinished">BÃ©zier tools</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="475"/>
       <source>Bezier tools</source>
       <translation>ベジェツール</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="478"/>
+      <source>Create various types of BÃ©zier curves.</source>
+      <translation type="unfinished">Create various types of BÃ©zier curves.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="478"/>
@@ -1693,6 +1769,24 @@ CTRL to snap, ALT to select tangent objects.</source>
     </message>
   </context>
   <context>
+    <name>Draft_CircularArray</name>
+    <message>
+      <location filename="gui_circulararray.py" line="65"/>
+      <source>Circular array</source>
+      <translation>円形整列</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、さまざまな円形レイヤーを作る放射パターンにそれらコピーを配置します。
+
+タイプを変更すると整列を矩形整列、軸周整列へ変えることができます。</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Clone</name>
     <message>
       <location filename="gui_clone.py" line="70"/>
@@ -1711,8 +1805,22 @@ The resulting clone can be scaled in each of its three directions.</source>
     <name>Draft_CubicBezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="242"/>
+      <source>Cubic BÃ©zier curve</source>
+      <translation type="unfinished">Cubic BÃ©zier curve</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="242"/>
       <source>Cubic bezier curve</source>
       <translation>3次ベジェ曲線</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="245"/>
+      <source>Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="245"/>
@@ -1860,6 +1968,19 @@ E キーまたは Alt+左クリックを押すと、サポートされている�
       <location filename="gui_facebinders.py" line="62"/>
       <source>Creates a facebinder object from selected faces.</source>
       <translation>選択した面からフェイスバインダー・オブジェクトを作成</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Fillet</name>
+    <message>
+      <location filename="gui_fillets.py" line="64"/>
+      <source>Fillet</source>
+      <translation>フィレット</translation>
+    </message>
+    <message>
+      <location filename="gui_fillets.py" line="67"/>
+      <source>Creates a fillet between two selected wires or edges.</source>
+      <translation>2 つの選択したワイヤまたはエッジの間にフィレットを作成</translation>
     </message>
   </context>
   <context>
@@ -2045,6 +2166,25 @@ CTRLでスナップ、SHIFTで拘束します。ALTキーを押しながらク�
     </message>
   </context>
   <context>
+    <name>Draft_OrthoArray</name>
+    <message>
+      <location filename="gui_orthoarray.py" line="65"/>
+      <source>Array</source>
+      <translation>配列</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、矩形パターンそれらを配置することで
+X、Y、Zの軸の指定方向にコピーを並べます。
+
+タイプを変更すると整列を軸周整列、円形整列へ変えることができます。</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_PathArray</name>
     <message>
       <location filename="gui_patharray.py" line="73"/>
@@ -2159,6 +2299,24 @@ Select the base object, and then select the compound or the sketch to create the
 A 'Point link array' is more efficient when handling many copies.</source>
       <translation>点整列ツールと同様ですが「点リンク整列」を作成します。
 「点リンク整列」では多数のコピーをより効率的に制御できます。</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_PolarArray</name>
+    <message>
+      <location filename="gui_polararray.py" line="65"/>
+      <source>Polar array</source>
+      <translation>軸周整列</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>選択したオブジェクトのコピーを作成し、回転中心と角度で定義された軸周パターンにそれらを配置します。
+
+タイプを変更すると整列を格子整列、円形整列へ変えることができます。</translation>
     </message>
   </context>
   <context>
@@ -2338,19 +2496,6 @@ straight Draft lines that are drawn in the XY plane. Selected objects that aren'
 ポリラインを選択した場合は各線分に対して傾斜変形を適用します。
 
 傾斜では常にZ値を変更するので、このコマンドはXY平面に描かれた直線のドラフト線のみで正しく動作します。線以外の選択オブジェクトは無視されます。</translation>
-    </message>
-  </context>
-  <context>
-    <name>Draft_Snap</name>
-    <message>
-      <location filename="gui_snapper.py" line="1529"/>
-      <source>Toggles Grid On/Off</source>
-      <translation>グリッドのオン/オフを切り替え</translation>
-    </message>
-    <message>
-      <location filename="gui_snapper.py" line="1530"/>
-      <source>Toggle Draft Grid</source>
-      <translation>ドラフトグリッドの切り替え</translation>
     </message>
   </context>
   <context>
@@ -2748,14 +2893,6 @@ Then you can use it to save a different camera position and objects' states any 
     </message>
   </context>
   <context>
-    <name>Gui::Dialog::DlgAddProperty</name>
-    <message>
-      <location filename="gui_groups.py" line="452"/>
-      <source>Group</source>
-      <translation>グループ</translation>
-    </message>
-  </context>
-  <context>
     <name>ImportAirfoilDAT</name>
     <message>
       <location filename="importAirfoilDAT.py" line="186"/>
@@ -2778,6 +2915,66 @@ Then you can use it to save a different camera position and objects' states any 
   </context>
   <context>
     <name>Workbench</name>
+    <message>
+      <location filename="InitGui.py" line="104"/>
+      <source>Draft creation tools</source>
+      <translation>ドラフト作成ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="107"/>
+      <source>Draft annotation tools</source>
+      <translation>ドラフト注釈ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="110"/>
+      <source>Draft modification tools</source>
+      <translation>ドラフト修正ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="113"/>
+      <source>Draft utility tools</source>
+      <translation>ドラフトユーティリティツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="118"/>
+      <source>&amp;Drafting</source>
+      <translation>2次元製図 (&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="121"/>
+      <source>&amp;Annotation</source>
+      <translation>注釈(&amp;A)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="124"/>
+      <source>&amp;Modification</source>
+      <translation>変更(&amp;M)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="127"/>
+      <source>&amp;Utilities</source>
+      <translation>ユーティリティ (&amp;U)</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="50"/>
+      <source>Arc tools</source>
+      <translation>円弧ツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>BÃ©zier tools</source>
+      <translation type="unfinished">BÃ©zier tools</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>Bezier tools</source>
+      <translation>ベジェツール</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="89"/>
+      <source>Array tools</source>
+      <translation>整列ツール</translation>
+    </message>
     <message>
       <location filename="gui_snapper.py" line="1470"/>
       <source>Draft Snap</source>
@@ -2917,14 +3114,14 @@ Then you can use it to save a different camera position and objects' states any 
       <translation>自動</translation>
     </message>
     <message>
-      <location filename="DraftGui.py" line="722"/>
-      <source>active command:</source>
-      <translation>アクティブコマンド:</translation>
-    </message>
-    <message>
       <location filename="gui_groups.py" line="299"/>
       <source>None</source>
       <translation>なし</translation>
+    </message>
+    <message>
+      <location filename="DraftGui.py" line="722"/>
+      <source>active command:</source>
+      <translation>アクティブコマンド:</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="724"/>
@@ -3480,6 +3677,11 @@ Not available if Draft preference option 'Use Part Primitives' is enabled</trans
       <translation>複数のワイヤー、エッジが見つかりました：ワイヤー化します</translation>
     </message>
     <message>
+      <location filename="upgrade.py" line="541"/>
+      <source>Found several non-treatable objects: creating compound</source>
+      <translation>複数の修復不能なオブジェクトが見つかりました：コンパウンドを作成します</translation>
+    </message>
+    <message>
       <location filename="upgrade.py" line="512"/>
       <source>trying: closing it</source>
       <translation>試行中：閉じています</translation>
@@ -3498,11 +3700,6 @@ Not available if Draft preference option 'Use Part Primitives' is enabled</trans
       <location filename="upgrade.py" line="536"/>
       <source>Found points: creating compound</source>
       <translation>点が見つかりました：コンパウドを作成します</translation>
-    </message>
-    <message>
-      <location filename="upgrade.py" line="541"/>
-      <source>Found several non-treatable objects: creating compound</source>
-      <translation>複数の修復不能なオブジェクトが見つかりました：コンパウンドを作成します</translation>
     </message>
     <message>
       <location filename="upgrade.py" line="544"/>
@@ -4021,6 +4218,11 @@ Not available if Draft preference option 'Use Part Primitives' is enabled</trans
       <translation type="unfinished">Merging layer:</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="402"/>
+      <source>Please load the Draft Workbench to enable editing this object</source>
+      <translation type="unfinished">Please load the Draft Workbench to enable editing this object</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="46"/>
       <source>Draft</source>
       <translation>喫水</translation>
@@ -4031,14 +4233,29 @@ Not available if Draft preference option 'Use Part Primitives' is enabled</trans
       <translation>カスタム</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="140"/>
+      <source>Unable to convert input into a  scale factor</source>
+      <translation type="unfinished">Unable to convert input into a  scale factor</translation>
+    </message>
+    <message>
       <location filename="init_draft_statusbar.py" line="141"/>
       <source>Unable to convert input into a scale factor</source>
       <translation>入力値を拡大縮小率に変換できません</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="155"/>
+      <source>Set custom scale</source>
+      <translation type="unfinished">Set custom scale</translation>
+    </message>
+    <message>
       <location filename="init_draft_statusbar.py" line="159"/>
       <source>Set custom annotation scale in format x:x, x=x</source>
       <translation>x:x、x=x形式でカスタム注釈拡大縮小率を設定</translation>
+    </message>
+    <message>
+      <location filename="init_draft_statusbar.py" line="214"/>
+      <source>Set the scale used by draft annotation tools</source>
+      <translation type="unfinished">Set the scale used by draft annotation tools</translation>
     </message>
     <message>
       <location filename="utils.py" line="650"/>
@@ -4124,6 +4341,86 @@ Not available if Draft preference option 'Use Part Primitives' is enabled</trans
       <location filename="utils.py" line="1059"/>
       <source>This function will be deprecated. </source>
       <translation type="unfinished">This function will be deprecated. </translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="169"/>
+      <source>Snap Lock</source>
+      <translation type="unfinished">Snap Lock</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>Snap Endpoint</source>
+      <translation type="unfinished">Snap Endpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="171"/>
+      <source>Snap Midpoint</source>
+      <translation type="unfinished">Snap Midpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>Snap Center</source>
+      <translation type="unfinished">Snap Center</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="173"/>
+      <source>Snap Angle</source>
+      <translation type="unfinished">Snap Angle</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="174"/>
+      <source>Snap Intersection</source>
+      <translation type="unfinished">Snap Intersection</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="175"/>
+      <source>Snap Perpendicular</source>
+      <translation type="unfinished">Snap Perpendicular</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="176"/>
+      <source>Snap Extension</source>
+      <translation type="unfinished">Snap Extension</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="177"/>
+      <source>Snap Parallel</source>
+      <translation type="unfinished">Snap Parallel</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="178"/>
+      <source>Snap Special</source>
+      <translation type="unfinished">Snap Special</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="179"/>
+      <source>Snap Near</source>
+      <translation type="unfinished">Snap Near</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="180"/>
+      <source>Snap Ortho</source>
+      <translation type="unfinished">Snap Ortho</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="181"/>
+      <source>Snap Grid</source>
+      <translation type="unfinished">Snap Grid</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="182"/>
+      <source>Snap WorkingPlane</source>
+      <translation type="unfinished">Snap WorkingPlane</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="183"/>
+      <source>Snap Dimensions</source>
+      <translation type="unfinished">Snap Dimensions</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="187"/>
+      <source>Toggle Draft Grid</source>
+      <translation>ドラフトグリッドの切り替え</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="81"/>
@@ -4755,14 +5052,24 @@ FreeCADでこれらライブラリーのダウンロードを有効にするた�
       <translation>基準点からの新しい距離を選択</translation>
     </message>
     <message>
+      <location filename="gui_snapper.py" line="1543"/>
+      <source>(ON)</source>
+      <translation type="unfinished">(ON)</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1546"/>
+      <source>(OFF)</source>
+      <translation type="unfinished">(OFF)</translation>
+    </message>
+    <message>
       <location filename="gui_shape2dview.py" line="109"/>
       <source>Create 2D view</source>
       <translation>2Dビューを作成</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="332"/>
-      <source>Bezier curve has been closed</source>
-      <translation>ベジェ曲線は閉じています。</translation>
+      <source>BÃ©zier curve has been closed</source>
+      <translation type="unfinished">BÃ©zier curve has been closed</translation>
     </message>
     <message>
       <location filename="gui_splines.py" line="131"/>
@@ -4783,6 +5090,11 @@ FreeCADでこれらライブラリーのダウンロードを有効にするた�
       <location filename="gui_beziers.py" line="376"/>
       <source>Click and drag to define next knot</source>
       <translation>次のノットを定義するためにクリックしてドラッグ</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="332"/>
+      <source>Bezier curve has been closed</source>
+      <translation>ベジェ曲線は閉じています。</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="382"/>
@@ -5125,6 +5437,11 @@ FreeCADでこれらライブラリーのダウンロードを有効にするた�
       <translation type="unfinished">Group name</translation>
     </message>
     <message>
+      <location filename="gui_groups.py" line="392"/>
+      <source>Group</source>
+      <translation>グループ</translation>
+    </message>
+    <message>
       <location filename="gui_offset.py" line="76"/>
       <source>Select an object to offset</source>
       <translation>オフセットするオブジェクトを選択</translation>
@@ -5283,6 +5600,27 @@ The final angle will be the base angle plus this amount.</source>
       <location filename="importOCA.py" line="492"/>
       <source>successfully exported</source>
       <translation type="unfinished">successfully exported</translation>
+    </message>
+  </context>
+  <context>
+    <name>Gui::Dialog::DlgAddProperty</name>
+    <message>
+      <location filename="gui_groups.py" line="452"/>
+      <source>Group</source>
+      <translation>グループ</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Snap</name>
+    <message>
+      <location filename="gui_snapper.py" line="1529"/>
+      <source>Toggles Grid On/Off</source>
+      <translation>グリッドのオン/オフを切り替え</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1530"/>
+      <source>Toggle Draft Grid</source>
+      <translation>ドラフトグリッドの切り替え</translation>
     </message>
   </context>
   <context>

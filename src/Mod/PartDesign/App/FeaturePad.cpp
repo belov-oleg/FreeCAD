@@ -66,8 +66,8 @@ Pad::Pad()
 
     ADD_PROPERTY_TYPE(Type, (0L), "Pad", App::Prop_None, "Pad type");
     Type.setEnums(TypeEnums);
-    ADD_PROPERTY_TYPE(Length, (100.0), "Pad", App::Prop_None, "Pad length");
-    ADD_PROPERTY_TYPE(Length2, (100.0), "Pad", App::Prop_None, "Pad length in 2nd direction");
+    ADD_PROPERTY_TYPE(Length, (10.0), "Pad", App::Prop_None, "Pad length");
+    ADD_PROPERTY_TYPE(Length2, (10.0), "Pad", App::Prop_None, "Pad length in 2nd direction");
     ADD_PROPERTY_TYPE(UseCustomVector, (false), "Pad", App::Prop_None, "Use custom vector for pad direction");
     ADD_PROPERTY_TYPE(Direction, (Base::Vector3d(1.0, 1.0, 1.0)), "Pad", App::Prop_None, "Pad direction vector");
     ADD_PROPERTY_TYPE(ReferenceAxis, (0), "Pad", App::Prop_None, "Reference axis of direction");
@@ -75,6 +75,10 @@ Pad::Pad()
     ADD_PROPERTY_TYPE(UpToFace, (0), "Pad", App::Prop_None, "Face where pad will end");
     ADD_PROPERTY_TYPE(Offset, (0.0), "Pad", App::Prop_None, "Offset from face in which pad will end");
     Offset.setConstraints(&signedLengthConstraint);
+    ADD_PROPERTY_TYPE(TaperAngle, (0.0), "Pad", App::Prop_None, "Taper angle");
+    TaperAngle.setConstraints(&floatAngle);
+    ADD_PROPERTY_TYPE(TaperAngle2, (0.0), "Pad", App::Prop_None, "Taper angle for 2nd direction");
+    TaperAngle2.setConstraints(&floatAngle);
 
     // Remove the constraints and keep the type to allow to accept negative values
     // https://forum.freecadweb.org/viewtopic.php?f=3&t=52075&p=448410#p447636
@@ -207,8 +211,14 @@ App::DocumentObjectExecReturn *Pad::execute()
             }
         }
         else {
-            generatePrism(prism, sketchshape, method, dir, L, L2,
-                hasMidplane, hasReversed);
+            if (hasTaperedAngle()) {
+                if (hasReversed)
+                    dir.Reverse();
+                generateTaperedPrism(prism, sketchshape, method, dir, L, L2, TaperAngle.getValue(), TaperAngle2.getValue(), hasMidplane);
+            }
+            else {
+                generatePrism(prism, sketchshape, method, dir, L, L2, hasMidplane, hasReversed);
+            }
         }
 
         if (prism.IsNull())

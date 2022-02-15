@@ -24,8 +24,7 @@
 import os
 import re
 import ctypes
-import ssl
-from typing import Union
+from typing import Union, Optional
 
 import urllib
 from urllib.request import Request
@@ -38,21 +37,6 @@ from PySide2 import QtCore, QtWidgets
 import FreeCAD
 import FreeCADGui
 
-# check for SSL support
-
-ssl_ctx = None
-try:
-    import ssl
-except ImportError:
-    pass
-else:
-    try:
-        # ssl_ctx = ssl.create_default_context(cafile=certifi.where())
-        # ssl_ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-        ssl_ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
-    except AttributeError:
-        pass
-
 
 #  @package AddonManager_utilities
 #  \ingroup ADDONMANAGER
@@ -60,19 +44,11 @@ else:
 #  @{
 
 
-def translate(context, text, disambig=None):
-    "Main translation function"
-
-    try:
-        _encoding = QtWidgets.QApplication.UnicodeUTF8
-    except AttributeError:
-        return QtWidgets.QApplication.translate(context, text, disambig)
-    else:
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+translate = FreeCAD.Qt.translate
 
 
 def symlink(source, link_name):
-    "creates a symlink of a file, if possible"
+    """Creates a symlink of a file, if possible. Note that it fails on most modern Windows installations"""
 
     if os.path.exists(link_name) or os.path.lexists(link_name):
         pass
@@ -81,6 +57,8 @@ def symlink(source, link_name):
         if callable(os_symlink):
             os_symlink(source, link_name)
         else:
+            # NOTE: This does not work on most normal Windows 10 and later installations, unless developer
+            # mode is turned on. Make sure to catch any exception thrown and have a fallback plan.
             csl = ctypes.windll.kernel32.CreateSymbolicLinkW
             csl.argtypes = (ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32)
             csl.restype = ctypes.c_ubyte
@@ -90,47 +68,6 @@ def symlink(source, link_name):
             flags += 2
             if csl(link_name, source, flags) == 0:
                 raise ctypes.WinError()
-
-
-def urlopen(url: str) -> Union[None, HTTPResponse]:
-    """Opens an url with urllib and streams it to a temp file"""
-
-    timeout = 5
-
-    # Proxy an ssl configuration
-    pref = FreeCAD.ParamGet("User parameter:BaseApp/Preferences/Addons")
-    if pref.GetBool("NoProxyCheck", True):
-        proxies = {}
-    else:
-        if pref.GetBool("SystemProxyCheck", False):
-            proxy = urllib.request.getproxies()
-            proxies = {"http": proxy.get("http"), "https": proxy.get("http")}
-        elif pref.GetBool("UserProxyCheck", False):
-            proxy = pref.GetString("ProxyUrl", "")
-            proxies = {"http": proxy, "https": proxy}
-
-    if ssl_ctx:
-        handler = urllib.request.HTTPSHandler(context=ssl_ctx)
-    else:
-        handler = {}
-    proxy_support = urllib.request.ProxyHandler(proxies)
-    opener = urllib.request.build_opener(proxy_support, handler)
-    urllib.request.install_opener(opener)
-
-    # Url opening
-    req = urllib.request.Request(
-        url, headers={"User-Agent": "Mozilla/5.0 Magic Browser"}
-    )
-    try:
-        u = urllib.request.urlopen(req, timeout=timeout)
-
-    except URLError as e:
-        FreeCAD.Console.PrintLog(f"Error loading {url}:\n {e.reason}\n")
-        return None
-    except Exception:
-        return None
-    else:
-        return u
 
 
 def getserver(url):
@@ -197,7 +134,6 @@ def get_zip_url(repo):
     ):
         # https://framagit.org/freecad-france/mooc-workbench/-/archive/master/mooc-workbench-master.zip
         # https://salsa.debian.org/mess42/pyrate/-/archive/master/pyrate-master.zip
-        reponame = baseurl.strip("/").split("/")[-1]
         return f"{repo.url}/-/archive/{repo.branch}/{repo.name}-{repo.branch}.zip"
     else:
         FreeCAD.Console.PrintLog(
@@ -208,16 +144,26 @@ def get_zip_url(repo):
         return None
 
 
+def recognized_git_location(repo) -> bool:
+    parsed_url = urlparse(repo.url)
+    if parsed_url.netloc in [
+        "github.com",
+        "framagit.org",
+        "gitlab.com",
+        "salsa.debian.org",
+    ]:
+        return True
+    else:
+        return False
+
+
 def construct_git_url(repo, filename):
-    "Returns a direct download link to a file in an online Git repo: works with github, gitlab, and framagit"
+    "Returns a direct download link to a file in an online Git repo: works with github, gitlab, framagit, and salsa.debian.org"
 
     parsed_url = urlparse(repo.url)
-    if parsed_url.netloc == "github.com" or parsed_url.netloc == "framagit.com":
+    if parsed_url.netloc == "github.com":
         return f"{repo.url}/raw/{repo.branch}/{filename}"
-    elif parsed_url.netloc == "gitlab.com":
-        return f"{repo.url}/-/raw/{repo.branch}/{filename}"
-    elif parsed_url.netloc == "salsa.debian.org":
-        # e.g. https://salsa.debian.org/joha2/pyrate/-/raw/master/package.xml
+    elif parsed_url.netloc in ["gitlab.com", "framagit.org", "salsa.debian.org"]:
         return f"{repo.url}/-/raw/{repo.branch}/{filename}"
     else:
         FreeCAD.Console.PrintLog(
@@ -237,7 +183,7 @@ def get_readme_url(repo):
 def get_metadata_url(url):
     "Returns the location of a package.xml metadata file"
 
-    return construct_git_url(repo, "package.xml")
+    return construct_git_url(url, "package.xml")
 
 
 def get_desc_regex(repo):
@@ -267,37 +213,10 @@ def get_readme_html_url(repo):
     parsedUrl = urlparse(repo.url)
     if parsedUrl.netloc == "github.com":
         return f"{repo.url}/blob/{repo.branch}/README.md"
+    elif parsedUrl.netloc in ["gitlab.com", "salsa.debian.org", "framagit.org"]:
+        return f"{repo.url}/-/blob/{repo.branch}/README.md"
     else:
         return None
-
-
-def get_readme_regex(repo):
-    """Return a regex string that extracts the contents to be displayed in the description
-    panel of the Addon manager, from raw HTML data (the readme's html rendering usually)"""
-
-    parsedUrl = urlparse(repo.url)
-    if parsedUrl.netloc == "github.com":
-        return "<article.*?>(.*?)</article>"
-    else:
-        return None
-
-
-def fix_relative_links(text, base_url):
-    """Replace markdown image relative links with
-    absolute ones using the base URL"""
-
-    new_text = ""
-    for line in text.splitlines():
-        for link in re.findall(r"!\[.*?\]\((.*?)\)", line) + re.findall(
-            r"src\s*=\s*[\"'](.+?)[\"']", line
-        ):
-            parts = link.split("/")
-            if len(parts) < 2 or not re.match(r"^http|^www|^.+\.|^/", parts[0]):
-                newlink = os.path.join(base_url, link.lstrip("./"))
-                line = line.replace(link, newlink)
-                FreeCAD.Console.PrintLog("Debug: replaced " + link + " with " + newlink)
-        new_text = new_text + "\n" + line
-    return new_text
 
 
 def repair_git_repo(repo_url: str, clone_dir: str) -> None:

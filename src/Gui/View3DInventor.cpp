@@ -56,12 +56,10 @@
 # include <Inventor/fields/SoSFString.h>
 # include <Inventor/fields/SoSFColor.h>
 #endif
-# include <QStackedWidget>
+#include <QStackedWidget>
 #include <QtOpenGL.h>
 
-#if defined(HAVE_QT5_OPENGL)
-# include <QWindow>
-#endif
+#include <QWindow>
 
 #include <Base/Exception.h>
 #include <Base/Console.h>
@@ -131,9 +129,6 @@ View3DInventor::View3DInventor(Gui::Document* pcDocument, QWidget* parent,
 
     if (samples > 1) {
         glformat = true;
-#if !defined(HAVE_QT5_OPENGL)
-        f.setSampleBuffers(true);
-#endif
         f.setSamples(samples);
     }
     else if (samples > 0) {
@@ -494,10 +489,13 @@ void View3DInventor::print()
 {
     QPrinter printer(QPrinter::ScreenResolution);
     printer.setFullPage(true);
+    restorePrinterSettings(&printer);
+
     QPrintDialog dlg(&printer, this);
     if (dlg.exec() == QDialog::Accepted) {
         Gui::WaitCursor wc;
         print(&printer);
+        savePrinterSettings(&printer);
     }
 }
 
@@ -518,19 +516,13 @@ void View3DInventor::printPreview()
 {
     QPrinter printer(QPrinter::ScreenResolution);
     printer.setFullPage(true);
-    hGrp = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/View");
-    int initialDefaultPageSize = !QPrinterInfo::defaultPrinter().isNull() ? QPrinterInfo::defaultPrinter().defaultPageSize().id() : QPageSize::A4;
-    int defaultPageSize = hGrp->GetInt("DefaultPageSize", initialDefaultPageSize);
-    int defaultPageOrientation = hGrp->GetInt("DefaultPageOrientation", QPageLayout::Portrait);
-    printer.setPageSize(QPageSize(static_cast<QPageSize::PageSizeId>(defaultPageSize)));
-    printer.setPageOrientation(static_cast<QPageLayout::Orientation>(defaultPageOrientation));
+    restorePrinterSettings(&printer);
 
     QPrintPreviewDialog dlg(&printer, this);
     connect(&dlg, SIGNAL(paintRequested (QPrinter *)),
             this, SLOT(print(QPrinter *)));
     dlg.exec();
-    hGrp -> SetInt("DefaultPageSize", printer.pageLayout().pageSize().id());
-    hGrp -> SetInt("DefaultPageOrientation", static_cast<int>(printer.pageLayout().orientation()));
+    savePrinterSettings(&printer);
 }
 
 void View3DInventor::print(QPrinter* printer)
@@ -951,7 +943,6 @@ void View3DInventor::setCurrentViewMode(ViewMode newmode)
     if (oldmode == newmode)
         return;
 
-#if defined(HAVE_QT5_OPENGL)
     if (newmode == Child) {
         // Fix in two steps:
         // The mdi view got a QWindow when it became a top-level widget and when resetting it to a child widget
@@ -963,11 +954,9 @@ void View3DInventor::setCurrentViewMode(ViewMode newmode)
         if (winHandle)
             winHandle->destroy();
     }
-#endif
 
     MDIView::setCurrentViewMode(newmode);
 
-#if defined(HAVE_QT5_OPENGL)
     // Internally the QOpenGLWidget switches of the multi-sampling and there is no
     // way to switch it on again. So as a workaround we just re-create a new viewport
     // The method is private but defined as slot to avoid to call it by accident.
@@ -975,7 +964,6 @@ void View3DInventor::setCurrentViewMode(ViewMode newmode)
     //if (index >= 0) {
     //    _viewer->qt_metacall(QMetaObject::InvokeMetaMethod, index, 0);
     //}
-#endif
 
     // This widget becomes the focus proxy of the embedded GL widget if we leave
     // the 'Child' mode. If we reenter 'Child' mode the focus proxy is reset to 0.
@@ -1003,12 +991,10 @@ void View3DInventor::setCurrentViewMode(ViewMode newmode)
         for (QList<QAction*>::Iterator it = acts.begin(); it != acts.end(); ++it)
             this->removeAction(*it);
 
-#if defined(HAVE_QT5_OPENGL)
         // Step two
         QMdiSubWindow* mdi = qobject_cast<QMdiSubWindow*>(parentWidget());
         if (mdi && mdi->layout())
             mdi->layout()->invalidate();
-#endif
     }
 }
 

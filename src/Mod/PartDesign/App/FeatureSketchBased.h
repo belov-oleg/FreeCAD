@@ -28,11 +28,11 @@
 #include <Mod/Part/App/Part2DObject.h>
 #include "FeatureAddSub.h"
 
-class TopoDS_Shape;
-class TopoDS_Face;
-class TopoDS_Wire;
 class gp_Dir;
 class gp_Lin;
+class TopoDS_Face;
+class TopoDS_Shape;
+class TopoDS_Wire;
 
 namespace PartDesign
 {
@@ -141,38 +141,6 @@ protected:
     static void addOffsetToFace(TopoDS_Face& upToFace,
                                 const gp_Dir& dir,
                                 double offset);
-
-    /**
-      * Generate a linear prism
-      * It will be a stand-alone solid created with BRepPrimAPI_MakePrism
-      */
-    void generatePrism(TopoDS_Shape& prism,
-                       const TopoDS_Shape& sketchshape,
-                       const std::string& method,
-                       const gp_Dir& direction,
-                       const double L,
-                       const double L2,
-                       const bool midplane,
-                       const bool reversed);
-    // See BRepFeat_MakePrism
-    enum PrismMode {
-        CutFromBase = 0,
-        FuseWithBase = 1,
-        None = 2
-    };
-    /**
-      * Generate a linear prism
-      * It will be a stand-alone solid created with BRepFeat_MakePrism
-      */
-    static void generatePrism(TopoDS_Shape& prism,
-                              const std::string& method,
-                              const TopoDS_Shape& baseshape,
-                              const TopoDS_Shape& profileshape,
-                              const TopoDS_Face& sketchface,
-                              const TopoDS_Face& uptoface,
-                              const gp_Dir& direction,
-                              PrismMode Mode,
-                              Standard_Boolean Modify);
 
     /// Check whether the wire after projection on the face is inside the face
     static bool checkWireInsideFace(const TopoDS_Wire& wire,

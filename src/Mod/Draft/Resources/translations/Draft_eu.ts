@@ -740,14 +740,14 @@ Propietate hau irakurtzeko soilik da, kopuru hori 'Puntu-objektua' elementuak di
       <translation>Objektu honek darabilen eredu-eskala</translation>
     </message>
     <message>
-      <location filename="hatch.py" line="64"/>
-      <source>The pattern rotation used by this object</source>
-      <translation>Objektu honek darabilen eredu-biraketa</translation>
-    </message>
-    <message>
       <location filename="hatch.py" line="49"/>
       <source>The shape of this object</source>
       <translation>Objektu honen forma</translation>
+    </message>
+    <message>
+      <location filename="hatch.py" line="64"/>
+      <source>The pattern rotation used by this object</source>
+      <translation>Objektu honek darabilen eredu-biraketa</translation>
     </message>
     <message>
       <location filename="hatch.py" line="67"/>
@@ -1145,6 +1145,16 @@ haratago duen luzera</translation>
       <translation>Lerro-kolorea</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="106"/>
+      <source>Defines an SVG pattern.</source>
+      <translation>SVG eredu bat definitzen du.</translation>
+    </message>
+    <message>
+      <location filename="view_base.py" line="116"/>
+      <source>Defines the size of the SVG pattern.</source>
+      <translation>SVG ereduaren tamaina definitzen du.</translation>
+    </message>
+    <message>
       <location filename="view_label.py" line="73"/>
       <source>The size of the text</source>
       <translation>Testuaren tamaina</translation>
@@ -1218,44 +1228,9 @@ haratago duen luzera</translation>
       <translation>Objektuen ezkutuko/bistako egoera idazten</translation>
     </message>
     <message>
-      <location filename="init_tools.py" line="145"/>
-      <source>Draft creation tools</source>
-      <translation>Zirriborroak sortzeko tresnak</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="148"/>
-      <source>Draft annotation tools</source>
-      <translation>Zirriborroetan oharpenak sartzeko tresnak</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="151"/>
-      <source>Draft modification tools</source>
-      <translation>Zirriborroak aldatzeko tresnak</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="107"/>
       <source>Draft utility tools</source>
       <translation>Zirriborroen utilitate-tresnak</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="166"/>
-      <source>&amp;Drafting</source>
-      <translation>&amp;Zirriborroa</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="168"/>
-      <source>&amp;Annotation</source>
-      <translation>&amp;Oharpena</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="170"/>
-      <source>&amp;Modification</source>
-      <translation>&amp;Aldaketa</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="172"/>
-      <source>&amp;Utilities</source>
-      <translation>&amp;Utilitateak</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="122"/>
@@ -1291,21 +1266,6 @@ haratago duen luzera</translation>
       <location filename="init_draft_statusbar.py" line="340"/>
       <source>Toggles Constrain to Working Plane On/Off</source>
       <translation>Laneko planora murriztea aktibatzen/desaktibatzen du</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="48"/>
-      <source>Arc tools</source>
-      <translation>Arku-tresnak</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="56"/>
-      <source>Bezier tools</source>
-      <translation>Bezier tresnak</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="65"/>
-      <source>Array tools</source>
-      <translation>Matrize-tresnak</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="157"/>
@@ -1387,22 +1347,6 @@ Instalatu DXF liburutegiaren gehigarria eskuz
       <translation>Malda</translation>
     </message>
     <message>
-      <location filename="gui_circulararray.py" line="66"/>
-      <source>Circular array</source>
-      <translation>Matrize zirkularra</translation>
-    </message>
-    <message>
-      <location filename="gui_circulararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a radial pattern
-creating various circular layers.
-
-The array can be turned into an orthogonal or a polar array by changing its type.</source>
-      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu erradial bati
-jarraituta kokatzen ditu, hainbat geruza zirkular sortuta.
-
-Matrizearen mota aldatu daiteke, ortogonala edo polarra izan dadin.</translation>
-    </message>
-    <message>
       <location filename="gui_setstyle.py" line="273"/>
       <source>Save style</source>
       <translation>Gorde estiloa</translation>
@@ -1428,46 +1372,9 @@ Matrizearen mota aldatu daiteke, ortogonala edo polarra izan dadin.</translation
       <translation>Errorea: Ez da aurkitu JSON modulua. Ezin izan da estiloa gorde</translation>
     </message>
     <message>
-      <location filename="gui_polararray.py" line="66"/>
-      <source>Polar array</source>
-      <translation>Matrize polarra</translation>
-    </message>
-    <message>
-      <location filename="gui_polararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a polar pattern
-defined by a center of rotation and its angle.
-
-The array can be turned into an orthogonal or a circular array by changing its type.</source>
-      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu polar bati
-jarraituta kokatzen ditu, biraketa-zentro baten eta angelu baten arabera definituta..
-
-Matrizearen mota aldatu daiteke, ortogonala edo zirkularra izan dadin.</translation>
-    </message>
-    <message>
       <location filename="gui_hatch.py" line="48"/>
       <source>You must choose a base object before using this command</source>
       <translation>Oinarri-objektu bat hautatu behar da komando hau erabili baino lehen</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="68"/>
-      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
-      <translation>Matrize mota anitz sortzen ditu, besteak beste laukizuzena, polarra, zirkularra, bidea eta puntua</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="66"/>
-      <source>Array</source>
-      <translation>Matrizea</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
-meaning the copies follow the specified direction in the X, Y, Z axes.
-
-The array can be turned into a polar or a circular array by changing its type.</source>
-      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu ortogonal bati
-jarraituta kokatzen ditu, kopiek X, Y, Z ardatzetan zehaztutako norabidea jarraitu dezaten.
-
-Matrizearen mota aldatu daiteke, polarra edo zirkularra izan dadin.</translation>
     </message>
     <message>
       <location filename="gui_fillets.py" line="65"/>
@@ -1493,6 +1400,109 @@ Matrizearen mota aldatu daiteke, polarra edo zirkularra izan dadin.</translation
       <location filename="gui_offset.py" line="329"/>
       <source>Offset direction is not defined. Please move the mouse on either side of the object first to indicate a direction</source>
       <translation>Desplazamenduaren norabidea ez dago definituta. Eraman sagua objektuaren aldeetako batera, norabide bat adierazteko</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="48"/>
+      <source>Arc tools</source>
+      <translation>Arku-tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="56"/>
+      <source>Bezier tools</source>
+      <translation>Bezier tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="145"/>
+      <source>Draft creation tools</source>
+      <translation>Zirriborroak sortzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="148"/>
+      <source>Draft annotation tools</source>
+      <translation>Zirriborroetan oharpenak sartzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="151"/>
+      <source>Draft modification tools</source>
+      <translation>Zirriborroak aldatzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="166"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Zirriborroa</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="168"/>
+      <source>&amp;Annotation</source>
+      <translation>&amp;Oharpena</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Aldaketa</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Utilitateak</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Matrize-tresnak</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Matrize mota anitz sortzen ditu, besteak beste laukizuzena, polarra, zirkularra, bidea eta puntua</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="66"/>
+      <source>Circular array</source>
+      <translation>Matrize zirkularra</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu erradial bati
+jarraituta kokatzen ditu, hainbat geruza zirkular sortuta.
+
+Matrizearen mota aldatu daiteke, ortogonala edo polarra izan dadin.</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="66"/>
+      <source>Polar array</source>
+      <translation>Matrize polarra</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu polar bati
+jarraituta kokatzen ditu, biraketa-zentro baten eta angelu baten arabera definituta..
+
+Matrizearen mota aldatu daiteke, ortogonala edo zirkularra izan dadin.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="66"/>
+      <source>Array</source>
+      <translation>Matrizea</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu ortogonal bati
+jarraituta kokatzen ditu, kopiek X, Y, Z ardatzetan zehaztutako norabidea jarraitu dezaten.
+
+Matrizearen mota aldatu daiteke, polarra edo zirkularra izan dadin.</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="154"/>
@@ -1532,12 +1542,12 @@ Eraikutzan-talde bat sortzen du, lehendik ez badago.</translation>
     <message>
       <location filename="gui_groups.py" line="361"/>
       <source>Add a new named group</source>
-      <translation type="unfinished">Add a new named group</translation>
+      <translation>Gehitu izendun talde berria</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="365"/>
       <source>Add a new group with a given name.</source>
-      <translation type="unfinished">Add a new group with a given name.</translation>
+      <translation>Gehitu talde berria emandako izen batekin.</translation>
     </message>
   </context>
   <context>
@@ -1579,6 +1589,11 @@ Sortu talde bat tresna hau erabili nahi baduzu.</translation>
       <location filename="gui_annotationstyleeditor.py" line="80"/>
       <source>Annotation styles...</source>
       <translation>Oharpen-estiloak...</translation>
+    </message>
+    <message>
+      <location filename="gui_annotationstyleeditor.py" line="82"/>
+      <source>Manage or create annotation styles</source>
+      <translation>Kudeatu edo sortu oharpen-estiloak</translation>
     </message>
   </context>
   <context>
@@ -1623,6 +1638,21 @@ Ctrl atxikitzeko, Shift murrizteko.</translation>
     </message>
   </context>
   <context>
+    <name>Draft_Arc_3Points</name>
+    <message>
+      <location filename="gui_arcs.py" line="487"/>
+      <source>Arc by 3 points</source>
+      <translation>Arkua 3 punturen arabera</translation>
+    </message>
+    <message>
+      <location filename="gui_arcs.py" line="490"/>
+      <source>Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>Arku zirkular bat sortzen du hiru puntu erabilita.
+Ctrl atxikitzeko, Shift murrizteko.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Array</name>
     <message>
       <location filename="gui_array_simple.py" line="68"/>
@@ -1639,6 +1669,30 @@ to polar or circular, and its properties can be modified.</source>
 Modu lehenetsian, 2x2 matrize ortogonala izango da.
 Matrizea sortu ondoren, bere mota polarrera edo zirkularrera
 aldatu daiteke, eta bere propietateak ere aldatu daitezke.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu ortogonal bati
+jarraituta kokatzen ditu, kopiek X, Y, Z ardatzetan zehaztutako norabidea jarraitu dezaten.
+
+Matrizearen mota aldatu daiteke, polarra edo zirkularra izan dadin.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_ArrayTools</name>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Matrize-tresnak</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Matrize mota anitz sortzen ditu, besteak beste laukizuzena, polarra, zirkularra, bidea eta puntua</translation>
     </message>
   </context>
   <context>
@@ -1671,8 +1725,20 @@ aldatu daiteke, eta bere propietateak ere aldatu daitezke.</translation>
     <name>Draft_BezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="64"/>
+      <source>BÃ©zier curve</source>
+      <translation>Bezier kurba</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="64"/>
       <source>Bezier curve</source>
       <translation>Bezier kurba</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="67"/>
+      <source>Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>N graduko Bezier kurba bat sortzen du. Puntu gehiago aukeratzen badira, gradua altuagoa izango da.
+Ctrl atxikitzeko, Shift murrizteko.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="67"/>
@@ -1686,8 +1752,18 @@ Ctrl atxikitzeko, Shift murrizteko.</translation>
     <name>Draft_BezierTools</name>
     <message>
       <location filename="gui_beziers.py" line="475"/>
+      <source>BÃ©zier tools</source>
+      <translation>Bezier tresnak</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="475"/>
       <source>Bezier tools</source>
       <translation>Bezier tresnak</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="478"/>
+      <source>Create various types of BÃ©zier curves.</source>
+      <translation>Sortu Bezier kurben hainbat mota.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="478"/>
@@ -1711,6 +1787,25 @@ Ctrl atxikitzeko, Alt objektu tangenteak hautatzeko.</translation>
     </message>
   </context>
   <context>
+    <name>Draft_CircularArray</name>
+    <message>
+      <location filename="gui_circulararray.py" line="65"/>
+      <source>Circular array</source>
+      <translation>Matrize zirkularra</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu erradial bati
+jarraituta kokatzen ditu, hainbat geruza zirkular sortuta.
+
+Matrizearen mota aldatu daiteke, ortogonala edo polarra izan dadin.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Clone</name>
     <message>
       <location filename="gui_clone.py" line="70"/>
@@ -1729,8 +1824,22 @@ Sortutako klona hiru norabideetan eskalatu daiteke.</translation>
     <name>Draft_CubicBezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="242"/>
+      <source>Cubic BÃ©zier curve</source>
+      <translation>Bezier kurba kubikoa</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="242"/>
       <source>Cubic bezier curve</source>
       <translation>Bezier kurba kubikoa</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="245"/>
+      <source>Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>2. graduko segmentuekin (kuadratikoak) eta 3. gradukoekin (kubikoak) egindako Bezier kurba bat sortzen du. Klik eta arrastatu segmentu bakoitza definitzeko.
+Kurba sortu ondoren, atzera egin eta kontrol-puntu bakoitza editatu daiteke eta adabegi bakoitzaren propietateak ezarri daitezke.
+Ctrl atxikitzeko, Shift murrizteko.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="245"/>
@@ -1882,6 +1991,19 @@ onartutako nodoetan eta onartutako objektuetan.</translation>
       <location filename="gui_facebinders.py" line="62"/>
       <source>Creates a facebinder object from selected faces.</source>
       <translation>Aurpegi-zorro objektu bat sortzen du hautatutako aurpegiak erabiliz.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Fillet</name>
+    <message>
+      <location filename="gui_fillets.py" line="64"/>
+      <source>Fillet</source>
+      <translation>Biribiltzea</translation>
+    </message>
+    <message>
+      <location filename="gui_fillets.py" line="67"/>
+      <source>Creates a fillet between two selected wires or edges.</source>
+      <translation>Biribiltze bat sortzen du hautatutako bi alanbre edo ertzen artean.</translation>
     </message>
   </context>
   <context>
@@ -2069,6 +2191,25 @@ Ctrl atxikitzeko, Shift murrizteko. Eutsi Alt sakatuta eta egin klik kopia bat s
     </message>
   </context>
   <context>
+    <name>Draft_OrthoArray</name>
+    <message>
+      <location filename="gui_orthoarray.py" line="65"/>
+      <source>Array</source>
+      <translation>Matrizea</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu ortogonal bati
+jarraituta kokatzen ditu, kopiek X, Y, Z ardatzetan zehaztutako norabidea jarraitu dezaten.
+
+Matrizearen mota aldatu daiteke, polarra edo zirkularra izan dadin.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_PathArray</name>
     <message>
       <location filename="gui_patharray.py" line="73"/>
@@ -2187,6 +2328,25 @@ A 'Point link array' is more efficient when handling many copies.</source>
     </message>
   </context>
   <context>
+    <name>Draft_PolarArray</name>
+    <message>
+      <location filename="gui_polararray.py" line="65"/>
+      <source>Polar array</source>
+      <translation>Matrize polarra</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Hautatutako objektuaren kopiak sortzen ditu, eta kopiak eredu polar bati
+jarraituta kokatzen ditu, biraketa-zentro baten eta angelu baten arabera definituta..
+
+Matrizearen mota aldatu daiteke, ortogonala edo zirkularra izan dadin.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Polygon</name>
     <message>
       <location filename="gui_polygons.py" line="57"/>
@@ -2267,7 +2427,7 @@ Hautapena talde bateko objektu sinple bat bada, objektu "anaiak" hautatuko dira,
     <message>
       <location filename="gui_groups.py" line="167"/>
       <source>Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</source>
-      <translation type="unfinished">Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</translation>
+      <translation>Hautatutako taldeen edukiak hautatzen ditu. Taldekoak ez diren objektuak hautatuetarako, haiek dauden taldeko edukiak hautatzen dira.</translation>
     </message>
   </context>
   <context>
@@ -2364,19 +2524,6 @@ Polilerro bat hautatuta badago, bere segmentu guztiei aplikatuko die malda-trans
 
 Maldak beti aldatuko du Z balioa, eta beraz, komando honek XY planoan marraztutako zirriborro-lerro
 zuzenetan soilik funtzionatuko du ongi. Lerro bakunak ez diren hautatutako objektuei ez ikusiarena egingo zaie.</translation>
-    </message>
-  </context>
-  <context>
-    <name>Draft_Snap</name>
-    <message>
-      <location filename="gui_snapper.py" line="1529"/>
-      <source>Toggles Grid On/Off</source>
-      <translation>Sareta aktibatzen/desaktibatzen du</translation>
-    </message>
-    <message>
-      <location filename="gui_snapper.py" line="1530"/>
-      <source>Toggle Draft Grid</source>
-      <translation>Txandakatu zirriborro-sareta</translation>
     </message>
   </context>
   <context>
@@ -2779,14 +2926,6 @@ Ondoren, kameraren kokapen desberdina eta objektuen egoera desberdinak gorde dai
     </message>
   </context>
   <context>
-    <name>Gui::Dialog::DlgAddProperty</name>
-    <message>
-      <location filename="gui_groups.py" line="452"/>
-      <source>Group</source>
-      <translation>Taldea</translation>
-    </message>
-  </context>
-  <context>
     <name>ImportAirfoilDAT</name>
     <message>
       <location filename="importAirfoilDAT.py" line="186"/>
@@ -2809,6 +2948,66 @@ Ondoren, kameraren kokapen desberdina eta objektuen egoera desberdinak gorde dai
   </context>
   <context>
     <name>Workbench</name>
+    <message>
+      <location filename="InitGui.py" line="104"/>
+      <source>Draft creation tools</source>
+      <translation>Zirriborroak sortzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="107"/>
+      <source>Draft annotation tools</source>
+      <translation>Zirriborroetan oharpenak sartzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="110"/>
+      <source>Draft modification tools</source>
+      <translation>Zirriborroak aldatzeko tresnak</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="113"/>
+      <source>Draft utility tools</source>
+      <translation>Zirriborroen utilitate-tresnak</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="118"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Zirriborroa</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="121"/>
+      <source>&amp;Annotation</source>
+      <translation>&amp;Oharpena</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="124"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Aldaketa</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="127"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Utilitateak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="50"/>
+      <source>Arc tools</source>
+      <translation>Arku-tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>BÃ©zier tools</source>
+      <translation>Bezier tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>Bezier tools</source>
+      <translation>Bezier tresnak</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="89"/>
+      <source>Array tools</source>
+      <translation>Matrize-tresnak</translation>
+    </message>
     <message>
       <location filename="gui_snapper.py" line="1470"/>
       <source>Draft Snap</source>
@@ -2948,14 +3147,14 @@ Ondoren, kameraren kokapen desberdina eta objektuen egoera desberdinak gorde dai
       <translation>Automatikoa</translation>
     </message>
     <message>
-      <location filename="DraftGui.py" line="722"/>
-      <source>active command:</source>
-      <translation>Komando aktiboa:</translation>
-    </message>
-    <message>
       <location filename="gui_groups.py" line="299"/>
       <source>None</source>
       <translation>Bat ere ez</translation>
+    </message>
+    <message>
+      <location filename="DraftGui.py" line="722"/>
+      <source>active command:</source>
+      <translation>Komando aktiboa:</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="724"/>
@@ -3511,6 +3710,11 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
       <translation>Hainbat alanbre edo ertz aurkitu dira: haiek hari bihurtzen</translation>
     </message>
     <message>
+      <location filename="upgrade.py" line="541"/>
+      <source>Found several non-treatable objects: creating compound</source>
+      <translation>Tratatu ezin daitezkeen hainbat objektu aurkitu dira: konposatua sortzen</translation>
+    </message>
+    <message>
       <location filename="upgrade.py" line="512"/>
       <source>trying: closing it</source>
       <translation>saiatzen: hura ixten</translation>
@@ -3529,11 +3733,6 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
       <location filename="upgrade.py" line="536"/>
       <source>Found points: creating compound</source>
       <translation>Puntuak aurkitu dira: konposatuak sortzen</translation>
-    </message>
-    <message>
-      <location filename="upgrade.py" line="541"/>
-      <source>Found several non-treatable objects: creating compound</source>
-      <translation>Tratatu ezin daitezkeen hainbat objektu aurkitu dira: konposatua sortzen</translation>
     </message>
     <message>
       <location filename="upgrade.py" line="544"/>
@@ -4052,6 +4251,11 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
       <translation>Fusionatuko den geruza:</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="402"/>
+      <source>Please load the Draft Workbench to enable editing this object</source>
+      <translation type="unfinished">Please load the Draft Workbench to enable editing this object</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="46"/>
       <source>Draft</source>
       <translation>Zirriborroa</translation>
@@ -4062,9 +4266,19 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
       <translation>pertsonalizatua</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="140"/>
+      <source>Unable to convert input into a  scale factor</source>
+      <translation>Sarrera ezin izan da eskala-faktore bihurtu</translation>
+    </message>
+    <message>
       <location filename="init_draft_statusbar.py" line="141"/>
       <source>Unable to convert input into a scale factor</source>
       <translation>Sarrera ezin izan da eskala-faktore bihurtu</translation>
+    </message>
+    <message>
+      <location filename="init_draft_statusbar.py" line="155"/>
+      <source>Set custom scale</source>
+      <translation>Ezarri eskala pertsonalizatua</translation>
     </message>
     <message>
       <location filename="init_draft_statusbar.py" line="159"/>
@@ -4072,9 +4286,14 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
       <translation>Ezarri oharpen-eskala pertsonalizatua x:x, x=x formatuan</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="214"/>
+      <source>Set the scale used by draft annotation tools</source>
+      <translation>Ezarri zirriborro-oharpenen tresnek erabilitako eskala</translation>
+    </message>
+    <message>
       <location filename="utils.py" line="650"/>
       <source>Solids:</source>
-      <translation type="unfinished">Solids:</translation>
+      <translation>Solidoak:</translation>
     </message>
     <message>
       <location filename="utils.py" line="651"/>
@@ -4084,17 +4303,17 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
     <message>
       <location filename="utils.py" line="652"/>
       <source>Wires:</source>
-      <translation type="unfinished">Wires:</translation>
+      <translation>Alanbreak:</translation>
     </message>
     <message>
       <location filename="utils.py" line="653"/>
       <source>Edges:</source>
-      <translation type="unfinished">Edges:</translation>
+      <translation>Ertzak:</translation>
     </message>
     <message>
       <location filename="utils.py" line="654"/>
       <source>Vertices:</source>
-      <translation type="unfinished">Vertices:</translation>
+      <translation>Erpinak:</translation>
     </message>
     <message>
       <location filename="utils.py" line="658"/>
@@ -4109,7 +4328,7 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
     <message>
       <location filename="utils.py" line="699"/>
       <source>different types</source>
-      <translation type="unfinished">different types</translation>
+      <translation>mota anitz</translation>
     </message>
     <message>
       <location filename="utils.py" line="709"/>
@@ -4119,12 +4338,12 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
     <message>
       <location filename="utils.py" line="712"/>
       <source>has a different value</source>
-      <translation type="unfinished">has a different value</translation>
+      <translation>beste balio bat du</translation>
     </message>
     <message>
       <location filename="utils.py" line="715"/>
       <source>doesn't exist in one of the objects</source>
-      <translation type="unfinished">doesn't exist in one of the objects</translation>
+      <translation>ez da existitzen objektuetako batean</translation>
     </message>
     <message>
       <location filename="utils.py" line="827"/>
@@ -4139,22 +4358,102 @@ Ez dago erabilgarri zirriborroen 'Erabili piezen jatorrizkoak' aukera gaituta ba
     <message>
       <location filename="utils.py" line="977"/>
       <source>Wrong input: unknown document.</source>
-      <translation type="unfinished">Wrong input: unknown document.</translation>
+      <translation>Okerreko sarrera: dokumentu ezezaguna.</translation>
     </message>
     <message>
       <location filename="utils.py" line="1055"/>
       <source>This function will be deprecated in </source>
-      <translation type="unfinished">This function will be deprecated in </translation>
+      <translation>Funtzio hau zaharkituta geratuko da hemen: </translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>Please use </source>
-      <translation type="unfinished">Please use </translation>
+      <translation>Erabili </translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>This function will be deprecated. </source>
-      <translation type="unfinished">This function will be deprecated. </translation>
+      <translation>Funtzio hau zaharkituta geratuko da laster. </translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="169"/>
+      <source>Snap Lock</source>
+      <translation type="unfinished">Snap Lock</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>Snap Endpoint</source>
+      <translation type="unfinished">Snap Endpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="171"/>
+      <source>Snap Midpoint</source>
+      <translation type="unfinished">Snap Midpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>Snap Center</source>
+      <translation type="unfinished">Snap Center</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="173"/>
+      <source>Snap Angle</source>
+      <translation type="unfinished">Snap Angle</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="174"/>
+      <source>Snap Intersection</source>
+      <translation type="unfinished">Snap Intersection</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="175"/>
+      <source>Snap Perpendicular</source>
+      <translation type="unfinished">Snap Perpendicular</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="176"/>
+      <source>Snap Extension</source>
+      <translation type="unfinished">Snap Extension</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="177"/>
+      <source>Snap Parallel</source>
+      <translation type="unfinished">Snap Parallel</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="178"/>
+      <source>Snap Special</source>
+      <translation type="unfinished">Snap Special</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="179"/>
+      <source>Snap Near</source>
+      <translation type="unfinished">Snap Near</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="180"/>
+      <source>Snap Ortho</source>
+      <translation type="unfinished">Snap Ortho</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="181"/>
+      <source>Snap Grid</source>
+      <translation type="unfinished">Snap Grid</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="182"/>
+      <source>Snap WorkingPlane</source>
+      <translation type="unfinished">Snap WorkingPlane</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="183"/>
+      <source>Snap Dimensions</source>
+      <translation type="unfinished">Snap Dimensions</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="187"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Txandakatu zirriborro-sareta</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="81"/>
@@ -4786,14 +5085,24 @@ FreeCADek liburutegi horiek deskarga ditzan gaitzeko, erantzun 'Bai'.</translati
       <translation>Aukeratu distantzia berria oinarri-puntutik</translation>
     </message>
     <message>
+      <location filename="gui_snapper.py" line="1543"/>
+      <source>(ON)</source>
+      <translation type="unfinished">(ON)</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1546"/>
+      <source>(OFF)</source>
+      <translation type="unfinished">(OFF)</translation>
+    </message>
+    <message>
       <location filename="gui_shape2dview.py" line="109"/>
       <source>Create 2D view</source>
       <translation>Sortu 2D bista</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="332"/>
-      <source>Bezier curve has been closed</source>
-      <translation>Bezier kurba itxi da</translation>
+      <source>BÃ©zier curve has been closed</source>
+      <translation type="unfinished">BÃ©zier curve has been closed</translation>
     </message>
     <message>
       <location filename="gui_splines.py" line="131"/>
@@ -4814,6 +5123,11 @@ FreeCADek liburutegi horiek deskarga ditzan gaitzeko, erantzun 'Bai'.</translati
       <location filename="gui_beziers.py" line="376"/>
       <source>Click and drag to define next knot</source>
       <translation>Klik eta arrastatu hurrengo adabegia definitzeko</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="332"/>
+      <source>Bezier curve has been closed</source>
+      <translation>Bezier kurba itxi da</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="382"/>
@@ -5148,12 +5462,17 @@ FreeCADek liburutegi horiek deskarga ditzan gaitzeko, erantzun 'Bai'.</translati
     <message>
       <location filename="gui_groups.py" line="383"/>
       <source>Add group</source>
-      <translation type="unfinished">Add group</translation>
+      <translation>Gehitu taldea</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="385"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Taldearen izena</translation>
+    </message>
+    <message>
+      <location filename="gui_groups.py" line="392"/>
+      <source>Group</source>
+      <translation>Taldea</translation>
     </message>
     <message>
       <location filename="gui_offset.py" line="76"/>
@@ -5314,6 +5633,27 @@ Amaierako angelua izango da oinarriko angelua gehi kantitate hau.</translation>
       <location filename="importOCA.py" line="492"/>
       <source>successfully exported</source>
       <translation>ongi esportatu da</translation>
+    </message>
+  </context>
+  <context>
+    <name>Gui::Dialog::DlgAddProperty</name>
+    <message>
+      <location filename="gui_groups.py" line="452"/>
+      <source>Group</source>
+      <translation>Taldea</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Snap</name>
+    <message>
+      <location filename="gui_snapper.py" line="1529"/>
+      <source>Toggles Grid On/Off</source>
+      <translation>Sareta aktibatzen/desaktibatzen du</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1530"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Txandakatu zirriborro-sareta</translation>
     </message>
   </context>
   <context>

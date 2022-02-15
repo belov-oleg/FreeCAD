@@ -1036,7 +1036,7 @@
     <message>
       <location filename="../../Command.cpp" line="1608"/>
       <source>Apply changes to parameters directly and not on recompute only...</source>
-      <translation>Uveljavi spremembe določilk neposredno in ne le pri preračunu ...</translation>
+      <translation>Uveljavi spremembe določilk neposredno in ne le pri preračunu ...</translation>
     </message>
   </context>
   <context>
@@ -1207,7 +1207,7 @@
     <message>
       <location filename="../../Command.cpp" line="1696"/>
       <source>Wrong selection type</source>
-      <translation type="unfinished">Wrong selection type</translation>
+      <translation>Napačna vrsta izbiranja</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1697"/>
@@ -1276,7 +1276,7 @@
     <message>
       <location filename="../../Command.cpp" line="483"/>
       <source>Create fluid boundary condition</source>
-      <translation type="unfinished">Create fluid boundary condition</translation>
+      <translation>Ustvari pogoj zamejitve tekočine</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="526"/>
@@ -1296,7 +1296,7 @@
     <message>
       <location filename="../../Command.cpp" line="656"/>
       <source>Make FEM constraint initial temperature on body</source>
-      <translation type="unfinished">Make FEM constraint initial temperature on body</translation>
+      <translation>Ustvari mejni pogoj FEM za začetno temperaturo telesa</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="699"/>
@@ -1331,22 +1331,22 @@
     <message>
       <location filename="../../Command.cpp" line="1009"/>
       <source>Place robot</source>
-      <translation type="unfinished">Place robot</translation>
+      <translation>Postavi robota</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1110"/>
       <source>Edit nodes set</source>
-      <translation type="unfinished">Edit nodes set</translation>
+      <translation>Uredi nabor oglišč</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1118"/>
       <source>Create nodes set</source>
-      <translation type="unfinished">Create nodes set</translation>
+      <translation>Ustvari nabor oglišč</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1173"/>
       <source>Create filter</source>
-      <translation type="unfinished">Create filter</translation>
+      <translation>Ustvari sito</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1490"/>
@@ -1418,13 +1418,13 @@
       <location filename="../../TaskPanelConstraintTemperature.ui" line="52"/>
       <location filename="../../TaskPanelInitialTemperature.ui" line="56"/>
       <source>25</source>
-      <translation type="unfinished">25</translation>
+      <translation>25</translation>
     </message>
     <message>
       <location filename="../../TaskPanelConstraintTemperature.ui" line="68"/>
       <location filename="../../TaskPanelInitialTemperature.ui" line="72"/>
       <source>ºC</source>
-      <translation type="unfinished">ºC</translation>
+      <translation>ºC</translation>
     </message>
     <message>
       <location filename="../../TaskPanelConstraintTemperature.ui" line="81"/>
@@ -1837,7 +1837,7 @@ not belonging to faces and faces not belonging to volumes.</translation>
     <message>
       <location filename="../../DlgSettingsFemGeneral.ui" line="250"/>
       <source>Overwrite solver working directory with the directory chosen above</source>
-      <translation type="unfinished">Overwrite solver working directory with the directory chosen above</translation>
+      <translation>Prepiši delavno mapo reševalnika z zgoraj izbrano mapo</translation>
     </message>
     <message>
       <location filename="../../DlgSettingsFemGeneral.ui" line="271"/>
@@ -2467,7 +2467,7 @@ exported from FreeCAD.</translation>
     <message>
       <location filename="../../TaskFemConstraintFluidBoundary.cpp" line="288"/>
       <source>select boundary type, faces and set value</source>
-      <translation type="unfinished">select boundary type, faces and set value</translation>
+      <translation>izberite vrste zamejitev, ploskve in določi vrednost</translation>
     </message>
     <message>
       <location filename="../../TaskFemConstraintFluidBoundary.cpp" line="453"/>
@@ -2998,7 +2998,7 @@ exported from FreeCAD.</translation>
     <message>
       <location filename="../ui/Material.ui" line="49"/>
       <source>choose...</source>
-      <translation>izberite ...</translation>
+      <translation>izberite ...</translation>
     </message>
     <message>
       <location filename="../ui/Material.ui" line="57"/>
@@ -3483,7 +3483,7 @@ exported from FreeCAD.</translation>
       <location filename="../ui/ElectrostaticPotential.ui" line="116"/>
       <source>Capacity Body: </source>
       <extracomment>Enabled by 'Calculate Capacity Matrix' in Electrostatic equation</extracomment>
-      <translation type="unfinished">Capacity Body: </translation>
+      <translation>Kapacitivno telo: </translation>
     </message>
     <message>
       <location filename="../ui/ElectrostaticPotential.ui" line="123"/>
@@ -3509,7 +3509,7 @@ exported from FreeCAD.</translation>
     <message>
       <location filename="../ui/ElementGeometry1D.ui" line="97"/>
       <source>Height:     </source>
-      <translation type="unfinished">Height:     </translation>
+      <translation>Višina:     </translation>
     </message>
     <message>
       <location filename="../ui/ElementGeometry1D.ui" line="198"/>
@@ -3578,7 +3578,7 @@ exported from FreeCAD.</translation>
     <message>
       <location filename="../ui/MeshBoundaryLayer.ui" line="14"/>
       <source>Mesh boundary layer settings</source>
-      <translation type="unfinished">Mesh boundary layer settings</translation>
+      <translation>Nastavitve plasti roba ploskovja</translation>
     </message>
     <message>
       <location filename="../ui/MeshBoundaryLayer.ui" line="37"/>
@@ -3779,7 +3779,7 @@ exported from FreeCAD.</translation>
       <location filename="../../AppFemGui.cpp" line="180"/>
       <location filename="../../AppFemGui.cpp" line="181"/>
       <source>Import-Export</source>
-      <translation>Uvozi-Izvozi</translation>
+      <translation>Uvoz - Izvoz</translation>
     </message>
     <message>
       <location filename="../../PropertyFemMeshItem.cpp" line="106"/>
@@ -3804,7 +3804,7 @@ exported from FreeCAD.</translation>
     <message>
       <location filename="../../TaskFemConstraintFluidBoundary.cpp" line="886"/>
       <source>Constraint fluid boundary</source>
-      <translation type="unfinished">Constraint fluid boundary</translation>
+      <translation>Omeji zamejitve tekočine</translation>
     </message>
     <message>
       <location filename="../../TaskFemConstraintHeatflux.cpp" line="397"/>
@@ -4515,7 +4515,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../../TaskFemConstraintFluidBoundary.ui" line="42"/>
       <source>Boundary </source>
-      <translation type="unfinished">Boundary </translation>
+      <translation>Meja </translation>
     </message>
     <message>
       <location filename="../../TaskFemConstraintFluidBoundary.ui" line="65"/>
@@ -4801,7 +4801,7 @@ normal vector of the face is used as direction</translation>
     <message>
       <location filename="../../TaskFemConstraintPressure.ui" line="69"/>
       <source>Reverse Direction</source>
-      <translation type="unfinished">Reverse Direction</translation>
+      <translation>Obrni smer</translation>
     </message>
   </context>
   <context>
@@ -5084,7 +5084,7 @@ normal vector of the face is used as direction</translation>
       <location filename="../../TaskPostDisplay.ui" line="57"/>
       <location filename="../../TaskPostDisplay.ui" line="108"/>
       <source>Wireframe</source>
-      <translation>Žični model</translation>
+      <translation>Žični prikaz</translation>
     </message>
     <message>
       <location filename="../../TaskPostDisplay.ui" line="73"/>
@@ -5162,7 +5162,7 @@ normal vector of the face is used as direction</translation>
     <message>
       <location filename="../../TaskPostScalarClip.ui" line="57"/>
       <source>Wireframe</source>
-      <translation>Žični model</translation>
+      <translation>Žični prikaz</translation>
     </message>
     <message>
       <location filename="../../TaskPostScalarClip.ui" line="101"/>

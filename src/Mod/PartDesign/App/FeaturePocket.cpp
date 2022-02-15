@@ -65,8 +65,8 @@ Pocket::Pocket()
 
     ADD_PROPERTY_TYPE(Type, ((long)0), "Pocket", App::Prop_None, "Pocket type");
     Type.setEnums(TypeEnums);
-    ADD_PROPERTY_TYPE(Length, (100.0), "Pocket", App::Prop_None, "Pocket length");
-    ADD_PROPERTY_TYPE(Length2, (100.0), "Pocket", App::Prop_None, "Pocket length in 2nd direction");
+    ADD_PROPERTY_TYPE(Length, (5.0), "Pocket", App::Prop_None, "Pocket length");
+    ADD_PROPERTY_TYPE(Length2, (5.0), "Pocket", App::Prop_None, "Pocket length in 2nd direction");
     ADD_PROPERTY_TYPE(UseCustomVector, (false), "Pocket", App::Prop_None, "Use custom vector for pocket direction");
     ADD_PROPERTY_TYPE(Direction, (Base::Vector3d(1.0, 1.0, 1.0)), "Pocket", App::Prop_None, "Pocket direction vector");
     ADD_PROPERTY_TYPE(ReferenceAxis, (0), "Pocket", App::Prop_None, "Reference axis of direction");
@@ -74,6 +74,10 @@ Pocket::Pocket()
     ADD_PROPERTY_TYPE(UpToFace, (0), "Pocket", App::Prop_None, "Face where pocket will end");
     ADD_PROPERTY_TYPE(Offset, (0.0), "Pocket", App::Prop_None, "Offset from face in which pocket will end");
     Offset.setConstraints(&signedLengthConstraint);
+    ADD_PROPERTY_TYPE(TaperAngle, (0.0), "Pocket", App::Prop_None, "Taper angle");
+    TaperAngle.setConstraints(&floatAngle);
+    ADD_PROPERTY_TYPE(TaperAngle2, (0.0), "Pocket", App::Prop_None, "Taper angle for 2nd direction");
+    TaperAngle2.setConstraints(&floatAngle);
 
     // Remove the constraints and keep the type to allow to accept negative values
     // https://forum.freecadweb.org/viewtopic.php?f=3&t=52075&p=448410#p447636
@@ -215,8 +219,14 @@ App::DocumentObjectExecReturn *Pocket::execute()
         }
         else {
             TopoDS_Shape prism;
-            generatePrism(prism, profileshape, method, dir, L, L2,
-                        Midplane.getValue(), Reversed.getValue());
+            if (hasTaperedAngle()) {
+                if (Reversed.getValue())
+                    dir.Reverse();
+                generateTaperedPrism(prism, profileshape, method, dir, L, L2, TaperAngle.getValue(), TaperAngle2.getValue(), Midplane.getValue());
+            }
+            else {
+                generatePrism(prism, profileshape, method, dir, L, L2, Midplane.getValue(), Reversed.getValue());
+            }
 
             if (prism.IsNull())
                 return new App::DocumentObjectExecReturn("Pocket: Resulting shape is empty");

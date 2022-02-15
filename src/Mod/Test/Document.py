@@ -192,6 +192,25 @@ class DocumentBasicCases(unittest.TestCase):
     with self.assertRaises(ValueError):
       obj.myEnumeration = enumeration_choices[0]
 
+  def testWrongTypes(self):
+    with self.assertRaises(TypeError):
+      self.Doc.addObject("App::DocumentObjectExtension")
+
+    class Feature:
+      pass
+    with self.assertRaises(TypeError):
+      self.Doc.addObject(type="App::DocumentObjectExtension", objProxy=Feature(), attach=True)
+
+    ext = FreeCAD.Base.TypeId.fromName("App::DocumentObjectExtension")
+    self.assertEqual(ext.createInstance(), None)
+
+    obj = self.Doc.addObject("App::FeaturePython", "Object")
+    with self.assertRaises(TypeError):
+      obj.addProperty("App::DocumentObjectExtension", "Property")
+
+    with self.assertRaises(TypeError):
+      self.Doc.findObjects(Type="App::DocumentObjectExtension")
+
   def testMem(self):
     self.Doc.MemSize
 
@@ -378,6 +397,12 @@ class DocumentBasicCases(unittest.TestCase):
 
     self.assertEqual(ext.Link, obj)
     self.assertNotEqual(ext.Link, sli)
+
+  def testIssue4823(self):
+    # https://forum.freecadweb.org/viewtopic.php?f=3&t=52775
+    # The issue was only visible in GUI mode and it crashed in the tree view
+    obj = self.Doc.addObject("App::Origin")
+    self.Doc.removeObject(obj.Name)
 
   def tearDown(self):
     #closing doc

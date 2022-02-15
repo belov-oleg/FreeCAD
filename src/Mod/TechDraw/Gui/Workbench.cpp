@@ -40,7 +40,7 @@ using namespace TechDrawGui;
     qApp->translate("Workbench", "Extensions: Dimensions");
     qApp->translate("Workbench", "Annotations");
     qApp->translate("Workbench", "Add Lines");
-    qApp->translate("Workbench", "Add Vertices");    
+    qApp->translate("Workbench", "Add Vertices");
     qApp->translate("Workbench", "TechDraw");
     // Translations for View > Toolbars
     qApp->translate("Workbench", "TechDraw Pages");
@@ -104,6 +104,8 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     *toolattrib << "TechDraw_ExtensionCascadeHorizDimension";
     *toolattrib << "TechDraw_ExtensionCascadeVertDimension";
     *toolattrib << "TechDraw_ExtensionCascadeObliqueDimension";
+    *toolattrib << "Separator";
+    *toolattrib << "TechDraw_ExtensionAreaAnnotation";
 
     // extension: centerlines and threading
     Gui::MenuItem* toolcenter = new Gui::MenuItem;
@@ -112,13 +114,14 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     *toolcenter << "TechDraw_ExtensionHoleCircle";
     *toolcenter << "Separator";
     *toolcenter << "TechDraw_ExtensionThreadHoleSide";
-    *toolcenter << "TechDraw_ExtensionThreadBoltSide";
     *toolcenter << "TechDraw_ExtensionThreadHoleBottom";
+    *toolcenter << "TechDraw_ExtensionThreadBoltSide";
     *toolcenter << "TechDraw_ExtensionThreadBoltBottom";
     *toolcenter << "Separator";
     *toolcenter << "TechDraw_ExtensionVertexAtIntersection";
     *toolcenter << "TechDraw_ExtensionDrawCosmCircle";
     *toolcenter << "TechDraw_ExtensionDrawCosmArc";
+    *toolcenter << "TechDraw_ExtensionDrawCosmCircle3Points";
     *toolcenter << "TechDraw_ExtensionLineParallel";
     *toolcenter << "TechDraw_ExtensionLinePerpendicular";
 
@@ -137,6 +140,7 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     *tooldimensions << "Separator";
     *tooldimensions << "TechDraw_ExtensionInsertDiameter";
     *tooldimensions << "TechDraw_ExtensionInsertSquare";
+    *tooldimensions << "TechDraw_ExtensionRemovePrefixChar";
     *tooldimensions << "Separator";
     *tooldimensions << "TechDraw_ExtensionIncreaseDecimal";
     *tooldimensions << "TechDraw_ExtensionDecreaseDecimal";
@@ -184,6 +188,8 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     *draw << "TechDraw_ClipGroupAdd";
     *draw << "TechDraw_ClipGroupRemove";
     *draw << "Separator";
+    *draw << "TechDraw_MoveView";
+    *draw << "TechDraw_ShareView";
     *draw << dimensions;
     *draw << toolattrib;
     *draw << toolcenter;
@@ -205,6 +211,8 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     *draw << "TechDraw_DecorateLine";
     *draw << "TechDraw_ShowAll";
     *draw << "TechDraw_WeldSymbol";
+    *draw << "Separator";
+    *draw << "TechDraw_ProjectShape";
     return root;
 }
 
@@ -227,6 +235,9 @@ Gui::ToolBarItem* Workbench::setupToolBars() const
     *views << "TechDraw_DraftView";
     *views << "TechDraw_ArchView";
     *views << "TechDraw_SpreadsheetView";
+    *views << "TechDraw_MoveView";
+    *views << "TechDraw_ShareView";
+    *views << "TechDraw_ProjectShape";
 
     Gui::ToolBarItem *clips = new Gui::ToolBarItem(root);
     clips->setCommand("TechDraw Clips");
@@ -254,12 +265,12 @@ Gui::ToolBarItem* Workbench::setupToolBars() const
     Gui::ToolBarItem *extattribs = new Gui::ToolBarItem(root);
     extattribs->setCommand("TechDraw Attributes");
     *extattribs << "TechDraw_ExtensionSelectLineAttributes";
+    *extattribs << "TechDraw_ExtensionChangeLineAttributes";
     *extattribs << "TechDraw_ExtensionExtendShortenLineGroup";
 //    *extattribs << "TechDraw_ExtensionExtendLine";
 //    *extattribs << "TechDraw_ExtensionShortenLine";
     *extattribs << "TechDraw_ExtensionLockUnlockView";
     *extattribs << "TechDraw_ExtensionPositionSectionView";
-    *extattribs << "TechDraw_ExtensionChangeLineAttributes";
     *extattribs << "TechDraw_ExtensionPosChainDimensionGroup";
 //    *extattribs << "TechDraw_ExtensionPosHorizChainDimension";
 //    *extattribs << "TechDraw_ExtensionPosVertChainDimension";
@@ -268,30 +279,29 @@ Gui::ToolBarItem* Workbench::setupToolBars() const
 //    *extattribs << "TechDraw_ExtensionCascadeHorizDimension";
 //    *extattribs << "TechDraw_ExtensionCascadeVertDimension";
 //    *extattribs << "TechDraw_ExtensionCascadeObliqueDimension";
+    *extattribs << "TechDraw_ExtensionAreaAnnotation";
 
     Gui::ToolBarItem *extcenter = new Gui::ToolBarItem(root);
     extcenter->setCommand("TechDraw Centerlines");
     *extcenter << "TechDraw_ExtensionCircleCenterLinesGroup";
 //    *extcenter << "TechDraw_ExtensionCircleCenterLines";
 //    *extcenter << "TechDraw_ExtensionHoleCircle";
-    *extcenter << "TechDraw_ExtensionVertexAtIntersection";
-    *extcenter << "TechDraw_ExtensionDrawCirclesGroup";
-//    *extcenter << "TechDraw_ExtensionDrawCosmCircle";
-//    *extcenter << "TechDraw_ExtensionDrawCosmArc";
-    *extcenter << "TechDraw_ExtensionLinePPGroup";
-//    *extcenter << "TechDraw_ExtensionLineParallel";
-//    *extcenter << "TechDraw_ExtensionLinePerpendicular";
     *extcenter << "TechDraw_ExtensionThreadsGroup";
 //    *extcenter << "TechDraw_ExtensionThreadHoleSide";
 //    *extcenter << "TechDraw_ExtensionThreadHoleBottom";
 //    *extcenter << "TechDraw_ExtensionThreadBoltSide";
 //    *extcenter << "TechDraw_ExtensionThreadBoltBottom";
+    *extcenter << "TechDraw_ExtensionVertexAtIntersection";
+    *extcenter << "TechDraw_ExtensionDrawCirclesGroup";
+//    *extcenter << "TechDraw_ExtensionDrawCosmCircle";
+//    *extcenter << "TechDraw_ExtensionDrawCosmArc";
+//    *extcenter << "TechDraw_ExtensionDrawCosmCircle3Points";
+    *extcenter << "TechDraw_ExtensionLinePPGroup";
+//    *extcenter << "TechDraw_ExtensionLineParallel";
+//    *extcenter << "TechDraw_ExtensionLinePerpendicular";
 
     Gui::ToolBarItem *extdimensions = new Gui::ToolBarItem(root);
     extdimensions->setCommand("TechDraw Extend Dimensions");
-    *extdimensions << "TechDraw_ExtensionInsertPrefixGroup";
-//    *extdimensions << "TechDraw_ExtensionInsertDiameter";
-//    *extdimensions << "TechDraw_ExtensionInsertSquare";
     *extdimensions << "TechDraw_ExtensionCreateChainDimensionGroup";
 //    *extdimensions << "TechDraw_ExtensionCreateHorizChainDimension";
 //    *extdimensions << "TechDraw_ExtensionCreateVertChainDimension";
@@ -304,6 +314,10 @@ Gui::ToolBarItem* Workbench::setupToolBars() const
 //    *extdimensions << "TechDraw_ExtensionCreateHorizChamferDimension";
 //    *extdimensions << "TechDraw_ExtensionCreateVertChamferDimension";
     *extdimensions << "TechDraw_ExtensionCreateLengthArc";
+    *extdimensions << "TechDraw_ExtensionInsertPrefixGroup";
+//    *extdimensions << "TechDraw_ExtensionInsertDiameter";
+//    *extdimensions << "TechDraw_ExtensionInsertSquare";
+//    *extdimensions << "TechDraw_ExtensionRemovePrefixChar";
     *extdimensions << "TechDraw_ExtensionIncreaseDecreaseGroup";
 //    *extdimensions << "TechDraw_ExtensionIncreaseDecimal";
 //    *extdimensions << "TechDraw_ExtensionDecreaseDecimal";
@@ -358,6 +372,10 @@ Gui::ToolBarItem* Workbench::setupCommandBars() const
     *views << "TechDraw_DetailView";
     *views << "TechDraw_DraftView";
     *views << "TechDraw_SpreadsheetView";
+    *views << "TechDraw_MoveView";
+    *views << "TechDraw_ShareView";
+    *views << "TechDraw_ProjectShape";
+
 
     Gui::ToolBarItem *clips = new Gui::ToolBarItem(root);
     clips->setCommand("TechDraw Clips");
@@ -385,12 +403,12 @@ Gui::ToolBarItem* Workbench::setupCommandBars() const
     Gui::ToolBarItem *extattribs = new Gui::ToolBarItem(root);
     extattribs->setCommand("TechDraw Attributes");
     *extattribs << "TechDraw_ExtensionSelectLineAttributes";
+    *extattribs << "TechDraw_ExtensionChangeLineAttributes";
     *extattribs << "TechDraw_ExtensionExtendShortenLineGroup";
 //    *extattribs << "TechDraw_ExtensionExtendLine";
 //    *extattribs << "TechDraw_ExtensionShortenLine";
     *extattribs << "TechDraw_ExtensionLockUnlockView";
     *extattribs << "TechDraw_ExtensionPositionSectionView";
-    *extattribs << "TechDraw_ExtensionChangeLineAttributes";
     *extattribs << "TechDraw_ExtensionPosChainDimensionGroup";
 //    *extattribs << "TechDraw_ExtensionPosHorizChainDimension";
 //    *extattribs << "TechDraw_ExtensionPosVertChainDimension";
@@ -399,30 +417,29 @@ Gui::ToolBarItem* Workbench::setupCommandBars() const
 //    *extattribs << "TechDraw_ExtensionCascadeHorizDimension";
 //    *extattribs << "TechDraw_ExtensionCascadeVertDimension";
 //    *extattribs << "TechDraw_ExtensionCascadeObliqueDimension";
+    *extattribs << "TechDraw_ExtensionAreaAnnotation";
 
     Gui::ToolBarItem *extcenter = new Gui::ToolBarItem(root);
     extcenter->setCommand("TechDraw Centerlines");
     *extcenter << "TechDraw_ExtensionCircleCenterLinesGroup";
 //    *extcenter << "TechDraw_ExtensionCircleCenterLines";
 //    *extcenter << "TechDraw_ExtensionHoleCircle";
-    *extcenter << "TechDraw_ExtensionVertexAtIntersection";
-    *extcenter << "TechDraw_ExtensionDrawCirclesGroup";
-//    *extcenter << "TechDraw_ExtensionDrawCosmCircle";
-//    *extcenter << "TechDraw_ExtensionDrawCosmArc";
-    *extcenter << "TechDraw_ExtensionLinePPGroup";
-//    *extcenter << "TechDraw_ExtensionLineParallel";
-//    *extcenter << "TechDraw_ExtensionLinePerpendicular";
     *extcenter << "TechDraw_ExtensionThreadsGroup";
 //    *extcenter << "TechDraw_ExtensionThreadHoleSide";
 //    *extcenter << "TechDraw_ExtensionThreadHoleBottom";
 //    *extcenter << "TechDraw_ExtensionThreadBoltSide";
 //    *extcenter << "TechDraw_ExtensionThreadBoltBottom";
+    *extcenter << "TechDraw_ExtensionVertexAtIntersection";
+    *extcenter << "TechDraw_ExtensionDrawCirclesGroup";
+//    *extcenter << "TechDraw_ExtensionDrawCosmCircle";
+//    *extcenter << "TechDraw_ExtensionDrawCosmArc";
+//    *extcenter << "TechDraw_ExtensionDrawCosmCircle3Points";
+    *extcenter << "TechDraw_ExtensionLinePPGroup";
+//    *extcenter << "TechDraw_ExtensionLineParallel";
+//    *extcenter << "TechDraw_ExtensionLinePerpendicular";
 
     Gui::ToolBarItem *extdimensions = new Gui::ToolBarItem(root);
     extdimensions->setCommand("TechDraw Extend Dimensions");
-    *extdimensions << "TechDraw_ExtensionInsertPrefixGroup";
-//    *extdimensions << "TechDraw_ExtensionInsertDiameter";
-//    *extdimensions << "TechDraw_ExtensionInsertSquare";
     *extdimensions << "TechDraw_ExtensionCreateChainDimensionGroup";
 //    *extdimensions << "TechDraw_ExtensionCreateHorizChainDimension";
 //    *extdimensions << "TechDraw_ExtensionCreateVertChainDimension";
@@ -435,6 +452,10 @@ Gui::ToolBarItem* Workbench::setupCommandBars() const
 //    *extdimensions << "TechDraw_ExtensionCreateHorizChamferDimension";
 //    *extdimensions << "TechDraw_ExtensionCreateVertChamferDimension";
     *extdimensions << "TechDraw_ExtensionCreateLengthArc";
+    *extdimensions << "TechDraw_ExtensionInsertPrefixGroup";
+//    *extdimensions << "TechDraw_ExtensionInsertDiameter";
+//    *extdimensions << "TechDraw_ExtensionInsertSquare";
+//    *extdimensions << "TechDraw_ExtensionRemovePrefixChar";
     *extdimensions << "TechDraw_ExtensionIncreaseDecreaseGroup";
 //    *extdimensions << "TechDraw_ExtensionIncreaseDecimal";
 //    *extdimensions << "TechDraw_ExtensionDecreaseDecimal";

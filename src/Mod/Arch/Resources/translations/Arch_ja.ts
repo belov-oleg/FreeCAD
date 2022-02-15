@@ -6,42 +6,42 @@
     <message>
       <location filename="ArchBuilding.py" line="276"/>
       <source>The type of this building</source>
-      <translation>この建物の種類</translation>
+      <translation>ビルディングタイプ</translation>
     </message>
     <message>
       <location filename="ArchFloor.py" line="204"/>
       <source>The height of this object</source>
-      <translation>このオブジェクトの高さ</translation>
+      <translation>オブジェクトの高さ</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="336"/>
       <source>If true, the height value propagates to contained objects</source>
-      <translation type="unfinished">If true, the height value propagates to contained objects</translation>
+      <translation>true の場合、高さの値は含まれているオブジェクトに伝播します</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="339"/>
       <source>The level of the (0,0,0) point of this level</source>
-      <translation>このレベルの (0,0,0) 点レベル</translation>
+      <translation>レベルの (0,0,0) 点レベル</translation>
     </message>
     <message>
       <location filename="ArchFloor.py" line="206"/>
       <source>The computed floor area of this floor</source>
-      <translation>このフロアの床面積の計算</translation>
+      <translation>フロアの床面積の計算</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="200"/>
       <source>An optional description for this component</source>
-      <translation>このコンポーネントのオプション説明</translation>
+      <translation>コンポーネントのオプション説明</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="202"/>
       <source>An optional tag for this component</source>
-      <translation>このコンポーネントのオプション・タグ</translation>
+      <translation>コンポーネントのオプション・タグ</translation>
     </message>
     <message>
       <location filename="ArchSectionPlane.py" line="921"/>
       <source>The shape of this object</source>
-      <translation>このオブジェクトの形</translation>
+      <translation>オブジェクトの形</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="349"/>
@@ -191,17 +191,17 @@
     <message>
       <location filename="ArchBuildingPart.py" line="623"/>
       <source>Turns auto group box on/off</source>
-      <translation type="unfinished">Turns auto group box on/off</translation>
+      <translation>自動グループボックスのオン/オフを切り替えます</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="625"/>
       <source>Automatically set size from contents</source>
-      <translation type="unfinished">Automatically set size from contents</translation>
+      <translation>コンテンツからサイズを自動的に設定</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="627"/>
       <source>A margin to use when autosize is turned on</source>
-      <translation type="unfinished">A margin to use when autosize is turned on</translation>
+      <translation>オートサイズがオンになっているときに使用するマージンです。</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="192"/>
@@ -324,6 +324,16 @@
       <translation>ここがTureの場合に、フェンスはオリジナルの支柱やセクションのように色付けされます。</translation>
     </message>
     <message>
+      <location filename="ArchAxis.py" line="871"/>
+      <source>The axes this system is made of</source>
+      <translation>このシステムを構成する軸</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="873"/>
+      <source>The placement of this axis system</source>
+      <translation>軸システムの配置</translation>
+    </message>
+    <message>
       <location filename="ArchMaterial.py" line="718"/>
       <source>A description for this material</source>
       <translation>このマテリアルの説明</translation>
@@ -351,7 +361,7 @@
     <message>
       <location filename="ArchMaterial.py" line="296"/>
       <source>The color of this material when cut</source>
-      <translation type="unfinished">The color of this material when cut</translation>
+      <translation>カット時のこのマテリアルの色</translation>
     </message>
     <message>
       <location filename="ArchMaterial.py" line="719"/>
@@ -556,7 +566,7 @@
     <message>
       <location filename="ArchSectionPlane.py" line="933"/>
       <source>Geometry further than this value will be cut off. Keep zero for unlimited.</source>
-      <translation type="unfinished">Geometry further than this value will be cut off. Keep zero for unlimited.</translation>
+      <translation>この値よりもさらにジオメトリーがカットされます。無制限の場合はゼロのままにしてください。</translation>
     </message>
     <message>
       <location filename="ArchSectionPlane.py" line="997"/>
@@ -596,7 +606,7 @@
     <message>
       <location filename="ArchSectionPlane.py" line="1028"/>
       <source>Show the label in the 3D view</source>
-      <translation type="unfinished">Show the label in the 3D view</translation>
+      <translation>3D ビューにラベルを表示</translation>
     </message>
     <message>
       <location filename="ArchPanel.py" line="941"/>
@@ -701,7 +711,7 @@
     <message>
       <location filename="ArchTruss.py" line="158"/>
       <source>The normal direction of this truss</source>
-      <translation type="unfinished">The normal direction of this truss</translation>
+      <translation>このトラスの法線方向</translation>
     </message>
     <message>
       <location filename="ArchTruss.py" line="162"/>
@@ -1771,7 +1781,7 @@
     <message>
       <location filename="ArchAxis.py" line="221"/>
       <source>If not zero, the axes are not represented as one full line but as two lines of the given length</source>
-      <translation type="unfinished">If not zero, the axes are not represented as one full line but as two lines of the given length</translation>
+      <translation>0でない場合、軸は1つのフルラインではなく、指定された長さの2本のラインとして表されます</translation>
     </message>
     <message>
       <location filename="ArchAxis.py" line="314"/>
@@ -1827,16 +1837,6 @@
       <location filename="ArchAxis.py" line="345"/>
       <source>A transformation to apply to each label</source>
       <translation>各ラベルに適用する変換</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="871"/>
-      <source>The axes this system is made of</source>
-      <translation>このシステムを構成する軸</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="873"/>
-      <source>The placement of this axis system</source>
-      <translation>軸システムの配置</translation>
     </message>
     <message>
       <location filename="ArchPrecast.py" line="62"/>
@@ -2331,6 +2331,26 @@ Building creation aborted.</translation>
       <location filename="ArchWindowPresets.py" line="504"/>
       <source>Door</source>
       <translation>ドア</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="152"/>
+      <source>Only axes must be selected</source>
+      <translation>軸のみを選択する必要があります。</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="156"/>
+      <source>Create Axis System</source>
+      <translation>軸システムを作成</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="161"/>
+      <source>Please select at least one axis</source>
+      <translation>少なくとも1つの軸を選択してください</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1119"/>
+      <source>Axis system components</source>
+      <translation>軸システムの成分</translation>
     </message>
     <message>
       <location filename="importJSON.py" line="61"/>
@@ -2868,6 +2888,21 @@ Building creation aborted.</translation>
       <translation>既存オブジェクトにある面を選択するか、プリセットを選択</translation>
     </message>
     <message>
+      <location filename="ArchWindow.py" line="290"/>
+      <source>Window not based on sketch. Window not aligned or resized.</source>
+      <translation type="unfinished">Window not based on sketch. Window not aligned or resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="300"/>
+      <source>No Width and/or Height constraint in window sketch. Window not resized.</source>
+      <translation type="unfinished">No Width and/or Height constraint in window sketch. Window not resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="303"/>
+      <source>No window found. Cannot continue.</source>
+      <translation type="unfinished">No window found. Cannot continue.</translation>
+    </message>
+    <message>
       <location filename="ArchWindow.py" line="327"/>
       <source>Window options</source>
       <translation>窓のオプション</translation>
@@ -3078,11 +3113,6 @@ Building creation aborted.</translation>
       <translation>構造オブジェクト上から基準面を選択してください</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="143"/>
-      <source>Arch</source>
-      <translation>Arch</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="71"/>
       <source>Structure tools</source>
       <translation type="unfinished">Structure tools</translation>
@@ -3098,6 +3128,11 @@ Building creation aborted.</translation>
       <translation>パネル・ツール</translation>
     </message>
     <message>
+      <location filename="InitGui.py" line="94"/>
+      <source>Rebar tools</source>
+      <translation>鉄筋ツール</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="99"/>
       <source>Material tools</source>
       <translation>マテリアル・ツール</translation>
@@ -3108,24 +3143,14 @@ Building creation aborted.</translation>
       <translation>パイプツール</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="94"/>
-      <source>Rebar tools</source>
-      <translation>鉄筋ツール</translation>
+      <location filename="InitGui.py" line="143"/>
+      <source>Arch</source>
+      <translation>Arch</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="177"/>
       <source>&amp;Arch</source>
       <translation>&amp;Arch</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="193"/>
-      <source>Utilities</source>
-      <translation>ユーティリティ</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="192"/>
-      <source>&amp;Draft</source>
-      <translation>ドラフト(&amp;D)</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="181"/>
@@ -3141,6 +3166,96 @@ Building creation aborted.</translation>
       <location filename="InitGui.py" line="189"/>
       <source>Modification</source>
       <translation>変更(&amp;M)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>ドラフト(&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>ユーティリティ</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="181"/>
+      <source>Create Grid</source>
+      <translation>グリッドを作成</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1181"/>
+      <source>Auto height is larger than height</source>
+      <translation>自動高さが高さよりも大きいです</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1190"/>
+      <source>Total row size is larger than height</source>
+      <translation>行の合計サイズが高さよりも大きいです</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1212"/>
+      <source>Auto width is larger than width</source>
+      <translation>自動設定幅が幅よりも大きいです</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1221"/>
+      <source>Total column size is larger than width</source>
+      <translation>列の合計サイズが幅よりも大きいです</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1445"/>
+      <source>Grid</source>
+      <translation>グリッド</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1446"/>
+      <source>Total width</source>
+      <translation>全体の幅</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1447"/>
+      <source>Total height</source>
+      <translation>全体の高さ</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1448"/>
+      <source>Add row</source>
+      <translation>行を追加</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1449"/>
+      <source>Del row</source>
+      <translation>行を削除</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1450"/>
+      <source>Add col</source>
+      <translation>列を追加</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1451"/>
+      <source>Del col</source>
+      <translation>列を削除</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1452"/>
+      <source>Create span</source>
+      <translation>スパンを作成</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1453"/>
+      <source>Remove span</source>
+      <translation>スパンを削除</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Rows</source>
+      <translation>行</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Columns</source>
+      <translation>列</translation>
     </message>
     <message>
       <location filename="ArchCurtainWall.py" line="83"/>
@@ -3642,26 +3757,6 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <translation>軸を作成</translation>
     </message>
     <message>
-      <location filename="ArchAxis.py" line="152"/>
-      <source>Only axes must be selected</source>
-      <translation>軸のみを選択する必要があります。</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="156"/>
-      <source>Create Axis System</source>
-      <translation>軸システムを作成</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="161"/>
-      <source>Please select at least one axis</source>
-      <translation>少なくとも1つの軸を選択してください</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="181"/>
-      <source>Create Grid</source>
-      <translation>グリッドを作成</translation>
-    </message>
-    <message>
       <location filename="ArchAxis.py" line="851"/>
       <source>Distances (mm) and angles (deg) between axes</source>
       <translation>軸の間の距離 (mm) と角度 (度)</translation>
@@ -3685,86 +3780,6 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchAxis.py" line="855"/>
       <source>Label</source>
       <translation>ラベル</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1119"/>
-      <source>Axis system components</source>
-      <translation>軸システムの成分</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1181"/>
-      <source>Auto height is larger than height</source>
-      <translation>自動高さが高さよりも大きいです</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1190"/>
-      <source>Total row size is larger than height</source>
-      <translation>行の合計サイズが高さよりも大きいです</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1212"/>
-      <source>Auto width is larger than width</source>
-      <translation>自動設定幅が幅よりも大きいです</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1221"/>
-      <source>Total column size is larger than width</source>
-      <translation>列の合計サイズが幅よりも大きいです</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1445"/>
-      <source>Grid</source>
-      <translation>グリッド</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1446"/>
-      <source>Total width</source>
-      <translation>全体の幅</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1447"/>
-      <source>Total height</source>
-      <translation>全体の高さ</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1448"/>
-      <source>Add row</source>
-      <translation>行を追加</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1449"/>
-      <source>Del row</source>
-      <translation>行を削除</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1450"/>
-      <source>Add col</source>
-      <translation>列を追加</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1451"/>
-      <source>Del col</source>
-      <translation>列を削除</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1452"/>
-      <source>Create span</source>
-      <translation>スパンを作成</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1453"/>
-      <source>Remove span</source>
-      <translation>スパンを削除</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Rows</source>
-      <translation>行</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Columns</source>
-      <translation>列</translation>
     </message>
     <message>
       <location filename="importDAE.py" line="58"/>
@@ -4109,6 +4124,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
     </message>
   </context>
   <context>
+    <name>Arch_CutLine</name>
+    <message>
+      <location filename="ArchCutPlane.py" line="80"/>
+      <source>Cut with line</source>
+      <translation type="unfinished">Cut with line</translation>
+    </message>
+    <message>
+      <location filename="ArchCutPlane.py" line="83"/>
+      <source>Cut an object with a line</source>
+      <translation type="unfinished">Cut an object with a line</translation>
+    </message>
+  </context>
+  <context>
     <name>Arch_CutPlane</name>
     <message>
       <location filename="ArchCutPlane.py" line="79"/>
@@ -4185,6 +4213,16 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
   </context>
   <context>
     <name>Arch_Grid</name>
+    <message>
+      <location filename="ArchGrid.py" line="68"/>
+      <source>Grid</source>
+      <translation>グリッド</translation>
+    </message>
+    <message>
+      <location filename="ArchGrid.py" line="72"/>
+      <source>Creates a customizable grid object</source>
+      <translation>カスタマイズ可能なグリッドオブジェクトを作成</translation>
+    </message>
     <message>
       <location filename="ArchAxis.py" line="1135"/>
       <source>The number of rows</source>
@@ -4360,6 +4398,11 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <source>Panel Cut</source>
       <translation>パネルカット</translation>
     </message>
+    <message>
+      <location filename="ArchPanel.py" line="339"/>
+      <source>Creates 2D views of selected panels</source>
+      <translation>選択したパネルの2Dビューを作成</translation>
+    </message>
   </context>
   <context>
     <name>Arch_Panel_Sheet</name>
@@ -4403,6 +4446,11 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchPipe.py" line="145"/>
       <source>Connector</source>
       <translation>コネクター</translation>
+    </message>
+    <message>
+      <location filename="ArchPipe.py" line="149"/>
+      <source>Creates a connector between 2 or 3 selected pipes</source>
+      <translation>2つまたは3つの選択したパイプ間にコネクターを作成</translation>
     </message>
   </context>
   <context>
@@ -4450,6 +4498,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchRebar.py" line="108"/>
       <source>Creates a Reinforcement bar from the selected face of a structural object</source>
       <translation>構造オブジェクトの選択した面から異形鉄筋を作成します</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_RebarTools</name>
+    <message>
+      <location filename="InitGui.py" line="137"/>
+      <source>Rebar tools</source>
+      <translation>鉄筋ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="142"/>
+      <source>Create various types of rebars, including U-shaped, L-shaped, and stirrup</source>
+      <translation type="unfinished">Create various types of rebars, including U-shaped, L-shaped, and stirrup</translation>
     </message>
   </context>
   <context>
@@ -4596,6 +4657,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
     </message>
   </context>
   <context>
+    <name>Arch_StructuralSystem</name>
+    <message>
+      <location filename="ArchStructure.py" line="233"/>
+      <source>Structural System</source>
+      <translation type="unfinished">Structural System</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="236"/>
+      <source>Create a structural system object from a selected structure and axis</source>
+      <translation type="unfinished">Create a structural system object from a selected structure and axis</translation>
+    </message>
+  </context>
+  <context>
     <name>Arch_Structure</name>
     <message>
       <location filename="ArchStructure.py" line="196"/>
@@ -4631,6 +4705,27 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchStructure.py" line="1472"/>
       <source>Structure tools</source>
       <translation type="unfinished">Structure tools</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructureTools</name>
+    <message>
+      <location filename="ArchStructure.py" line="1472"/>
+      <source>Structure tools</source>
+      <translation type="unfinished">Structure tools</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructuresFromSelection</name>
+    <message>
+      <location filename="ArchStructure.py" line="196"/>
+      <source>Multiple Structures</source>
+      <translation type="unfinished">Multiple Structures</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="199"/>
+      <source>Create multiple Arch Structure objects from a selected base, using each selected edge as an extrusion path</source>
+      <translation type="unfinished">Create multiple Arch Structure objects from a selected base, using each selected edge as an extrusion path</translation>
     </message>
   </context>
   <context>
@@ -4747,9 +4842,84 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
   <context>
     <name>Workbench</name>
     <message>
+      <location filename="InitGui.py" line="71"/>
+      <source>Structure tools</source>
+      <translation type="unfinished">Structure tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="85"/>
+      <source>Axis tools</source>
+      <translation>軸ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="91"/>
+      <source>Panel tools</source>
+      <translation>パネル・ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="99"/>
+      <source>Material tools</source>
+      <translation>マテリアル・ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="103"/>
+      <source>Pipe tools</source>
+      <translation>パイプツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="145"/>
+      <source>Rebar tools</source>
+      <translation>鉄筋ツール</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="112"/>
       <source>Arch tools</source>
       <translation>Archツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="162"/>
+      <source>Draft creation tools</source>
+      <translation>ドラフト作成ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="165"/>
+      <source>Draft annotation tools</source>
+      <translation>ドラフト注釈ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="168"/>
+      <source>Draft modification tools</source>
+      <translation>ドラフト修正ツール</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="177"/>
+      <source>&amp;Arch</source>
+      <translation>&amp;Arch</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>ユーティリティ</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>ドラフト(&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="181"/>
+      <source>Creation</source>
+      <translation>作成 (&amp;C)</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="185"/>
+      <source>Annotation</source>
+      <translation>注釈</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="189"/>
+      <source>Modification</source>
+      <translation>変更(&amp;M)</translation>
     </message>
   </context>
   <context>

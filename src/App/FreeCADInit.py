@@ -162,8 +162,14 @@ def InitApplications():
 
 	# also add these directories to the sys.path to
 	# not change the old behaviour. once we have moved to
-	# proper python modules this can eventuelly be removed.
+	# proper python modules this can eventually be removed.
 	sys.path = [ModDir] + libpaths + [ExtDir] + sys.path
+
+    # The AddonManager may install additional Python packages in
+    # this path:
+	additional_packages_path = os.path.join(FreeCAD.getUserAppDataDir(),"AdditionalPythonPackages")
+	if os.path.isdir(additional_packages_path):
+		sys.path.append(additional_packages_path)
 
 	def RunInitPy(Dir):
 		InstallFile = os.path.join(Dir,"Init.py")
@@ -881,6 +887,15 @@ class Scheme(IntEnum):
     FemMilliMeterNewton = 8
 
 App.Units.Scheme = Scheme
+
+class ScaleType(IntEnum):
+    Other = -1
+    NoScaling = 0
+    NonUniformRight = 1
+    NonUniformLeft = 2
+    Uniform = 3
+
+App.ScaleType = ScaleType
 
 # clean up namespace
 del(InitApplications)

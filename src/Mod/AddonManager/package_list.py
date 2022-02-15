@@ -31,11 +31,12 @@ from PySide2.QtWidgets import *
 from enum import IntEnum
 import threading
 
-from addonmanager_utilities import translate  # this needs to be as is for pylupdate
 from AddonManagerRepo import AddonManagerRepo
 
 from compact_view import Ui_CompactView
 from expanded_view import Ui_ExpandedView
+
+translate = FreeCAD.Qt.translate
 
 
 class ListDisplayStyle(IntEnum):
@@ -101,6 +102,7 @@ class PackageList(QWidget):
 
         self.item_filter.setHidePy2(pref.GetBool("HidePy2", True))
         self.item_filter.setHideObsolete(pref.GetBool("HideObsolete", True))
+        self.item_filter.setHideNewerFreeCADRequired(pref.GetBool("HideNewerFreeCADRequired", True))
 
     def on_listPackages_clicked(self, index: QModelIndex):
         source_selection = self.item_filter.mapToSource(index)
@@ -201,20 +203,17 @@ class PackageListItemModel(QAbstractListModel):
         if role == Qt.ToolTipRole:
             tooltip = ""
             if self.repos[row].repo_type == AddonManagerRepo.RepoType.PACKAGE:
-                tooltip = (
-                    translate("AddonsInstaller", "Click for details about package")
-                    + f" '{self.repos[row].display_name}'"
-                )
+                tooltip = translate(
+                    "AddonsInstaller", "Click for details about package {}"
+                ).format(self.repos[row].display_name)
             elif self.repos[row].repo_type == AddonManagerRepo.RepoType.WORKBENCH:
-                tooltip = (
-                    translate("AddonsInstaller", "Click for details about workbench")
-                    + f" '{self.repos[row].display_name}'"
-                )
+                tooltip = translate(
+                    "AddonsInstaller", "Click for details about workbench {}"
+                ).format(self.repos[row].display_name)
             elif self.repos[row].repo_type == AddonManagerRepo.RepoType.MACRO:
-                tooltip = (
-                    translate("AddonsInstaller", "Click for details about macro")
-                    + f" '{self.repos[row].display_name}'"
-                )
+                tooltip = translate(
+                    "AddonsInstaller", "Click for details about macro {}"
+                ).format(self.repos[row].display_name)
             return tooltip
         elif role == PackageListItemModel.DataAccessRole:
             return self.repos[row]
@@ -228,7 +227,7 @@ class PackageListItemModel(QAbstractListModel):
         row = index.row()
         self.write_lock.acquire()
         if role == PackageListItemModel.StatusUpdateRole:
-            self.repos[row].update_status = value
+            self.repos[row].set_status(value)
             self.dataChanged.emit(
                 self.index(row, 2),
                 self.index(row, 2),
@@ -344,6 +343,7 @@ class PackageListItemDelegate(QStyledItemDelegate):
             self.widget.ui.labelDescription.setText(repo.metadata.Description)
             self.widget.ui.labelVersion.setText(f"<i>v{repo.metadata.Version}</i>")
             if self.displayStyle == ListDisplayStyle.EXPANDED:
+                self.widget.ui.labelTags.setText("")
                 maintainers = repo.metadata.Maintainer
                 maintainers_string = ""
                 if len(maintainers) == 1:
@@ -352,12 +352,21 @@ class PackageListItemDelegate(QStyledItemDelegate):
                         + f": {maintainers[0]['name']} <{maintainers[0]['email']}>"
                     )
                 elif len(maintainers) > 1:
-                    maintainers_string = translate("AddonsInstaller", "Maintainers:")
+                    n = len(maintainers)
+                    maintainers_string = translate(
+                        "AddonsInstaller", "Maintainers:", "", n
+                    )
                     for maintainer in maintainers:
                         maintainers_string += (
                             f"\n{maintainer['name']} <{maintainer['email']}>"
                         )
                 self.widget.ui.labelMaintainer.setText(maintainers_string)
+                if repo.tags:
+                    self.widget.ui.labelTags.setText(
+                        translate("AddonsInstaller", "Tags")
+                        + ": "
+                        + ", ".join(repo.tags)
+                    )
         elif repo.macro and repo.macro.parsed:
             self.widget.ui.labelDescription.setText(repo.macro.comment)
             self.widget.ui.labelVersion.setText(repo.macro.version)
@@ -402,13 +411,13 @@ class PackageListItemDelegate(QStyledItemDelegate):
         """Get a single-line string listing details about the installed version and date"""
 
         result = ""
-        if repo.update_status == AddonManagerRepo.UpdateStatus.UNCHECKED:
+        if repo.status() == AddonManagerRepo.UpdateStatus.UNCHECKED:
             result = translate("AddonsInstaller", "Installed")
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.NO_UPDATE_AVAILABLE:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.NO_UPDATE_AVAILABLE:
             result = translate("AddonsInstaller", "Up-to-date")
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
             result = translate("AddonsInstaller", "Update available")
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.PENDING_RESTART:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.PENDING_RESTART:
             result = translate("AddonsInstaller", "Pending restart")
         return result
 
@@ -418,7 +427,7 @@ class PackageListItemDelegate(QStyledItemDelegate):
         result = ""
 
         installed_version_string = ""
-        if repo.update_status != AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
+        if repo.status() != AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
             if repo.installed_version:
                 installed_version_string = (
                     "\n" + translate("AddonsInstaller", "Installed version") + ": "
@@ -447,20 +456,20 @@ class PackageListItemDelegate(QStyledItemDelegate):
             )
             available_version_string += repo.metadata.Version
 
-        if repo.update_status == AddonManagerRepo.UpdateStatus.UNCHECKED:
+        if repo.status() == AddonManagerRepo.UpdateStatus.UNCHECKED:
             result = translate("AddonsInstaller", "Installed")
             result += installed_version_string
             result += installed_date_string
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.NO_UPDATE_AVAILABLE:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.NO_UPDATE_AVAILABLE:
             result = translate("AddonsInstaller", "Up-to-date")
             result += installed_version_string
             result += installed_date_string
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
             result = translate("AddonsInstaller", "Update available")
             result += installed_version_string
             result += installed_date_string
             result += available_version_string
-        elif repo.update_status == AddonManagerRepo.UpdateStatus.PENDING_RESTART:
+        elif repo.status() == AddonManagerRepo.UpdateStatus.PENDING_RESTART:
             result = translate("AddonsInstaller", "Pending restart")
 
         return result
@@ -483,6 +492,7 @@ class PackageListFilter(QSortFilterProxyModel):
         self.setSortCaseSensitivity(Qt.CaseInsensitive)
         self.hide_obsolete = False
         self.hide_py2 = False
+        self.hide_newer_freecad_required = False
 
     def setPackageFilter(
         self, type: int
@@ -502,6 +512,10 @@ class PackageListFilter(QSortFilterProxyModel):
 
     def setHideObsolete(self, hide_obsolete: bool) -> None:
         self.hide_obsolete = hide_obsolete
+        self.invalidateFilter()
+
+    def setHideNewerFreeCADRequired(self, hide_nfr: bool) -> None:
+        self.hide_newer_freecad_required = hide_nfr
         self.invalidateFilter()
 
     def lessThan(self, left, right) -> bool:
@@ -524,18 +538,18 @@ class PackageListFilter(QSortFilterProxyModel):
                 return False
 
         if self.status == StatusFilter.INSTALLED:
-            if data.update_status == AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
+            if data.status() == AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
                 return False
         elif self.status == StatusFilter.NOT_INSTALLED:
-            if data.update_status != AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
+            if data.status() != AddonManagerRepo.UpdateStatus.NOT_INSTALLED:
                 return False
         elif self.status == StatusFilter.UPDATE_AVAILABLE:
-            if data.update_status != AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
+            if data.status() != AddonManagerRepo.UpdateStatus.UPDATE_AVAILABLE:
                 return False
 
         # If it's not installed, check to see if it's Py2 only
         if (
-            data.update_status == AddonManagerRepo.UpdateStatus.NOT_INSTALLED
+            data.status() == AddonManagerRepo.UpdateStatus.NOT_INSTALLED
             and self.hide_py2
             and data.python2
         ):
@@ -543,11 +557,33 @@ class PackageListFilter(QSortFilterProxyModel):
 
         # If it's not installed, check to see if it's marked obsolete
         if (
-            data.update_status == AddonManagerRepo.UpdateStatus.NOT_INSTALLED
+            data.status() == AddonManagerRepo.UpdateStatus.NOT_INSTALLED
             and self.hide_obsolete
             and data.obsolete
         ):
             return False
+
+        # If it's not installed, check to see if it's for a newer version of FreeCAD
+        if (
+            data.status() == AddonManagerRepo.UpdateStatus.NOT_INSTALLED
+            and self.hide_newer_freecad_required
+            and data.metadata
+        ):
+            # Only hide if ALL content items require a newer version, otherwise
+            # it's possible that this package actually provides versions of itself
+            # for newer and older versions
+
+            first_supported_version = data.metadata.getFirstSupportedFreeCADVersion()
+            if first_supported_version is not None:
+                required_version = first_supported_version.split(".")
+                fc_major = int(FreeCAD.Version()[0])
+                fc_minor = int(FreeCAD.Version()[1])
+
+                if int(required_version[0]) > fc_major:
+                    return False
+                elif int(required_version[0]) == fc_major and len(required_version) > 1:
+                    if int(required_version[1]) > fc_minor:
+                        return False
 
         name = data.display_name
         desc = data.description
@@ -565,6 +601,9 @@ class PackageListFilter(QSortFilterProxyModel):
                     and re.match(data.macro.comment).hasMatch()
                 ):
                     return True
+                for tag in data.tags:
+                    if re.match(tag).hasMatch():
+                        return True
                 return False
             else:
                 return False
@@ -576,6 +615,15 @@ class PackageListFilter(QSortFilterProxyModel):
                     return True
                 if re.indexIn(desc) != -1:
                     return True
+                if (
+                    data.macro
+                    and data.macro.comment
+                    and re.indexIn(data.macro.comment) != -1
+                ):
+                    return True
+                for tag in data.tags:
+                    if re.indexIn(tag) != -1:
+                        return True
                 return False
             else:
                 return False

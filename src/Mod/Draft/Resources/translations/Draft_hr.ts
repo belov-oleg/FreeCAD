@@ -128,7 +128,7 @@ Ostavite ovo svojstvo prazno kako bi ste mogli postaviti 'Os' i 'Centar' ručno.
     <message>
       <location filename="array.py" line="291"/>
       <source>A parameter that determines how many symmetry planes the circular array will have.</source>
-      <translation type="unfinished">A parameter that determines how many symmetry planes the circular array will have.</translation>
+      <translation>Parametar koji određuje koliko će ravnina simetrije imati kružni niz.</translation>
     </message>
     <message>
       <location filename="array.py" line="291"/>
@@ -236,13 +236,13 @@ There are various possibilities:
 - An object, and one of its edges.
 - An object, and two of its vertices.
 - An arc object, and its edge.</source>
-      <translation type="unfinished">The object, and specific subelements of it,
-that this dimension object is measuring.
+      <translation>Objekt i njegovi specifični podelementi,
+kad se ovaj objekt dimenzija mjeri.
 
-There are various possibilities:
-- An object, and one of its edges.
-- An object, and two of its vertices.
-- An arc object, and its edge.</translation>
+Postoje razne mogućnosti:
+- Predmet i jedan od njegovih rubova.
+- Objekt i dva njegova vrha.
+- Lučni objekt i njegov rub.</translation>
     </message>
     <message>
       <location filename="dimension.py" line="167"/>
@@ -572,7 +572,9 @@ ili iz pod-elementa 'VrhN', 'RubN', odnosno 'LiceN', ako je navedeno.
     <message>
       <location filename="draftlink.py" line="99"/>
       <source>Force sync pattern placements even when array elements are expanded</source>
-      <translation type="unfinished">Force sync pattern placements even when array elements are expanded</translation>
+      <translation>Prisilno sinkroniziranje položaja uzoraka čak i kada su elementi matrice prošireni
+
+</translation>
     </message>
     <message>
       <location filename="draftlink.py" line="104"/>
@@ -748,14 +750,14 @@ Ovo svojstvo je samo za čitanje, budući da broj ovisi o točkama sadržanim un
       <translation>Skaliranje uzorka korištenog kod ovog objekta</translation>
     </message>
     <message>
-      <location filename="hatch.py" line="64"/>
-      <source>The pattern rotation used by this object</source>
-      <translation>Rotacija uzorka korištenog kod ovog objekta</translation>
-    </message>
-    <message>
       <location filename="hatch.py" line="49"/>
       <source>The shape of this object</source>
       <translation>Oblik ovog objekta</translation>
+    </message>
+    <message>
+      <location filename="hatch.py" line="64"/>
+      <source>The pattern rotation used by this object</source>
+      <translation>Rotacija uzorka korištenog kod ovog objekta</translation>
     </message>
     <message>
       <location filename="hatch.py" line="67"/>
@@ -1153,6 +1155,16 @@ izvan mjerne linije</translation>
       <translation>Boja linije</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="106"/>
+      <source>Defines an SVG pattern.</source>
+      <translation type="unfinished">Defines an SVG pattern.</translation>
+    </message>
+    <message>
+      <location filename="view_base.py" line="116"/>
+      <source>Defines the size of the SVG pattern.</source>
+      <translation type="unfinished">Defines the size of the SVG pattern.</translation>
+    </message>
+    <message>
       <location filename="view_label.py" line="73"/>
       <source>The size of the text</source>
       <translation>Veličina teksta</translation>
@@ -1226,44 +1238,9 @@ izvan mjerne linije</translation>
       <translation>Zapiši stanje objekata prikazan/skriven</translation>
     </message>
     <message>
-      <location filename="init_tools.py" line="145"/>
-      <source>Draft creation tools</source>
-      <translation>Alati kreiranja Nacrta</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="148"/>
-      <source>Draft annotation tools</source>
-      <translation>Alati napomena Nacrta</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="151"/>
-      <source>Draft modification tools</source>
-      <translation>Alati izmjena Nacrta</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="107"/>
       <source>Draft utility tools</source>
       <translation>Uslužni alati nacrta</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="166"/>
-      <source>&amp;Drafting</source>
-      <translation>&amp;Izrada Nacrta</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="168"/>
-      <source>&amp;Annotation</source>
-      <translation>Anotacija</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="170"/>
-      <source>&amp;Modification</source>
-      <translation>&amp;Modifikacija</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="172"/>
-      <source>&amp;Utilities</source>
-      <translation>&amp;Uslužni programi</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="122"/>
@@ -1299,21 +1276,6 @@ izvan mjerne linije</translation>
       <location filename="init_draft_statusbar.py" line="340"/>
       <source>Toggles Constrain to Working Plane On/Off</source>
       <translation>Ograničiti na radnu ravninu Uključi/Isključi</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="48"/>
-      <source>Arc tools</source>
-      <translation>Alati luka</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="56"/>
-      <source>Bezier tools</source>
-      <translation>Bezier alati</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="65"/>
-      <source>Array tools</source>
-      <translation>Alat matrice</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="157"/>
@@ -1395,22 +1357,6 @@ iz izbornika Alati-&gt; Addon Manager</translation>
       <translation>Nagib</translation>
     </message>
     <message>
-      <location filename="gui_circulararray.py" line="66"/>
-      <source>Circular array</source>
-      <translation>Kružna matrica</translation>
-    </message>
-    <message>
-      <location filename="gui_circulararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a radial pattern
-creating various circular layers.
-
-The array can be turned into an orthogonal or a polar array by changing its type.</source>
-      <translation>Stvara kopije odabranog objekta i postavlja kopije u radijalni uzorak
-stvaranje raznih kružnih slojeva.
-
-Niz se može pretvoriti u ortogonalni ili polarni niz promjenom njegovog tipa.</translation>
-    </message>
-    <message>
       <location filename="gui_setstyle.py" line="273"/>
       <source>Save style</source>
       <translation>Spremanje stilova</translation>
@@ -1436,48 +1382,9 @@ Niz se može pretvoriti u ortogonalni ili polarni niz promjenom njegovog tipa.</
       <translation>Pogreška: json modul nije pronađen. Nije moguće spremiti stil</translation>
     </message>
     <message>
-      <location filename="gui_polararray.py" line="66"/>
-      <source>Polar array</source>
-      <translation>Polarna matrica</translation>
-    </message>
-    <message>
-      <location filename="gui_polararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a polar pattern
-defined by a center of rotation and its angle.
-
-The array can be turned into an orthogonal or a circular array by changing its type.</source>
-      <translation>Stvara kopije odabranog objekta i postavlja kopije u polarni uzorak
-definirane središtem rotacije i njegovim kutom.
-
-Matrica se može pretvoriti u ortogonalnu ili kružnu matricu sa promjenom njenog tipa.</translation>
-    </message>
-    <message>
       <location filename="gui_hatch.py" line="48"/>
       <source>You must choose a base object before using this command</source>
       <translation>Prije korištenja ove naredbe morate odabrati osnovni objekt</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="68"/>
-      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
-      <translation>Stvara različite vrste nizova, uključujući pravokutne, polarne, kružne, putanje i točke</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="66"/>
-      <source>Array</source>
-      <translation>Polje</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
-meaning the copies follow the specified direction in the X, Y, Z axes.
-
-The array can be turned into a polar or a circular array by changing its type.</source>
-      <translation>Stvara kopije odabranog objekta i postavlja kopije u ortogonalni uzorak,
-što znači da kopije slijede navedeni smjer u X, Y, Z osi.
-
-Niz se može pretvoriti u polarni ili kružni niz promjenom njegovog tipa.
-
-</translation>
     </message>
     <message>
       <location filename="gui_fillets.py" line="65"/>
@@ -1503,6 +1410,111 @@ Niz se može pretvoriti u polarni ili kružni niz promjenom njegovog tipa.
       <location filename="gui_offset.py" line="329"/>
       <source>Offset direction is not defined. Please move the mouse on either side of the object first to indicate a direction</source>
       <translation>Smjer pomaka nije definiran. Prvo pomaknite miš s obje strane objekta kako biste naznačili smjer</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="48"/>
+      <source>Arc tools</source>
+      <translation>Alati luka</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="56"/>
+      <source>Bezier tools</source>
+      <translation>Bezier alati</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="145"/>
+      <source>Draft creation tools</source>
+      <translation>Alati kreiranja Nacrta</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="148"/>
+      <source>Draft annotation tools</source>
+      <translation>Alati napomena Nacrta</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="151"/>
+      <source>Draft modification tools</source>
+      <translation>Alati izmjena Nacrta</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="166"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Izrada Nacrta</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="168"/>
+      <source>&amp;Annotation</source>
+      <translation>Anotacija</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Modifikacija</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Uslužni programi</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Alat matrice</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Stvara različite vrste nizova, uključujući pravokutne, polarne, kružne, putanje i točke</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="66"/>
+      <source>Circular array</source>
+      <translation>Kružna matrica</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u radijalni uzorak
+stvaranje raznih kružnih slojeva.
+
+Niz se može pretvoriti u ortogonalni ili polarni niz promjenom njegovog tipa.</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="66"/>
+      <source>Polar array</source>
+      <translation>Polarna matrica</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u polarni uzorak
+definirane središtem rotacije i njegovim kutom.
+
+Matrica se može pretvoriti u ortogonalnu ili kružnu matricu sa promjenom njenog tipa.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="66"/>
+      <source>Array</source>
+      <translation>Polje</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u ortogonalni uzorak,
+što znači da kopije slijede navedeni smjer u X, Y, Z osi.
+
+Niz se može pretvoriti u polarni ili kružni niz promjenom njegovog tipa.
+
+</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="154"/>
@@ -1542,12 +1554,12 @@ Stvara konstrukcijsku grupu ako ne postoji.</translation>
     <message>
       <location filename="gui_groups.py" line="361"/>
       <source>Add a new named group</source>
-      <translation type="unfinished">Add a new named group</translation>
+      <translation>Dodajte novu imenovanu grupu</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="365"/>
       <source>Add a new group with a given name.</source>
-      <translation type="unfinished">Add a new group with a given name.</translation>
+      <translation>Dodajte novu grupu s određenim imenom.</translation>
     </message>
   </context>
   <context>
@@ -1589,6 +1601,11 @@ Prvo stvorite grupu da biste koristili ovaj alat.</translation>
       <location filename="gui_annotationstyleeditor.py" line="80"/>
       <source>Annotation styles...</source>
       <translation>Stilovi napomena...</translation>
+    </message>
+    <message>
+      <location filename="gui_annotationstyleeditor.py" line="82"/>
+      <source>Manage or create annotation styles</source>
+      <translation>Upravljajte ili stvarajte stilove bilješki</translation>
     </message>
   </context>
   <context>
@@ -1632,6 +1649,21 @@ CTRL to snap, SHIFT to constrain.</source>
     </message>
   </context>
   <context>
+    <name>Draft_Arc_3Points</name>
+    <message>
+      <location filename="gui_arcs.py" line="487"/>
+      <source>Arc by 3 points</source>
+      <translation>Luk iz 3 točke</translation>
+    </message>
+    <message>
+      <location filename="gui_arcs.py" line="490"/>
+      <source>Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Array</name>
     <message>
       <location filename="gui_array_simple.py" line="68"/>
@@ -1648,6 +1680,32 @@ to polar or circular, and its properties can be modified.</source>
 Prema zadanim postavkama, to je ortogonalna matrica 2x2.
 Nakon što je matrica kreirana, njen se tip može promijeniti
 na polarni ili kružni, a njena svojstva se mogu mijenjati.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u ortogonalni uzorak,
+što znači da kopije slijede navedeni smjer u X, Y, Z osi.
+
+Niz se može pretvoriti u polarni ili kružni niz promjenom njegovog tipa.
+
+</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_ArrayTools</name>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Alat matrice</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Stvara različite vrste nizova, uključujući pravokutne, polarne, kružne, putanje i točke</translation>
     </message>
   </context>
   <context>
@@ -1680,8 +1738,20 @@ na polarni ili kružni, a njena svojstva se mogu mijenjati.</translation>
     <name>Draft_BezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="64"/>
+      <source>BÃ©zier curve</source>
+      <translation type="unfinished">BÃ©zier curve</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="64"/>
       <source>Bezier curve</source>
       <translation>Bezierova krivulja</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="67"/>
+      <source>Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="67"/>
@@ -1695,8 +1765,18 @@ CTRL za privući, SHIFT za ograničiti.</translation>
     <name>Draft_BezierTools</name>
     <message>
       <location filename="gui_beziers.py" line="475"/>
+      <source>BÃ©zier tools</source>
+      <translation type="unfinished">BÃ©zier tools</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="475"/>
       <source>Bezier tools</source>
       <translation>Bezier alati</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="478"/>
+      <source>Create various types of BÃ©zier curves.</source>
+      <translation type="unfinished">Create various types of BÃ©zier curves.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="478"/>
@@ -1720,6 +1800,25 @@ CTRL za hvatanje, ALT za odabir tangentnih objekata.</translation>
     </message>
   </context>
   <context>
+    <name>Draft_CircularArray</name>
+    <message>
+      <location filename="gui_circulararray.py" line="65"/>
+      <source>Circular array</source>
+      <translation>Kružna matrica</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u radijalni uzorak
+stvaranje raznih kružnih slojeva.
+
+Niz se može pretvoriti u ortogonalni ili polarni niz promjenom njegovog tipa.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Clone</name>
     <message>
       <location filename="gui_clone.py" line="70"/>
@@ -1738,8 +1837,22 @@ Rezultirajući klon može se skalirati u svakom od svoja tri smjera.</translatio
     <name>Draft_CubicBezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="242"/>
+      <source>Cubic BÃ©zier curve</source>
+      <translation type="unfinished">Cubic BÃ©zier curve</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="242"/>
       <source>Cubic bezier curve</source>
       <translation>Kubična Bezierova krivulja</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="245"/>
+      <source>Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation type="unfinished">Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="245"/>
@@ -1897,6 +2010,19 @@ na podržanim čvorovima i na podržanim objektima.</translation>
     </message>
   </context>
   <context>
+    <name>Draft_Fillet</name>
+    <message>
+      <location filename="gui_fillets.py" line="64"/>
+      <source>Fillet</source>
+      <translation>Obrubi</translation>
+    </message>
+    <message>
+      <location filename="gui_fillets.py" line="67"/>
+      <source>Creates a fillet between two selected wires or edges.</source>
+      <translation>Stvara obrub između dvije odabrane žice ili rubova.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_FlipDimension</name>
     <message>
       <location filename="gui_dimension_ops.py" line="62"/>
@@ -1926,7 +2052,7 @@ Ako su odabrani drugi objekti, oni se zanemaruju.</translation>
     <message>
       <location filename="gui_hatch.py" line="42"/>
       <source>Creates hatches on the faces of a selected object</source>
-      <translation type="unfinished">Creates hatches on the faces of a selected object</translation>
+      <translation>Stvara šrafure na licima odabranog objekta</translation>
     </message>
   </context>
   <context>
@@ -2083,6 +2209,27 @@ CTRL za privuci, SHIFT za ograničiti. Držite ALT i kliknite za stvaranje kopij
     </message>
   </context>
   <context>
+    <name>Draft_OrthoArray</name>
+    <message>
+      <location filename="gui_orthoarray.py" line="65"/>
+      <source>Array</source>
+      <translation>Polje</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u ortogonalni uzorak,
+što znači da kopije slijede navedeni smjer u X, Y, Z osi.
+
+Niz se može pretvoriti u polarni ili kružni niz promjenom njegovog tipa.
+
+</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_PathArray</name>
     <message>
       <location filename="gui_patharray.py" line="73"/>
@@ -2204,6 +2351,25 @@ A 'Point link array' is more efficient when handling many copies.</source>
     </message>
   </context>
   <context>
+    <name>Draft_PolarArray</name>
+    <message>
+      <location filename="gui_polararray.py" line="65"/>
+      <source>Polar array</source>
+      <translation>Polarna matrica</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Stvara kopije odabranog objekta i postavlja kopije u polarni uzorak
+definirane središtem rotacije i njegovim kutom.
+
+Matrica se može pretvoriti u ortogonalnu ili kružnu matricu sa promjenom njenog tipa.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Polygon</name>
     <message>
       <location filename="gui_polygons.py" line="57"/>
@@ -2286,7 +2452,7 @@ oni koji su na istoj razini kao i ovaj objekt, uključujući gornju grupu koja i
     <message>
       <location filename="gui_groups.py" line="167"/>
       <source>Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</source>
-      <translation type="unfinished">Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</translation>
+      <translation>Odabire sadržaj odabranih grupa. Za odabrane objekte koji nisu u grupi, odabire se sadržaj grupe u kojoj se nalaze.</translation>
     </message>
   </context>
   <context>
@@ -2385,19 +2551,6 @@ Ako je izlomljena linija odabrana, ona će primijeniti transformaciju nagiba na 
 
 Nagib će uvijek promijeniti vrijednost Z, stoga ova naredba dobro funkcionira samo za
 ravne linije Nacrta koje su nacrtane u ravnini XY. Odabrani objekti koji nisu pojedinačne linije bit će zanemareni.</translation>
-    </message>
-  </context>
-  <context>
-    <name>Draft_Snap</name>
-    <message>
-      <location filename="gui_snapper.py" line="1529"/>
-      <source>Toggles Grid On/Off</source>
-      <translation>Rešetka prebaci Uključeno/Isključeno</translation>
-    </message>
-    <message>
-      <location filename="gui_snapper.py" line="1530"/>
-      <source>Toggle Draft Grid</source>
-      <translation>Uključi/Isključi rešetku nacrta</translation>
     </message>
   </context>
   <context>
@@ -2799,14 +2952,6 @@ Zatim ga možete koristiti za spremanje drugog položaja kamere i stanja objekat
     </message>
   </context>
   <context>
-    <name>Gui::Dialog::DlgAddProperty</name>
-    <message>
-      <location filename="gui_groups.py" line="452"/>
-      <source>Group</source>
-      <translation>Grupa</translation>
-    </message>
-  </context>
-  <context>
     <name>ImportAirfoilDAT</name>
     <message>
       <location filename="importAirfoilDAT.py" line="186"/>
@@ -2829,6 +2974,66 @@ Zatim ga možete koristiti za spremanje drugog položaja kamere i stanja objekat
   </context>
   <context>
     <name>Workbench</name>
+    <message>
+      <location filename="InitGui.py" line="104"/>
+      <source>Draft creation tools</source>
+      <translation>Alati kreiranja Nacrta</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="107"/>
+      <source>Draft annotation tools</source>
+      <translation>Alati napomena Nacrta</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="110"/>
+      <source>Draft modification tools</source>
+      <translation>Alati izmjena Nacrta</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="113"/>
+      <source>Draft utility tools</source>
+      <translation>Uslužni alati nacrta</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="118"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Izrada Nacrta</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="121"/>
+      <source>&amp;Annotation</source>
+      <translation>Anotacija</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="124"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Modifikacija</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="127"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Uslužni programi</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="50"/>
+      <source>Arc tools</source>
+      <translation>Alati luka</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>BÃ©zier tools</source>
+      <translation type="unfinished">BÃ©zier tools</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>Bezier tools</source>
+      <translation>Bezier alati</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="89"/>
+      <source>Array tools</source>
+      <translation>Alat matrice</translation>
+    </message>
     <message>
       <location filename="gui_snapper.py" line="1470"/>
       <source>Draft Snap</source>
@@ -2968,14 +3173,14 @@ Zatim ga možete koristiti za spremanje drugog položaja kamere i stanja objekat
       <translation>Automatski</translation>
     </message>
     <message>
-      <location filename="DraftGui.py" line="722"/>
-      <source>active command:</source>
-      <translation>aktivna naredba:</translation>
-    </message>
-    <message>
       <location filename="gui_groups.py" line="299"/>
       <source>None</source>
       <translation>Prazno</translation>
+    </message>
+    <message>
+      <location filename="DraftGui.py" line="722"/>
+      <source>active command:</source>
+      <translation>aktivna naredba:</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="724"/>
@@ -3418,7 +3623,7 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="importDWG.py" line="286"/>
       <source>LibreDWG error</source>
-      <translation type="unfinished">LibreDWG error</translation>
+      <translation>LibreDWG greška</translation>
     </message>
     <message>
       <location filename="importDWG.py" line="295"/>
@@ -3433,22 +3638,22 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="importDWG.py" line="231"/>
       <source>Error during DWG conversion. Try moving the DWG file to a directory path without spaces and non-english characters, or try saving to a lower DWG version.</source>
-      <translation type="unfinished">Error during DWG conversion. Try moving the DWG file to a directory path without spaces and non-english characters, or try saving to a lower DWG version.</translation>
+      <translation>Pogreška tijekom DWG pretvorbe. Pokušajte premjestiti DWG datoteku na put direktorija bez razmaka i neengleskih znakova ili pokušajte spremiti u nižu DWG verziju.</translation>
     </message>
     <message>
       <location filename="importDWG.py" line="300"/>
       <source>ODA File Converter not found</source>
-      <translation type="unfinished">ODA File Converter not found</translation>
+      <translation>ODA pretvarač datoteka nije pronađen</translation>
     </message>
     <message>
       <location filename="importDWG.py" line="310"/>
       <source>QCAD error</source>
-      <translation type="unfinished">QCAD error</translation>
+      <translation>QCAD greška</translation>
     </message>
     <message>
       <location filename="make_sketch.py" line="139"/>
       <source>All Shapes must be coplanar</source>
-      <translation type="unfinished">All Shapes must be coplanar</translation>
+      <translation>Svi oblici moraju biti komplanarni</translation>
     </message>
     <message>
       <location filename="WorkingPlane.py" line="696"/>
@@ -3459,7 +3664,7 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="WorkingPlane.py" line="704"/>
       <source>Selected Shapes must define a plane</source>
-      <translation type="unfinished">Selected Shapes must define a plane</translation>
+      <translation>Odabrani oblici moraju definirati ravninu</translation>
     </message>
     <message>
       <location filename="make_label.py" line="196"/>
@@ -3533,6 +3738,11 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
       <translation>Pronašli smo nekoliko žica ili rubova: poveži ih</translation>
     </message>
     <message>
+      <location filename="upgrade.py" line="541"/>
+      <source>Found several non-treatable objects: creating compound</source>
+      <translation>Pronađeno je nekoliko objekata koji su nepopravljivi: stvaranje spoja</translation>
+    </message>
+    <message>
       <location filename="upgrade.py" line="512"/>
       <source>trying: closing it</source>
       <translation>pokušava: zatvoriti to</translation>
@@ -3551,11 +3761,6 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
       <location filename="upgrade.py" line="536"/>
       <source>Found points: creating compound</source>
       <translation>Pronađene točke: stvori složen spoj</translation>
-    </message>
-    <message>
-      <location filename="upgrade.py" line="541"/>
-      <source>Found several non-treatable objects: creating compound</source>
-      <translation>Pronađeno je nekoliko objekata koji su nepopravljivi: stvaranje spoja</translation>
     </message>
     <message>
       <location filename="upgrade.py" line="544"/>
@@ -3888,7 +4093,7 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="make_sketch.py" line="104"/>
       <source>No shape found</source>
-      <translation type="unfinished">No shape found</translation>
+      <translation>Nisam našao oblik</translation>
     </message>
     <message>
       <location filename="make_sketch.py" line="109"/>
@@ -3899,7 +4104,7 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="make_sketch.py" line="111"/>
       <source>All Shapes must be planar</source>
-      <translation type="unfinished">All Shapes must be planar</translation>
+      <translation>Svi oblici moraju biti ravan</translation>
     </message>
     <message>
       <location filename="make_sketch.py" line="135"/>
@@ -3955,12 +4160,14 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="make_label.py" line="272"/>
       <source>Wrong input: label_type must be a string.</source>
-      <translation type="unfinished">Wrong input: label_type must be a string.</translation>
+      <translation>Pogrešan unos: tip oznake mora biti slova.</translation>
     </message>
     <message>
       <location filename="make_label.py" line="277"/>
       <source>Wrong input: label_type must be one of the following: </source>
-      <translation type="unfinished">Wrong input: label_type must be one of the following: </translation>
+      <translation>Pogrešan unos: ip oznake mora biti jedno od sljedećeg:
+
+</translation>
     </message>
     <message>
       <location filename="make_label.py" line="278"/>
@@ -4068,12 +4275,17 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="view_layer.py" line="454"/>
       <source>Relabeling layer:</source>
-      <translation type="unfinished">Relabeling layer:</translation>
+      <translation>Ponovno označavanje sloja:</translation>
     </message>
     <message>
       <location filename="view_layer.py" line="458"/>
       <source>Merging layer:</source>
-      <translation type="unfinished">Merging layer:</translation>
+      <translation>Spajnje sloja:</translation>
+    </message>
+    <message>
+      <location filename="view_base.py" line="402"/>
+      <source>Please load the Draft Workbench to enable editing this object</source>
+      <translation type="unfinished">Please load the Draft Workbench to enable editing this object</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="46"/>
@@ -4086,9 +4298,19 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
       <translation>prilagođeno</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="140"/>
+      <source>Unable to convert input into a  scale factor</source>
+      <translation type="unfinished">Unable to convert input into a  scale factor</translation>
+    </message>
+    <message>
       <location filename="init_draft_statusbar.py" line="141"/>
       <source>Unable to convert input into a scale factor</source>
       <translation>Nije moguće pretvoriti ulaz u skalarni faktor</translation>
+    </message>
+    <message>
+      <location filename="init_draft_statusbar.py" line="155"/>
+      <source>Set custom scale</source>
+      <translation type="unfinished">Set custom scale</translation>
     </message>
     <message>
       <location filename="init_draft_statusbar.py" line="159"/>
@@ -4096,9 +4318,14 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
       <translation>Postavite prilagođenu skalu napomena u formatu x:x, x=x</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="214"/>
+      <source>Set the scale used by draft annotation tools</source>
+      <translation type="unfinished">Set the scale used by draft annotation tools</translation>
+    </message>
+    <message>
       <location filename="utils.py" line="650"/>
       <source>Solids:</source>
-      <translation type="unfinished">Solids:</translation>
+      <translation>Čvrsta tijela:</translation>
     </message>
     <message>
       <location filename="utils.py" line="651"/>
@@ -4108,17 +4335,17 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="utils.py" line="652"/>
       <source>Wires:</source>
-      <translation type="unfinished">Wires:</translation>
+      <translation>Žice:</translation>
     </message>
     <message>
       <location filename="utils.py" line="653"/>
       <source>Edges:</source>
-      <translation type="unfinished">Edges:</translation>
+      <translation>Rubovi:</translation>
     </message>
     <message>
       <location filename="utils.py" line="654"/>
       <source>Vertices:</source>
-      <translation type="unfinished">Vertices:</translation>
+      <translation>Vrhovi:</translation>
     </message>
     <message>
       <location filename="utils.py" line="658"/>
@@ -4133,57 +4360,137 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="utils.py" line="699"/>
       <source>different types</source>
-      <translation type="unfinished">different types</translation>
+      <translation>različiti tipovi</translation>
     </message>
     <message>
       <location filename="utils.py" line="709"/>
       <source>Objects have different placements. Distance between the two base points: </source>
-      <translation type="unfinished">Objects have different placements. Distance between the two base points: </translation>
+      <translation>Objekti imaju različite položaje. Udaljenost između dvije osnovne točke:</translation>
     </message>
     <message>
       <location filename="utils.py" line="712"/>
       <source>has a different value</source>
-      <translation type="unfinished">has a different value</translation>
+      <translation>ima drugačiju vrijednost</translation>
     </message>
     <message>
       <location filename="utils.py" line="715"/>
       <source>doesn't exist in one of the objects</source>
-      <translation type="unfinished">doesn't exist in one of the objects</translation>
+      <translation>ne postoji u jednom od objekata</translation>
     </message>
     <message>
       <location filename="utils.py" line="827"/>
       <source>%s shares a base with %d other objects. Please check if you want to modify this.</source>
-      <translation type="unfinished">%s shares a base with %d other objects. Please check if you want to modify this.</translation>
+      <translation>%s dijeli bazu s %d drugim objektima. Molimo provjerite želite li ovo izmijeniti.</translation>
     </message>
     <message>
       <location filename="utils.py" line="833"/>
       <source>%s cannot be modified because its placement is readonly.</source>
-      <translation type="unfinished">%s cannot be modified because its placement is readonly.</translation>
+      <translation>%s nije moguće izmijeniti jer je postavljeno samo za čitanje.</translation>
     </message>
     <message>
       <location filename="utils.py" line="977"/>
       <source>Wrong input: unknown document.</source>
-      <translation type="unfinished">Wrong input: unknown document.</translation>
+      <translation>Pogrešan unos: nepoznat dokument.</translation>
     </message>
     <message>
       <location filename="utils.py" line="1055"/>
       <source>This function will be deprecated in </source>
-      <translation type="unfinished">This function will be deprecated in </translation>
+      <translation>Ova će funkcija biti zastarjela u</translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>Please use </source>
-      <translation type="unfinished">Please use </translation>
+      <translation>Molimo koristite</translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>This function will be deprecated. </source>
-      <translation type="unfinished">This function will be deprecated. </translation>
+      <translation>Ova će funkcija biti zastarjela </translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="169"/>
+      <source>Snap Lock</source>
+      <translation type="unfinished">Snap Lock</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>Snap Endpoint</source>
+      <translation type="unfinished">Snap Endpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="171"/>
+      <source>Snap Midpoint</source>
+      <translation type="unfinished">Snap Midpoint</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>Snap Center</source>
+      <translation type="unfinished">Snap Center</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="173"/>
+      <source>Snap Angle</source>
+      <translation type="unfinished">Snap Angle</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="174"/>
+      <source>Snap Intersection</source>
+      <translation type="unfinished">Snap Intersection</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="175"/>
+      <source>Snap Perpendicular</source>
+      <translation type="unfinished">Snap Perpendicular</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="176"/>
+      <source>Snap Extension</source>
+      <translation type="unfinished">Snap Extension</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="177"/>
+      <source>Snap Parallel</source>
+      <translation type="unfinished">Snap Parallel</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="178"/>
+      <source>Snap Special</source>
+      <translation type="unfinished">Snap Special</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="179"/>
+      <source>Snap Near</source>
+      <translation type="unfinished">Snap Near</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="180"/>
+      <source>Snap Ortho</source>
+      <translation type="unfinished">Snap Ortho</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="181"/>
+      <source>Snap Grid</source>
+      <translation type="unfinished">Snap Grid</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="182"/>
+      <source>Snap WorkingPlane</source>
+      <translation type="unfinished">Snap WorkingPlane</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="183"/>
+      <source>Snap Dimensions</source>
+      <translation type="unfinished">Snap Dimensions</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="187"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Uključi/Isključi rešetku nacrta</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="81"/>
       <source>No graphical interface</source>
-      <translation type="unfinished">No graphical interface</translation>
+      <translation>Nema grafičkog sučelja</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="161"/>
@@ -4193,32 +4500,32 @@ Nije dostupno ako je omogućena opcija 'Koristi se primitivni dio' postavki Nacr
     <message>
       <location filename="gui_utils.py" line="267"/>
       <source>Symbol not implemented. Using a default symbol.</source>
-      <translation type="unfinished">Symbol not implemented. Using a default symbol.</translation>
+      <translation>Simbol nije implementiran. Korištenje zadanog simbola.</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="333"/>
       <source>Visibility off; removed from list: </source>
-      <translation type="unfinished">Visibility off; removed from list: </translation>
+      <translation>Vidljivost isključena; uklonjeno s popisa:</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="603"/>
       <source>image is Null</source>
-      <translation type="unfinished">image is Null</translation>
+      <translation>slika je Ništavna</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="609"/>
       <source>filename does not exist on the system or in the resource file</source>
-      <translation type="unfinished">filename does not exist on the system or in the resource file</translation>
+      <translation>naziv datoteke ne postoji na sustavu ili u datoteci resursa</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="668"/>
       <source>unable to load texture</source>
-      <translation type="unfinished">unable to load texture</translation>
+      <translation>nije moguće učitati teksturu</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="738"/>
       <source>Does not have 'ViewObject.RootNode'.</source>
-      <translation type="unfinished">Does not have 'ViewObject.RootNode'.</translation>
+      <translation>Nema 'ViewObject.RootNode'.</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="83"/>
@@ -4532,7 +4839,7 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
     <message>
       <location filename="gui_dimensions.py" line="508"/>
       <source>Edge too short!</source>
-      <translation type="unfinished">Edge too short!</translation>
+      <translation>Rub je prekratak!</translation>
     </message>
     <message>
       <location filename="gui_dimensions.py" line="511"/>
@@ -4810,14 +5117,24 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
       <translation>Odaberite novu udaljenost od bazne točke</translation>
     </message>
     <message>
+      <location filename="gui_snapper.py" line="1543"/>
+      <source>(ON)</source>
+      <translation type="unfinished">(ON)</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1546"/>
+      <source>(OFF)</source>
+      <translation type="unfinished">(OFF)</translation>
+    </message>
+    <message>
       <location filename="gui_shape2dview.py" line="109"/>
       <source>Create 2D view</source>
       <translation>Stvaranje 2D prikaza</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="332"/>
-      <source>Bezier curve has been closed</source>
-      <translation>Bezierova krivulja je zatvorena</translation>
+      <source>BÃ©zier curve has been closed</source>
+      <translation type="unfinished">BÃ©zier curve has been closed</translation>
     </message>
     <message>
       <location filename="gui_splines.py" line="131"/>
@@ -4838,6 +5155,11 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
       <location filename="gui_beziers.py" line="376"/>
       <source>Click and drag to define next knot</source>
       <translation>Kliknite i povucite za određivanje slijedećeg čvora</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="332"/>
+      <source>Bezier curve has been closed</source>
+      <translation>Bezierova krivulja je zatvorena</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="382"/>
@@ -5137,7 +5459,7 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
     <message>
       <location filename="gui_groups.py" line="70"/>
       <source>Add new group</source>
-      <translation type="unfinished">Add new group</translation>
+      <translation>Dodaj novu grupu</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="183"/>
@@ -5147,7 +5469,7 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
     <message>
       <location filename="gui_groups.py" line="193"/>
       <source>No new selection. You must select non-empty groups or objects inside groups.</source>
-      <translation type="unfinished">No new selection. You must select non-empty groups or objects inside groups.</translation>
+      <translation>Nema novog odabira. Morate odabrati neprazne grupe ili objekte unutar grupa.</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="257"/>
@@ -5167,17 +5489,22 @@ Da bi odobrio FreeCAD-u  preuzimanje ove biblioteke, odgovori sa Da (Yes).</tran
     <message>
       <location filename="gui_groups.py" line="355"/>
       <source>Add a new group with a given name</source>
-      <translation type="unfinished">Add a new group with a given name</translation>
+      <translation>Dodajte novu grupu s određenim imenom</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="383"/>
       <source>Add group</source>
-      <translation type="unfinished">Add group</translation>
+      <translation>Dodaj grupu</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="385"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Naziv grupe</translation>
+    </message>
+    <message>
+      <location filename="gui_groups.py" line="392"/>
+      <source>Group</source>
+      <translation>Grupa</translation>
     </message>
     <message>
       <location filename="gui_offset.py" line="76"/>
@@ -5338,6 +5665,27 @@ Konačni kut bit će osnovni kut plus ovaj iznos.</translation>
       <location filename="importOCA.py" line="492"/>
       <source>successfully exported</source>
       <translation>uspješno izvezeno</translation>
+    </message>
+  </context>
+  <context>
+    <name>Gui::Dialog::DlgAddProperty</name>
+    <message>
+      <location filename="gui_groups.py" line="452"/>
+      <source>Group</source>
+      <translation>Grupa</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Snap</name>
+    <message>
+      <location filename="gui_snapper.py" line="1529"/>
+      <source>Toggles Grid On/Off</source>
+      <translation>Rešetka prebaci Uključeno/Isključeno</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1530"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Uključi/Isključi rešetku nacrta</translation>
     </message>
   </context>
   <context>

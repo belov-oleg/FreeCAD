@@ -131,6 +131,10 @@ DrawViewDimension::DrawViewDimension(void)
     UnderTolerance.setConstraints(&ToleranceConstraint);
     ADD_PROPERTY_TYPE(Inverted, (false), "", App::Prop_Output, "The dimensional value is displayed inverted");
 
+    ADD_PROPERTY_TYPE(AngleOverride,(false), "Override", App::Prop_Output, "User specified angles");
+    ADD_PROPERTY_TYPE(LineAngle,(0.0), "Override", App::Prop_Output, "Dimension line angle");
+    ADD_PROPERTY_TYPE(ExtensionAngle,(0.0), "Override", App::Prop_Output, "Extension line angle");
+
     // hide the DrawView properties that don't apply to Dimensions
     ScaleType.setStatus(App::Property::ReadOnly, true);
     ScaleType.setStatus(App::Property::Hidden, true);
@@ -776,7 +780,7 @@ std::string DrawViewDimension::formatValue(qreal value, QString qFormatSpec, int
             qMultiValueStr = formatPrefix + qUserString + formatSuffix;
         }
         return qMultiValueStr.toStdString();
-    } else {
+    } else {  //not multivalue schema
         if (formatSpecifier.isEmpty()) {
             Base::Console().Warning("Warning - no numeric format in Format Spec %s - %s\n",
                                     qPrintable(qFormatSpec), getNameInDocument());
@@ -821,7 +825,19 @@ std::string DrawViewDimension::formatValue(qreal value, QString qFormatSpec, int
         // we reformat the value
         // the user can overwrite the decimal settings, so we must in every case use the formatSpecifier
         // the default is: if useDecimals(), then formatSpecifier = global decimals, otherwise it is %.2f
-        formattedValue = QString::asprintf(Base::Tools::toStdString(formatSpecifier).c_str(), userVal);
+        // Also, handle the new non-standard format-specifier '%w', which has the following rules: works as %f, but no trailing zeros
+        if (formatSpecifier.contains(QRegExp(QStringLiteral("%.*[wW]")))) {
+            QString fs = formatSpecifier;
+            fs.replace(QRegExp(QStringLiteral("%(.*)w")), QStringLiteral("%\\1f"));
+            fs.replace(QRegExp(QStringLiteral("%(.*)W")), QStringLiteral("%\\1F"));
+            formattedValue = QString::asprintf(Base::Tools::toStdString(fs).c_str(), userVal);
+            // First, try to cut trailing zeros, if AFTER decimal dot there are nonzero numbers
+            // Second, try to cut also decimal dot and zeros, if there are just zeros after it
+            formattedValue.replace(QRegExp(QStringLiteral("([0-9][0-9]*\\.[0-9]*[1-9])00*$")), QStringLiteral("\\1"));
+            formattedValue.replace(QRegExp(QStringLiteral("([0-9][0-9]*)\\.0*$")), QStringLiteral("\\1"));
+        } else {
+            formattedValue = QString::asprintf(Base::Tools::toStdString(formatSpecifier).c_str(), userVal);
+        }
 
         // if abs(1 - userVal / formattedValue) > 0.1 we know that we make an error greater than 10%
         // then we need more digits
@@ -921,6 +937,9 @@ std::pair<std::string, std::string> DrawViewDimension::getFormattedToleranceValu
     return tolerances;
 }
 
+//partial = 0 full text for multi-value schemas
+//partial = 1 value only
+//partial = 2 unit only
 std::string DrawViewDimension::getFormattedDimensionValue(int partial)
 {
     QString qFormatSpec = QString::fromUtf8(FormatSpec.getStrValue().data());
@@ -969,7 +988,7 @@ QStringList DrawViewDimension::getPrefixSuffixSpec(QString fSpec)
     QString formatPrefix;
     QString formatSuffix;
     //find the %x.y tag in FormatSpec
-    QRegExp rxFormat(QString::fromUtf8("%[+-]?[0-9]*\\.*[0-9]*[aefgAEFG]")); //printf double format spec
+    QRegExp rxFormat(QStringLiteral("%[+-]?[0-9]*\\.*[0-9]*[aefgwAEFGW]")); //printf double format spec
     QString match;
     int pos = 0;
     if ((pos = rxFormat.indexIn(fSpec, 0)) != -1)  {

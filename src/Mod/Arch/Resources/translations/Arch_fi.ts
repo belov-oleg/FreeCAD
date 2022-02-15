@@ -324,6 +324,16 @@
       <translation>Kun tosi, aita on väritetty kuten alkuperäinen tolppa ja aidan osa.</translation>
     </message>
     <message>
+      <location filename="ArchAxis.py" line="871"/>
+      <source>The axes this system is made of</source>
+      <translation>Tämän järjestelmän akselit on valmistettu</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="873"/>
+      <source>The placement of this axis system</source>
+      <translation>Tämän akselijärjestelmän sijoittelu</translation>
+    </message>
+    <message>
       <location filename="ArchMaterial.py" line="718"/>
       <source>A description for this material</source>
       <translation>Tämän materiaalin kuvaus</translation>
@@ -1829,16 +1839,6 @@
       <translation>Kussakin etiketissä sovellettava muutos</translation>
     </message>
     <message>
-      <location filename="ArchAxis.py" line="871"/>
-      <source>The axes this system is made of</source>
-      <translation>Tämän järjestelmän akselit on valmistettu</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="873"/>
-      <source>The placement of this axis system</source>
-      <translation>Tämän akselijärjestelmän sijoittelu</translation>
-    </message>
-    <message>
       <location filename="ArchPrecast.py" line="62"/>
       <source>The length of this element</source>
       <translation>Tämän elementin pituus</translation>
@@ -2179,7 +2179,7 @@
     <message>
       <location filename="ArchComponent.py" line="1936"/>
       <source>Component</source>
-      <translation type="unfinished">Component</translation>
+      <translation>Komponentti</translation>
     </message>
     <message>
       <location filename="ArchAxis.py" line="1117"/>
@@ -2244,7 +2244,7 @@
     <message>
       <location filename="ArchComponent.py" line="1949"/>
       <source>Edit IFC properties</source>
-      <translation type="unfinished">Edit IFC properties</translation>
+      <translation>Muokkaa IFC-ominaisuuksia</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="1950"/>
@@ -2269,7 +2269,7 @@
     <message>
       <location filename="ArchComponent.py" line="2001"/>
       <source>Add property...</source>
-      <translation type="unfinished">Add property...</translation>
+      <translation>Lisää ominaisuus...</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="2002"/>
@@ -2284,7 +2284,7 @@
     <message>
       <location filename="ArchComponent.py" line="2145"/>
       <source>New property</source>
-      <translation type="unfinished">New property</translation>
+      <translation>Uusi ominaisuus</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="2180"/>
@@ -2331,6 +2331,26 @@ Building creation aborted.</translation>
       <location filename="ArchWindowPresets.py" line="504"/>
       <source>Door</source>
       <translation>Ovi</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="152"/>
+      <source>Only axes must be selected</source>
+      <translation type="unfinished">Only axes must be selected</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="156"/>
+      <source>Create Axis System</source>
+      <translation type="unfinished">Create Axis System</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="161"/>
+      <source>Please select at least one axis</source>
+      <translation type="unfinished">Please select at least one axis</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1119"/>
+      <source>Axis system components</source>
+      <translation type="unfinished">Axis system components</translation>
     </message>
     <message>
       <location filename="importJSON.py" line="61"/>
@@ -2560,12 +2580,12 @@ Building creation aborted.</translation>
     <message>
       <location filename="ArchCommands.py" line="1553"/>
       <source>All good! No problems found</source>
-      <translation type="unfinished">All good! No problems found</translation>
+      <translation>Kaikki hyvin! Ongelmia ei löytynyt</translation>
     </message>
     <message>
       <location filename="ArchCommands.py" line="1630"/>
       <source>Create Component</source>
-      <translation type="unfinished">Create Component</translation>
+      <translation>Luo komponentti</translation>
     </message>
     <message>
       <location filename="ArchStructure.py" line="444"/>
@@ -2868,6 +2888,21 @@ Building creation aborted.</translation>
       <translation type="unfinished">Choose a face on an existing object or select a preset</translation>
     </message>
     <message>
+      <location filename="ArchWindow.py" line="290"/>
+      <source>Window not based on sketch. Window not aligned or resized.</source>
+      <translation type="unfinished">Window not based on sketch. Window not aligned or resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="300"/>
+      <source>No Width and/or Height constraint in window sketch. Window not resized.</source>
+      <translation type="unfinished">No Width and/or Height constraint in window sketch. Window not resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="303"/>
+      <source>No window found. Cannot continue.</source>
+      <translation type="unfinished">No window found. Cannot continue.</translation>
+    </message>
+    <message>
       <location filename="ArchWindow.py" line="327"/>
       <source>Window options</source>
       <translation type="unfinished">Window options</translation>
@@ -3078,11 +3113,6 @@ Building creation aborted.</translation>
       <translation type="unfinished">Please select a base face on a structural object</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="143"/>
-      <source>Arch</source>
-      <translation type="unfinished">Arch</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="71"/>
       <source>Structure tools</source>
       <translation type="unfinished">Structure tools</translation>
@@ -3098,6 +3128,11 @@ Building creation aborted.</translation>
       <translation>Paneelin työkalut</translation>
     </message>
     <message>
+      <location filename="InitGui.py" line="94"/>
+      <source>Rebar tools</source>
+      <translation type="unfinished">Rebar tools</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="99"/>
       <source>Material tools</source>
       <translation>Materiaalityökalut</translation>
@@ -3108,24 +3143,14 @@ Building creation aborted.</translation>
       <translation>Putkien työkalut</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="94"/>
-      <source>Rebar tools</source>
-      <translation type="unfinished">Rebar tools</translation>
+      <location filename="InitGui.py" line="143"/>
+      <source>Arch</source>
+      <translation type="unfinished">Arch</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="177"/>
       <source>&amp;Arch</source>
       <translation>&amp;Kaari</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="193"/>
-      <source>Utilities</source>
-      <translation>Apuvälineet</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="192"/>
-      <source>&amp;Draft</source>
-      <translation>&amp;Vedos</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="181"/>
@@ -3141,6 +3166,96 @@ Building creation aborted.</translation>
       <location filename="InitGui.py" line="189"/>
       <source>Modification</source>
       <translation>Muokkaus</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>&amp;Vedos</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>Apuvälineet</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="181"/>
+      <source>Create Grid</source>
+      <translation type="unfinished">Create Grid</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1181"/>
+      <source>Auto height is larger than height</source>
+      <translation type="unfinished">Auto height is larger than height</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1190"/>
+      <source>Total row size is larger than height</source>
+      <translation type="unfinished">Total row size is larger than height</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1212"/>
+      <source>Auto width is larger than width</source>
+      <translation type="unfinished">Auto width is larger than width</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1221"/>
+      <source>Total column size is larger than width</source>
+      <translation type="unfinished">Total column size is larger than width</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1445"/>
+      <source>Grid</source>
+      <translation>Ruudukko</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1446"/>
+      <source>Total width</source>
+      <translation>Yhteiskorkeus</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1447"/>
+      <source>Total height</source>
+      <translation type="unfinished">Total height</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1448"/>
+      <source>Add row</source>
+      <translation type="unfinished">Add row</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1449"/>
+      <source>Del row</source>
+      <translation type="unfinished">Del row</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1450"/>
+      <source>Add col</source>
+      <translation type="unfinished">Add col</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1451"/>
+      <source>Del col</source>
+      <translation type="unfinished">Del col</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1452"/>
+      <source>Create span</source>
+      <translation type="unfinished">Create span</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1453"/>
+      <source>Remove span</source>
+      <translation type="unfinished">Remove span</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Rows</source>
+      <translation type="unfinished">Rows</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Columns</source>
+      <translation type="unfinished">Columns</translation>
     </message>
     <message>
       <location filename="ArchCurtainWall.py" line="83"/>
@@ -3160,12 +3275,12 @@ Building creation aborted.</translation>
     <message>
       <location filename="ArchProfile.py" line="134"/>
       <source>Create profile</source>
-      <translation type="unfinished">Create profile</translation>
+      <translation>Luo profiili</translation>
     </message>
     <message>
       <location filename="ArchProfile.py" line="142"/>
       <source>Profile settings</source>
-      <translation type="unfinished">Profile settings</translation>
+      <translation>Profiilin asetukset</translation>
     </message>
     <message>
       <location filename="ArchProfile.py" line="188"/>
@@ -3276,7 +3391,7 @@ Site creation aborted.</translation>
     <message>
       <location filename="ArchStructure.py" line="493"/>
       <source>Con&amp;tinue</source>
-      <translation type="unfinished">Con&amp;tinue</translation>
+      <translation>&amp;Jatka</translation>
     </message>
     <message>
       <location filename="ArchWall.py" line="528"/>
@@ -3642,26 +3757,6 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <translation>Luo akseli</translation>
     </message>
     <message>
-      <location filename="ArchAxis.py" line="152"/>
-      <source>Only axes must be selected</source>
-      <translation type="unfinished">Only axes must be selected</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="156"/>
-      <source>Create Axis System</source>
-      <translation type="unfinished">Create Axis System</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="161"/>
-      <source>Please select at least one axis</source>
-      <translation type="unfinished">Please select at least one axis</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="181"/>
-      <source>Create Grid</source>
-      <translation type="unfinished">Create Grid</translation>
-    </message>
-    <message>
       <location filename="ArchAxis.py" line="851"/>
       <source>Distances (mm) and angles (deg) between axes</source>
       <translation>Etäisyydet (mm) ja kulmat (astetta) akselien väliselle</translation>
@@ -3685,86 +3780,6 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchAxis.py" line="855"/>
       <source>Label</source>
       <translation type="unfinished">Label</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1119"/>
-      <source>Axis system components</source>
-      <translation type="unfinished">Axis system components</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1181"/>
-      <source>Auto height is larger than height</source>
-      <translation type="unfinished">Auto height is larger than height</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1190"/>
-      <source>Total row size is larger than height</source>
-      <translation type="unfinished">Total row size is larger than height</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1212"/>
-      <source>Auto width is larger than width</source>
-      <translation type="unfinished">Auto width is larger than width</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1221"/>
-      <source>Total column size is larger than width</source>
-      <translation type="unfinished">Total column size is larger than width</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1445"/>
-      <source>Grid</source>
-      <translation>Ruudukko</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1446"/>
-      <source>Total width</source>
-      <translation>Yhteiskorkeus</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1447"/>
-      <source>Total height</source>
-      <translation type="unfinished">Total height</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1448"/>
-      <source>Add row</source>
-      <translation type="unfinished">Add row</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1449"/>
-      <source>Del row</source>
-      <translation type="unfinished">Del row</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1450"/>
-      <source>Add col</source>
-      <translation type="unfinished">Add col</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1451"/>
-      <source>Del col</source>
-      <translation type="unfinished">Del col</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1452"/>
-      <source>Create span</source>
-      <translation type="unfinished">Create span</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1453"/>
-      <source>Remove span</source>
-      <translation type="unfinished">Remove span</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Rows</source>
-      <translation type="unfinished">Rows</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Columns</source>
-      <translation type="unfinished">Columns</translation>
     </message>
     <message>
       <location filename="importDAE.py" line="58"/>
@@ -4061,7 +4076,7 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
     <message>
       <location filename="ArchCommands.py" line="1620"/>
       <source>Clone component</source>
-      <translation type="unfinished">Clone component</translation>
+      <translation>Kloonaa komponentti</translation>
     </message>
     <message>
       <location filename="ArchCommands.py" line="1624"/>
@@ -4087,7 +4102,7 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
     <message>
       <location filename="ArchCommands.py" line="1595"/>
       <source>Component</source>
-      <translation type="unfinished">Component</translation>
+      <translation>Komponentti</translation>
     </message>
     <message>
       <location filename="ArchCommands.py" line="1599"/>
@@ -4106,6 +4121,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchCurtainWall.py" line="105"/>
       <source>Creates a curtain wall object from selected line or from scratch</source>
       <translation type="unfinished">Creates a curtain wall object from selected line or from scratch</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_CutLine</name>
+    <message>
+      <location filename="ArchCutPlane.py" line="80"/>
+      <source>Cut with line</source>
+      <translation type="unfinished">Cut with line</translation>
+    </message>
+    <message>
+      <location filename="ArchCutPlane.py" line="83"/>
+      <source>Cut an object with a line</source>
+      <translation type="unfinished">Cut an object with a line</translation>
     </message>
   </context>
   <context>
@@ -4185,6 +4213,16 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
   </context>
   <context>
     <name>Arch_Grid</name>
+    <message>
+      <location filename="ArchGrid.py" line="68"/>
+      <source>Grid</source>
+      <translation>Ruudukko</translation>
+    </message>
+    <message>
+      <location filename="ArchGrid.py" line="72"/>
+      <source>Creates a customizable grid object</source>
+      <translation type="unfinished">Creates a customizable grid object</translation>
+    </message>
     <message>
       <location filename="ArchAxis.py" line="1135"/>
       <source>The number of rows</source>
@@ -4360,6 +4398,11 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <source>Panel Cut</source>
       <translation>Paneeli Leikkaa</translation>
     </message>
+    <message>
+      <location filename="ArchPanel.py" line="339"/>
+      <source>Creates 2D views of selected panels</source>
+      <translation>Luo valittujen paneelien 2D-näkymiä</translation>
+    </message>
   </context>
   <context>
     <name>Arch_Panel_Sheet</name>
@@ -4403,6 +4446,11 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchPipe.py" line="145"/>
       <source>Connector</source>
       <translation>Liitin</translation>
+    </message>
+    <message>
+      <location filename="ArchPipe.py" line="149"/>
+      <source>Creates a connector between 2 or 3 selected pipes</source>
+      <translation>Luo liitin kahden tai kolmen valitun putken väliin</translation>
     </message>
   </context>
   <context>
@@ -4450,6 +4498,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchRebar.py" line="108"/>
       <source>Creates a Reinforcement bar from the selected face of a structural object</source>
       <translation>Luo betoniterästangon valitusta rakenteellisen kohteen näkymäpinnasta</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_RebarTools</name>
+    <message>
+      <location filename="InitGui.py" line="137"/>
+      <source>Rebar tools</source>
+      <translation type="unfinished">Rebar tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="142"/>
+      <source>Create various types of rebars, including U-shaped, L-shaped, and stirrup</source>
+      <translation type="unfinished">Create various types of rebars, including U-shaped, L-shaped, and stirrup</translation>
     </message>
   </context>
   <context>
@@ -4596,6 +4657,19 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
     </message>
   </context>
   <context>
+    <name>Arch_StructuralSystem</name>
+    <message>
+      <location filename="ArchStructure.py" line="233"/>
+      <source>Structural System</source>
+      <translation type="unfinished">Structural System</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="236"/>
+      <source>Create a structural system object from a selected structure and axis</source>
+      <translation type="unfinished">Create a structural system object from a selected structure and axis</translation>
+    </message>
+  </context>
+  <context>
     <name>Arch_Structure</name>
     <message>
       <location filename="ArchStructure.py" line="196"/>
@@ -4631,6 +4705,27 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
       <location filename="ArchStructure.py" line="1472"/>
       <source>Structure tools</source>
       <translation type="unfinished">Structure tools</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructureTools</name>
+    <message>
+      <location filename="ArchStructure.py" line="1472"/>
+      <source>Structure tools</source>
+      <translation type="unfinished">Structure tools</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructuresFromSelection</name>
+    <message>
+      <location filename="ArchStructure.py" line="196"/>
+      <source>Multiple Structures</source>
+      <translation type="unfinished">Multiple Structures</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="199"/>
+      <source>Create multiple Arch Structure objects from a selected base, using each selected edge as an extrusion path</source>
+      <translation type="unfinished">Create multiple Arch Structure objects from a selected base, using each selected edge as an extrusion path</translation>
     </message>
   </context>
   <context>
@@ -4747,9 +4842,84 @@ If Run = 0 then the run is calculated so that the height is the same as the rela
   <context>
     <name>Workbench</name>
     <message>
+      <location filename="InitGui.py" line="71"/>
+      <source>Structure tools</source>
+      <translation type="unfinished">Structure tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="85"/>
+      <source>Axis tools</source>
+      <translation>Akselityökalut</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="91"/>
+      <source>Panel tools</source>
+      <translation>Paneelin työkalut</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="99"/>
+      <source>Material tools</source>
+      <translation>Materiaalityökalut</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="103"/>
+      <source>Pipe tools</source>
+      <translation>Putkien työkalut</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="145"/>
+      <source>Rebar tools</source>
+      <translation type="unfinished">Rebar tools</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="112"/>
       <source>Arch tools</source>
       <translation>Kaari työkalut</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="162"/>
+      <source>Draft creation tools</source>
+      <translation type="unfinished">Draft creation tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="165"/>
+      <source>Draft annotation tools</source>
+      <translation type="unfinished">Draft annotation tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="168"/>
+      <source>Draft modification tools</source>
+      <translation type="unfinished">Draft modification tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="177"/>
+      <source>&amp;Arch</source>
+      <translation>&amp;Kaari</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>Apuvälineet</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>&amp;Vedos</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="181"/>
+      <source>Creation</source>
+      <translation type="unfinished">Creation</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="185"/>
+      <source>Annotation</source>
+      <translation>Huomautus</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="189"/>
+      <source>Modification</source>
+      <translation>Muokkaus</translation>
     </message>
   </context>
   <context>
@@ -5114,7 +5284,7 @@ Leave blank to use all objects from the document</translation>
     <message>
       <location filename="../ui/ArchSchedule.ui" line="190"/>
       <source>Imports the contents of a CSV file</source>
-      <translation type="unfinished">Imports the contents of a CSV file</translation>
+      <translation>Tuo CSV-tiedoston sisällön</translation>
     </message>
     <message>
       <location filename="../ui/ArchSchedule.ui" line="193"/>
@@ -5134,17 +5304,17 @@ Leave blank to use all objects from the document</translation>
     <message>
       <location filename="../ui/DialogBimServerLogin.ui" line="14"/>
       <source>BimServer Login</source>
-      <translation type="unfinished">BimServer Login</translation>
+      <translation>BimServer-kirjautuminen</translation>
     </message>
     <message>
       <location filename="../ui/DialogBimServerLogin.ui" line="22"/>
       <source>BimServer URL:</source>
-      <translation type="unfinished">BimServer URL:</translation>
+      <translation>BimServerin URL-osoite:</translation>
     </message>
     <message>
       <location filename="../ui/DialogBimServerLogin.ui" line="36"/>
       <source>Login (email):</source>
-      <translation type="unfinished">Login (email):</translation>
+      <translation>Kirjautuminen (sähköposti):</translation>
     </message>
     <message>
       <location filename="../ui/DialogBimServerLogin.ui" line="50"/>
@@ -5164,7 +5334,7 @@ Leave blank to use all objects from the document</translation>
     <message>
       <location filename="../ui/DialogIfcProperties.ui" line="14"/>
       <source>IFC properties editor</source>
-      <translation type="unfinished">IFC properties editor</translation>
+      <translation>IFC-ominaisuuksien muokkain</translation>
     </message>
     <message>
       <location filename="../ui/DialogIfcProperties.ui" line="22"/>

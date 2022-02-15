@@ -2,6 +2,140 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr" sourcelanguage="en">
   <context>
+    <name>MoveView</name>
+    <message>
+      <location filename="CommandMoveView.py" line="47"/>
+      <source>Move View</source>
+      <translation>Déplacer la vue</translation>
+    </message>
+    <message>
+      <location filename="CommandMoveView.py" line="50"/>
+      <source>Move a View to a new Page</source>
+      <translation>Déplacer une vue vers une nouvelle page</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="47"/>
+      <source>Move View to a different Page</source>
+      <translation>Déplacer la vue vers une autre page</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="74"/>
+      <source>Select View to move from list.</source>
+      <translation>Sélectionnez la vue à déplacer depuis la liste.</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="75"/>
+      <source>Select View</source>
+      <translation>Choisir une vue</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="93"/>
+      <source>Select From Page.</source>
+      <translation>Sélectionner depuis la page.</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="113"/>
+      <source>Select Page</source>
+      <translation>Sélectionner la Page</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="112"/>
+      <source>Select To Page.</source>
+      <translation type="unfinished">Select To Page.</translation>
+    </message>
+  </context>
+  <context>
+    <name>ShareView</name>
+    <message>
+      <location filename="CommandShareView.py" line="47"/>
+      <source>Share View</source>
+      <translation type="unfinished">Share View</translation>
+    </message>
+    <message>
+      <location filename="CommandShareView.py" line="50"/>
+      <source>Share a View on a second Page</source>
+      <translation type="unfinished">Share a View on a second Page</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="46"/>
+      <source>Share View with another Page</source>
+      <translation type="unfinished">Share View with another Page</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="47"/>
+      <source>View to share</source>
+      <translation type="unfinished">View to share</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="74"/>
+      <source>Select View to share from list.</source>
+      <translation type="unfinished">Select View to share from list.</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="75"/>
+      <source>Select View</source>
+      <translation>Choisir une vue</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="93"/>
+      <source>Select From Page.</source>
+      <translation>Sélectionner depuis la page.</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="113"/>
+      <source>Select Page</source>
+      <translation>Sélectionner la Page</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="112"/>
+      <source>Select To Page.</source>
+      <translation type="unfinished">Select To Page.</translation>
+    </message>
+  </context>
+  <context>
+    <name>CopyView</name>
+    <message>
+      <location filename="CommandCopyView.py" line="47"/>
+      <source>Copy View</source>
+      <translation>Copier la vue</translation>
+    </message>
+    <message>
+      <location filename="CommandCopyView.py" line="50"/>
+      <source>Copy a View to a second Page</source>
+      <translation>Copier une vue vers une deuxième page</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="46"/>
+      <source>Copy View to a second Page</source>
+      <translation>Copier la vue vers une deuxième page</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="73"/>
+      <source>Select View to copy from list.</source>
+      <translation>Sélectionnez la vue à copier dans la liste.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="74"/>
+      <source>Select View</source>
+      <translation>Choisir une vue</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="92"/>
+      <source>Select From Page.</source>
+      <translation>Sélectionner depuis la page.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="111"/>
+      <source>Select To Page.</source>
+      <translation type="unfinished">Select To Page.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="112"/>
+      <source>Select Page</source>
+      <translation>Sélectionner la Page</translation>
+    </message>
+  </context>
+  <context>
     <name>Cmd2LineCenterLine</name>
     <message>
       <source>Add Centerline between 2 Lines</source>
@@ -70,7 +204,7 @@
     </message>
     <message>
       <source>Insert 3-Point Angle Dimension</source>
-      <translation>Insérer une cote angulaire à 3 points</translation>
+      <translation>Insérer une cote angulaire par 3 points</translation>
     </message>
   </context>
   <context>
@@ -251,7 +385,7 @@
     </message>
     <message>
       <source>Insert Diameter Dimension</source>
-      <translation>Insérer une nouvelle cote de diamètre</translation>
+      <translation>Insérer une cote de diamètre</translation>
     </message>
   </context>
   <context>
@@ -465,7 +599,7 @@
     </message>
     <message>
       <source>Insert Horizontal Dimension</source>
-      <translation>Insérer une nouvelle cote horizontale</translation>
+      <translation>Insérer une cote horizontale</translation>
     </message>
   </context>
   <context>
@@ -565,7 +699,7 @@
     </message>
     <message>
       <source>Insert Default Page</source>
-      <translation>Insérer une nouvelle page par défaut</translation>
+      <translation>Insérer une page par défaut</translation>
     </message>
   </context>
   <context>
@@ -576,7 +710,7 @@
     </message>
     <message>
       <source>Insert Page using Template</source>
-      <translation>Insérer une nouvelle page à partir d'un modèle</translation>
+      <translation>Insérer une page à partir d'un modèle</translation>
     </message>
     <message>
       <source>Select a Template File</source>
@@ -621,7 +755,7 @@
     </message>
     <message>
       <source>Insert Radius Dimension</source>
-      <translation>Insérer une nouvelle cote de rayon</translation>
+      <translation>Insérer une cote de rayon</translation>
     </message>
   </context>
   <context>
@@ -2532,7 +2666,7 @@ pour les ProjectionGroups</translation>
     </message>
     <message>
       <source>Starting directory for menu &apos;Insert Page using Template&apos;</source>
-      <translation>Répertoire de départ pour le menu &apos;Insérer une Page à l'aide d'un Modèle&apos;</translation>
+      <translation>Répertoire de départ pour le menu &apos;Insérer une page à l'aide d'un Modèle&apos;</translation>
     </message>
     <message>
       <source>Hatch Pattern File</source>
@@ -3251,7 +3385,7 @@ Personnalisé : un facteur d'échelle personnalisé est utilisé</translation>
     </message>
     <message>
       <source>Tolerancing</source>
-      <translation>Tolérancement</translation>
+      <translation>Tolérances</translation>
     </message>
     <message>
       <source>If theoretical exact (basic) dimension</source>
@@ -3317,7 +3451,7 @@ be used instead if the dimension value</source>
     </message>
     <message>
       <source>OverTolerance Format Specifier:</source>
-      <translation>Précision de Tolérance supérieure:</translation>
+      <translation>Précision de la tolérance supérieure:</translation>
     </message>
     <message>
       <source>Specifies the overtolerance format in printf() style, or arbitrary text</source>
@@ -3326,7 +3460,7 @@ au format printf() , ou du texte arbitraire</translation>
     </message>
     <message>
       <source>UnderTolerance Format Specifier:</source>
-      <translation>Précision de tolérance inférieure:</translation>
+      <translation>Précision de la tolérance inférieure:</translation>
     </message>
     <message>
       <source>Specifies the undertolerance format in printf() style, or arbitrary text</source>
@@ -3335,7 +3469,7 @@ au format printf() , ou du texte arbitraire</translation>
     </message>
     <message>
       <source>Arbitrary Tolerance Text</source>
-      <translation>Tolérance de texte arbitraire</translation>
+      <translation>Tolérance du texte arbitraire</translation>
     </message>
     <message>
       <source>Display Style</source>

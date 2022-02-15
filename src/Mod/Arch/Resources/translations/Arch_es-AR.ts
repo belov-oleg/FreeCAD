@@ -186,22 +186,22 @@
     <message>
       <location filename="ArchBuildingPart.py" line="621"/>
       <source>The capture box for newly created objects expressed as [XMin,YMin,ZMin,XMax,YMax,ZMax]</source>
-      <translation type="unfinished">The capture box for newly created objects expressed as [XMin,YMin,ZMin,XMax,YMax,ZMax]</translation>
+      <translation>La caja de captura de objetos recién creados expresada como [XMin,YMin,ZMin,XMax,YMax,ZMax]</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="623"/>
       <source>Turns auto group box on/off</source>
-      <translation type="unfinished">Turns auto group box on/off</translation>
+      <translation>Activa o desactiva el cuadro de grupo automático</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="625"/>
       <source>Automatically set size from contents</source>
-      <translation type="unfinished">Automatically set size from contents</translation>
+      <translation>Establecer automáticamente el tamaño de los contenidos</translation>
     </message>
     <message>
       <location filename="ArchBuildingPart.py" line="627"/>
       <source>A margin to use when autosize is turned on</source>
-      <translation type="unfinished">A margin to use when autosize is turned on</translation>
+      <translation>Un margen para usar cuando el tamaño automático está activado</translation>
     </message>
     <message>
       <location filename="ArchComponent.py" line="192"/>
@@ -322,6 +322,16 @@
       <location filename="ArchFence.py" line="269"/>
       <source>When true, the fence will be colored like the original post and section.</source>
       <translation>Cuando sea verdadero, la valla se colorará como el poste y sección original.</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="871"/>
+      <source>The axes this system is made of</source>
+      <translation>Los ejes de que esta hecho este sistema</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="873"/>
+      <source>The placement of this axis system</source>
+      <translation>La posición de este sistema de ejes</translation>
     </message>
     <message>
       <location filename="ArchMaterial.py" line="718"/>
@@ -1626,7 +1636,7 @@
     <message>
       <location filename="ArchStructure.py" line="680"/>
       <source>Start offset distance along the extrusion path (positive: extend, negative: trim)</source>
-      <translation type="unfinished">Start offset distance along the extrusion path (positive: extend, negative: trim)</translation>
+      <translation>Comience la distancia de desplazamiento a lo largo de la ruta de extrusión (positivo: extender, negativo: recortar)</translation>
     </message>
     <message>
       <location filename="ArchStructure.py" line="680"/>
@@ -1636,7 +1646,7 @@
     <message>
       <location filename="ArchStructure.py" line="682"/>
       <source>End offset distance along the extrusion path (positive: extend, negative: trim)</source>
-      <translation type="unfinished">End offset distance along the extrusion path (positive: extend, negative: trim)</translation>
+      <translation>Distancia de compensación final a lo largo de la ruta de extrusión (positiva: extender, negativa: recortar)</translation>
     </message>
     <message>
       <location filename="ArchStructure.py" line="682"/>
@@ -1827,16 +1837,6 @@
       <location filename="ArchAxis.py" line="345"/>
       <source>A transformation to apply to each label</source>
       <translation>Una transformación para aplicar a cada etiqueta</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="871"/>
-      <source>The axes this system is made of</source>
-      <translation>Los ejes de que esta hecho este sistema</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="873"/>
-      <source>The placement of this axis system</source>
-      <translation>La posición de este sistema de ejes</translation>
     </message>
     <message>
       <location filename="ArchPrecast.py" line="62"/>
@@ -2331,6 +2331,26 @@ Creación de construcción cancelada.</translation>
       <location filename="ArchWindowPresets.py" line="504"/>
       <source>Door</source>
       <translation>Puerta</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="152"/>
+      <source>Only axes must be selected</source>
+      <translation>Sólamente deben seleccionarse ejes</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="156"/>
+      <source>Create Axis System</source>
+      <translation>Crear sistema de ejes</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="161"/>
+      <source>Please select at least one axis</source>
+      <translation>Por favor seleccione al menos un eje</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1119"/>
+      <source>Axis system components</source>
+      <translation>Componentes del sistema de ejes</translation>
     </message>
     <message>
       <location filename="importJSON.py" line="61"/>
@@ -2868,6 +2888,21 @@ Creación de construcción cancelada.</translation>
       <translation>Elige una cara en un objeto existente o seleccione por defecto</translation>
     </message>
     <message>
+      <location filename="ArchWindow.py" line="290"/>
+      <source>Window not based on sketch. Window not aligned or resized.</source>
+      <translation type="unfinished">Window not based on sketch. Window not aligned or resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="300"/>
+      <source>No Width and/or Height constraint in window sketch. Window not resized.</source>
+      <translation type="unfinished">No Width and/or Height constraint in window sketch. Window not resized.</translation>
+    </message>
+    <message>
+      <location filename="ArchWindow.py" line="303"/>
+      <source>No window found. Cannot continue.</source>
+      <translation type="unfinished">No window found. Cannot continue.</translation>
+    </message>
+    <message>
       <location filename="ArchWindow.py" line="327"/>
       <source>Window options</source>
       <translation>Opciones de ventana</translation>
@@ -3078,11 +3113,6 @@ Creación de construcción cancelada.</translation>
       <translation>Por favor seleccione una cara base en un objeto estructural</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="143"/>
-      <source>Arch</source>
-      <translation>Arquitectura</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="71"/>
       <source>Structure tools</source>
       <translation>Herramientas de estructura</translation>
@@ -3098,6 +3128,11 @@ Creación de construcción cancelada.</translation>
       <translation>Herramientas de panel</translation>
     </message>
     <message>
+      <location filename="InitGui.py" line="94"/>
+      <source>Rebar tools</source>
+      <translation>Herramientas Armadura</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="99"/>
       <source>Material tools</source>
       <translation>Herramientas de material</translation>
@@ -3108,24 +3143,14 @@ Creación de construcción cancelada.</translation>
       <translation>Herramientas de cañería</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="94"/>
-      <source>Rebar tools</source>
-      <translation>Herramientas Armadura</translation>
+      <location filename="InitGui.py" line="143"/>
+      <source>Arch</source>
+      <translation>Arquitectura</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="177"/>
       <source>&amp;Arch</source>
       <translation>&amp;Arquitectura</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="193"/>
-      <source>Utilities</source>
-      <translation>Utilidades</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="192"/>
-      <source>&amp;Draft</source>
-      <translation>&amp;Borrador</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="181"/>
@@ -3141,6 +3166,96 @@ Creación de construcción cancelada.</translation>
       <location filename="InitGui.py" line="189"/>
       <source>Modification</source>
       <translation>Modificación</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>&amp;Borrador</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>Utilidades</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="181"/>
+      <source>Create Grid</source>
+      <translation>Crear Cuadrícula</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1181"/>
+      <source>Auto height is larger than height</source>
+      <translation>El alto automático es mayor que el alto</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1190"/>
+      <source>Total row size is larger than height</source>
+      <translation>El tamaño total de la fila es mayor que el alto</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1212"/>
+      <source>Auto width is larger than width</source>
+      <translation>El ancho automático es mayor que el ancho</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1221"/>
+      <source>Total column size is larger than width</source>
+      <translation>El total de columnas es mayor que el ancho</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1445"/>
+      <source>Grid</source>
+      <translation>Cuadrícula</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1446"/>
+      <source>Total width</source>
+      <translation>Ancho total</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1447"/>
+      <source>Total height</source>
+      <translation>Altura total</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1448"/>
+      <source>Add row</source>
+      <translation>Agregar fila</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1449"/>
+      <source>Del row</source>
+      <translation>Borrar fila</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1450"/>
+      <source>Add col</source>
+      <translation>Agregar columna</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1451"/>
+      <source>Del col</source>
+      <translation>Borrar columna</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1452"/>
+      <source>Create span</source>
+      <translation>Crear Claro</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1453"/>
+      <source>Remove span</source>
+      <translation>Quitar Claro</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Rows</source>
+      <translation>Filas</translation>
+    </message>
+    <message>
+      <location filename="ArchAxis.py" line="1454"/>
+      <source>Columns</source>
+      <translation>Columnas</translation>
     </message>
     <message>
       <location filename="ArchCurtainWall.py" line="83"/>
@@ -3642,26 +3757,6 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <translation>Crear Eje</translation>
     </message>
     <message>
-      <location filename="ArchAxis.py" line="152"/>
-      <source>Only axes must be selected</source>
-      <translation>Sólamente deben seleccionarse ejes</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="156"/>
-      <source>Create Axis System</source>
-      <translation>Crear sistema de ejes</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="161"/>
-      <source>Please select at least one axis</source>
-      <translation>Por favor seleccione al menos un eje</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="181"/>
-      <source>Create Grid</source>
-      <translation>Crear Cuadrícula</translation>
-    </message>
-    <message>
       <location filename="ArchAxis.py" line="851"/>
       <source>Distances (mm) and angles (deg) between axes</source>
       <translation>Distancias (mm) y ángulos (grados) entre ejes</translation>
@@ -3685,86 +3780,6 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <location filename="ArchAxis.py" line="855"/>
       <source>Label</source>
       <translation>Etiqueta</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1119"/>
-      <source>Axis system components</source>
-      <translation>Componentes del sistema de ejes</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1181"/>
-      <source>Auto height is larger than height</source>
-      <translation>El alto automático es mayor que el alto</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1190"/>
-      <source>Total row size is larger than height</source>
-      <translation>El tamaño total de la fila es mayor que el alto</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1212"/>
-      <source>Auto width is larger than width</source>
-      <translation>El ancho automático es mayor que el ancho</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1221"/>
-      <source>Total column size is larger than width</source>
-      <translation>El total de columnas es mayor que el ancho</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1445"/>
-      <source>Grid</source>
-      <translation>Cuadrícula</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1446"/>
-      <source>Total width</source>
-      <translation>Ancho total</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1447"/>
-      <source>Total height</source>
-      <translation>Altura total</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1448"/>
-      <source>Add row</source>
-      <translation>Agregar fila</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1449"/>
-      <source>Del row</source>
-      <translation>Borrar fila</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1450"/>
-      <source>Add col</source>
-      <translation>Agregar columna</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1451"/>
-      <source>Del col</source>
-      <translation>Borrar columna</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1452"/>
-      <source>Create span</source>
-      <translation>Crear Claro</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1453"/>
-      <source>Remove span</source>
-      <translation>Quitar Claro</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Rows</source>
-      <translation>Filas</translation>
-    </message>
-    <message>
-      <location filename="ArchAxis.py" line="1454"/>
-      <source>Columns</source>
-      <translation>Columnas</translation>
     </message>
     <message>
       <location filename="importDAE.py" line="58"/>
@@ -4109,6 +4124,19 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
     </message>
   </context>
   <context>
+    <name>Arch_CutLine</name>
+    <message>
+      <location filename="ArchCutPlane.py" line="80"/>
+      <source>Cut with line</source>
+      <translation type="unfinished">Cut with line</translation>
+    </message>
+    <message>
+      <location filename="ArchCutPlane.py" line="83"/>
+      <source>Cut an object with a line</source>
+      <translation type="unfinished">Cut an object with a line</translation>
+    </message>
+  </context>
+  <context>
     <name>Arch_CutPlane</name>
     <message>
       <location filename="ArchCutPlane.py" line="79"/>
@@ -4185,6 +4213,16 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
   </context>
   <context>
     <name>Arch_Grid</name>
+    <message>
+      <location filename="ArchGrid.py" line="68"/>
+      <source>Grid</source>
+      <translation>Cuadrícula</translation>
+    </message>
+    <message>
+      <location filename="ArchGrid.py" line="72"/>
+      <source>Creates a customizable grid object</source>
+      <translation>Crea un objeto cuadrícula personalizable</translation>
+    </message>
     <message>
       <location filename="ArchAxis.py" line="1135"/>
       <source>The number of rows</source>
@@ -4360,6 +4398,11 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <source>Panel Cut</source>
       <translation>Corte de panel</translation>
     </message>
+    <message>
+      <location filename="ArchPanel.py" line="339"/>
+      <source>Creates 2D views of selected panels</source>
+      <translation>Crea vistas 2D de los paneles seleccionados</translation>
+    </message>
   </context>
   <context>
     <name>Arch_Panel_Sheet</name>
@@ -4403,6 +4446,11 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <location filename="ArchPipe.py" line="145"/>
       <source>Connector</source>
       <translation>Conector</translation>
+    </message>
+    <message>
+      <location filename="ArchPipe.py" line="149"/>
+      <source>Creates a connector between 2 or 3 selected pipes</source>
+      <translation>Crea una conexión entre 2 o 3 tubos seleccionados</translation>
     </message>
   </context>
   <context>
@@ -4450,6 +4498,19 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <location filename="ArchRebar.py" line="108"/>
       <source>Creates a Reinforcement bar from the selected face of a structural object</source>
       <translation>Crea una barra de Refuerzo a partir de la cara seleccionada de un objeto estructural</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_RebarTools</name>
+    <message>
+      <location filename="InitGui.py" line="137"/>
+      <source>Rebar tools</source>
+      <translation>Herramientas Armadura</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="142"/>
+      <source>Create various types of rebars, including U-shaped, L-shaped, and stirrup</source>
+      <translation>Crear varios tipos de refuerzo, incluyendo forma-U, forma-L, y estribo</translation>
     </message>
   </context>
   <context>
@@ -4596,6 +4657,19 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
     </message>
   </context>
   <context>
+    <name>Arch_StructuralSystem</name>
+    <message>
+      <location filename="ArchStructure.py" line="233"/>
+      <source>Structural System</source>
+      <translation>Sistema estructural</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="236"/>
+      <source>Create a structural system object from a selected structure and axis</source>
+      <translation>Crea un objeto de sistema estructural a partir de una estructura y eje seleccionados</translation>
+    </message>
+  </context>
+  <context>
     <name>Arch_Structure</name>
     <message>
       <location filename="ArchStructure.py" line="196"/>
@@ -4631,6 +4705,27 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
       <location filename="ArchStructure.py" line="1472"/>
       <source>Structure tools</source>
       <translation>Herramientas de estructura</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructureTools</name>
+    <message>
+      <location filename="ArchStructure.py" line="1472"/>
+      <source>Structure tools</source>
+      <translation>Herramientas de estructura</translation>
+    </message>
+  </context>
+  <context>
+    <name>Arch_StructuresFromSelection</name>
+    <message>
+      <location filename="ArchStructure.py" line="196"/>
+      <source>Multiple Structures</source>
+      <translation>Múltiples estructuras</translation>
+    </message>
+    <message>
+      <location filename="ArchStructure.py" line="199"/>
+      <source>Create multiple Arch Structure objects from a selected base, using each selected edge as an extrusion path</source>
+      <translation>Crea varias estructuras de arco desde una base seleccionada, con cada borde seleccionado como ruta de extrusión</translation>
     </message>
   </context>
   <context>
@@ -4741,15 +4836,90 @@ Si Distancia = 0 entonces la distancia es calcula de forma que la altura sea igu
     <message>
       <location filename="InitGui.py" line="187"/>
       <source>Import-Export</source>
-      <translation>Importar/Exportar</translation>
+      <translation>Importar-Exportar</translation>
     </message>
   </context>
   <context>
     <name>Workbench</name>
     <message>
+      <location filename="InitGui.py" line="71"/>
+      <source>Structure tools</source>
+      <translation>Herramientas de estructura</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="85"/>
+      <source>Axis tools</source>
+      <translation>Herramientas de ejes</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="91"/>
+      <source>Panel tools</source>
+      <translation>Herramientas de panel</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="99"/>
+      <source>Material tools</source>
+      <translation>Herramientas de material</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="103"/>
+      <source>Pipe tools</source>
+      <translation>Herramientas de cañería</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="145"/>
+      <source>Rebar tools</source>
+      <translation>Herramientas Armadura</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="112"/>
       <source>Arch tools</source>
       <translation>Herramientas Arquitectura</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="162"/>
+      <source>Draft creation tools</source>
+      <translation>Herramientas de creación de borradores</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="165"/>
+      <source>Draft annotation tools</source>
+      <translation>Herramientas de anotación de borrador</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="168"/>
+      <source>Draft modification tools</source>
+      <translation>Herramientas de modificación de borrador</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="177"/>
+      <source>&amp;Arch</source>
+      <translation>&amp;Arquitectura</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="193"/>
+      <source>Utilities</source>
+      <translation>Utilidades</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="192"/>
+      <source>&amp;Draft</source>
+      <translation>&amp;Borrador</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="181"/>
+      <source>Creation</source>
+      <translation>Creación</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="185"/>
+      <source>Annotation</source>
+      <translation>Anotación</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="189"/>
+      <source>Modification</source>
+      <translation>Modificación</translation>
     </message>
   </context>
   <context>
@@ -5721,7 +5891,7 @@ en lugar del banco de trabajo web FreeCAD</translation>
       <location filename="../ui/preferences-archdefaults.ui" line="494"/>
       <location filename="../ui/preferences-archdefaults.ui" line="741"/>
       <source>Height:</source>
-      <translation>Alto:</translation>
+      <translation>Altura:</translation>
     </message>
     <message>
       <location filename="../ui/preferences-archdefaults.ui" line="103"/>
@@ -5901,14 +6071,14 @@ en lugar del banco de trabajo web FreeCAD</translation>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="41"/>
       <source>Show this dialog when importing</source>
-      <translation>Mostrar este diálogo al importar</translation>
+      <translation>Mostrar este cuadro de diálogo al importar</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="54"/>
       <source>Shows verbose debug messages during import and export
 of IFC files in the Report view panel</source>
       <translation>Muestra mensajes de depuración detallados durante la importación y exportación de
-de archivos IFC en el panel de vista de Informe</translation>
+de archivos IFC en el panel de vista de informes</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="58"/>
@@ -5941,11 +6111,11 @@ if you start getting crashes when you set multiple cores.</source>
       <translation>EXPERIMENTAL
 El número de núcleos a usar en modo multinúcleo.
 Mantenga 0 para desactivar el modo multinúcleo.
-El máximo valor debería ser el número de sus núcleos menos 1,
-por ejemplo, 3 si tienes un CPU de 4 núcleos.
+El valor máximo debe ser el número de núcleos menos 1,
+por ejemplo, 3 si tiene una CPU de 4 núcleos.
 
-Establezca 1 para usar modo de único núcleo en el modo multinúcleos 
-esto es más seguro si comienzas a obtener fallos cuando estableces múltiples núcleos.</translation>
+Establecer en 1 para usar modo multicore en modo de un solo núcleo; esto es más seguro
+si comienzas a obtener fallos cuando estableces múltiples núcleos.</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="129"/>
@@ -5960,50 +6130,50 @@ esto es más seguro si comienzas a obtener fallos cuando estableces múltiples n
     <message>
       <location filename="../ui/preferences-ifc.ui" line="165"/>
       <source>Import arch IFC objects as</source>
-      <translation>Importar arcos de objeto IFC como</translation>
+      <translation>Importar objetos de arquitectura IFC como</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="172"/>
       <location filename="../ui/preferences-ifc.ui" line="221"/>
       <source>Specifies what kind of objects will be created in FreeCAD</source>
-      <translation>Especifica qué objetos se crearán en FreeCAD</translation>
+      <translation>Especifica qué tipos de objetos serán creados en FreeCAD</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="182"/>
       <source>Parametric Arch objects</source>
-      <translation>Objetos Arch paramétricos</translation>
+      <translation>Objetos de arquitectura paramétricos</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="187"/>
       <location filename="../ui/preferences-ifc.ui" line="231"/>
       <source>Non-parametric Arch objects</source>
-      <translation>Objetos Arch no-paramétricos</translation>
+      <translation>Objetos de arquitectura no paramétricos</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="192"/>
       <location filename="../ui/preferences-ifc.ui" line="236"/>
       <source>Simple Part shapes</source>
-      <translation>Formas de piezas simples</translation>
+      <translation>Formas de pieza simples</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="197"/>
       <source>One compound per floor</source>
-      <translation>Uno compuesto por piso</translation>
+      <translation>Un compuesto por planta</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="202"/>
       <source>Do not import Arch objects</source>
-      <translation>No importar arcos de objetos</translation>
+      <translation>No importar objetos de arquitectura</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="214"/>
       <source>Import struct IFC objects as</source>
-      <translation>Importar estructura de objeto IFC como</translation>
+      <translation>Importar objetos de estructura IFC como</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="241"/>
       <source>One compound for all</source>
-      <translation>Uno compuesto por todos</translation>
+      <translation>Un compuesto para todos</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="246"/>
@@ -6026,7 +6196,7 @@ Mantenga el elemento IfcProduct para importar todos los elementos de construcci�
       <location filename="../ui/preferences-ifc.ui" line="284"/>
       <source>Openings will be imported as subtractions, otherwise wall shapes
 will already have their openings subtracted</source>
-      <translation>Las aperturas se importarán como restos, de lo contrario las formas de pared
+      <translation>Las aperturas se importarán como substracciones, de lo contrario las formas de muro
 ya tendrán sus aberturas restadas</translation>
     </message>
     <message>
@@ -6038,18 +6208,18 @@ ya tendrán sus aberturas restadas</translation>
       <location filename="../ui/preferences-ifc.ui" line="301"/>
       <source>The importer will try to detect extrusions.
 Note that this might slow things down.</source>
-      <translation>El importador intentará detectar extrusiones.
+      <translation>El importador tratará de detectar extrusiones.
 Tenga en cuenta que esto podría ralentizar las cosas.</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="305"/>
       <source>Detect extrusions</source>
-      <translation>Detectar extruciones</translation>
+      <translation>Detectar extrusiones</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="318"/>
       <source>Split walls made of multiple layers</source>
-      <translation>Dividir las paredes hechas de multiples capas</translation>
+      <translation>Separar muros hechos de multiples capas</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="321"/>
@@ -6059,12 +6229,12 @@ Tenga en cuenta que esto podría ralentizar las cosas.</translation>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="334"/>
       <source>Object names will be prefixed with the IFC ID number</source>
-      <translation>Los nombres de objetos serán precedidos por el número ID de IFC</translation>
+      <translation>Los nombres de objetos serán precedidos por el número de IFC ID</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="337"/>
       <source>Prefix names with ID number</source>
-      <translation>Nombres con prefijo ID number</translation>
+      <translation>Nombres prefijados con numeración ID</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="350"/>
@@ -6076,7 +6246,7 @@ serán tratados como uno solo.</translation>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="354"/>
       <source>Merge materials with same name and same color</source>
-      <translation>Combina materiales con el mismo nombre y el mismo color</translation>
+      <translation>Fusiona materiales con el mismo nombre y el mismo color</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="367"/>
@@ -6091,7 +6261,7 @@ serán tratados como uno solo.</translation>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="383"/>
       <source>IFC files can contain unclean or non-solid geometry. If this option is checked, all the geometry is imported, regardless of their validity.</source>
-      <translation>Los archivos IFC pueden contener geometría sucia o no sólida. Si esta opción está marcada, toda la geometría es importada, independientemente de su validez.</translation>
+      <translation>Los archivos IFC pueden contener geometría inocua o no sólida. Si esta opción está marcada, toda la geometría es importada, independientemente de su validez.</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="386"/>
@@ -6101,7 +6271,7 @@ serán tratados como uno solo.</translation>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="401"/>
       <source>Exclude list:</source>
-      <translation>Excluir lista:</translation>
+      <translation>Lista de exclusiones:</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="408"/>
@@ -6118,7 +6288,7 @@ Esto ralentizará la importación, pero uno puede ver la importación.</translat
     <message>
       <location filename="../ui/preferences-ifc.ui" line="433"/>
       <source>Fit view while importing</source>
-      <translation>Ajustar la vista durante la importación</translation>
+      <translation>Ajustar vista al importar</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="446"/>
@@ -6138,10 +6308,10 @@ propiedades de objeto FreeCAD almacenadas</translation>
 objects that are usually found in an IFC file are not imported, and all objects
 are placed in a 'Group' instead.
 'Buildings' and 'Storeys' are still imported if there is more than one.</source>
-      <translation>Si esta opción está marcada, el 'Project' por defecto, 'Site', 'Building', y los objetos 'Storeys'
- que habitualmente encontramos en un archivo IFC no son importados, y todos los objetos
-se colocan en 'Group' en su lugar.
- 'Building' y 'Storeys"' siguen siendo importados si hay más de uno.</translation>
+      <translation>Si esta opción está marcada, el 'Project', 'Site', 'Building', y 'Storeys'
+objetos que generalmente se encuentran en un archivo IFC no son importados, y todos los objetos
+se colocan en un 'Group'.
+Los 'Buildings' y 'Storeys' siguen siendo importados si hay más de uno.</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc.ui" line="469"/>
@@ -6294,7 +6464,7 @@ El gradiente del tamaño de la malla local h(x) está enlazado por |► h(x)| �
     <message>
       <location filename="../ui/preferences-ifc-export.ui" line="41"/>
       <source>Show this dialog when exporting</source>
-      <translation>Mostrar este diálogo al exportar</translation>
+      <translation>Mostrar este cuadro de diálogo al exportar</translation>
     </message>
     <message>
       <location filename="../ui/preferences-ifc-export.ui" line="65"/>

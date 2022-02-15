@@ -2,6 +2,140 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru" sourcelanguage="en">
   <context>
+    <name>MoveView</name>
+    <message>
+      <location filename="CommandMoveView.py" line="47"/>
+      <source>Move View</source>
+      <translation>Переместить вид</translation>
+    </message>
+    <message>
+      <location filename="CommandMoveView.py" line="50"/>
+      <source>Move a View to a new Page</source>
+      <translation>Переместить Вид на новую Страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="47"/>
+      <source>Move View to a different Page</source>
+      <translation>Переместить Вид на другую Страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="74"/>
+      <source>Select View to move from list.</source>
+      <translation>Выберите Вид для удаления из списка.</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="75"/>
+      <source>Select View</source>
+      <translation>Выбрать вид</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="93"/>
+      <source>Select From Page.</source>
+      <translation>Выберите со страницы.</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="113"/>
+      <source>Select Page</source>
+      <translation>Выбрать страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskMoveView.py" line="112"/>
+      <source>Select To Page.</source>
+      <translation>Выберите для страницы.</translation>
+    </message>
+  </context>
+  <context>
+    <name>ShareView</name>
+    <message>
+      <location filename="CommandShareView.py" line="47"/>
+      <source>Share View</source>
+      <translation type="unfinished">Share View</translation>
+    </message>
+    <message>
+      <location filename="CommandShareView.py" line="50"/>
+      <source>Share a View on a second Page</source>
+      <translation type="unfinished">Share a View on a second Page</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="46"/>
+      <source>Share View with another Page</source>
+      <translation type="unfinished">Share View with another Page</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="47"/>
+      <source>View to share</source>
+      <translation type="unfinished">View to share</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="74"/>
+      <source>Select View to share from list.</source>
+      <translation type="unfinished">Select View to share from list.</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="75"/>
+      <source>Select View</source>
+      <translation>Выбрать вид</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="93"/>
+      <source>Select From Page.</source>
+      <translation>Выберите со страницы.</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="113"/>
+      <source>Select Page</source>
+      <translation>Выбрать страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskShareView.py" line="112"/>
+      <source>Select To Page.</source>
+      <translation>Выберите для страницы.</translation>
+    </message>
+  </context>
+  <context>
+    <name>CopyView</name>
+    <message>
+      <location filename="CommandCopyView.py" line="47"/>
+      <source>Copy View</source>
+      <translation>Копировать вид</translation>
+    </message>
+    <message>
+      <location filename="CommandCopyView.py" line="50"/>
+      <source>Copy a View to a second Page</source>
+      <translation>Скопировать вид на вторую страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="46"/>
+      <source>Copy View to a second Page</source>
+      <translation>Скопировать вид на вторую страницу</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="73"/>
+      <source>Select View to copy from list.</source>
+      <translation>Выберите Вид для копирования из списка.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="74"/>
+      <source>Select View</source>
+      <translation>Выбрать вид</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="92"/>
+      <source>Select From Page.</source>
+      <translation>Выберите со страницы.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="111"/>
+      <source>Select To Page.</source>
+      <translation>Выберите для страницы.</translation>
+    </message>
+    <message>
+      <location filename="TaskCopyView.py" line="112"/>
+      <source>Select Page</source>
+      <translation>Выбрать страницу</translation>
+    </message>
+  </context>
+  <context>
     <name>Cmd2LineCenterLine</name>
     <message>
       <source>Add Centerline between 2 Lines</source>
@@ -1539,11 +1673,11 @@
     </message>
     <message>
       <source>Selection is empty</source>
-      <translation type="unfinished">Selection is empty</translation>
+      <translation>Пустое выделение</translation>
     </message>
     <message>
       <source>No object selected</source>
-      <translation type="unfinished">No object selected</translation>
+      <translation>Объект не выбран</translation>
     </message>
     <message>
       <source>TechDraw Thread Hole Side</source>
@@ -1563,7 +1697,7 @@
     </message>
     <message>
       <source>Please select two straight lines</source>
-      <translation type="unfinished">Please select two straight lines</translation>
+      <translation>Пожалуйста, выберите две прямые линии</translation>
     </message>
   </context>
   <context>

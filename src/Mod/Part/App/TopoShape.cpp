@@ -1661,6 +1661,7 @@ bool TopoShape::analyze(bool runBopCheck, std::ostream& str) const
 #endif
 #if OCC_VERSION_HEX >= 0x060900
             BOPCheck.SetParallelMode(true); //this doesn't help for speed right now(occt 6.9.1).
+            BOPCheck.SetRunParallel(true); //performance boost, use all available cores
             BOPCheck.TangentMode() = true; //these 4 new tests add about 5% processing time.
             BOPCheck.MergeVertexMode() = true;
             BOPCheck.CurveOnSurfaceMode() = true;
@@ -3613,7 +3614,9 @@ void TopoShape::setFaces(const std::vector<Base::Vector3d> &Points,
             Edges[key2] = edge;
         }
         else {
-            Edges[key2] = BRepBuilderAPI_MakeEdge(Vertexes[p1], Vertexes[p2]);
+            BRepBuilderAPI_MakeEdge mkEdge(Vertexes[p1], Vertexes[p2]);
+            if (mkEdge.IsDone())
+                Edges[key2] = mkEdge.Edge();
         }
     };
     auto GetEdge = [&Edges](uint32_t p1, uint32_t p2) {
@@ -3637,10 +3640,14 @@ void TopoShape::setFaces(const std::vector<Base::Vector3d> &Points,
         p2.SetCoord(x2,y2,z2);
         p3.SetCoord(x3,y3,z3);
 
-        if ((!(p1.IsEqual(p2,0.0))) && (!(p1.IsEqual(p3,0.0)))) {
+        // Avoid very tiny edges as this may result into broken faces. The tolerance is Approximation
+        // because Confusion might be too tight.
+        if ((!(p1.IsEqual(p2, Precision::Approximation()))) && (!(p1.IsEqual(p3, Precision::Approximation())))) {
             const TopoDS_Edge& e1 = GetEdge(it->I1, it->I2);
             const TopoDS_Edge& e2 = GetEdge(it->I2, it->I3);
             const TopoDS_Edge& e3 = GetEdge(it->I3, it->I1);
+            if (e1.IsNull() || e2.IsNull() || e3.IsNull())
+                continue;
 
             newWire = BRepBuilderAPI_MakeWire(e1, e2, e3);
             if (!newWire.IsNull()) {
@@ -4290,7 +4297,8 @@ bool TopoShape::_makETransform(const TopoShape &shape,
         const Base::Matrix4D &rclTrf, const char *op, bool checkScale, bool copy)
 {
     if(checkScale) {
-        if(rclTrf.hasScale()<0) {
+        auto type = rclTrf.hasScale();
+        if (type != Base::ScaleType::Uniform && type != Base::ScaleType::NoScaling) {
             makEGTransform(shape,rclTrf,op,copy);
             return true;
         }

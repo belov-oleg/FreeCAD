@@ -47,6 +47,7 @@
 #include "Command.h"
 #include <Base/Tools.h>
 #include <Base/Exception.h>
+#include <Base/UnitsApi.h>
 #include <App/Application.h>
 #include <App/Document.h>
 #include <App/DocumentObject.h>
@@ -64,13 +65,14 @@ namespace Gui {
 class QuantitySpinBoxPrivate
 {
 public:
-    QuantitySpinBoxPrivate() :
+    QuantitySpinBoxPrivate(QuantitySpinBox *q) :
       validInput(true),
       pendingEmit(false),
       unitValue(0),
       maximum(DOUBLE_MAX),
       minimum(-DOUBLE_MAX),
-      singleStep(1.0)
+      singleStep(1.0),
+      q_ptr(q)
     {
     }
     ~QuantitySpinBoxPrivate()
@@ -89,6 +91,8 @@ public:
 
     bool validate(QString& input, Base::Quantity& result) const
     {
+        Q_Q(const QuantitySpinBox);
+
         // Do not accept empty strings because the parser will consider
         // " unit" as "1 unit" which is not the desired behaviour (see #0004104)
         if (input.isEmpty())
@@ -96,29 +100,59 @@ public:
 
         bool success = false;
         QString tmp = input;
-        int pos = 0;
-        QValidator::State state;
-        Base::Quantity res = validateAndInterpret(tmp, pos, state);
-        res.setFormat(quantity.getFormat());
-        if (state == QValidator::Acceptable) {
-            success = true;
-            result = res;
-            input = tmp;
-        }
-        else if (state == QValidator::Intermediate) {
-            tmp = tmp.trimmed();
-            tmp += QLatin1Char(' ');
-            tmp += unitStr;
-            Base::Quantity res2 = validateAndInterpret(tmp, pos, state);
-            res2.setFormat(quantity.getFormat());
+
+        auto validateInput = [&](QString& tmp) -> QValidator::State {
+            int pos = 0;
+            QValidator::State state;
+            Base::Quantity res = validateAndInterpret(tmp, pos, state);
+            res.setFormat(quantity.getFormat());
             if (state == QValidator::Acceptable) {
                 success = true;
-                result = res2;
+                result = res;
                 input = tmp;
+            }
+            return state;
+        };
+
+        QValidator::State state = validateInput(tmp);
+        if (state == QValidator::Intermediate) {
+            if (!q->hasExpression()) {
+                tmp = tmp.trimmed();
+                tmp += QLatin1Char(' ');
+                tmp += unitStr;
+                validateInput(tmp);
+            }
+            else {
+                // Accept the expression as it is but try to add the right unit string
+                success = true;
+
+                Base::Quantity quantity;
+                double value;
+                if (parseString(input, quantity, value)) {
+                    quantity.setUnit(unit);
+                    result = quantity;
+
+                    // Now translate the quantity into its string representation using the user-defined unit system
+                    input = Base::UnitsApi::schemaTranslate(result);
+                }
             }
         }
 
         return success;
+    }
+    bool parseString(const QString& str, Base::Quantity& result, double& value) const
+    {
+        try {
+            QString copy = str;
+            copy.remove(locale.groupSeparator());
+
+            result = Base::Quantity::parse(copy);
+            value = result.getValue();
+            return true;
+        }
+        catch (Base::ParserError&) {
+            return false;
+        }
     }
     Base::Quantity validateAndInterpret(QString& input, int& pos, QValidator::State& state) const
     {
@@ -199,24 +233,13 @@ public:
                 }
             }
 
-            bool ok = false;
-            double value = min;
-
             if (locale.negativeSign() != QLatin1Char('-'))
                 copy.replace(locale.negativeSign(), QLatin1Char('-'));
             if (locale.positiveSign() != QLatin1Char('+'))
                 copy.replace(locale.positiveSign(), QLatin1Char('+'));
 
-            try {
-                QString copy2 = copy;
-                copy2.remove(locale.groupSeparator());
-
-                res = Base::Quantity::parse(copy2);
-                value = res.getValue();
-                ok = true;
-            }
-            catch (Base::Exception&) {
-            }
+            double value = min;
+            bool ok = parseString(copy, res, value);
 
             if (!ok) {
                 // input may not be finished
@@ -284,14 +307,16 @@ end:
     double maximum;
     double minimum;
     double singleStep;
+    QuantitySpinBox *q_ptr;
     std::unique_ptr<Base::UnitsSchema> scheme;
+    Q_DECLARE_PUBLIC(QuantitySpinBox)
 };
 }
 
 QuantitySpinBox::QuantitySpinBox(QWidget *parent)
     : QAbstractSpinBox(parent),
       ExpressionSpinBox(this),
-      d_ptr(new QuantitySpinBoxPrivate())
+      d_ptr(new QuantitySpinBoxPrivate(this))
 {
     d_ptr->locale = locale();
     this->setContextMenuPolicy(Qt::DefaultContextMenu);
@@ -529,7 +554,7 @@ void QuantitySpinBox::userInput(const QString & text)
 
     if (keyboardTracking()) {
         d->cached = res;
-        handlePendingEmit();
+        handlePendingEmit(false);
     }
     else {
         d->cached = res;
@@ -560,18 +585,19 @@ void QuantitySpinBox::openFormulaDialog()
     Q_EMIT showFormulaDialog(true);
 }
 
-void QuantitySpinBox::handlePendingEmit()
+void QuantitySpinBox::handlePendingEmit(bool updateUnit /* = true */)
 {
-    updateFromCache(true);
+    updateFromCache(true, updateUnit);
 }
 
-void QuantitySpinBox::updateFromCache(bool notify)
+void QuantitySpinBox::updateFromCache(bool notify, bool updateUnit /* = true */)
 {
     Q_D(QuantitySpinBox);
     if (d->pendingEmit) {
         double factor;
         const Base::Quantity& res = d->cached;
-        QString text = getUserString(res, factor, d->unitStr);
+        auto tmpUnit(d->unitStr);
+        QString text = getUserString(res, factor, updateUnit ? d->unitStr : tmpUnit);
         d->unitValue = res.getValue() / factor;
         d->quantity = res;
 
@@ -606,7 +632,7 @@ void QuantitySpinBox::setUnitText(const QString& str)
         Base::Quantity quant = Base::Quantity::parse(str);
         setUnit(quant.getUnit());
     }
-    catch (const Base::Exception&) {
+    catch (const Base::ParserError&) {
     }
 }
 
@@ -757,7 +783,8 @@ void QuantitySpinBox::stepBy(int steps)
     else if (val < d->minimum)
         val = d->minimum;
 
-    lineEdit()->setText(QString::fromUtf8("%L1 %2").arg(val).arg(d->unitStr));
+    Quantity quant(val, d->unitStr);
+    updateText(quant);
     updateFromCache(true);
     update();
     selectNumber();

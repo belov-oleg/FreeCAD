@@ -214,6 +214,21 @@
       <translation type="unfinished">The Z height of the hop</translation>
     </message>
     <message>
+      <location filename="PathFeatureExtensions.py" line="517"/>
+      <source>Default length of extensions.</source>
+      <translation type="unfinished">Default length of extensions.</translation>
+    </message>
+    <message>
+      <location filename="PathFeatureExtensions.py" line="524"/>
+      <source>List of features to extend.</source>
+      <translation type="unfinished">List of features to extend.</translation>
+    </message>
+    <message>
+      <location filename="PathAdaptive.py" line="1039"/>
+      <source>Stop processing</source>
+      <translation>Lopeta käsittely</translation>
+    </message>
+    <message>
       <location filename="PathProbe.py" line="58"/>
       <source>X offset between tool and probe</source>
       <translation type="unfinished">X offset between tool and probe</translation>
@@ -237,6 +252,136 @@
       <location filename="PathProbe.py" line="62"/>
       <source>The output location for the probe data to be written</source>
       <translation type="unfinished">The output location for the probe data to be written</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="108"/>
+      <source>The base geometry for this operation</source>
+      <translation type="unfinished">The base geometry for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="119"/>
+      <source>Holds the calculated value for the StartDepth</source>
+      <translation type="unfinished">Holds the calculated value for the StartDepth</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="129"/>
+      <source>Holds the calculated value for the FinalDepth</source>
+      <translation type="unfinished">Holds the calculated value for the FinalDepth</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="137"/>
+      <source>Holds the diameter of the tool</source>
+      <translation type="unfinished">Holds the diameter of the tool</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="145"/>
+      <source>Holds the max Z value of Stock</source>
+      <translation type="unfinished">Holds the max Z value of Stock</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="152"/>
+      <source>Holds the min Z value of Stock</source>
+      <translation type="unfinished">Holds the min Z value of Stock</translation>
+    </message>
+    <message>
+      <location filename="PathPlane.py" line="39"/>
+      <source>Make False, to prevent operation from generating code</source>
+      <translation type="unfinished">Make False, to prevent operation from generating code</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="173"/>
+      <source>An optional comment for this Operation</source>
+      <translation type="unfinished">An optional comment for this Operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="179"/>
+      <source>User Assigned Label</source>
+      <translation type="unfinished">User Assigned Label</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="498"/>
+      <source>Operations Cycle Time Estimation</source>
+      <translation type="unfinished">Operations Cycle Time Estimation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="199"/>
+      <source>Base locations for this operation</source>
+      <translation type="unfinished">Base locations for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="219"/>
+      <source>Coolant mode for this operation</source>
+      <translation type="unfinished">Coolant mode for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="229"/>
+      <source>Starting Depth of Tool- first cut depth in Z</source>
+      <translation type="unfinished">Starting Depth of Tool- first cut depth in Z</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="237"/>
+      <source>Final Depth of Tool- lowest value in Z</source>
+      <translation type="unfinished">Final Depth of Tool- lowest value in Z</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="262"/>
+      <source>Incremental Step Down of Tool</source>
+      <translation type="unfinished">Incremental Step Down of Tool</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="272"/>
+      <source>Maximum material removed on final pass.</source>
+      <translation type="unfinished">Maximum material removed on final pass.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="291"/>
+      <source>Rapid Safety Height between locations.</source>
+      <translation type="unfinished">Rapid Safety Height between locations.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="299"/>
+      <source>The start point of this path</source>
+      <translation type="unfinished">The start point of this path</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="317"/>
+      <source>Lower limit of the turning diameter</source>
+      <translation type="unfinished">Lower limit of the turning diameter</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="325"/>
+      <source>Upper limit of the turning diameter.</source>
+      <translation type="unfinished">Upper limit of the turning diameter.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="435"/>
+      <source>Coolant option for this operation</source>
+      <translation type="unfinished">Coolant option for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathEngrave.py" line="82"/>
+      <source>Additional base objects to be engraved</source>
+      <translation type="unfinished">Additional base objects to be engraved</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="235"/>
+      <source>The deflection value for discretizing arcs</source>
+      <translation>Kaarien diskretisoinnin poikkeama-arvo</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="251"/>
+      <source>Vcarve Tolerance</source>
+      <translation type="unfinished">Vcarve Tolerance</translation>
+    </message>
+    <message>
+      <location filename="PathDressupAxisMap.py" line="63"/>
+      <source>The input mapping axis</source>
+      <translation type="unfinished">The input mapping axis</translation>
+    </message>
+    <message>
+      <location filename="PathDressupAxisMap.py" line="69"/>
+      <source>The radius of the wrapped axis</source>
+      <translation type="unfinished">The radius of the wrapped axis</translation>
     </message>
     <message>
       <location filename="PathDressupLeadInOut.py" line="60"/>
@@ -264,6 +409,21 @@
       <translation type="unfinished">Length or Radius of the approach</translation>
     </message>
     <message>
+      <location filename="PathDressupLeadInOut.py" line="108"/>
+      <source>The Style of motion into the Path</source>
+      <translation type="unfinished">The Style of motion into the Path</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="115"/>
+      <source>The Style of motion out of the Path</source>
+      <translation type="unfinished">The Style of motion out of the Path</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="124"/>
+      <source>The Mode of Point Radiusoffset or Center</source>
+      <translation type="unfinished">The Mode of Point Radiusoffset or Center</translation>
+    </message>
+    <message>
       <location filename="PathDressupLeadInOut.py" line="72"/>
       <source>Extends LeadIn distance</source>
       <translation type="unfinished">Extends LeadIn distance</translation>
@@ -289,14 +449,39 @@
       <translation type="unfinished">Fixture Offset Number</translation>
     </message>
     <message>
-      <location filename="PathPlane.py" line="39"/>
-      <source>Make False, to prevent operation from generating code</source>
-      <translation type="unfinished">Make False, to prevent operation from generating code</translation>
+      <location filename="PathToolBit.py" line="145"/>
+      <source>Shape for bit shape</source>
+      <translation type="unfinished">Shape for bit shape</translation>
+    </message>
+    <message>
+      <location filename="PathToolBit.py" line="153"/>
+      <source>The parametrized body representing the tool bit</source>
+      <translation type="unfinished">The parametrized body representing the tool bit</translation>
+    </message>
+    <message>
+      <location filename="PathToolBit.py" line="159"/>
+      <source>The file of the tool</source>
+      <translation type="unfinished">The file of the tool</translation>
+    </message>
+    <message>
+      <location filename="PathToolBit.py" line="165"/>
+      <source>The name of the shape file</source>
+      <translation type="unfinished">The name of the shape file</translation>
+    </message>
+    <message>
+      <location filename="PathToolBit.py" line="211"/>
+      <source>List of all properties inherited from the bit</source>
+      <translation type="unfinished">List of all properties inherited from the bit</translation>
     </message>
     <message>
       <location filename="PathCustom.py" line="56"/>
       <source>The gcode to be inserted</source>
       <translation type="unfinished">The gcode to be inserted</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="65"/>
+      <source>Angle of ramp.</source>
+      <translation>Rampin kulma.</translation>
     </message>
     <message>
       <location filename="PathDressupRampEntry.py" line="71"/>
@@ -312,6 +497,36 @@
       <location filename="PathDressupRampEntry.py" line="85"/>
       <source>Custom feed rate</source>
       <translation>Mukautettu syötteen nopeus</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="131"/>
+      <source>Width of tags.</source>
+      <translation type="unfinished">Width of tags.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="137"/>
+      <source>Height of tags.</source>
+      <translation type="unfinished">Height of tags.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="143"/>
+      <source>Angle of tag plunge and ascent.</source>
+      <translation type="unfinished">Angle of tag plunge and ascent.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="149"/>
+      <source>Radius of the fillet for the tag.</source>
+      <translation type="unfinished">Radius of the fillet for the tag.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="155"/>
+      <source>Locations of inserted holding tags</source>
+      <translation type="unfinished">Locations of inserted holding tags</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="161"/>
+      <source>IDs of disabled holding tags</source>
+      <translation type="unfinished">IDs of disabled holding tags</translation>
     </message>
     <message>
       <location filename="PathDrilling.py" line="60"/>
@@ -377,6 +592,11 @@
       <location filename="PathWaterline.py" line="160"/>
       <source>Ignore outer waterlines above this height.</source>
       <translation type="unfinished">Ignore outer waterlines above this height.</translation>
+    </message>
+    <message>
+      <location filename="PathPocketShape.py" line="71"/>
+      <source>Uses the outline of the base geometry.</source>
+      <translation type="unfinished">Uses the outline of the base geometry.</translation>
     </message>
     <message>
       <location filename="PathCollision.py" line="59"/>
@@ -447,21 +667,6 @@
       <location filename="PathSlot.py" line="138"/>
       <source>The custom start point for the path of this operation</source>
       <translation type="unfinished">The custom start point for the path of this operation</translation>
-    </message>
-    <message>
-      <location filename="PathPocket.py" line="65"/>
-      <source>Use adaptive algorithm to eliminate excessive air milling above planar pocket top.</source>
-      <translation type="unfinished">Use adaptive algorithm to eliminate excessive air milling above planar pocket top.</translation>
-    </message>
-    <message>
-      <location filename="PathPocket.py" line="67"/>
-      <source>Use adaptive algorithm to eliminate excessive air milling below planar pocket bottom.</source>
-      <translation type="unfinished">Use adaptive algorithm to eliminate excessive air milling below planar pocket bottom.</translation>
-    </message>
-    <message>
-      <location filename="PathPocket.py" line="69"/>
-      <source>Process the model and stock in an operation with no Base Geometry selected.</source>
-      <translation type="unfinished">Process the model and stock in an operation with no Base Geometry selected.</translation>
     </message>
     <message>
       <location filename="PathComment.py" line="41"/>
@@ -549,6 +754,31 @@
       <translation type="unfinished">Attempts to avoid unnecessary retractions.</translation>
     </message>
     <message>
+      <location filename="PathDressupDogbone.py" line="441"/>
+      <source>The side of path to insert bones</source>
+      <translation type="unfinished">The side of path to insert bones</translation>
+    </message>
+    <message>
+      <location filename="PathDressupDogbone.py" line="449"/>
+      <source>The style of bones</source>
+      <translation type="unfinished">The style of bones</translation>
+    </message>
+    <message>
+      <location filename="PathDressupDogbone.py" line="459"/>
+      <source>Bones that aren't dressed up</source>
+      <translation type="unfinished">Bones that aren't dressed up</translation>
+    </message>
+    <message>
+      <location filename="PathDressupDogbone.py" line="469"/>
+      <source>The algorithm to determine the bone length</source>
+      <translation type="unfinished">The algorithm to determine the bone length</translation>
+    </message>
+    <message>
+      <location filename="PathDressupDogbone.py" line="479"/>
+      <source>Dressup length if Incision == custom</source>
+      <translation type="unfinished">Dressup length if Incision == custom</translation>
+    </message>
+    <message>
       <location filename="PathStop.py" line="36"/>
       <source>Add Optional or Mandatory Stop to the program</source>
       <translation type="unfinished">Add Optional or Mandatory Stop to the program</translation>
@@ -619,6 +849,96 @@
       <translation type="unfinished">Seed value for jitter randomness</translation>
     </message>
     <message>
+      <location filename="PathPropertyBag.py" line="77"/>
+      <source>List of custom property groups</source>
+      <translation type="unfinished">List of custom property groups</translation>
+    </message>
+    <message>
+      <location filename="PathDressupZCorrect.py" line="73"/>
+      <source>The point file from the surface probing.</source>
+      <translation type="unfinished">The point file from the surface probing.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupZCorrect.py" line="83"/>
+      <source>Deflection distance for arc interpolation</source>
+      <translation type="unfinished">Deflection distance for arc interpolation</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="246"/>
+      <source>Set thread orientation</source>
+      <translation type="unfinished">Set thread orientation</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="253"/>
+      <source>Currently only internal</source>
+      <translation type="unfinished">Currently only internal</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="262"/>
+      <source>Defines which standard thread was chosen</source>
+      <translation type="unfinished">Defines which standard thread was chosen</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="268"/>
+      <source>Set thread's major diameter</source>
+      <translation type="unfinished">Set thread's major diameter</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="274"/>
+      <source>Set thread's minor diameter</source>
+      <translation type="unfinished">Set thread's minor diameter</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="282"/>
+      <source>Set thread's pitch - used for metric threads</source>
+      <translation type="unfinished">Set thread's pitch - used for metric threads</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="307"/>
+      <source>Set how many passes are used to cut the thread</source>
+      <translation type="unfinished">Set how many passes are used to cut the thread</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="313"/>
+      <source>Direction of thread cutting operation</source>
+      <translation type="unfinished">Direction of thread cutting operation</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="330"/>
+      <source>Operation to clear the inside of the thread</source>
+      <translation type="unfinished">Operation to clear the inside of the thread</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="126"/>
+      <source>The desired width of the chamfer</source>
+      <translation type="unfinished">The desired width of the chamfer</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="132"/>
+      <source>The additional depth of the tool path</source>
+      <translation type="unfinished">The additional depth of the tool path</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="138"/>
+      <source>How to join chamfer segments</source>
+      <translation type="unfinished">How to join chamfer segments</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="146"/>
+      <source>Direction of Operation</source>
+      <translation type="unfinished">Direction of Operation</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="153"/>
+      <source>Side of Operation</source>
+      <translation type="unfinished">Side of Operation</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="163"/>
+      <source>Select the segment, there the operations starts</source>
+      <translation type="unfinished">Select the segment, there the operations starts</translation>
+    </message>
+    <message>
       <location filename="PathStock.py" line="111"/>
       <source>The base object this stock is derived from</source>
       <translation type="unfinished">The base object this stock is derived from</translation>
@@ -659,6 +979,131 @@
       <translation type="unfinished">Internal representation of stock type</translation>
     </message>
     <message>
+      <location filename="PathAreaOp.py" line="148"/>
+      <source>Split Arcs into discrete segments</source>
+      <translation type="unfinished">Split Arcs into discrete segments</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="69"/>
+      <source>The active tool</source>
+      <translation type="unfinished">The active tool</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="78"/>
+      <source>The speed of the cutting spindle in RPM</source>
+      <translation type="unfinished">The speed of the cutting spindle in RPM</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="84"/>
+      <source>Direction of spindle rotation</source>
+      <translation type="unfinished">Direction of spindle rotation</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="90"/>
+      <source>Feed rate for vertical moves in Z</source>
+      <translation type="unfinished">Feed rate for vertical moves in Z</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="96"/>
+      <source>Feed rate for horizontal moves</source>
+      <translation type="unfinished">Feed rate for horizontal moves</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="102"/>
+      <source>Rapid rate for vertical moves in Z</source>
+      <translation type="unfinished">Rapid rate for vertical moves in Z</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="108"/>
+      <source>Rapid rate for horizontal moves</source>
+      <translation type="unfinished">Rapid rate for horizontal moves</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="324"/>
+      <source>The tool used by this controller</source>
+      <translation type="unfinished">The tool used by this controller</translation>
+    </message>
+    <message>
+      <location filename="PathCircularHoleBase.py" line="80"/>
+      <source>List of disabled features</source>
+      <translation type="unfinished">List of disabled features</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="117"/>
+      <source>The NC output file for this project</source>
+      <translation type="unfinished">The NC output file for this project</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="123"/>
+      <source>Select the Post Processor</source>
+      <translation type="unfinished">Select the Post Processor</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="145"/>
+      <source>Last Time the Job was post-processed</source>
+      <translation type="unfinished">Last Time the Job was post-processed</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="153"/>
+      <source>An optional description for this job</source>
+      <translation type="unfinished">An optional description for this job</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="159"/>
+      <source>Job Cycle Time Estimation</source>
+      <translation type="unfinished">Job Cycle Time Estimation</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="176"/>
+      <source>Solid object to be used as stock.</source>
+      <translation type="unfinished">Solid object to be used as stock.</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="540"/>
+      <source>Select the Type of Job</source>
+      <translation type="unfinished">Select the Type of Job</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="531"/>
+      <source>Split output into multiple gcode files</source>
+      <translation type="unfinished">Split output into multiple gcode files</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="520"/>
+      <source>If multiple WCS, order the output this way</source>
+      <translation type="unfinished">If multiple WCS, order the output this way</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="509"/>
+      <source>The Work Coordinate Systems for the Job</source>
+      <translation type="unfinished">The Work Coordinate Systems for the Job</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="304"/>
+      <source>SetupSheet holding the settings for this job</source>
+      <translation type="unfinished">SetupSheet holding the settings for this job</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="327"/>
+      <source>The base objects for all operations</source>
+      <translation type="unfinished">The base objects for all operations</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="363"/>
+      <source>Collection of all tool controllers for the job</source>
+      <translation type="unfinished">Collection of all tool controllers for the job</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="119"/>
+      <source>Start cutting from the inside or outside</source>
+      <translation type="unfinished">Start cutting from the inside or outside</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="156"/>
+      <source>Starting Radius</source>
+      <translation type="unfinished">Starting Radius</translation>
+    </message>
+    <message>
       <location filename="PathProfile.py" line="137"/>
       <source>Maximum distance before a miter join is truncated</source>
       <translation type="unfinished">Maximum distance before a miter join is truncated</translation>
@@ -688,6 +1133,26 @@
       <source>Make True, if using Cutter Radius Compensation</source>
       <translation type="unfinished">Make True, if using Cutter Radius Compensation</translation>
     </message>
+    <message>
+      <location filename="PathEngrave.py" line="94"/>
+      <source>The vertex index to start the path from</source>
+      <translation type="unfinished">The vertex index to start the path from</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="65"/>
+      <source>Use adaptive algorithm to eliminate excessive air milling above planar pocket top.</source>
+      <translation type="unfinished">Use adaptive algorithm to eliminate excessive air milling above planar pocket top.</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="67"/>
+      <source>Use adaptive algorithm to eliminate excessive air milling below planar pocket bottom.</source>
+      <translation type="unfinished">Use adaptive algorithm to eliminate excessive air milling below planar pocket bottom.</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="69"/>
+      <source>Process the model and stock in an operation with no Base Geometry selected.</source>
+      <translation type="unfinished">Process the model and stock in an operation with no Base Geometry selected.</translation>
+    </message>
   </context>
   <context>
     <name>Path</name>
@@ -695,11 +1160,6 @@
       <location filename="PathEngraveGui.py" line="64"/>
       <source>%s is not a Base Model object of the job %s</source>
       <translation type="unfinished">%s is not a Base Model object of the job %s</translation>
-    </message>
-    <message>
-      <location filename="PathEngraveGui.py" line="67"/>
-      <source>Base shape %s already in the list</source>
-      <translation type="unfinished">Base shape %s already in the list</translation>
     </message>
     <message>
       <location filename="PathEngraveGui.py" line="74"/>
@@ -710,6 +1170,11 @@
       <location filename="PathJobGui.py" line="282"/>
       <source>Edit</source>
       <translation>Muokkaa</translation>
+    </message>
+    <message>
+      <location filename="PathEngraveGui.py" line="67"/>
+      <source>Base shape %s already in the list</source>
+      <translation type="unfinished">Base shape %s already in the list</translation>
     </message>
     <message>
       <location filename="PathUtils.py" line="184"/>
@@ -745,11 +1210,6 @@
       <location filename="PathUtils.py" line="767"/>
       <source>Cutting Edge Angle (%.2f) results in negative tool tip length</source>
       <translation type="unfinished">Cutting Edge Angle (%.2f) results in negative tool tip length</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitLibraryGui.py" line="77"/>
-      <source>Choose a writable location for your toolbits</source>
-      <translation type="unfinished">Choose a writable location for your toolbits</translation>
     </message>
     <message>
       <location filename="PathOp.py" line="570"/>
@@ -807,24 +1267,19 @@
       <translation type="unfinished">Profile entire model, selected face(s) or selected edge(s)</translation>
     </message>
     <message>
-      <location filename="PathPocket.py" line="206"/>
-      <source>A planar adaptive start is unavailable. The non-planar will be attempted.</source>
-      <translation type="unfinished">A planar adaptive start is unavailable. The non-planar will be attempted.</translation>
-    </message>
-    <message>
-      <location filename="PathPocket.py" line="233"/>
-      <source>The non-planar adaptive start is also unavailable.</source>
-      <translation type="unfinished">The non-planar adaptive start is also unavailable.</translation>
-    </message>
-    <message>
       <location filename="PathToolBitGui.py" line="204"/>
       <source>Invalid Filename</source>
       <translation type="unfinished">Invalid Filename</translation>
     </message>
     <message>
-      <location filename="PathCircularHoleBase.py" line="80"/>
-      <source>List of disabled features</source>
-      <translation type="unfinished">List of disabled features</translation>
+      <location filename="PathDeburr.py" line="185"/>
+      <source>CW</source>
+      <translation type="unfinished">CW</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="186"/>
+      <source>CCW</source>
+      <translation type="unfinished">CCW</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="114"/>
@@ -852,19 +1307,9 @@
       <translation>Uudet toiminnot</translation>
     </message>
     <message>
-      <location filename="InitGui.py" line="151"/>
-      <source>Path Modification</source>
-      <translation type="unfinished">Path Modification</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="141"/>
       <source>Helpful Tools</source>
       <translation type="unfinished">Helpful Tools</translation>
-    </message>
-    <message>
-      <location filename="InitGui.py" line="159"/>
-      <source>&amp;Path</source>
-      <translation type="unfinished">&amp;Path</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="147"/>
@@ -877,14 +1322,44 @@
       <translation type="unfinished">Supplemental Commands</translation>
     </message>
     <message>
+      <location filename="InitGui.py" line="151"/>
+      <source>Path Modification</source>
+      <translation type="unfinished">Path Modification</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="154"/>
       <source>Specialty Operations</source>
       <translation type="unfinished">Specialty Operations</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="159"/>
+      <source>&amp;Path</source>
+      <translation type="unfinished">&amp;Path</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="159"/>
       <source>Utils</source>
       <translation type="unfinished">Utils</translation>
+    </message>
+    <message>
+      <location filename="PathCircularHoleBase.py" line="80"/>
+      <source>List of disabled features</source>
+      <translation type="unfinished">List of disabled features</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryGui.py" line="77"/>
+      <source>Choose a writable location for your toolbits</source>
+      <translation type="unfinished">Choose a writable location for your toolbits</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="206"/>
+      <source>A planar adaptive start is unavailable. The non-planar will be attempted.</source>
+      <translation type="unfinished">A planar adaptive start is unavailable. The non-planar will be attempted.</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="233"/>
+      <source>The non-planar adaptive start is also unavailable.</source>
+      <translation type="unfinished">The non-planar adaptive start is also unavailable.</translation>
     </message>
     <message>
       <location filename="PathOpGui.py" line="785"/>
@@ -991,6 +1466,16 @@
       <translation type="unfinished">Select the segment, there the operations starts</translation>
     </message>
     <message>
+      <location filename="PathDeburr.py" line="189"/>
+      <source>Round</source>
+      <translation>Pyöreä</translation>
+    </message>
+    <message>
+      <location filename="PathDeburr.py" line="190"/>
+      <source>Miter</source>
+      <translation type="unfinished">Miter</translation>
+    </message>
+    <message>
       <location filename="PathDeburrGui.py" line="125"/>
       <source>Deburr</source>
       <translation type="unfinished">Deburr</translation>
@@ -999,37 +1484,6 @@
       <location filename="PathDeburrGui.py" line="126"/>
       <source>Creates a Deburr Path along Edges or around Faces</source>
       <translation type="unfinished">Creates a Deburr Path along Edges or around Faces</translation>
-    </message>
-  </context>
-  <context>
-    <name>PathDressup_HoldingTags</name>
-    <message>
-      <location filename="PathDressupTagGui.py" line="63"/>
-      <source>Edit HoldingTags Dress-up</source>
-      <translation type="unfinished">Edit HoldingTags Dress-up</translation>
-    </message>
-  </context>
-  <context>
-    <name>PathEngrave</name>
-    <message>
-      <location filename="PathEngraveGui.py" line="149"/>
-      <source>Engrave</source>
-      <translation>Kaiverra</translation>
-    </message>
-    <message>
-      <location filename="PathEngraveGui.py" line="150"/>
-      <source>Creates an Engraving Path around a Draft ShapeString</source>
-      <translation type="unfinished">Creates an Engraving Path around a Draft ShapeString</translation>
-    </message>
-    <message>
-      <location filename="PathEngrave.py" line="84"/>
-      <source>Additional base objects to be engraved</source>
-      <translation type="unfinished">Additional base objects to be engraved</translation>
-    </message>
-    <message>
-      <location filename="PathEngrave.py" line="96"/>
-      <source>The vertex index to start the path from</source>
-      <translation type="unfinished">The vertex index to start the path from</translation>
     </message>
   </context>
   <context>
@@ -1109,51 +1563,18 @@
   <context>
     <name>PathGui</name>
     <message>
-      <location filename="PathGui.py" line="119"/>
-      <source>Cannot find property %s of %s</source>
-      <translation type="unfinished">Cannot find property %s of %s</translation>
-    </message>
-    <message>
       <location filename="PathUtil.py" line="53"/>
       <source>%s has no property %s (%s))</source>
       <translation type="unfinished">%s has no property %s (%s))</translation>
     </message>
-  </context>
-  <context>
-    <name>PathHelix</name>
     <message>
-      <location filename="PathHelix.py" line="58"/>
-      <source>The direction of the circular cuts, ClockWise (CW), or CounterClockWise (CCW)</source>
-      <translation type="unfinished">The direction of the circular cuts, ClockWise (CW), or CounterClockWise (CCW)</translation>
-    </message>
-    <message>
-      <location filename="PathHelix.py" line="61"/>
-      <source>Start cutting from the inside or outside</source>
-      <translation type="unfinished">Start cutting from the inside or outside</translation>
-    </message>
-    <message>
-      <location filename="PathHelix.py" line="64"/>
-      <source>Radius increment (must be smaller than tool diameter)</source>
-      <translation type="unfinished">Radius increment (must be smaller than tool diameter)</translation>
-    </message>
-    <message>
-      <location filename="PathHelix.py" line="69"/>
-      <source>Starting Radius</source>
-      <translation type="unfinished">Starting Radius</translation>
+      <location filename="PathGui.py" line="119"/>
+      <source>Cannot find property %s of %s</source>
+      <translation type="unfinished">Cannot find property %s of %s</translation>
     </message>
   </context>
   <context>
     <name>PathJob</name>
-    <message>
-      <location filename="PathJobGui.py" line="1258"/>
-      <source>Unsupported stock object %s</source>
-      <translation type="unfinished">Unsupported stock object %s</translation>
-    </message>
-    <message>
-      <location filename="PathJobGui.py" line="1274"/>
-      <source>Unsupported stock type %s (%d)</source>
-      <translation type="unfinished">Unsupported stock type %s (%d)</translation>
-    </message>
     <message>
       <location filename="PathJobGui.py" line="387"/>
       <source>Stock not from Base bound box!</source>
@@ -1168,6 +1589,16 @@
       <location filename="PathJobGui.py" line="525"/>
       <source>Stock not a cylinder!</source>
       <translation type="unfinished">Stock not a cylinder!</translation>
+    </message>
+    <message>
+      <location filename="PathJobGui.py" line="1258"/>
+      <source>Unsupported stock object %s</source>
+      <translation type="unfinished">Unsupported stock object %s</translation>
+    </message>
+    <message>
+      <location filename="PathJobGui.py" line="1274"/>
+      <source>Unsupported stock type %s (%d)</source>
+      <translation type="unfinished">Unsupported stock type %s (%d)</translation>
     </message>
     <message>
       <location filename="PathJob.py" line="112"/>
@@ -1200,21 +1631,6 @@
       <translation type="unfinished">Solid object to be used as stock.</translation>
     </message>
     <message>
-      <location filename="PathJob.py" line="455"/>
-      <source>Split output into multiple gcode files</source>
-      <translation type="unfinished">Split output into multiple gcode files</translation>
-    </message>
-    <message>
-      <location filename="PathJob.py" line="444"/>
-      <source>If multiple WCS, order the output this way</source>
-      <translation type="unfinished">If multiple WCS, order the output this way</translation>
-    </message>
-    <message>
-      <location filename="PathJob.py" line="433"/>
-      <source>The Work Coordinate Systems for the Job</source>
-      <translation type="unfinished">The Work Coordinate Systems for the Job</translation>
-    </message>
-    <message>
       <location filename="PathJob.py" line="258"/>
       <source>SetupSheet holding the settings for this job</source>
       <translation type="unfinished">SetupSheet holding the settings for this job</translation>
@@ -1230,6 +1646,26 @@
       <translation type="unfinished">Collection of all tool controllers for the job</translation>
     </message>
     <message>
+      <location filename="PathJob.py" line="433"/>
+      <source>The Work Coordinate Systems for the Job</source>
+      <translation type="unfinished">The Work Coordinate Systems for the Job</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="444"/>
+      <source>If multiple WCS, order the output this way</source>
+      <translation type="unfinished">If multiple WCS, order the output this way</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="455"/>
+      <source>Split output into multiple gcode files</source>
+      <translation type="unfinished">Split output into multiple gcode files</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="496"/>
+      <source>Select the Type of Job</source>
+      <translation type="unfinished">Select the Type of Job</translation>
+    </message>
+    <message>
       <location filename="PathJob.py" line="538"/>
       <source>Unsupported PathJob template version %s</source>
       <translation type="unfinished">Unsupported PathJob template version %s</translation>
@@ -1242,7 +1678,7 @@
     <message>
       <location filename="PathJobDlg.py" line="64"/>
       <source>2D</source>
-      <translation type="unfinished">2D</translation>
+      <translation>2D</translation>
     </message>
     <message>
       <location filename="PathJobDlg.py" line="65"/>
@@ -1272,126 +1708,6 @@
   </context>
   <context>
     <name>PathOp</name>
-    <message>
-      <location filename="PathOp.py" line="108"/>
-      <source>The base geometry for this operation</source>
-      <translation type="unfinished">The base geometry for this operation</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="119"/>
-      <source>Holds the calculated value for the StartDepth</source>
-      <translation type="unfinished">Holds the calculated value for the StartDepth</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="129"/>
-      <source>Holds the calculated value for the FinalDepth</source>
-      <translation type="unfinished">Holds the calculated value for the FinalDepth</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="137"/>
-      <source>Holds the diameter of the tool</source>
-      <translation type="unfinished">Holds the diameter of the tool</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="145"/>
-      <source>Holds the max Z value of Stock</source>
-      <translation type="unfinished">Holds the max Z value of Stock</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="152"/>
-      <source>Holds the min Z value of Stock</source>
-      <translation type="unfinished">Holds the min Z value of Stock</translation>
-    </message>
-    <message>
-      <location filename="PathArray.py" line="111"/>
-      <source>Make False, to prevent operation from generating code</source>
-      <translation type="unfinished">Make False, to prevent operation from generating code</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="173"/>
-      <source>An optional comment for this Operation</source>
-      <translation type="unfinished">An optional comment for this Operation</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="179"/>
-      <source>User Assigned Label</source>
-      <translation type="unfinished">User Assigned Label</translation>
-    </message>
-    <message>
-      <location filename="PathJob.py" line="422"/>
-      <source>Operations Cycle Time Estimation</source>
-      <translation type="unfinished">Operations Cycle Time Estimation</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="199"/>
-      <source>Base locations for this operation</source>
-      <translation type="unfinished">Base locations for this operation</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="219"/>
-      <source>Coolant mode for this operation</source>
-      <translation type="unfinished">Coolant mode for this operation</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="229"/>
-      <source>Starting Depth of Tool- first cut depth in Z</source>
-      <translation type="unfinished">Starting Depth of Tool- first cut depth in Z</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="237"/>
-      <source>Final Depth of Tool- lowest value in Z</source>
-      <translation type="unfinished">Final Depth of Tool- lowest value in Z</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="250"/>
-      <source>Starting Depth internal use only for derived values</source>
-      <translation type="unfinished">Starting Depth internal use only for derived values</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="261"/>
-      <source>Incremental Step Down of Tool</source>
-      <translation type="unfinished">Incremental Step Down of Tool</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="271"/>
-      <source>Maximum material removed on final pass.</source>
-      <translation type="unfinished">Maximum material removed on final pass.</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="281"/>
-      <source>The height needed to clear clamps and obstructions</source>
-      <translation type="unfinished">The height needed to clear clamps and obstructions</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="289"/>
-      <source>Rapid Safety Height between locations.</source>
-      <translation type="unfinished">Rapid Safety Height between locations.</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="297"/>
-      <source>The start point of this path</source>
-      <translation type="unfinished">The start point of this path</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="305"/>
-      <source>Make True, if specifying a Start Point</source>
-      <translation type="unfinished">Make True, if specifying a Start Point</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="315"/>
-      <source>Lower limit of the turning diameter</source>
-      <translation type="unfinished">Lower limit of the turning diameter</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="323"/>
-      <source>Upper limit of the turning diameter.</source>
-      <translation type="unfinished">Upper limit of the turning diameter.</translation>
-    </message>
-    <message>
-      <location filename="PathOp.py" line="383"/>
-      <source>Coolant option for this operation</source>
-      <translation type="unfinished">Coolant option for this operation</translation>
-    </message>
     <message>
       <location filename="PathOpGui.py" line="194"/>
       <source>Edit</source>
@@ -1470,9 +1786,129 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation type="unfinished">Pick Start Point</translation>
     </message>
     <message>
+      <location filename="PathArray.py" line="111"/>
+      <source>Make False, to prevent operation from generating code</source>
+      <translation type="unfinished">Make False, to prevent operation from generating code</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="108"/>
+      <source>The base geometry for this operation</source>
+      <translation type="unfinished">The base geometry for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="119"/>
+      <source>Holds the calculated value for the StartDepth</source>
+      <translation type="unfinished">Holds the calculated value for the StartDepth</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="129"/>
+      <source>Holds the calculated value for the FinalDepth</source>
+      <translation type="unfinished">Holds the calculated value for the FinalDepth</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="137"/>
+      <source>Holds the diameter of the tool</source>
+      <translation type="unfinished">Holds the diameter of the tool</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="145"/>
+      <source>Holds the max Z value of Stock</source>
+      <translation type="unfinished">Holds the max Z value of Stock</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="152"/>
+      <source>Holds the min Z value of Stock</source>
+      <translation type="unfinished">Holds the min Z value of Stock</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="173"/>
+      <source>An optional comment for this Operation</source>
+      <translation type="unfinished">An optional comment for this Operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="179"/>
+      <source>User Assigned Label</source>
+      <translation type="unfinished">User Assigned Label</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="199"/>
+      <source>Base locations for this operation</source>
+      <translation type="unfinished">Base locations for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="219"/>
+      <source>Coolant mode for this operation</source>
+      <translation type="unfinished">Coolant mode for this operation</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="229"/>
+      <source>Starting Depth of Tool- first cut depth in Z</source>
+      <translation type="unfinished">Starting Depth of Tool- first cut depth in Z</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="237"/>
+      <source>Final Depth of Tool- lowest value in Z</source>
+      <translation type="unfinished">Final Depth of Tool- lowest value in Z</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="250"/>
+      <source>Starting Depth internal use only for derived values</source>
+      <translation type="unfinished">Starting Depth internal use only for derived values</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="261"/>
+      <source>Incremental Step Down of Tool</source>
+      <translation type="unfinished">Incremental Step Down of Tool</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="271"/>
+      <source>Maximum material removed on final pass.</source>
+      <translation type="unfinished">Maximum material removed on final pass.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="281"/>
+      <source>The height needed to clear clamps and obstructions</source>
+      <translation type="unfinished">The height needed to clear clamps and obstructions</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="289"/>
+      <source>Rapid Safety Height between locations.</source>
+      <translation type="unfinished">Rapid Safety Height between locations.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="297"/>
+      <source>The start point of this path</source>
+      <translation type="unfinished">The start point of this path</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="305"/>
+      <source>Make True, if specifying a Start Point</source>
+      <translation type="unfinished">Make True, if specifying a Start Point</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="315"/>
+      <source>Lower limit of the turning diameter</source>
+      <translation type="unfinished">Lower limit of the turning diameter</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="323"/>
+      <source>Upper limit of the turning diameter.</source>
+      <translation type="unfinished">Upper limit of the turning diameter.</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="383"/>
+      <source>Coolant option for this operation</source>
+      <translation type="unfinished">Coolant option for this operation</translation>
+    </message>
+    <message>
       <location filename="PathJob.py" line="153"/>
       <source>Job Cycle Time Estimation</source>
       <translation type="unfinished">Job Cycle Time Estimation</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="422"/>
+      <source>Operations Cycle Time Estimation</source>
+      <translation type="unfinished">Operations Cycle Time Estimation</translation>
     </message>
   </context>
   <context>
@@ -1506,16 +1942,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation>Y</translation>
     </message>
     <message>
-      <location filename="PathPocketShape.py" line="107"/>
-      <source>Pocket does not support shape %s.%s</source>
-      <translation type="unfinished">Pocket does not support shape %s.%s</translation>
-    </message>
-    <message>
-      <location filename="PathPocketShape.py" line="123"/>
-      <source>Vertical faces do not form a loop - ignoring</source>
-      <translation type="unfinished">Vertical faces do not form a loop - ignoring</translation>
-    </message>
-    <message>
       <location filename="PathPocketBaseGui.py" line="67"/>
       <source>Pass Extension</source>
       <translation type="unfinished">Pass Extension</translation>
@@ -1524,6 +1950,16 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathPocketBaseGui.py" line="68"/>
       <source>The distance the facing operation will extend beyond the boundary shape.</source>
       <translation type="unfinished">The distance the facing operation will extend beyond the boundary shape.</translation>
+    </message>
+    <message>
+      <location filename="PathPocketShape.py" line="107"/>
+      <source>Pocket does not support shape %s.%s</source>
+      <translation type="unfinished">Pocket does not support shape %s.%s</translation>
+    </message>
+    <message>
+      <location filename="PathPocketShape.py" line="123"/>
+      <source>Vertical faces do not form a loop - ignoring</source>
+      <translation type="unfinished">Vertical faces do not form a loop - ignoring</translation>
     </message>
     <message>
       <location filename="PathPocket.py" line="62"/>
@@ -1537,30 +1973,22 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
-    <name>PathPocketShape</name>
-    <message>
-      <location filename="PathFeatureExtensions.py" line="476"/>
-      <source>Default length of extensions.</source>
-      <translation type="unfinished">Default length of extensions.</translation>
-    </message>
-    <message>
-      <location filename="PathFeatureExtensions.py" line="478"/>
-      <source>List of features to extend.</source>
-      <translation type="unfinished">List of features to extend.</translation>
-    </message>
-    <message>
-      <location filename="PathFeatureExtensions.py" line="480"/>
-      <source>When enabled connected extension edges are combined to wires.</source>
-      <translation type="unfinished">When enabled connected extension edges are combined to wires.</translation>
-    </message>
-    <message>
-      <location filename="PathPocketShape.py" line="66"/>
-      <source>Uses the outline of the base geometry.</source>
-      <translation type="unfinished">Uses the outline of the base geometry.</translation>
-    </message>
-  </context>
-  <context>
     <name>PathProfile</name>
+    <message>
+      <location filename="PathProfile.py" line="209"/>
+      <source>Outside</source>
+      <translation type="unfinished">Outside</translation>
+    </message>
+    <message>
+      <location filename="PathProfile.py" line="210"/>
+      <source>Inside</source>
+      <translation type="unfinished">Inside</translation>
+    </message>
+    <message>
+      <location filename="PathProfile.py" line="196"/>
+      <source>CW</source>
+      <translation type="unfinished">CW</translation>
+    </message>
     <message>
       <location filename="PathProfile.py" line="91"/>
       <source>New property added to</source>
@@ -1570,11 +1998,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathProfile.py" line="93"/>
       <source>Check its default value.</source>
       <translation type="unfinished">Check its default value.</translation>
-    </message>
-    <message>
-      <location filename="PathProfile.py" line="196"/>
-      <source>CW</source>
-      <translation type="unfinished">CW</translation>
     </message>
     <message>
       <location filename="PathProfile.py" line="197"/>
@@ -1607,16 +2030,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation type="unfinished">Miter</translation>
     </message>
     <message>
-      <location filename="PathProfile.py" line="209"/>
-      <source>Outside</source>
-      <translation type="unfinished">Outside</translation>
-    </message>
-    <message>
-      <location filename="PathProfile.py" line="210"/>
-      <source>Inside</source>
-      <translation type="unfinished">Inside</translation>
-    </message>
-    <message>
       <location filename="PathProfile.py" line="479"/>
       <source>Unable to create path for face(s).</source>
       <translation type="unfinished">Unable to create path for face(s).</translation>
@@ -1630,142 +2043,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathProfile.py" line="663"/>
       <source>For open edges, verify Final Depth for this operation.</source>
       <translation type="unfinished">For open edges, verify Final Depth for this operation.</translation>
-    </message>
-  </context>
-  <context>
-    <name>PathPropertyBag</name>
-    <message>
-      <location filename="PathPropertyBagGui.py" line="235"/>
-      <source>Edit PropertyBag</source>
-      <translation type="unfinished">Edit PropertyBag</translation>
-    </message>
-    <message>
-      <location filename="PathPropertyBagGui.py" line="392"/>
-      <source>Create PropertyBag</source>
-      <translation type="unfinished">Create PropertyBag</translation>
-    </message>
-    <message>
-      <location filename="PathPropertyBagGui.py" line="406"/>
-      <source>PropertyBag</source>
-      <translation type="unfinished">PropertyBag</translation>
-    </message>
-    <message>
-      <location filename="PathPropertyBagGui.py" line="409"/>
-      <source>Creates an object which can be used to store reference properties.</source>
-      <translation type="unfinished">Creates an object which can be used to store reference properties.</translation>
-    </message>
-    <message>
-      <location filename="PathPropertyBag.py" line="62"/>
-      <source>List of custom property groups</source>
-      <translation type="unfinished">List of custom property groups</translation>
-    </message>
-  </context>
-  <context>
-    <name>PathSlot</name>
-    <message>
-      <location filename="PathSlot.py" line="101"/>
-      <source>New property added to</source>
-      <translation type="unfinished">New property added to</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="103"/>
-      <source>Check default value(s).</source>
-      <translation type="unfinished">Check default value(s).</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="431"/>
-      <source>No Base Geometry object in the operation.</source>
-      <translation type="unfinished">No Base Geometry object in the operation.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="441"/>
-      <source>Custom points are identical.</source>
-      <translation type="unfinished">Custom points are identical.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="449"/>
-      <source>Custom points not at same Z height.</source>
-      <translation type="unfinished">Custom points not at same Z height.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="501"/>
-      <source>Current Extend Radius value produces negative arc radius.</source>
-      <translation type="unfinished">Current Extend Radius value produces negative arc radius.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="519"/>
-      <source>No path extensions available for full circles.</source>
-      <translation type="unfinished">No path extensions available for full circles.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="674"/>
-      <source>operation collides with model.</source>
-      <translation type="unfinished">operation collides with model.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="926"/>
-      <source>Verify slot path start and end points.</source>
-      <translation type="unfinished">Verify slot path start and end points.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="752"/>
-      <source>The selected face is inaccessible.</source>
-      <translation type="unfinished">The selected face is inaccessible.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="769"/>
-      <source>Only a vertex selected. Add another feature to the Base Geometry.</source>
-      <translation type="unfinished">Only a vertex selected. Add another feature to the Base Geometry.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="794"/>
-      <source>A single selected face must have four edges minimum.</source>
-      <translation type="unfinished">A single selected face must have four edges minimum.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="853"/>
-      <source>No parallel edges identified.</source>
-      <translation type="unfinished">No parallel edges identified.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="878"/>
-      <source>value error.</source>
-      <translation type="unfinished">value error.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="942"/>
-      <source>Current tool larger than arc diameter.</source>
-      <translation type="unfinished">Current tool larger than arc diameter.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1027"/>
-      <source>Failed, slot from edge only accepts lines, arcs and circles.</source>
-      <translation type="unfinished">Failed, slot from edge only accepts lines, arcs and circles.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1047"/>
-      <source>Failed to determine point 1 from</source>
-      <translation type="unfinished">Failed to determine point 1 from</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1058"/>
-      <source>Failed to determine point 2 from</source>
-      <translation type="unfinished">Failed to determine point 2 from</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1072"/>
-      <source>Selected geometry not parallel.</source>
-      <translation type="unfinished">Selected geometry not parallel.</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1192"/>
-      <source>The selected face is not oriented vertically:</source>
-      <translation type="unfinished">The selected face is not oriented vertically:</translation>
-    </message>
-    <message>
-      <location filename="PathSlot.py" line="1713"/>
-      <source>Current offset value produces negative radius.</source>
-      <translation type="unfinished">Current offset value produces negative radius.</translation>
     </message>
   </context>
   <context>
@@ -2073,75 +2350,27 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
-    <name>PathThreadMilling</name>
-    <message>
-      <location filename="PathThreadMillingGui.py" line="208"/>
-      <source>Thread Milling</source>
-      <translation type="unfinished">Thread Milling</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMillingGui.py" line="209"/>
-      <source>Creates a Path Thread Milling operation from features of a base object</source>
-      <translation type="unfinished">Creates a Path Thread Milling operation from features of a base object</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="182"/>
-      <source>Set thread orientation</source>
-      <translation type="unfinished">Set thread orientation</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="184"/>
-      <source>Currently only internal</source>
-      <translation type="unfinished">Currently only internal</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="186"/>
-      <source>Defines which standard thread was chosen</source>
-      <translation type="unfinished">Defines which standard thread was chosen</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="187"/>
-      <source>Set thread's major diameter</source>
-      <translation type="unfinished">Set thread's major diameter</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="188"/>
-      <source>Set thread's minor diameter</source>
-      <translation type="unfinished">Set thread's minor diameter</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="189"/>
-      <source>Set thread's pitch - used for metric threads</source>
-      <translation type="unfinished">Set thread's pitch - used for metric threads</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="190"/>
-      <source>Set thread's TPI (turns per inch) - used for imperial threads</source>
-      <translation type="unfinished">Set thread's TPI (turns per inch) - used for imperial threads</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="192"/>
-      <source>Set how many passes are used to cut the thread</source>
-      <translation type="unfinished">Set how many passes are used to cut the thread</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="193"/>
-      <source>Direction of thread cutting operation</source>
-      <translation type="unfinished">Direction of thread cutting operation</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="194"/>
-      <source>Set to True to get lead in and lead out arcs at the start and end of the thread cut</source>
-      <translation type="unfinished">Set to True to get lead in and lead out arcs at the start and end of the thread cut</translation>
-    </message>
-    <message>
-      <location filename="PathThreadMilling.py" line="195"/>
-      <source>Operation to clear the inside of the thread</source>
-      <translation type="unfinished">Operation to clear the inside of the thread</translation>
-    </message>
-  </context>
-  <context>
     <name>PathToolBit</name>
+    <message>
+      <location filename="PathToolBitGui.py" line="122"/>
+      <source>Toolbit cannot be edited: Shapefile not found</source>
+      <translation>TyökaluBit ei voi muokata: Muototiedostoa ei löydy</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitGui.py" line="138"/>
+      <source>Edit ToolBit</source>
+      <translation>Muokkaa TyökaluBit</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitGui.py" line="145"/>
+      <source>Uncreate ToolBit</source>
+      <translation>Poista TyökaluBit</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitGui.py" line="178"/>
+      <source>Create ToolBit</source>
+      <translation>Luo TyökaluBit</translation>
+    </message>
     <message>
       <location filename="PathToolBit.py" line="140"/>
       <source>Shape for bit shape</source>
@@ -2166,26 +2395,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathToolBit.py" line="175"/>
       <source>List of all properties inherited from the bit</source>
       <translation type="unfinished">List of all properties inherited from the bit</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitGui.py" line="122"/>
-      <source>Toolbit cannot be edited: Shapefile not found</source>
-      <translation>TyökaluBit ei voi muokata: Muototiedostoa ei löydy</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitGui.py" line="138"/>
-      <source>Edit ToolBit</source>
-      <translation>Muokkaa TyökaluBit</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitGui.py" line="145"/>
-      <source>Uncreate ToolBit</source>
-      <translation>Poista TyökaluBit</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitGui.py" line="178"/>
-      <source>Create ToolBit</source>
-      <translation>Luo TyökaluBit</translation>
     </message>
     <message>
       <location filename="PathToolBitCmd.py" line="40"/>
@@ -2224,98 +2433,7 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
-    <name>PathToolBitLibrary</name>
-    <message>
-      <location filename="PathToolBitLibraryCmd.py" line="39"/>
-      <source>ToolBit Dock</source>
-      <translation>TyökaluBit Telakka</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitLibraryCmd.py" line="40"/>
-      <source>Toggle the Toolbit Dock</source>
-      <translation>Vaihda työkaluBit telakan tilaa</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitLibraryCmd.py" line="63"/>
-      <source>ToolBit Library editor</source>
-      <translation>TyökaluBit-kirjaston muokkain</translation>
-    </message>
-    <message>
-      <location filename="PathToolBitLibraryCmd.py" line="64"/>
-      <source>Open an editor to manage ToolBit libraries</source>
-      <translation>Avaa editori hallitaksesi TyökaluBit kirjastoja</translation>
-    </message>
-  </context>
-  <context>
-    <name>PathToolController</name>
-    <message>
-      <location filename="PathToolControllerGui.py" line="240"/>
-      <source>Error updating TC: %s</source>
-      <translation>Virhe päivitettäessä TC: %s</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="66"/>
-      <source>The active tool</source>
-      <translation type="unfinished">The active tool</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="68"/>
-      <source>The speed of the cutting spindle in RPM</source>
-      <translation type="unfinished">The speed of the cutting spindle in RPM</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="69"/>
-      <source>Direction of spindle rotation</source>
-      <translation type="unfinished">Direction of spindle rotation</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="71"/>
-      <source>Feed rate for vertical moves in Z</source>
-      <translation type="unfinished">Feed rate for vertical moves in Z</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="72"/>
-      <source>Feed rate for horizontal moves</source>
-      <translation type="unfinished">Feed rate for horizontal moves</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="73"/>
-      <source>Rapid rate for vertical moves in Z</source>
-      <translation type="unfinished">Rapid rate for vertical moves in Z</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="74"/>
-      <source>Rapid rate for horizontal moves</source>
-      <translation type="unfinished">Rapid rate for horizontal moves</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="131"/>
-      <source>Unsupported PathToolController template version %s</source>
-      <translation>PathToolController malliversiota %s ei tueta</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="133"/>
-      <source>PathToolController template has no version - corrupted template file?</source>
-      <translation>PathToolController mallilla ei ole versiota - vioittunut mallitiedosto?</translation>
-    </message>
-    <message>
-      <location filename="PathToolController.py" line="213"/>
-      <source>The tool used by this controller</source>
-      <translation type="unfinished">The tool used by this controller</translation>
-    </message>
-  </context>
-  <context>
     <name>PathToolLibraryManager</name>
-    <message>
-      <location filename="PathToolBitLibraryGui.py" line="727"/>
-      <source>Tooltable JSON (*.fctl)</source>
-      <translation>Työkalutaulukko JSON (*.Fctl)</translation>
-    </message>
-    <message>
-      <location filename="PathToolLibraryManager.py" line="149"/>
-      <source>LinuxCNC tooltable (*.tbl)</source>
-      <translation type="unfinished">LinuxCNC tooltable (*.tbl)</translation>
-    </message>
     <message>
       <location filename="PathToolLibraryManager.py" line="145"/>
       <source>Tooltable JSON (*.json)</source>
@@ -2330,6 +2448,11 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathToolLibraryManager.py" line="147"/>
       <source>HeeksCAD tooltable (*.tooltable)</source>
       <translation type="unfinished">HeeksCAD tooltable (*.tooltable)</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryManager.py" line="149"/>
+      <source>LinuxCNC tooltable (*.tbl)</source>
+      <translation type="unfinished">LinuxCNC tooltable (*.tbl)</translation>
     </message>
     <message>
       <location filename="PathToolLibraryManager.py" line="210"/>
@@ -2351,35 +2474,10 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <source>Unsupported Path tooltable</source>
       <translation>Polku työkalupohjaa ei tueta</translation>
     </message>
-  </context>
-  <context>
-    <name>PathVcarve</name>
     <message>
-      <location filename="PathVcarve.py" line="211"/>
-      <source>Additional base objects to be engraved</source>
-      <translation type="unfinished">Additional base objects to be engraved</translation>
-    </message>
-    <message>
-      <location filename="PathVcarve.py" line="218"/>
-      <source>The deflection value for discretizing arcs</source>
-      <translation>Kaarien diskretisoinnin poikkeama-arvo</translation>
-    </message>
-    <message>
-      <location filename="PathVcarve.py" line="222"/>
-      <source>Cutoff for removing colinear segments (degrees). 
-                        default=10.0.</source>
-      <translation type="unfinished">Cutoff for removing colinear segments (degrees). 
-                        default=10.0.</translation>
-    </message>
-    <message>
-      <location filename="PathVcarve.py" line="335"/>
-      <source>The Job Base Object has no engraveable element. Engraving operation will produce no output.</source>
-      <translation type="unfinished">The Job Base Object has no engraveable element. Engraving operation will produce no output.</translation>
-    </message>
-    <message>
-      <location filename="PathVcarve.py" line="340"/>
-      <source>Error processing Base object. Engraving operation will produce no output.</source>
-      <translation type="unfinished">Error processing Base object. Engraving operation will produce no output.</translation>
+      <location filename="PathToolBitLibraryGui.py" line="727"/>
+      <source>Tooltable JSON (*.fctl)</source>
+      <translation>Työkalutaulukko JSON (*.Fctl)</translation>
     </message>
   </context>
   <context>
@@ -2451,7 +2549,35 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
+    <name>Path_3dTools</name>
+    <message>
+      <location filename="InitGui.py" line="168"/>
+      <source>3D Operations</source>
+      <translation type="unfinished">3D Operations</translation>
+    </message>
+  </context>
+  <context>
     <name>Path_Adaptive</name>
+    <message>
+      <location filename="PathAdaptive.py" line="918"/>
+      <source>Outside</source>
+      <translation type="unfinished">Outside</translation>
+    </message>
+    <message>
+      <location filename="PathAdaptive.py" line="919"/>
+      <source>Inside</source>
+      <translation type="unfinished">Inside</translation>
+    </message>
+    <message>
+      <location filename="PathAdaptive.py" line="922"/>
+      <source>Clearing</source>
+      <translation>Tyhjennetään</translation>
+    </message>
+    <message>
+      <location filename="PathAdaptive.py" line="923"/>
+      <source>Profiling</source>
+      <translation type="unfinished">Profiling</translation>
+    </message>
     <message>
       <location filename="PathAdaptiveGui.py" line="255"/>
       <source>Adaptive</source>
@@ -2531,6 +2657,19 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
+    <name>Path_Deburr</name>
+    <message>
+      <location filename="PathDeburrGui.py" line="147"/>
+      <source>Deburr</source>
+      <translation type="unfinished">Deburr</translation>
+    </message>
+    <message>
+      <location filename="PathDeburrGui.py" line="150"/>
+      <source>Creates a Deburr Path along Edges or around Faces</source>
+      <translation type="unfinished">Creates a Deburr Path along Edges or around Faces</translation>
+    </message>
+  </context>
+  <context>
     <name>Path_Dressup</name>
     <message>
       <location filename="PathDressupZCorrect.py" line="320"/>
@@ -2555,11 +2694,6 @@ If it is necessary to set the FinalDepth manually please select a different oper
   <context>
     <name>Path_DressupAxisMap</name>
     <message>
-      <location filename="PathDressupZCorrect.py" line="66"/>
-      <source>The base path to modify</source>
-      <translation type="unfinished">The base path to modify</translation>
-    </message>
-    <message>
       <location filename="PathDressupAxisMap.py" line="54"/>
       <source>The input mapping axis</source>
       <translation type="unfinished">The input mapping axis</translation>
@@ -2583,6 +2717,11 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathDressupAxisMap.py" line="271"/>
       <source>Create Dress-up</source>
       <translation type="unfinished">Create Dress-up</translation>
+    </message>
+    <message>
+      <location filename="PathDressupZCorrect.py" line="66"/>
+      <source>The base path to modify</source>
+      <translation type="unfinished">The base path to modify</translation>
     </message>
   </context>
   <context>
@@ -2689,6 +2828,21 @@ If it is necessary to set the FinalDepth manually please select a different oper
   <context>
     <name>Path_DressupLeadInOut</name>
     <message>
+      <location filename="PathDressupLeadInOut.py" line="60"/>
+      <source>Arc</source>
+      <translation>Kaari</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="61"/>
+      <source>Tangent</source>
+      <translation>Tangenttina</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="62"/>
+      <source>Perpendicular</source>
+      <translation type="unfinished">Perpendicular</translation>
+    </message>
+    <message>
       <location filename="PathDressupLeadInOut.py" line="65"/>
       <source>The Style of LeadIn the Path</source>
       <translation type="unfinished">The Style of LeadIn the Path</translation>
@@ -2704,6 +2858,21 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation type="unfinished">The Mode of Point Radiusoffset or Center</translation>
     </message>
     <message>
+      <location filename="PathDressupLeadInOut.py" line="127"/>
+      <source>Radius</source>
+      <translation>Säde</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="128"/>
+      <source>Center</source>
+      <translation>Keskikohta</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="192"/>
+      <source>Length/Radius positive not Null</source>
+      <translation type="unfinished">Length/Radius positive not Null</translation>
+    </message>
+    <message>
       <location filename="PathDressupLeadInOut.py" line="479"/>
       <source>Edit LeadInOut Dress-up</source>
       <translation type="unfinished">Edit LeadInOut Dress-up</translation>
@@ -2717,6 +2886,21 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathDressupLeadInOut.py" line="646"/>
       <source>Creates a Cutter Radius Compensation G41/G42 Entry Dressup object from a selected path</source>
       <translation type="unfinished">Creates a Cutter Radius Compensation G41/G42 Entry Dressup object from a selected path</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="695"/>
+      <source>Please select one path object</source>
+      <translation type="unfinished">Please select one path object</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="702"/>
+      <source>The selected object is not a path</source>
+      <translation type="unfinished">The selected object is not a path</translation>
+    </message>
+    <message>
+      <location filename="PathDressupLeadInOut.py" line="708"/>
+      <source>Please select a Profile object</source>
+      <translation type="unfinished">Please select a Profile object</translation>
     </message>
   </context>
   <context>
@@ -2780,58 +2964,68 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation>Rampin kulma.</translation>
     </message>
     <message>
+      <location filename="PathDressupRampEntry.py" line="133"/>
+      <source>RampMethod1</source>
+      <translation type="unfinished">RampMethod1</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="134"/>
+      <source>RampMethod2</source>
+      <translation type="unfinished">RampMethod2</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="135"/>
+      <source>RampMethod3</source>
+      <translation type="unfinished">RampMethod3</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="136"/>
+      <source>Helix</source>
+      <translation>Kierre</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="140"/>
+      <source>Horizontal Feed Rate</source>
+      <translation type="unfinished">Horizontal Feed Rate</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="144"/>
+      <source>Vertical Feed Rate</source>
+      <translation type="unfinished">Vertical Feed Rate</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="148"/>
+      <source>Ramp Feed Rate</source>
+      <translation type="unfinished">Ramp Feed Rate</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="151"/>
+      <source>Custom</source>
+      <translation>Mukautettu</translation>
+    </message>
+    <message>
       <location filename="PathDressupRampEntry.py" line="860"/>
       <source>RampEntry Dress-up</source>
       <translation type="unfinished">RampEntry Dress-up</translation>
     </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="925"/>
+      <source>Please select one path object</source>
+      <translation type="unfinished">Please select one path object</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="932"/>
+      <source>The selected object is not a path</source>
+      <translation type="unfinished">The selected object is not a path</translation>
+    </message>
+    <message>
+      <location filename="PathDressupRampEntry.py" line="938"/>
+      <source>Please select a Profile object</source>
+      <translation type="unfinished">Please select a Profile object</translation>
+    </message>
   </context>
   <context>
     <name>Path_DressupTag</name>
-    <message>
-      <location filename="PathDressupTag.py" line="117"/>
-      <source>The base path to modify</source>
-      <translation type="unfinished">The base path to modify</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="118"/>
-      <source>Width of tags.</source>
-      <translation type="unfinished">Width of tags.</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="119"/>
-      <source>Height of tags.</source>
-      <translation type="unfinished">Height of tags.</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="120"/>
-      <source>Angle of tag plunge and ascent.</source>
-      <translation type="unfinished">Angle of tag plunge and ascent.</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="121"/>
-      <source>Radius of the fillet for the tag.</source>
-      <translation type="unfinished">Radius of the fillet for the tag.</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="122"/>
-      <source>Locations of inserted holding tags</source>
-      <translation type="unfinished">Locations of inserted holding tags</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="123"/>
-      <source>IDs of disabled holding tags</source>
-      <translation type="unfinished">IDs of disabled holding tags</translation>
-    </message>
-    <message>
-      <location filename="PathDressupTag.py" line="124"/>
-      <source>Factor determining the # of segments used to approximate rounded tags.</source>
-      <translation type="unfinished">Factor determining the # of segments used to approximate rounded tags.</translation>
-    </message>
-    <message>
-      <location filename="PathDressupHoldingTags.py" line="1032"/>
-      <source>Cannot insert holding tags for this path - please select a Profile path</source>
-      <translation type="unfinished">Cannot insert holding tags for this path - please select a Profile path</translation>
-    </message>
     <message>
       <location filename="PathDressupTag.py" line="249"/>
       <source>The selected object is not a path</source>
@@ -2878,6 +3072,46 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation type="unfinished">Create Tag Dress-up</translation>
     </message>
     <message>
+      <location filename="PathDressupTag.py" line="117"/>
+      <source>The base path to modify</source>
+      <translation type="unfinished">The base path to modify</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="118"/>
+      <source>Width of tags.</source>
+      <translation type="unfinished">Width of tags.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="119"/>
+      <source>Height of tags.</source>
+      <translation type="unfinished">Height of tags.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="120"/>
+      <source>Angle of tag plunge and ascent.</source>
+      <translation type="unfinished">Angle of tag plunge and ascent.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="121"/>
+      <source>Radius of the fillet for the tag.</source>
+      <translation type="unfinished">Radius of the fillet for the tag.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="122"/>
+      <source>Locations of inserted holding tags</source>
+      <translation type="unfinished">Locations of inserted holding tags</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="123"/>
+      <source>IDs of disabled holding tags</source>
+      <translation type="unfinished">IDs of disabled holding tags</translation>
+    </message>
+    <message>
+      <location filename="PathDressupTag.py" line="124"/>
+      <source>Factor determining the # of segments used to approximate rounded tags.</source>
+      <translation type="unfinished">Factor determining the # of segments used to approximate rounded tags.</translation>
+    </message>
+    <message>
       <location filename="PathDressupTag.py" line="155"/>
       <source>No Base object found.</source>
       <translation type="unfinished">No Base object found.</translation>
@@ -2896,6 +3130,11 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathDressupTag.py" line="164"/>
       <source>Base Path is empty.</source>
       <translation type="unfinished">Base Path is empty.</translation>
+    </message>
+    <message>
+      <location filename="PathDressupHoldingTags.py" line="1032"/>
+      <source>Cannot insert holding tags for this path - please select a Profile path</source>
+      <translation type="unfinished">Cannot insert holding tags for this path - please select a Profile path</translation>
     </message>
   </context>
   <context>
@@ -2932,15 +3171,32 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
-    <name>Path_DressupZCorrectp</name>
-    <message>
-      <location filename="PathDressupZCorrect.py" line="71"/>
-      <source>break segments into smaller segments of this length.</source>
-      <translation type="unfinished">break segments into smaller segments of this length.</translation>
-    </message>
-  </context>
-  <context>
     <name>Path_Drilling</name>
+    <message>
+      <location filename="PathDrilling.py" line="71"/>
+      <source>G99</source>
+      <translation>G99</translation>
+    </message>
+    <message>
+      <location filename="PathDrilling.py" line="72"/>
+      <source>G98</source>
+      <translation>G98</translation>
+    </message>
+    <message>
+      <location filename="PathDrilling.py" line="75"/>
+      <source>None</source>
+      <translation>Ei mitään</translation>
+    </message>
+    <message>
+      <location filename="PathDrilling.py" line="76"/>
+      <source>Drill Tip</source>
+      <translation type="unfinished">Drill Tip</translation>
+    </message>
+    <message>
+      <location filename="PathDrilling.py" line="77"/>
+      <source>2x Drill Tip</source>
+      <translation type="unfinished">2x Drill Tip</translation>
+    </message>
     <message>
       <location filename="PathDrillingGui.py" line="149"/>
       <source>Drilling</source>
@@ -2953,16 +3209,37 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
   </context>
   <context>
-    <name>Path_Face</name>
+    <name>Path_Engrave</name>
     <message>
-      <location filename="PathMillFaceGui.py" line="46"/>
-      <source>Face</source>
-      <translation>Tahko</translation>
+      <location filename="PathEngraveGui.py" line="172"/>
+      <source>Engrave</source>
+      <translation>Kaiverra</translation>
     </message>
     <message>
-      <location filename="PathMillFaceGui.py" line="47"/>
-      <source>Create a Facing Operation from a model or face</source>
-      <translation type="unfinished">Create a Facing Operation from a model or face</translation>
+      <location filename="PathEngraveGui.py" line="175"/>
+      <source>Creates an Engraving Path around a Draft ShapeString</source>
+      <translation type="unfinished">Creates an Engraving Path around a Draft ShapeString</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_EngraveTools</name>
+    <message>
+      <location filename="InitGui.py" line="145"/>
+      <source>Engraving Operations</source>
+      <translation type="unfinished">Engraving Operations</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ExportTemplate</name>
+    <message>
+      <location filename="PathJobCmd.py" line="105"/>
+      <source>Export Template</source>
+      <translation>Vie malli</translation>
+    </message>
+    <message>
+      <location filename="PathJobCmd.py" line="108"/>
+      <source>Exports Path Job as a template to be used for other jobs</source>
+      <translation type="unfinished">Exports Path Job as a template to be used for other jobs</translation>
     </message>
   </context>
   <context>
@@ -2976,6 +3253,16 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathHelixGui.py" line="92"/>
       <source>Creates a Path Helix object from a features of a base object</source>
       <translation type="unfinished">Creates a Path Helix object from a features of a base object</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="72"/>
+      <source>CW</source>
+      <translation type="unfinished">CW</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="73"/>
+      <source>CCW</source>
+      <translation type="unfinished">CCW</translation>
     </message>
   </context>
   <context>
@@ -3052,6 +3339,16 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation type="unfinished">Exports Path Job as a template to be used for other jobs</translation>
     </message>
     <message>
+      <location filename="PathJobGui.py" line="282"/>
+      <source>Edit</source>
+      <translation>Muokkaa</translation>
+    </message>
+    <message>
+      <location filename="PathJobGui.py" line="525"/>
+      <source>Stock not a cylinder!</source>
+      <translation type="unfinished">Stock not a cylinder!</translation>
+    </message>
+    <message>
       <location filename="PathJobGui.py" line="609"/>
       <source>Edit Job</source>
       <translation>Muokkaa työtä</translation>
@@ -3072,6 +3369,16 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <translation>Kaikki tiedostot (*.*)</translation>
     </message>
     <message>
+      <location filename="PathJobGui.py" line="1276"/>
+      <source>Unsupported stock object %s</source>
+      <translation type="unfinished">Unsupported stock object %s</translation>
+    </message>
+    <message>
+      <location filename="PathJobGui.py" line="1292"/>
+      <source>Unsupported stock type %s (%d)</source>
+      <translation type="unfinished">Unsupported stock type %s (%d)</translation>
+    </message>
+    <message>
       <location filename="PathJobGui.py" line="1365"/>
       <source>Model Selection</source>
       <translation type="unfinished">Model Selection</translation>
@@ -3081,6 +3388,92 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <source>Create Job</source>
       <translation>Luo työ</translation>
     </message>
+    <message>
+      <location filename="PathJob.py" line="257"/>
+      <source>Fixture</source>
+      <translation type="unfinished">Fixture</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="258"/>
+      <source>Tool</source>
+      <translation>Työkalu</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="259"/>
+      <source>Operation</source>
+      <translation type="unfinished">Operation</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="64"/>
+      <source>2D</source>
+      <translation>2D</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="263"/>
+      <source>2.5D</source>
+      <translation type="unfinished">2.5D</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="264"/>
+      <source>Lathe</source>
+      <translation type="unfinished">Lathe</translation>
+    </message>
+    <message>
+      <location filename="PathJob.py" line="265"/>
+      <source>Multiaxis</source>
+      <translation type="unfinished">Multiaxis</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="63"/>
+      <source>Solids</source>
+      <translation>Kiintomuodot</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="65"/>
+      <source>Jobs</source>
+      <translation type="unfinished">Jobs</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="335"/>
+      <source>Base -/+ %.2f/%.2f %.2f/%.2f %.2f/%.2f</source>
+      <translation type="unfinished">Base -/+ %.2f/%.2f %.2f/%.2f %.2f/%.2f</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="345"/>
+      <source>Box: %.2f x %.2f x %.2f</source>
+      <translation type="unfinished">Box: %.2f x %.2f x %.2f</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="351"/>
+      <source>Cylinder: %.2f x %.2f</source>
+      <translation type="unfinished">Cylinder: %.2f x %.2f</translation>
+    </message>
+    <message>
+      <location filename="PathJobDlg.py" line="357"/>
+      <source>Unsupported stock type</source>
+      <translation type="unfinished">Unsupported stock type</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_Job:</name>
+    <message>
+      <location filename="PathJobDlg.py" line="351"/>
+      <source>Cylinder: %.2f x %.2f</source>
+      <translation type="unfinished">Cylinder: %.2f x %.2f</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_MillFace</name>
+    <message>
+      <location filename="PathMillFaceGui.py" line="91"/>
+      <source>Face</source>
+      <translation>Tahko</translation>
+    </message>
+    <message>
+      <location filename="PathMillFaceGui.py" line="94"/>
+      <source>Create a Facing Operation from a model or face</source>
+      <translation type="unfinished">Create a Facing Operation from a model or face</translation>
+    </message>
   </context>
   <context>
     <name>Path_OpActiveToggle</name>
@@ -3088,6 +3481,24 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathCommands.py" line="136"/>
       <source>Toggle the Active State of the Operation</source>
       <translation type="unfinished">Toggle the Active State of the Operation</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_Operation</name>
+    <message>
+      <location filename="PathOp.py" line="370"/>
+      <source>None</source>
+      <translation>Ei mitään</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="371"/>
+      <source>Flood</source>
+      <translation type="unfinished">Flood</translation>
+    </message>
+    <message>
+      <location filename="PathOp.py" line="372"/>
+      <source>Mist</source>
+      <translation type="unfinished">Mist</translation>
     </message>
   </context>
   <context>
@@ -3100,6 +3511,91 @@ If it is necessary to set the FinalDepth manually please select a different oper
   </context>
   <context>
     <name>Path_Pocket</name>
+    <message>
+      <location filename="PathMillFace.py" line="69"/>
+      <source>Boundbox</source>
+      <translation type="unfinished">Boundbox</translation>
+    </message>
+    <message>
+      <location filename="PathMillFace.py" line="70"/>
+      <source>Face Region</source>
+      <translation type="unfinished">Face Region</translation>
+    </message>
+    <message>
+      <location filename="PathMillFace.py" line="71"/>
+      <source>Perimeter</source>
+      <translation type="unfinished">Perimeter</translation>
+    </message>
+    <message>
+      <location filename="PathMillFace.py" line="72"/>
+      <source>Stock</source>
+      <translation type="unfinished">Stock</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="120"/>
+      <source>Collectively</source>
+      <translation type="unfinished">Collectively</translation>
+    </message>
+    <message>
+      <location filename="PathPocket.py" line="121"/>
+      <source>Individually</source>
+      <translation type="unfinished">Individually</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="61"/>
+      <source>Climb</source>
+      <translation type="unfinished">Climb</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="62"/>
+      <source>Conventional</source>
+      <translation type="unfinished">Conventional</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="65"/>
+      <source>Center</source>
+      <translation>Keskikohta</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="66"/>
+      <source>Edge</source>
+      <translation>Reuna</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="69"/>
+      <source>ZigZag</source>
+      <translation type="unfinished">ZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="70"/>
+      <source>Offset</source>
+      <translation>Siirtymä</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="71"/>
+      <source>Spiral</source>
+      <translation>Spiraali</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="72"/>
+      <source>ZigZagOffset</source>
+      <translation type="unfinished">ZigZagOffset</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="73"/>
+      <source>Line</source>
+      <translation>Viiva</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="74"/>
+      <source>Grid</source>
+      <translation>Ruudukko</translation>
+    </message>
+    <message>
+      <location filename="PathPocketBase.py" line="75"/>
+      <source>Triangle</source>
+      <translation>Kolmio</translation>
+    </message>
     <message>
       <location filename="PathPocketGui.py" line="46"/>
       <source>3D Pocket</source>
@@ -3117,6 +3613,32 @@ If it is necessary to set the FinalDepth manually please select a different oper
     </message>
     <message>
       <location filename="PathPocketShapeGui.py" line="64"/>
+      <source>Creates a Path Pocket object from a face or faces</source>
+      <translation type="unfinished">Creates a Path Pocket object from a face or faces</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_Pocket3D</name>
+    <message>
+      <location filename="PathPocketGui.py" line="57"/>
+      <source>3D Pocket</source>
+      <translation type="unfinished">3D Pocket</translation>
+    </message>
+    <message>
+      <location filename="PathPocketGui.py" line="60"/>
+      <source>Creates a Path 3D Pocket object from a face or faces</source>
+      <translation type="unfinished">Creates a Path 3D Pocket object from a face or faces</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_Pocket_Shape</name>
+    <message>
+      <location filename="PathPocketShapeGui.py" line="70"/>
+      <source>Pocket Shape</source>
+      <translation type="unfinished">Pocket Shape</translation>
+    </message>
+    <message>
+      <location filename="PathPocketShapeGui.py" line="73"/>
       <source>Creates a Path Pocket object from a face or faces</source>
       <translation type="unfinished">Creates a Path Pocket object from a face or faces</translation>
     </message>
@@ -3164,6 +3686,16 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <source>Select Output File</source>
       <translation type="unfinished">Select Output File</translation>
     </message>
+    <message>
+      <location filename="PathProbeGui.py" line="107"/>
+      <source>Probe</source>
+      <translation type="unfinished">Probe</translation>
+    </message>
+    <message>
+      <location filename="PathProbeGui.py" line="108"/>
+      <source>Create a Probing Grid from a job stock</source>
+      <translation type="unfinished">Create a Probing Grid from a job stock</translation>
+    </message>
   </context>
   <context>
     <name>Path_Profile</name>
@@ -3176,6 +3708,14 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathProfileFacesGui.py" line="49"/>
       <source>Profile entire model, selected face(s) or selected edge(s)</source>
       <translation type="unfinished">Profile entire model, selected face(s) or selected edge(s)</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_PropertyBag</name>
+    <message>
+      <location filename="PathPropertyBagGui.py" line="445"/>
+      <source>PropertyBag</source>
+      <translation type="unfinished">PropertyBag</translation>
     </message>
   </context>
   <context>
@@ -3463,6 +4003,161 @@ If it is necessary to set the FinalDepth manually please select a different oper
   <context>
     <name>Path_Slot</name>
     <message>
+      <location filename="PathSlot.py" line="109"/>
+      <source>New property added to</source>
+      <translation type="unfinished">New property added to</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="111"/>
+      <source>Check default value(s).</source>
+      <translation type="unfinished">Check default value(s).</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="258"/>
+      <source>Line</source>
+      <translation>Viiva</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="259"/>
+      <source>ZigZag</source>
+      <translation type="unfinished">ZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="262"/>
+      <source>Single-pass</source>
+      <translation type="unfinished">Single-pass</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="263"/>
+      <source>Multi-pass</source>
+      <translation type="unfinished">Multi-pass</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="266"/>
+      <source>Start to End</source>
+      <translation type="unfinished">Start to End</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="267"/>
+      <source>Perpendicular</source>
+      <translation type="unfinished">Perpendicular</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="282"/>
+      <source>Center of Mass</source>
+      <translation type="unfinished">Center of Mass</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="284"/>
+      <source>Center of BoundBox</source>
+      <translation type="unfinished">Center of BoundBox</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="287"/>
+      <source>Lowest Point</source>
+      <translation type="unfinished">Lowest Point</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="288"/>
+      <source>Highest Point</source>
+      <translation type="unfinished">Highest Point</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="277"/>
+      <source>Long Edge</source>
+      <translation type="unfinished">Long Edge</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="278"/>
+      <source>Short Edge</source>
+      <translation type="unfinished">Short Edge</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="289"/>
+      <source>Vertex</source>
+      <translation>Kärkipiste</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="608"/>
+      <source>No Base Geometry object in the operation.</source>
+      <translation type="unfinished">No Base Geometry object in the operation.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="617"/>
+      <source>Custom points are identical.</source>
+      <translation type="unfinished">Custom points are identical.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="624"/>
+      <source>Custom points not at same Z height.</source>
+      <translation type="unfinished">Custom points not at same Z height.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="700"/>
+      <source>No path extensions available for full circles.</source>
+      <translation type="unfinished">No path extensions available for full circles.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="876"/>
+      <source>operation collides with model.</source>
+      <translation type="unfinished">operation collides with model.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1146"/>
+      <source>Verify slot path start and end points.</source>
+      <translation type="unfinished">Verify slot path start and end points.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="973"/>
+      <source>The selected face is inaccessible.</source>
+      <translation type="unfinished">The selected face is inaccessible.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1018"/>
+      <source>A single selected face must have four edges minimum.</source>
+      <translation type="unfinished">A single selected face must have four edges minimum.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1075"/>
+      <source>No parallel edges identified.</source>
+      <translation type="unfinished">No parallel edges identified.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1099"/>
+      <source>value error.</source>
+      <translation type="unfinished">value error.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1161"/>
+      <source>Current tool larger than arc diameter.</source>
+      <translation type="unfinished">Current tool larger than arc diameter.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1267"/>
+      <source>Failed to determine point 1 from</source>
+      <translation type="unfinished">Failed to determine point 1 from</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1277"/>
+      <source>Failed to determine point 2 from</source>
+      <translation type="unfinished">Failed to determine point 2 from</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1290"/>
+      <source>Selected geometry not parallel.</source>
+      <translation type="unfinished">Selected geometry not parallel.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1411"/>
+      <source>The selected face is not oriented vertically:</source>
+      <translation type="unfinished">The selected face is not oriented vertically:</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1939"/>
+      <source>Current offset value produces negative radius.</source>
+      <translation type="unfinished">Current offset value produces negative radius.</translation>
+    </message>
+    <message>
       <location filename="PathSlotGui.py" line="243"/>
       <source>Slot</source>
       <translation type="unfinished">Slot</translation>
@@ -3489,6 +4184,136 @@ If it is necessary to set the FinalDepth manually please select a different oper
   <context>
     <name>Path_Surface</name>
     <message>
+      <location filename="PathSurface.py" line="456"/>
+      <source>BaseBoundBox</source>
+      <translation type="unfinished">BaseBoundBox</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="457"/>
+      <source>Stock</source>
+      <translation type="unfinished">Stock</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="460"/>
+      <source>CenterOfMass</source>
+      <translation type="unfinished">CenterOfMass</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="461"/>
+      <source>CenterOfBoundBox</source>
+      <translation type="unfinished">CenterOfBoundBox</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="462"/>
+      <source>XminYmin</source>
+      <translation type="unfinished">XminYmin</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="463"/>
+      <source>Custom</source>
+      <translation>Mukautettu</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="466"/>
+      <source>Conventional</source>
+      <translation type="unfinished">Conventional</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="467"/>
+      <source>Climb</source>
+      <translation type="unfinished">Climb</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="470"/>
+      <source>Circular</source>
+      <translation>Pyöreä</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="471"/>
+      <source>CircularZigZag</source>
+      <translation type="unfinished">CircularZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="472"/>
+      <source>Line</source>
+      <translation>Viiva</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="473"/>
+      <source>Offset</source>
+      <translation>Siirtymä</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="474"/>
+      <source>Spiral</source>
+      <translation>Spiraali</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="475"/>
+      <source>ZigZag</source>
+      <translation type="unfinished">ZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="496"/>
+      <source>X</source>
+      <translation>X</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="497"/>
+      <source>Y</source>
+      <translation>Y</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="482"/>
+      <source>Collectively</source>
+      <translation type="unfinished">Collectively</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="483"/>
+      <source>Individually</source>
+      <translation type="unfinished">Individually</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="486"/>
+      <source>Single-pass</source>
+      <translation type="unfinished">Single-pass</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="487"/>
+      <source>Multi-pass</source>
+      <translation type="unfinished">Multi-pass</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="490"/>
+      <source>None</source>
+      <translation>Ei mitään</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="491"/>
+      <source>Only</source>
+      <translation type="unfinished">Only</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="492"/>
+      <source>First</source>
+      <translation>Ensimmäinen</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="493"/>
+      <source>Last</source>
+      <translation type="unfinished">Last</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="500"/>
+      <source>Planar</source>
+      <translation>Tasomainen</translation>
+    </message>
+    <message>
+      <location filename="PathSurface.py" line="501"/>
+      <source>Rotational</source>
+      <translation type="unfinished">Rotational</translation>
+    </message>
+    <message>
       <location filename="PathSurfaceGui.py" line="231"/>
       <source>3D Surface</source>
       <translation>3D-pinta</translation>
@@ -3497,6 +4322,145 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathSurfaceGui.py" line="232"/>
       <source>Create a 3D Surface Operation from a model</source>
       <translation type="unfinished">Create a 3D Surface Operation from a model</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ThreadMilling</name>
+    <message>
+      <location filename="PathThreadMillingGui.py" line="254"/>
+      <source>Thread Milling</source>
+      <translation type="unfinished">Thread Milling</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="207"/>
+      <source>Custom</source>
+      <translation>Mukautettu</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="208"/>
+      <source>Metric Internal</source>
+      <translation>Metrinen sisä</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="210"/>
+      <source>Imperial Internal</source>
+      <translation>Imperiaalinen sisä</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="215"/>
+      <source>LeftHand</source>
+      <translation>Vasenkätinen</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="216"/>
+      <source>RightHand</source>
+      <translation>Oikeakätinen</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="219"/>
+      <source>Climb</source>
+      <translation type="unfinished">Climb</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="220"/>
+      <source>Conventional</source>
+      <translation type="unfinished">Conventional</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBit</name>
+    <message>
+      <location filename="PathToolBitLibraryGui.py" line="85"/>
+      <source>Choose a writable location for your toolbits</source>
+      <translation type="unfinished">Choose a writable location for your toolbits</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryGui.py" line="793"/>
+      <source>Tooltable JSON (*.fctl)</source>
+      <translation>Työkalutaulukko JSON (*.Fctl)</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryGui.py" line="797"/>
+      <source>Save toolbit library</source>
+      <translation type="unfinished">Save toolbit library</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryGui.py" line="795"/>
+      <source>LinuxCNC tooltable (*.tbl)</source>
+      <translation type="unfinished">LinuxCNC tooltable (*.tbl)</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitCreate</name>
+    <message>
+      <location filename="PathToolBitCmd.py" line="49"/>
+      <source>Create Tool</source>
+      <translation>Luo Työkalu</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitCmd.py" line="52"/>
+      <source>Creates a new ToolBit object</source>
+      <translation>Luo uuden TyökaluBit-objektin</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitDock</name>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="48"/>
+      <source>ToolBit Dock</source>
+      <translation>TyökaluBit Telakka</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="49"/>
+      <source>Toggle the Toolbit Dock</source>
+      <translation>Vaihda työkaluBit telakan tilaa</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitLibraryOpen</name>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="77"/>
+      <source>ToolBit Library editor</source>
+      <translation>TyökaluBit-kirjaston muokkain</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="80"/>
+      <source>Open an editor to manage ToolBit libraries</source>
+      <translation>Avaa editori hallitaksesi TyökaluBit kirjastoja</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitLoad</name>
+    <message>
+      <location filename="PathToolBitCmd.py" line="140"/>
+      <source>Load Tool</source>
+      <translation>Lataa Työkalu</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitCmd.py" line="143"/>
+      <source>Load an existing ToolBit object from a file</source>
+      <translation>Lataa olemassa oleva TyökaluBit-objekti tiedostosta</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitSave</name>
+    <message>
+      <location filename="PathToolBitCmd.py" line="76"/>
+      <source>Save Tool</source>
+      <translation>Tallenna Työkalu</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitCmd.py" line="81"/>
+      <source>Save an existing ToolBit object to a file</source>
+      <translation>Tallenna olemassa oleva TyökaluBit-objekti tiedostoon</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_ToolBitSaveAs</name>
+    <message>
+      <location filename="PathToolBitCmd.py" line="74"/>
+      <source>Save Tool as...</source>
+      <translation>Tallenna työkalu nimellä...</translation>
     </message>
   </context>
   <context>
@@ -3511,9 +4475,59 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <source>Add Tool Controller</source>
       <translation type="unfinished">Add Tool Controller</translation>
     </message>
+    <message>
+      <location filename="PathToolController.py" line="134"/>
+      <source>None</source>
+      <translation>Ei mitään</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="132"/>
+      <source>Forward</source>
+      <translation type="unfinished">Forward</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="133"/>
+      <source>Reverse</source>
+      <translation>Käänteinen</translation>
+    </message>
   </context>
   <context>
     <name>Path_ToolTable</name>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="191"/>
+      <source>Open tooltable</source>
+      <translation type="unfinished">Open tooltable</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="208"/>
+      <source>Save tooltable</source>
+      <translation type="unfinished">Save tooltable</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="386"/>
+      <source>Rename Tooltable</source>
+      <translation type="unfinished">Rename Tooltable</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="387"/>
+      <source>Enter Name:</source>
+      <translation type="unfinished">Enter Name:</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="425"/>
+      <source>Add New Tool Table</source>
+      <translation type="unfinished">Add New Tool Table</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="429"/>
+      <source>Delete Selected Tool Table</source>
+      <translation type="unfinished">Delete Selected Tool Table</translation>
+    </message>
+    <message>
+      <location filename="PathToolLibraryEditor.py" line="433"/>
+      <source>Rename Selected Tool Table</source>
+      <translation type="unfinished">Rename Selected Tool Table</translation>
+    </message>
     <message>
       <location filename="PathToolLibraryEditor.py" line="457"/>
       <source>Tool Manager</source>
@@ -3554,6 +4568,590 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="PathWaterlineGui.py" line="151"/>
       <source>Create a Waterline Operation from a model</source>
       <translation type="unfinished">Create a Waterline Operation from a model</translation>
+    </message>
+  </context>
+  <context>
+    <name>Workbench</name>
+    <message>
+      <location filename="InitGui.py" line="176"/>
+      <source>Project Setup</source>
+      <translation type="unfinished">Project Setup</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="179"/>
+      <source>Tool Commands</source>
+      <translation>Työkalukomennot</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="182"/>
+      <source>New Operations</source>
+      <translation>Uudet toiminnot</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="223"/>
+      <source>Path Modification</source>
+      <translation type="unfinished">Path Modification</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="190"/>
+      <source>Helpful Tools</source>
+      <translation type="unfinished">Helpful Tools</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="241"/>
+      <source>&amp;Path</source>
+      <translation type="unfinished">&amp;Path</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="209"/>
+      <source>Path Dressup</source>
+      <translation type="unfinished">Path Dressup</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="216"/>
+      <source>Supplemental Commands</source>
+      <translation type="unfinished">Supplemental Commands</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="231"/>
+      <source>Specialty Operations</source>
+      <translation type="unfinished">Specialty Operations</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="242"/>
+      <source>Utils</source>
+      <translation type="unfinished">Utils</translation>
+    </message>
+  </context>
+  <context>
+    <name>path_waterline</name>
+    <message>
+      <location filename="PathWaterline.py" line="41"/>
+      <source>This operation requires OpenCamLib to be installed.</source>
+      <translation type="unfinished">This operation requires OpenCamLib to be installed.</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="98"/>
+      <source>OCL Dropcutter</source>
+      <translation type="unfinished">OCL Dropcutter</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="99"/>
+      <source>Experimental</source>
+      <translation type="unfinished">Experimental</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="102"/>
+      <source>BaseBoundBox</source>
+      <translation type="unfinished">BaseBoundBox</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="103"/>
+      <source>Stock</source>
+      <translation type="unfinished">Stock</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="106"/>
+      <source>CenterOfMass</source>
+      <translation type="unfinished">CenterOfMass</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="107"/>
+      <source>CenterOfBoundBox</source>
+      <translation type="unfinished">CenterOfBoundBox</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="108"/>
+      <source>XminYmin</source>
+      <translation type="unfinished">XminYmin</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="109"/>
+      <source>Custom</source>
+      <translation>Mukautettu</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="112"/>
+      <source>Off</source>
+      <translation type="unfinished">Off</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="126"/>
+      <source>Circular</source>
+      <translation>Pyöreä</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="127"/>
+      <source>CircularZigZag</source>
+      <translation type="unfinished">CircularZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="128"/>
+      <source>Line</source>
+      <translation>Viiva</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="129"/>
+      <source>Offset</source>
+      <translation>Siirtymä</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="130"/>
+      <source>Spiral</source>
+      <translation>Spiraali</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="131"/>
+      <source>ZigZag</source>
+      <translation type="unfinished">ZigZag</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="121"/>
+      <source>Conventional</source>
+      <translation type="unfinished">Conventional</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="122"/>
+      <source>Climb</source>
+      <translation type="unfinished">Climb</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="125"/>
+      <source>None</source>
+      <translation>Ei mitään</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="134"/>
+      <source>Collectively</source>
+      <translation type="unfinished">Collectively</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="135"/>
+      <source>Individually</source>
+      <translation type="unfinished">Individually</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="138"/>
+      <source>Single-pass</source>
+      <translation type="unfinished">Single-pass</translation>
+    </message>
+    <message>
+      <location filename="PathWaterline.py" line="139"/>
+      <source>Multi-pass</source>
+      <translation type="unfinished">Multi-pass</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathSlot</name>
+    <message>
+      <location filename="PathSlot.py" line="101"/>
+      <source>New property added to</source>
+      <translation type="unfinished">New property added to</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="103"/>
+      <source>Check default value(s).</source>
+      <translation type="unfinished">Check default value(s).</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="431"/>
+      <source>No Base Geometry object in the operation.</source>
+      <translation type="unfinished">No Base Geometry object in the operation.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="441"/>
+      <source>Custom points are identical.</source>
+      <translation type="unfinished">Custom points are identical.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="449"/>
+      <source>Custom points not at same Z height.</source>
+      <translation type="unfinished">Custom points not at same Z height.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="501"/>
+      <source>Current Extend Radius value produces negative arc radius.</source>
+      <translation type="unfinished">Current Extend Radius value produces negative arc radius.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="519"/>
+      <source>No path extensions available for full circles.</source>
+      <translation type="unfinished">No path extensions available for full circles.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="674"/>
+      <source>operation collides with model.</source>
+      <translation type="unfinished">operation collides with model.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="752"/>
+      <source>The selected face is inaccessible.</source>
+      <translation type="unfinished">The selected face is inaccessible.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="769"/>
+      <source>Only a vertex selected. Add another feature to the Base Geometry.</source>
+      <translation type="unfinished">Only a vertex selected. Add another feature to the Base Geometry.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="794"/>
+      <source>A single selected face must have four edges minimum.</source>
+      <translation type="unfinished">A single selected face must have four edges minimum.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="853"/>
+      <source>No parallel edges identified.</source>
+      <translation type="unfinished">No parallel edges identified.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="878"/>
+      <source>value error.</source>
+      <translation type="unfinished">value error.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="926"/>
+      <source>Verify slot path start and end points.</source>
+      <translation type="unfinished">Verify slot path start and end points.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="942"/>
+      <source>Current tool larger than arc diameter.</source>
+      <translation type="unfinished">Current tool larger than arc diameter.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1027"/>
+      <source>Failed, slot from edge only accepts lines, arcs and circles.</source>
+      <translation type="unfinished">Failed, slot from edge only accepts lines, arcs and circles.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1047"/>
+      <source>Failed to determine point 1 from</source>
+      <translation type="unfinished">Failed to determine point 1 from</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1058"/>
+      <source>Failed to determine point 2 from</source>
+      <translation type="unfinished">Failed to determine point 2 from</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1072"/>
+      <source>Selected geometry not parallel.</source>
+      <translation type="unfinished">Selected geometry not parallel.</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1192"/>
+      <source>The selected face is not oriented vertically:</source>
+      <translation type="unfinished">The selected face is not oriented vertically:</translation>
+    </message>
+    <message>
+      <location filename="PathSlot.py" line="1713"/>
+      <source>Current offset value produces negative radius.</source>
+      <translation type="unfinished">Current offset value produces negative radius.</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathDressup_HoldingTags</name>
+    <message>
+      <location filename="PathDressupTagGui.py" line="63"/>
+      <source>Edit HoldingTags Dress-up</source>
+      <translation type="unfinished">Edit HoldingTags Dress-up</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathPocketShape</name>
+    <message>
+      <location filename="PathFeatureExtensions.py" line="476"/>
+      <source>Default length of extensions.</source>
+      <translation type="unfinished">Default length of extensions.</translation>
+    </message>
+    <message>
+      <location filename="PathFeatureExtensions.py" line="478"/>
+      <source>List of features to extend.</source>
+      <translation type="unfinished">List of features to extend.</translation>
+    </message>
+    <message>
+      <location filename="PathFeatureExtensions.py" line="480"/>
+      <source>When enabled connected extension edges are combined to wires.</source>
+      <translation type="unfinished">When enabled connected extension edges are combined to wires.</translation>
+    </message>
+    <message>
+      <location filename="PathPocketShape.py" line="66"/>
+      <source>Uses the outline of the base geometry.</source>
+      <translation type="unfinished">Uses the outline of the base geometry.</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathPropertyBag</name>
+    <message>
+      <location filename="PathPropertyBagGui.py" line="235"/>
+      <source>Edit PropertyBag</source>
+      <translation type="unfinished">Edit PropertyBag</translation>
+    </message>
+    <message>
+      <location filename="PathPropertyBagGui.py" line="392"/>
+      <source>Create PropertyBag</source>
+      <translation type="unfinished">Create PropertyBag</translation>
+    </message>
+    <message>
+      <location filename="PathPropertyBagGui.py" line="406"/>
+      <source>PropertyBag</source>
+      <translation type="unfinished">PropertyBag</translation>
+    </message>
+    <message>
+      <location filename="PathPropertyBagGui.py" line="409"/>
+      <source>Creates an object which can be used to store reference properties.</source>
+      <translation type="unfinished">Creates an object which can be used to store reference properties.</translation>
+    </message>
+    <message>
+      <location filename="PathPropertyBag.py" line="62"/>
+      <source>List of custom property groups</source>
+      <translation type="unfinished">List of custom property groups</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathEngrave</name>
+    <message>
+      <location filename="PathEngraveGui.py" line="149"/>
+      <source>Engrave</source>
+      <translation>Kaiverra</translation>
+    </message>
+    <message>
+      <location filename="PathEngraveGui.py" line="150"/>
+      <source>Creates an Engraving Path around a Draft ShapeString</source>
+      <translation type="unfinished">Creates an Engraving Path around a Draft ShapeString</translation>
+    </message>
+    <message>
+      <location filename="PathEngrave.py" line="84"/>
+      <source>Additional base objects to be engraved</source>
+      <translation type="unfinished">Additional base objects to be engraved</translation>
+    </message>
+    <message>
+      <location filename="PathEngrave.py" line="96"/>
+      <source>The vertex index to start the path from</source>
+      <translation type="unfinished">The vertex index to start the path from</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathHelix</name>
+    <message>
+      <location filename="PathHelix.py" line="58"/>
+      <source>The direction of the circular cuts, ClockWise (CW), or CounterClockWise (CCW)</source>
+      <translation type="unfinished">The direction of the circular cuts, ClockWise (CW), or CounterClockWise (CCW)</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="61"/>
+      <source>Start cutting from the inside or outside</source>
+      <translation type="unfinished">Start cutting from the inside or outside</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="64"/>
+      <source>Radius increment (must be smaller than tool diameter)</source>
+      <translation type="unfinished">Radius increment (must be smaller than tool diameter)</translation>
+    </message>
+    <message>
+      <location filename="PathHelix.py" line="69"/>
+      <source>Starting Radius</source>
+      <translation type="unfinished">Starting Radius</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathThreadMilling</name>
+    <message>
+      <location filename="PathThreadMillingGui.py" line="208"/>
+      <source>Thread Milling</source>
+      <translation type="unfinished">Thread Milling</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMillingGui.py" line="209"/>
+      <source>Creates a Path Thread Milling operation from features of a base object</source>
+      <translation type="unfinished">Creates a Path Thread Milling operation from features of a base object</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="182"/>
+      <source>Set thread orientation</source>
+      <translation type="unfinished">Set thread orientation</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="184"/>
+      <source>Currently only internal</source>
+      <translation type="unfinished">Currently only internal</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="186"/>
+      <source>Defines which standard thread was chosen</source>
+      <translation type="unfinished">Defines which standard thread was chosen</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="187"/>
+      <source>Set thread's major diameter</source>
+      <translation type="unfinished">Set thread's major diameter</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="188"/>
+      <source>Set thread's minor diameter</source>
+      <translation type="unfinished">Set thread's minor diameter</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="189"/>
+      <source>Set thread's pitch - used for metric threads</source>
+      <translation type="unfinished">Set thread's pitch - used for metric threads</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="190"/>
+      <source>Set thread's TPI (turns per inch) - used for imperial threads</source>
+      <translation type="unfinished">Set thread's TPI (turns per inch) - used for imperial threads</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="192"/>
+      <source>Set how many passes are used to cut the thread</source>
+      <translation type="unfinished">Set how many passes are used to cut the thread</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="193"/>
+      <source>Direction of thread cutting operation</source>
+      <translation type="unfinished">Direction of thread cutting operation</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="194"/>
+      <source>Set to True to get lead in and lead out arcs at the start and end of the thread cut</source>
+      <translation type="unfinished">Set to True to get lead in and lead out arcs at the start and end of the thread cut</translation>
+    </message>
+    <message>
+      <location filename="PathThreadMilling.py" line="195"/>
+      <source>Operation to clear the inside of the thread</source>
+      <translation type="unfinished">Operation to clear the inside of the thread</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathToolBitLibrary</name>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="39"/>
+      <source>ToolBit Dock</source>
+      <translation>TyökaluBit Telakka</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="40"/>
+      <source>Toggle the Toolbit Dock</source>
+      <translation>Vaihda työkaluBit telakan tilaa</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="63"/>
+      <source>ToolBit Library editor</source>
+      <translation>TyökaluBit-kirjaston muokkain</translation>
+    </message>
+    <message>
+      <location filename="PathToolBitLibraryCmd.py" line="64"/>
+      <source>Open an editor to manage ToolBit libraries</source>
+      <translation>Avaa editori hallitaksesi TyökaluBit kirjastoja</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathToolController</name>
+    <message>
+      <location filename="PathToolControllerGui.py" line="240"/>
+      <source>Error updating TC: %s</source>
+      <translation>Virhe päivitettäessä TC: %s</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="66"/>
+      <source>The active tool</source>
+      <translation type="unfinished">The active tool</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="68"/>
+      <source>The speed of the cutting spindle in RPM</source>
+      <translation type="unfinished">The speed of the cutting spindle in RPM</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="69"/>
+      <source>Direction of spindle rotation</source>
+      <translation type="unfinished">Direction of spindle rotation</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="71"/>
+      <source>Feed rate for vertical moves in Z</source>
+      <translation type="unfinished">Feed rate for vertical moves in Z</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="72"/>
+      <source>Feed rate for horizontal moves</source>
+      <translation type="unfinished">Feed rate for horizontal moves</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="73"/>
+      <source>Rapid rate for vertical moves in Z</source>
+      <translation type="unfinished">Rapid rate for vertical moves in Z</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="74"/>
+      <source>Rapid rate for horizontal moves</source>
+      <translation type="unfinished">Rapid rate for horizontal moves</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="131"/>
+      <source>Unsupported PathToolController template version %s</source>
+      <translation>PathToolController malliversiota %s ei tueta</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="133"/>
+      <source>PathToolController template has no version - corrupted template file?</source>
+      <translation>PathToolController mallilla ei ole versiota - vioittunut mallitiedosto?</translation>
+    </message>
+    <message>
+      <location filename="PathToolController.py" line="213"/>
+      <source>The tool used by this controller</source>
+      <translation type="unfinished">The tool used by this controller</translation>
+    </message>
+  </context>
+  <context>
+    <name>PathVcarve</name>
+    <message>
+      <location filename="PathVcarve.py" line="211"/>
+      <source>Additional base objects to be engraved</source>
+      <translation type="unfinished">Additional base objects to be engraved</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="218"/>
+      <source>The deflection value for discretizing arcs</source>
+      <translation>Kaarien diskretisoinnin poikkeama-arvo</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="222"/>
+      <source>Cutoff for removing colinear segments (degrees). 
+                        default=10.0.</source>
+      <translation type="unfinished">Cutoff for removing colinear segments (degrees). 
+                        default=10.0.</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="335"/>
+      <source>The Job Base Object has no engraveable element. Engraving operation will produce no output.</source>
+      <translation type="unfinished">The Job Base Object has no engraveable element. Engraving operation will produce no output.</translation>
+    </message>
+    <message>
+      <location filename="PathVcarve.py" line="340"/>
+      <source>Error processing Base object. Engraving operation will produce no output.</source>
+      <translation type="unfinished">Error processing Base object. Engraving operation will produce no output.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_DressupZCorrectp</name>
+    <message>
+      <location filename="PathDressupZCorrect.py" line="71"/>
+      <source>break segments into smaller segments of this length.</source>
+      <translation type="unfinished">break segments into smaller segments of this length.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Path_Face</name>
+    <message>
+      <location filename="PathMillFaceGui.py" line="46"/>
+      <source>Face</source>
+      <translation>Tahko</translation>
+    </message>
+    <message>
+      <location filename="PathMillFaceGui.py" line="47"/>
+      <source>Create a Facing Operation from a model or face</source>
+      <translation type="unfinished">Create a Facing Operation from a model or face</translation>
     </message>
   </context>
   <context>
@@ -3886,7 +5484,7 @@ If it is necessary to set the FinalDepth manually please select a different oper
     <message>
       <location filename="../panels/DlgJobModelSelect.ui" line="34"/>
       <source>2D</source>
-      <translation type="unfinished">2D</translation>
+      <translation>2D</translation>
     </message>
     <message>
       <location filename="../panels/DlgJobModelSelect.ui" line="44"/>
@@ -5800,7 +7398,7 @@ If it is necessary to set the FinalDepth manually please select a different oper
     <message>
       <location filename="../panels/PropertyBag.ui" line="62"/>
       <source>Add...</source>
-      <translation type="unfinished">Add...</translation>
+      <translation>Lisää...</translation>
     </message>
     <message>
       <location filename="../panels/SetupGlobal.ui" line="14"/>
@@ -5960,7 +7558,7 @@ If it is necessary to set the FinalDepth manually please select a different oper
       <location filename="../panels/ToolEditor.ui" line="161"/>
       <location filename="../panels/ToolEditor.ui" line="254"/>
       <source>180°</source>
-      <translation type="unfinished">180°</translation>
+      <translation>180°</translation>
     </message>
     <message>
       <location filename="../panels/ToolEditor.ui" line="164"/>
@@ -6876,7 +8474,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/HoldingTagsEdit.ui" line="29"/>
       <source>Add...</source>
-      <translation type="unfinished">Add...</translation>
+      <translation>Lisää...</translation>
     </message>
     <message>
       <location filename="../panels/HoldingTagsEdit.ui" line="39"/>
@@ -6886,7 +8484,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/HoldingTagsEdit.ui" line="49"/>
       <source>Edit...</source>
-      <translation type="unfinished">Edit...</translation>
+      <translation>Muokkaa...</translation>
     </message>
     <message>
       <location filename="../panels/HoldingTagsEdit.ui" line="59"/>
@@ -6937,7 +8535,7 @@ p, li { white-space: pre-wrap; }
       <location filename="../panels/HoldingTagsEdit.ui" line="155"/>
       <location filename="../panels/HoldingTagsEdit.ui" line="181"/>
       <source>Replace All</source>
-      <translation type="unfinished">Replace All</translation>
+      <translation>Korvaa kaikki</translation>
     </message>
     <message>
       <location filename="../panels/HoldingTagsEdit.ui" line="165"/>
@@ -7165,7 +8763,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/TaskPathSimulator.ui" line="229"/>
       <source>Accuracy:</source>
-      <translation type="unfinished">Accuracy:</translation>
+      <translation>Tarkkuus:</translation>
     </message>
     <message>
       <location filename="../panels/TaskPathSimulator.ui" line="261"/>
@@ -7253,7 +8851,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/ToolBitEditor.ui" line="138"/>
       <source>0 °</source>
-      <translation type="unfinished">0 °</translation>
+      <translation>0 °</translation>
     </message>
     <message>
       <location filename="../panels/ToolBitEditor.ui" line="141"/>
@@ -7268,7 +8866,7 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/ToolBitEditor.ui" line="155"/>
       <source>0 mm</source>
-      <translation type="unfinished">0 mm</translation>
+      <translation>0 mm</translation>
     </message>
     <message>
       <location filename="../panels/ToolBitEditor.ui" line="158"/>
@@ -7296,12 +8894,12 @@ p, li { white-space: pre-wrap; }
     <message>
       <location filename="../panels/ToolLibraryEditor.ui" line="28"/>
       <source>Import...</source>
-      <translation type="unfinished">Import...</translation>
+      <translation>Tuo...</translation>
     </message>
     <message>
       <location filename="../panels/ToolLibraryEditor.ui" line="35"/>
       <source>Export...</source>
-      <translation type="unfinished">Export...</translation>
+      <translation>Vie...</translation>
     </message>
     <message>
       <location filename="../panels/ToolLibraryEditor.ui" line="71"/>

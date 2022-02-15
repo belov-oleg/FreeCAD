@@ -93,7 +93,7 @@
     <message>
       <location filename="../../Command.cpp" line="1700"/>
       <source>Additive helix</source>
-      <translation>Hinzuzufügende Wendel</translation>
+      <translation>+ Wendel</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1701"/>
@@ -111,7 +111,7 @@
     <message>
       <location filename="../../Command.cpp" line="1601"/>
       <source>Additive loft</source>
-      <translation>Zu addierende Ausformung</translation>
+      <translation>+ Ausformung</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1602"/>
@@ -647,7 +647,7 @@
     <message>
       <location filename="../../Command.cpp" line="1770"/>
       <source>Subtractive helix</source>
-      <translation>Abzuziehende Wendel</translation>
+      <translation>Wendel</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1771"/>
@@ -665,7 +665,7 @@
     <message>
       <location filename="../../Command.cpp" line="1651"/>
       <source>Subtractive loft</source>
-      <translation>Abziehbare Ausformung</translation>
+      <translation>Ausformung</translation>
     </message>
     <message>
       <location filename="../../Command.cpp" line="1652"/>
@@ -720,7 +720,7 @@
       <location filename="../../CommandPrimitive.cpp" line="70"/>
       <location filename="../../CommandPrimitive.cpp" line="71"/>
       <source>Create an additive primitive</source>
-      <translation>Hinzuzufügende Grundkörper</translation>
+      <translation>Grundkörper hinzufügen</translation>
     </message>
     <message>
       <location filename="../../CommandPrimitive.cpp" line="199"/>
@@ -740,7 +740,7 @@
     <message>
       <location filename="../../CommandPrimitive.cpp" line="211"/>
       <source>Additive Cone</source>
-      <translation>Hinzuzufügender Kegel</translation>
+      <translation>Kegel</translation>
     </message>
     <message>
       <location filename="../../CommandPrimitive.cpp" line="215"/>
@@ -755,7 +755,7 @@
     <message>
       <location filename="../../CommandPrimitive.cpp" line="223"/>
       <source>Additive Prism</source>
-      <translation>Hinzuzufügendes Prisma</translation>
+      <translation>+ Prisma</translation>
     </message>
     <message>
       <location filename="../../CommandPrimitive.cpp" line="227"/>
@@ -774,7 +774,7 @@
       <location filename="../../CommandPrimitive.cpp" line="244"/>
       <location filename="../../CommandPrimitive.cpp" line="245"/>
       <source>Create a subtractive primitive</source>
-      <translation>Erzeuge einen abzuziehenden Grundkörper</translation>
+      <translation>Grundkörper abziehen</translation>
     </message>
     <message>
       <location filename="../../CommandPrimitive.cpp" line="355"/>
@@ -814,7 +814,7 @@
     <message>
       <location filename="../../CommandPrimitive.cpp" line="383"/>
       <source>Subtractive Wedge</source>
-      <translation>Abzuziehender Keil</translation>
+      <translation>Keil</translation>
     </message>
   </context>
   <context>
@@ -878,7 +878,7 @@
     <message>
       <location filename="../../CommandBody.cpp" line="575"/>
       <source>Move tip to selected feature</source>
-      <translation>TIP zum gewählten Objekt verschieben</translation>
+      <translation>Arbeitsposition zum gewählten Objekt verschieben</translation>
     </message>
     <message>
       <location filename="../../CommandBody.cpp" line="620"/>
@@ -951,7 +951,7 @@
     <message>
       <location filename="../../FeaturePickDialog.cpp" line="51"/>
       <source>Feature is located after the Tip feature</source>
-      <translation>Objekt folgt nach Spitze</translation>
+      <translation>Objekt befindet sich hinter der markierten Arbeitsposition</translation>
     </message>
   </context>
   <context>
@@ -997,7 +997,7 @@
     <message>
       <location filename="../../../InvoluteGearFeature.ui" line="125"/>
       <source>High precision:</source>
-      <translation>Hohe Präzision:</translation>
+      <translation>Hohe Genauigkeit:</translation>
     </message>
     <message>
       <location filename="../../../InvoluteGearFeature.ui" line="139"/>
@@ -1061,7 +1061,7 @@
     <message>
       <location filename="../../DlgActiveBody.ui" line="14"/>
       <source>Active Body Required</source>
-      <translation>Aktiver Körper benötigt</translation>
+      <translation>Aktiver Körper erforderlich</translation>
     </message>
     <message>
       <location filename="../../DlgActiveBody.ui" line="20"/>
@@ -1785,7 +1785,7 @@ Nochmaliges Klicken beendet den Auswahl-Modus.</translation>
     <message>
       <location filename="../../TaskFeaturePick.cpp" line="75"/>
       <source>Feature is located after the tip feature</source>
-      <translation>Objekt befindet sich nach dem TIP-Objekt</translation>
+      <translation>Objekt befindet sich hinter der markierten Arbeitsposition</translation>
     </message>
     <message>
       <location filename="../../TaskFeaturePick.cpp" line="86"/>
@@ -3301,17 +3301,17 @@ Nochmaliges Klicken beendet den Auswahl-Modus.</translation>
     <message>
       <location filename="../../CommandBody.cpp" line="950"/>
       <source>Move tip</source>
-      <translation>TIP bewegen</translation>
+      <translation>Arbeitsposition versetzen</translation>
     </message>
     <message>
       <location filename="../../CommandBody.cpp" line="951"/>
       <source>The moved feature appears after the currently set tip.</source>
-      <translation>Das bewegte Objekt erscheint nach dem aktuell gesetzten TIP.</translation>
+      <translation>Das bewegte Objekt erscheint hinter der aktuell gesetzten Arbeitsposition.</translation>
     </message>
     <message>
       <location filename="../../CommandBody.cpp" line="952"/>
       <source>Do you want the last feature to be the new tip?</source>
-      <translation>Soll das letzte Objekt der neue TIP sein?</translation>
+      <translation>Soll das letzte Objekt die neue Arbeitsposition sein?</translation>
     </message>
   </context>
   <context>
@@ -3614,7 +3614,7 @@ This may lead to unexpected results.</source>
     <message>
       <location filename="../../CommandBody.cpp" line="565"/>
       <source>Only a solid feature can be the tip of a body.</source>
-      <translation>Nur eine massives Merkmal kann die Spitze des Körpers sein.</translation>
+      <translation>Nur ein Festkörperobjekt kann als Arbeitsposition eines Körpers festgelegt werden.</translation>
     </message>
     <message>
       <location filename="../../CommandBody.cpp" line="680"/>
@@ -3707,14 +3707,14 @@ This may lead to unexpected results.</source>
       <source>In order to use PartDesign you need an active Body object in the document. Please make one active (double click) or create one.
 
 If you have a legacy document with PartDesign objects without Body, use the migrate function in PartDesign to put them into a Body.</source>
-      <translation>Um PartDesign verwenden zu können, benötigen Sie einen aktiven Körper im Dokument. Bitte aktivieren (Doppelklick) Sie einen Körper oder erstellen Sie einen Neuen.
+      <translation>Um PartDesign verwenden zu können, ist ein aktiver Körper im Dokument erforderlich. Bitte einen Körper aktivieren (Doppelklick) oder einen neuen erstellen.
 
-Wenn Sie ein älteres Dokument mit PartDesign-Objekten ohne Körper haben, verwenden Sie die Migrationsfunktion in PartDesign, um sie in einen Körper umzuwandeln.</translation>
+Wenn ein älteres Dokument mit PartDesign-Objekten ohne Körper vorliegt, wird die PartDesign-Funktion Migrieren verwendet, um sie in einen Körper abzulegen.</translation>
     </message>
     <message>
       <location filename="../../Utils.cpp" line="177"/>
       <source>Active Body Required</source>
-      <translation>Aktiver Körper benötigt</translation>
+      <translation>Aktiver Körper erforderlich</translation>
     </message>
     <message>
       <location filename="../../Utils.cpp" line="178"/>
@@ -4053,37 +4053,37 @@ Du kannst die Teile später jederzeit mit 'Part Design -&gt; Migrieren...' migri
     <message>
       <location filename="../../../SprocketFeature.ui" line="163"/>
       <source>Motorcycle 420</source>
-      <translation>Motorrad 420</translation>
+      <translation>Motorcycle 420</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="168"/>
       <source>Motorcycle 425</source>
-      <translation>Motorrad 425</translation>
+      <translation>Motorcycle 425</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="173"/>
       <source>Motorcycle 428</source>
-      <translation>Motorrad 428</translation>
+      <translation>Motorcycle 428</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="178"/>
       <source>Motorcycle 520</source>
-      <translation>Motorrad 520</translation>
+      <translation>Motorcycle 520</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="183"/>
       <source>Motorcycle 525</source>
-      <translation>Motorrad 525</translation>
+      <translation>Motorcycle 525</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="188"/>
       <source>Motorcycle 530</source>
-      <translation>Motorrad 530</translation>
+      <translation>Motorcycle 530</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="193"/>
       <source>Motorcycle 630</source>
-      <translation>Motorrad 630</translation>
+      <translation>Motorcycle 630</translation>
     </message>
     <message>
       <location filename="../../../SprocketFeature.ui" line="201"/>
@@ -4536,12 +4536,12 @@ unter 90: kleinerer Bohrungsradius an der Unterseite
     <message>
       <location filename="../../Workbench.cpp" line="56"/>
       <source>Create an additive feature</source>
-      <translation>Hinzuzufügende Objekte</translation>
+      <translation>Objekte hinzufügen</translation>
     </message>
     <message>
       <location filename="../../Workbench.cpp" line="57"/>
       <source>Create a subtractive feature</source>
-      <translation>Abzuziehende Objekte</translation>
+      <translation>Objekte abziehen</translation>
     </message>
     <message>
       <location filename="../../Workbench.cpp" line="58"/>

@@ -656,13 +656,13 @@ This property is read-only, as the number depends on the points contained within
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="hatch.py" line="64"/>
-        <source>The pattern rotation used by this object</source>
+        <location filename="hatch.py" line="49"/>
+        <source>The shape of this object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="hatch.py" line="49"/>
-        <source>The shape of this object</source>
+        <location filename="hatch.py" line="64"/>
+        <source>The pattern rotation used by this object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1041,6 +1041,16 @@ beyond the dimension line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="view_base.py" line="106"/>
+        <source>Defines an SVG pattern.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="view_base.py" line="116"/>
+        <source>Defines the size of the SVG pattern.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="view_label.py" line="73"/>
         <source>The size of the text</source>
         <translation type="unfinished"></translation>
@@ -1114,43 +1124,8 @@ beyond the dimension line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="init_tools.py" line="145"/>
-        <source>Draft creation tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="148"/>
-        <source>Draft annotation tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="151"/>
-        <source>Draft modification tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="InitGui.py" line="107"/>
         <source>Draft utility tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="166"/>
-        <source>&amp;Drafting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="168"/>
-        <source>&amp;Annotation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="170"/>
-        <source>&amp;Modification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="172"/>
-        <source>&amp;Utilities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1186,21 +1161,6 @@ beyond the dimension line</source>
     <message>
         <location filename="init_draft_statusbar.py" line="340"/>
         <source>Toggles Constrain to Working Plane On/Off</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="48"/>
-        <source>Arc tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="init_tools.py" line="56"/>
-        <source>Bezier tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_arrays.py" line="65"/>
-        <source>Array tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1281,19 +1241,6 @@ from menu Tools -&gt; Addon Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui_circulararray.py" line="66"/>
-        <source>Circular array</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_circulararray.py" line="68"/>
-        <source>Creates copies of the selected object, and places the copies in a radial pattern
-creating various circular layers.
-
-The array can be turned into an orthogonal or a polar array by changing its type.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="gui_setstyle.py" line="273"/>
         <source>Save style</source>
         <translation type="unfinished"></translation>
@@ -1319,39 +1266,8 @@ The array can be turned into an orthogonal or a polar array by changing its type
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui_polararray.py" line="66"/>
-        <source>Polar array</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_polararray.py" line="68"/>
-        <source>Creates copies of the selected object, and places the copies in a polar pattern
-defined by a center of rotation and its angle.
-
-The array can be turned into an orthogonal or a circular array by changing its type.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="gui_hatch.py" line="48"/>
         <source>You must choose a base object before using this command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_arrays.py" line="68"/>
-        <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_orthoarray.py" line="66"/>
-        <source>Array</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_orthoarray.py" line="68"/>
-        <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
-meaning the copies follow the specified direction in the X, Y, Z axes.
-
-The array can be turned into a polar or a circular array by changing its type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1377,6 +1293,100 @@ The array can be turned into a polar or a circular array by changing its type.</
     <message>
         <location filename="gui_offset.py" line="329"/>
         <source>Offset direction is not defined. Please move the mouse on either side of the object first to indicate a direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="48"/>
+        <source>Arc tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="56"/>
+        <source>Bezier tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="145"/>
+        <source>Draft creation tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="148"/>
+        <source>Draft annotation tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="151"/>
+        <source>Draft modification tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="166"/>
+        <source>&amp;Drafting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="168"/>
+        <source>&amp;Annotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="170"/>
+        <source>&amp;Modification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="172"/>
+        <source>&amp;Utilities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_arrays.py" line="65"/>
+        <source>Array tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_arrays.py" line="68"/>
+        <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_circulararray.py" line="66"/>
+        <source>Circular array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_circulararray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_polararray.py" line="66"/>
+        <source>Polar array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_polararray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_orthoarray.py" line="66"/>
+        <source>Array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_orthoarray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1462,6 +1472,11 @@ Create a group first to use this tool.</source>
         <source>Annotation styles...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="gui_annotationstyleeditor.py" line="82"/>
+        <source>Manage or create annotation styles</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Draft_ApplyStyle</name>
@@ -1504,6 +1519,20 @@ CTRL to snap, SHIFT to constrain.</source>
     </message>
 </context>
 <context>
+    <name>Draft_Arc_3Points</name>
+    <message>
+        <location filename="gui_arcs.py" line="487"/>
+        <source>Arc by 3 points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_arcs.py" line="490"/>
+        <source>Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Draft_Array</name>
     <message>
         <location filename="gui_array_simple.py" line="68"/>
@@ -1516,6 +1545,27 @@ CTRL to snap, SHIFT to constrain.</source>
 By default, it is a 2x2 orthogonal array.
 Once the array is created its type can be changed
 to polar or circular, and its properties can be modified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_orthoarray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Draft_ArrayTools</name>
+    <message>
+        <location filename="gui_arrays.py" line="65"/>
+        <source>Array tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_arrays.py" line="68"/>
+        <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1549,7 +1599,18 @@ to polar or circular, and its properties can be modified.</source>
     <name>Draft_BezCurve</name>
     <message>
         <location filename="gui_beziers.py" line="64"/>
+        <source>BÃ©zier curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="64"/>
         <source>Bezier curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="67"/>
+        <source>Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1563,7 +1624,17 @@ CTRL to snap, SHIFT to constrain.</source>
     <name>Draft_BezierTools</name>
     <message>
         <location filename="gui_beziers.py" line="475"/>
+        <source>BÃ©zier tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="475"/>
         <source>Bezier tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="478"/>
+        <source>Create various types of BÃ©zier curves.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1587,6 +1658,22 @@ CTRL to snap, ALT to select tangent objects.</source>
     </message>
 </context>
 <context>
+    <name>Draft_CircularArray</name>
+    <message>
+        <location filename="gui_circulararray.py" line="65"/>
+        <source>Circular array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_circulararray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Draft_Clone</name>
     <message>
         <location filename="gui_clone.py" line="70"/>
@@ -1604,7 +1691,19 @@ The resulting clone can be scaled in each of its three directions.</source>
     <name>Draft_CubicBezCurve</name>
     <message>
         <location filename="gui_beziers.py" line="242"/>
+        <source>Cubic BÃ©zier curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="242"/>
         <source>Cubic bezier curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="245"/>
+        <source>Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1735,6 +1834,19 @@ on supported nodes and on supported objects.</source>
     <message>
         <location filename="gui_facebinders.py" line="62"/>
         <source>Creates a facebinder object from selected faces.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Draft_Fillet</name>
+    <message>
+        <location filename="gui_fillets.py" line="64"/>
+        <source>Fillet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_fillets.py" line="67"/>
+        <source>Creates a fillet between two selected wires or edges.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1905,6 +2017,22 @@ CTRL to snap, SHIFT to constrain. Hold ALT and click to create a copy with each 
     </message>
 </context>
 <context>
+    <name>Draft_OrthoArray</name>
+    <message>
+        <location filename="gui_orthoarray.py" line="65"/>
+        <source>Array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_orthoarray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Draft_PathArray</name>
     <message>
         <location filename="gui_patharray.py" line="73"/>
@@ -2005,6 +2133,22 @@ Select the base object, and then select the compound or the sketch to create the
         <location filename="gui_pointarray.py" line="144"/>
         <source>Like the PointArray tool, but creates a &apos;Point link array&apos; instead.
 A &apos;Point link array&apos; is more efficient when handling many copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Draft_PolarArray</name>
+    <message>
+        <location filename="gui_polararray.py" line="65"/>
+        <source>Polar array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_polararray.py" line="68"/>
+        <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2169,19 +2313,6 @@ If a polyline is selected, it will apply the slope transformation to each of its
 
 The slope will always change the Z value, therefore this command only works well for
 straight Draft lines that are drawn in the XY plane. Selected objects that aren&apos;t single lines will be ignored.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Draft_Snap</name>
-    <message>
-        <location filename="gui_snapper.py" line="1529"/>
-        <source>Toggles Grid On/Off</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui_snapper.py" line="1530"/>
-        <source>Toggle Draft Grid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2567,14 +2698,6 @@ Then you can use it to save a different camera position and objects&apos; states
     </message>
 </context>
 <context>
-    <name>Gui::Dialog::DlgAddProperty</name>
-    <message>
-        <location filename="gui_groups.py" line="452"/>
-        <source>Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ImportAirfoilDAT</name>
     <message>
         <location filename="importAirfoilDAT.py" line="186"/>
@@ -2597,6 +2720,66 @@ Then you can use it to save a different camera position and objects&apos; states
 </context>
 <context>
     <name>Workbench</name>
+    <message>
+        <location filename="InitGui.py" line="104"/>
+        <source>Draft creation tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="107"/>
+        <source>Draft annotation tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="110"/>
+        <source>Draft modification tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="113"/>
+        <source>Draft utility tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="118"/>
+        <source>&amp;Drafting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="121"/>
+        <source>&amp;Annotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="124"/>
+        <source>&amp;Modification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="InitGui.py" line="127"/>
+        <source>&amp;Utilities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="50"/>
+        <source>Arc tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="58"/>
+        <source>BÃ©zier tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="58"/>
+        <source>Bezier tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="89"/>
+        <source>Array tools</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="gui_snapper.py" line="1470"/>
         <source>Draft Snap</source>
@@ -2736,13 +2919,13 @@ Then you can use it to save a different camera position and objects&apos; states
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DraftGui.py" line="722"/>
-        <source>active command:</source>
+        <location filename="gui_groups.py" line="299"/>
+        <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui_groups.py" line="299"/>
-        <source>None</source>
+        <location filename="DraftGui.py" line="722"/>
+        <source>active command:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3295,6 +3478,11 @@ Not available if Draft preference option &apos;Use Part Primitives&apos; is enab
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="upgrade.py" line="541"/>
+        <source>Found several non-treatable objects: creating compound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="upgrade.py" line="512"/>
         <source>trying: closing it</source>
         <translation type="unfinished"></translation>
@@ -3312,11 +3500,6 @@ Not available if Draft preference option &apos;Use Part Primitives&apos; is enab
     <message>
         <location filename="upgrade.py" line="536"/>
         <source>Found points: creating compound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="upgrade.py" line="541"/>
-        <source>Found several non-treatable objects: creating compound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3833,6 +4016,11 @@ Not available if Draft preference option &apos;Use Part Primitives&apos; is enab
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="view_base.py" line="402"/>
+        <source>Please load the Draft Workbench to enable editing this object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="InitGui.py" line="46"/>
         <source>Draft</source>
         <translation type="unfinished"></translation>
@@ -3843,13 +4031,28 @@ Not available if Draft preference option &apos;Use Part Primitives&apos; is enab
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="init_draft_statusbar.py" line="140"/>
+        <source>Unable to convert input into a  scale factor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="init_draft_statusbar.py" line="141"/>
         <source>Unable to convert input into a scale factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="init_draft_statusbar.py" line="155"/>
+        <source>Set custom scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="init_draft_statusbar.py" line="159"/>
         <source>Set custom annotation scale in format x:x, x=x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_draft_statusbar.py" line="214"/>
+        <source>Set the scale used by draft annotation tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3935,6 +4138,86 @@ Not available if Draft preference option &apos;Use Part Primitives&apos; is enab
     <message>
         <location filename="utils.py" line="1059"/>
         <source>This function will be deprecated. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="169"/>
+        <source>Snap Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="170"/>
+        <source>Snap Endpoint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="171"/>
+        <source>Snap Midpoint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="172"/>
+        <source>Snap Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="173"/>
+        <source>Snap Angle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="174"/>
+        <source>Snap Intersection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="175"/>
+        <source>Snap Perpendicular</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="176"/>
+        <source>Snap Extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="177"/>
+        <source>Snap Parallel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="178"/>
+        <source>Snap Special</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="179"/>
+        <source>Snap Near</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="180"/>
+        <source>Snap Ortho</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="181"/>
+        <source>Snap Grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="182"/>
+        <source>Snap WorkingPlane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="183"/>
+        <source>Snap Dimensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="init_tools.py" line="187"/>
+        <source>Toggle Draft Grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4560,13 +4843,23 @@ To enabled FreeCAD to download these libraries, answer Yes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="gui_snapper.py" line="1543"/>
+        <source>(ON)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_snapper.py" line="1546"/>
+        <source>(OFF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="gui_shape2dview.py" line="109"/>
         <source>Create 2D view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="gui_beziers.py" line="332"/>
-        <source>Bezier curve has been closed</source>
+        <source>BÃ©zier curve has been closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4587,6 +4880,11 @@ To enabled FreeCAD to download these libraries, answer Yes.</source>
     <message>
         <location filename="gui_beziers.py" line="376"/>
         <source>Click and drag to define next knot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_beziers.py" line="332"/>
+        <source>Bezier curve has been closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4930,6 +5228,11 @@ To enabled FreeCAD to download these libraries, answer Yes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="gui_groups.py" line="392"/>
+        <source>Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="gui_offset.py" line="76"/>
         <source>Select an object to offset</source>
         <translation type="unfinished"></translation>
@@ -5086,6 +5389,27 @@ The final angle will be the base angle plus this amount.</source>
     <message>
         <location filename="importOCA.py" line="492"/>
         <source>successfully exported</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Gui::Dialog::DlgAddProperty</name>
+    <message>
+        <location filename="gui_groups.py" line="452"/>
+        <source>Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Draft_Snap</name>
+    <message>
+        <location filename="gui_snapper.py" line="1529"/>
+        <source>Toggles Grid On/Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="gui_snapper.py" line="1530"/>
+        <source>Toggle Draft Grid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1026,11 +1026,11 @@ Primero ejecute el comando para reparar pliegues</translation>
     </message>
     <message>
       <source>Torus</source>
-      <translation>Rosca</translation>
+      <translation>Toroide</translation>
     </message>
     <message>
       <source>Height:</source>
-      <translation>Alto:</translation>
+      <translation>Altura:</translation>
     </message>
     <message>
       <source>Length:</source>
@@ -1116,7 +1116,7 @@ Primero ejecute el comando para reparar pliegues</translation>
     </message>
     <message>
       <source>Height:</source>
-      <translation>Alto:</translation>
+      <translation>Altura:</translation>
     </message>
     <message>
       <source>This parameter indicates whether ZIP compression
@@ -1668,7 +1668,7 @@ Please visit http://www.openscad.org/index.html to install it.</source>
     <name>QObject</name>
     <message>
       <source>Import-Export</source>
-      <translation>Importar/Exportar</translation>
+      <translation>Importar-Exportar</translation>
     </message>
     <message>
       <source>All Mesh Files</source>

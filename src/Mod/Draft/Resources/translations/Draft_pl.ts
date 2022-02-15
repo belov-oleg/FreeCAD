@@ -742,14 +742,14 @@ Tę właściwość można tylko przeglądać, ponieważ liczba jest zależna od 
       <translation>Skala wzoru używana przez ten obiekt</translation>
     </message>
     <message>
-      <location filename="hatch.py" line="64"/>
-      <source>The pattern rotation used by this object</source>
-      <translation>Obrót wzoru używanego przez ten obiekt</translation>
-    </message>
-    <message>
       <location filename="hatch.py" line="49"/>
       <source>The shape of this object</source>
       <translation>Kształt tego obiektu</translation>
+    </message>
+    <message>
+      <location filename="hatch.py" line="64"/>
+      <source>The pattern rotation used by this object</source>
+      <translation>Obrót wzoru używanego przez ten obiekt</translation>
     </message>
     <message>
       <location filename="hatch.py" line="67"/>
@@ -759,12 +759,12 @@ Tę właściwość można tylko przeglądać, ponieważ liczba jest zależna od 
     <message>
       <location filename="bezcurve.py" line="46"/>
       <source>The points of the Bezier curve</source>
-      <translation>Punkty krzywej Beziera</translation>
+      <translation>Punkty krzywej Béziera</translation>
     </message>
     <message>
       <location filename="bezcurve.py" line="50"/>
       <source>The degree of the Bezier function</source>
-      <translation>Stopień funkcji Beziera</translation>
+      <translation>Stopień funkcji Béziera</translation>
     </message>
     <message>
       <location filename="bezcurve.py" line="54"/>
@@ -774,7 +774,7 @@ Tę właściwość można tylko przeglądać, ponieważ liczba jest zależna od 
     <message>
       <location filename="bezcurve.py" line="58"/>
       <source>If the Bezier curve should be closed or not</source>
-      <translation>Czy krzywa Beziera ma być zamknięta czy nie</translation>
+      <translation>Czy krzywa Béziera ma być zamknięta, czy nie</translation>
     </message>
     <message>
       <location filename="bezcurve.py" line="62"/>
@@ -1144,6 +1144,16 @@ beyond the dimension line</source>
       <translation>Kolor linii</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="106"/>
+      <source>Defines an SVG pattern.</source>
+      <translation>Definiuje wzór kreskowania w formacie SVG.</translation>
+    </message>
+    <message>
+      <location filename="view_base.py" line="116"/>
+      <source>Defines the size of the SVG pattern.</source>
+      <translation>Ustawia rozmiar wzoru SVG.</translation>
+    </message>
+    <message>
       <location filename="view_label.py" line="73"/>
       <source>The size of the text</source>
       <translation>Rozmiar tekstu</translation>
@@ -1217,44 +1227,9 @@ beyond the dimension line</source>
       <translation>Zapisywanie obiektów pokazanych/ukrytych</translation>
     </message>
     <message>
-      <location filename="init_tools.py" line="145"/>
-      <source>Draft creation tools</source>
-      <translation>Narzędzia kreślarskie</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="148"/>
-      <source>Draft annotation tools</source>
-      <translation>Narzędzia opisów kreślarskich</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="151"/>
-      <source>Draft modification tools</source>
-      <translation>Narzędzia do modyfikacji kreślarskich</translation>
-    </message>
-    <message>
       <location filename="InitGui.py" line="107"/>
       <source>Draft utility tools</source>
-      <translation>Przybory do rysowania</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="166"/>
-      <source>&amp;Drafting</source>
-      <translation>&amp;Kreślenie</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="168"/>
-      <source>&amp;Annotation</source>
-      <translation>&amp;Adnotacja</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="170"/>
-      <source>&amp;Modification</source>
-      <translation>&amp;Modyfikacja</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="172"/>
-      <source>&amp;Utilities</source>
-      <translation>&amp;Narzędzia</translation>
+      <translation>Rysunek Roboczy - przybory</translation>
     </message>
     <message>
       <location filename="InitGui.py" line="122"/>
@@ -1290,21 +1265,6 @@ beyond the dimension line</source>
       <location filename="init_draft_statusbar.py" line="340"/>
       <source>Toggles Constrain to Working Plane On/Off</source>
       <translation>Włącz / wyłącz wiązanie do płaszczyzny roboczej</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="48"/>
-      <source>Arc tools</source>
-      <translation>Narzędzia łuku</translation>
-    </message>
-    <message>
-      <location filename="init_tools.py" line="56"/>
-      <source>Bezier tools</source>
-      <translation>Narzędzia Beziera</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="65"/>
-      <source>Array tools</source>
-      <translation>Narzędzia szyku</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="157"/>
@@ -1386,22 +1346,6 @@ z menu Przybory -&gt; Menedżer dodatków</translation>
       <translation>Nachylenie</translation>
     </message>
     <message>
-      <location filename="gui_circulararray.py" line="66"/>
-      <source>Circular array</source>
-      <translation>Szyk kołowy</translation>
-    </message>
-    <message>
-      <location filename="gui_circulararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a radial pattern
-creating various circular layers.
-
-The array can be turned into an orthogonal or a polar array by changing its type.</source>
-      <translation>Tworzy kopie wybranego obiektu i rozmieszcza je promieniście.
-tworząc różne warstwy kołowe.
-
-Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
-    </message>
-    <message>
       <location filename="gui_setstyle.py" line="273"/>
       <source>Save style</source>
       <translation>Zapisz styl</translation>
@@ -1427,46 +1371,9 @@ Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</
       <translation>Błąd: nie znaleziono modułu json. Nie można zapisać stylu</translation>
     </message>
     <message>
-      <location filename="gui_polararray.py" line="66"/>
-      <source>Polar array</source>
-      <translation>Szyk kołowy</translation>
-    </message>
-    <message>
-      <location filename="gui_polararray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in a polar pattern
-defined by a center of rotation and its angle.
-
-The array can be turned into an orthogonal or a circular array by changing its type.</source>
-      <translation>Tworzy kopie wybranego obiektu i umieszcza je we wzorze biegunowym 
-określonym przez środek obrotu i jego kąt.
-
-Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
-    </message>
-    <message>
       <location filename="gui_hatch.py" line="48"/>
       <source>You must choose a base object before using this command</source>
       <translation>Musisz wybrać obiekt bazowy przed użyciem tej komendy</translation>
-    </message>
-    <message>
-      <location filename="gui_arrays.py" line="68"/>
-      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
-      <translation>Twórz różne typy szyków, w tym prostokątne, biegunowe, kołowe, po ścieżce i punktowe</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="66"/>
-      <source>Array</source>
-      <translation>Szyk</translation>
-    </message>
-    <message>
-      <location filename="gui_orthoarray.py" line="68"/>
-      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
-meaning the copies follow the specified direction in the X, Y, Z axes.
-
-The array can be turned into a polar or a circular array by changing its type.</source>
-      <translation>Tworzy kopie wybranego obiektu i umieszcza kopie w ortogonalnym wzorze,
-oznacza, że kopie przebiegają zgodnie z określonym kierunkiem w osiach X, Y, Z.
-
-Tablicę można przekształcić w tablicę polarną lub okrągłą, zmieniając jej typ.</translation>
     </message>
     <message>
       <location filename="gui_fillets.py" line="65"/>
@@ -1492,6 +1399,109 @@ Tablicę można przekształcić w tablicę polarną lub okrągłą, zmieniając 
       <location filename="gui_offset.py" line="329"/>
       <source>Offset direction is not defined. Please move the mouse on either side of the object first to indicate a direction</source>
       <translation>Kierunek odsunięcia nie jest zdefiniowany. Proszę przesuń kursor myszki do wewnątrz lub na zewnątrz obiektu, aby wskazać kierunek</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="48"/>
+      <source>Arc tools</source>
+      <translation>Narzędzia łuku</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="56"/>
+      <source>Bezier tools</source>
+      <translation>Narzędzia Béziera</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="145"/>
+      <source>Draft creation tools</source>
+      <translation>Rysunek Roboczy — kreślenie</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="148"/>
+      <source>Draft annotation tools</source>
+      <translation>Rysunek Roboczy — opisy</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="151"/>
+      <source>Draft modification tools</source>
+      <translation>Rysunek Roboczy — narzędzia modyfikujące</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="166"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Kreślenie</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="168"/>
+      <source>&amp;Annotation</source>
+      <translation>&amp;Adnotacja</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Modyfikacja</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Narzędzia</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Narzędzia szyku</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Twórz różne typy szyków, w tym prostokątne, biegunowe, kołowe, po ścieżce i punktowe</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="66"/>
+      <source>Circular array</source>
+      <translation>Szyk kołowy</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i rozmieszcza je promieniście.
+tworząc różne warstwy kołowe.
+
+Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="66"/>
+      <source>Polar array</source>
+      <translation>Szyk kołowy</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i umieszcza je we wzorze biegunowym 
+określonym przez środek obrotu i jego kąt.
+
+Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="66"/>
+      <source>Array</source>
+      <translation>Szyk</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i umieszcza kopie w ortogonalnym wzorze,
+oznacza, że kopie przebiegają zgodnie z określonym kierunkiem w osiach X, Y, Z.
+
+Tablicę można przekształcić w tablicę polarną lub okrągłą, zmieniając jej typ.</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="154"/>
@@ -1531,12 +1541,12 @@ Tworzy grupę konstrukcji, jeśli nie istniała.</translation>
     <message>
       <location filename="gui_groups.py" line="361"/>
       <source>Add a new named group</source>
-      <translation type="unfinished">Add a new named group</translation>
+      <translation>Dodaj nową nazwę grupy</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="365"/>
       <source>Add a new group with a given name.</source>
-      <translation type="unfinished">Add a new group with a given name.</translation>
+      <translation>Dodaj nową grupę o podanej nazwie.</translation>
     </message>
   </context>
   <context>
@@ -1577,7 +1587,12 @@ Utwórz najpierw grupę, aby użyć tego narzędzia.</translation>
     <message>
       <location filename="gui_annotationstyleeditor.py" line="80"/>
       <source>Annotation styles...</source>
-      <translation>Styl adnotacji ...</translation>
+      <translation>Styl opisu ...</translation>
+    </message>
+    <message>
+      <location filename="gui_annotationstyleeditor.py" line="82"/>
+      <source>Manage or create annotation styles</source>
+      <translation>Zarządzaj lub twórz style adnotacji</translation>
     </message>
   </context>
   <context>
@@ -1604,7 +1619,7 @@ Utwórz najpierw grupę, aby użyć tego narzędzia.</translation>
       <location filename="gui_arcs.py" line="70"/>
       <source>Creates a circular arc by a center point and a radius.
 CTRL to snap, SHIFT to constrain.</source>
-      <translation>Tworzy łuk kołowy za pomocą punktu środkowego i promienia.
+      <translation>Tworzy łuk koła za pomocą punktu środkowego i promienia.
 CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
@@ -1619,6 +1634,21 @@ CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
       <location filename="gui_arcs.py" line="603"/>
       <source>Create various types of circular arcs.</source>
       <translation>Tworzy różne rodzaje łuków kołowych.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Arc_3Points</name>
+    <message>
+      <location filename="gui_arcs.py" line="487"/>
+      <source>Arc by 3 points</source>
+      <translation>Łuk przez trzy punkty</translation>
+    </message>
+    <message>
+      <location filename="gui_arcs.py" line="490"/>
+      <source>Creates a circular arc by picking 3 points.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>Tworzy łuk kołowy przez wskazane trzech punktów. 
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
@@ -1638,6 +1668,30 @@ to polar or circular, and its properties can be modified.</source>
 Domyślnie jest to szyk ortogonalny o rozmiarze 2x2.
 Po utworzeniu szyku można zmienić jego typ na
 na biegunowy lub kołowy, a jego właściwości mogą być modyfikowane.</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i umieszcza kopie w ortogonalnym wzorze,
+oznacza, że kopie przebiegają zgodnie z określonym kierunkiem w osiach X, Y, Z.
+
+Tablicę można przekształcić w tablicę polarną lub okrągłą, zmieniając jej typ.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_ArrayTools</name>
+    <message>
+      <location filename="gui_arrays.py" line="65"/>
+      <source>Array tools</source>
+      <translation>Narzędzia szyku</translation>
+    </message>
+    <message>
+      <location filename="gui_arrays.py" line="68"/>
+      <source>Create various types of arrays, including rectangular, polar, circular, path, and point</source>
+      <translation>Twórz różne typy szyków, w tym prostokątne, biegunowe, kołowe, po ścieżce i punktowe</translation>
     </message>
   </context>
   <context>
@@ -1664,11 +1718,16 @@ na biegunowy lub kołowy, a jego właściwości mogą być modyfikowane.</transl
       <location filename="gui_splines.py" line="63"/>
       <source>Creates a multiple-point B-spline. CTRL to snap, SHIFT to constrain.</source>
       <translation>Tworzy wielopunktową krzywą złożoną. 
-CTRL aby przyciągnąć, SHIFT aby związać.</translation>
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
     <name>Draft_BezCurve</name>
+    <message>
+      <location filename="gui_beziers.py" line="64"/>
+      <source>BÃ©zier curve</source>
+      <translation>Krzywa Béziera</translation>
+    </message>
     <message>
       <location filename="gui_beziers.py" line="64"/>
       <source>Bezier curve</source>
@@ -1676,23 +1735,40 @@ CTRL aby przyciągnąć, SHIFT aby związać.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="67"/>
+      <source>Creates an N-degree BÃ©zier curve. The more points you pick, the higher the degree.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>Tworzy N-stopniową krzywą Béziera. Im więcej punktów wybierzesz, tym osiągniesz wyższy stopień krzywej.
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="67"/>
       <source>Creates an N-degree Bezier curve. The more points you pick, the higher the degree.
 CTRL to snap, SHIFT to constrain.</source>
-      <translation>Tworzy krzywą Beziera N-stopniowego. Im więcej punktów wybierzesz, tym wyższy stopień.
-CTRL, aby przyciągnąć, SHIFT, aby ograniczyć.</translation>
+      <translation>Tworzy N-stopniową krzywą Béziera. Im więcej punktów wybierzesz, tym osiągniesz wyższy stopień krzywej.
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
     <name>Draft_BezierTools</name>
     <message>
       <location filename="gui_beziers.py" line="475"/>
+      <source>BÃ©zier tools</source>
+      <translation>Narzędzia krzywych Béziera</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="475"/>
       <source>Bezier tools</source>
-      <translation>Narzędzia Beziera</translation>
+      <translation>Narzędzia Béziera</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="478"/>
+      <source>Create various types of BÃ©zier curves.</source>
+      <translation>Tworzy różne typy krzywych Béziera.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="478"/>
       <source>Create various types of Bezier curves.</source>
-      <translation>Tworzy różne typy krzywych Beziera.</translation>
+      <translation>Tworzy różne typy krzywych Béziera.</translation>
     </message>
   </context>
   <context>
@@ -1708,6 +1784,25 @@ CTRL, aby przyciągnąć, SHIFT, aby ograniczyć.</translation>
 CTRL to snap, ALT to select tangent objects.</source>
       <translation>Tworzy okrąg (pełny okrągły łuk).
 CTRL aby przyciągnąć, ALT aby wybrać styczny obiekt.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_CircularArray</name>
+    <message>
+      <location filename="gui_circulararray.py" line="65"/>
+      <source>Circular array</source>
+      <translation>Szyk kołowy</translation>
+    </message>
+    <message>
+      <location filename="gui_circulararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a radial pattern
+creating various circular layers.
+
+The array can be turned into an orthogonal or a polar array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i rozmieszcza je promieniście.
+tworząc różne warstwy kołowe.
+
+Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
     </message>
   </context>
   <context>
@@ -1729,15 +1824,29 @@ Uzyskany klon może być skalowany w każdym z trzech kierunków.</translation>
     <name>Draft_CubicBezCurve</name>
     <message>
       <location filename="gui_beziers.py" line="242"/>
+      <source>Cubic BÃ©zier curve</source>
+      <translation>Sześcienna krzywa Béziera</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="242"/>
       <source>Cubic bezier curve</source>
-      <translation>Sześcienna krzywa Beziera</translation>
+      <translation>Sześcienna krzywa Béziera</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="245"/>
+      <source>Creates a BÃ©zier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
+After the curve is created you can go back to edit each control point and set the properties of each knot.
+CTRL to snap, SHIFT to constrain.</source>
+      <translation>Tworzy krzywą Béziera wykonaną z segmentów drugiego stopnia (kwadratowa) i trzeciego stopnia (sześcienna). Kliknij i przeciągnij, aby zdefiniować każdy segment.
+Po utworzeniu krzywej możesz wrócić do edycji każdego punktu kontrolnego i ustawić właściwości każdego węzła.
+CTRL aby przyciągnąć, SHIFT aby utworzyć wiązanie.</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="245"/>
       <source>Creates a Bezier curve made of 2nd degree (quadratic) and 3rd degree (cubic) segments. Click and drag to define each segment.
 After the curve is created you can go back to edit each control point and set the properties of each knot.
 CTRL to snap, SHIFT to constrain.</source>
-      <translation>Tworzy krzywą Beziera wykonaną z segmentów drugiego stopnia (kwadrat) i trzeciego stopnia (sześciokąt). Kliknij i przeciągnij, aby zdefiniować każdy segment.
+      <translation>Tworzy krzywą Béziera wykonaną z segmentów drugiego stopnia (kwadrat) i trzeciego stopnia (sześciokąt). Kliknij i przeciągnij, aby zdefiniować każdy segment.
 Po utworzeniu krzywej możesz wrócić do edycji każdego punktu kontrolnego i ustawić właściwości każdego węzła.
 CTRL aby przyciągnąć, SHIFT aby utworzyć wiązanie.</translation>
     </message>
@@ -1782,7 +1891,7 @@ to turn it into a 'Draft Dimension' object.</source>
 - Wybierz prostą, aby utworzyć wymiar liniowy powiązany z tą prostą.
 - Wybierz łuk lub okrąg, aby utworzyć wymiar promienia lub średnicy powiązany z tym łukiem.
 - Zaznacz dwie linie proste, aby utworzyć między nimi wymiar kątowy.
-CTRL - aby przyciągnąć, SHIFT - aby związać, ALT - aby wybrać krawędź lub łuk.
+CTRL - aby przyciągnąć, SHIFT - aby utworzyć wiązanie, ALT - aby wybrać krawędź lub łuk.
 
 Można wybrać pojedynczą linię lub pojedynczy łuk kołowy przed uruchomieniem tego polecenia
 aby utworzyć odpowiedni połączony wymiar.
@@ -1882,6 +1991,19 @@ na obsługiwanych węzłach i na obsługiwanych obiektach.</translation>
       <location filename="gui_facebinders.py" line="62"/>
       <source>Creates a facebinder object from selected faces.</source>
       <translation>Tworzy obiekt powiązania ścian z pośród wybranych ścian.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Fillet</name>
+    <message>
+      <location filename="gui_fillets.py" line="64"/>
+      <source>Fillet</source>
+      <translation>Zaokrąglenie</translation>
+    </message>
+    <message>
+      <location filename="gui_fillets.py" line="67"/>
+      <source>Creates a fillet between two selected wires or edges.</source>
+      <translation>Tworzy zaokrąglenie pomiędzy dwoma wybranymi liniami łamanymi lub krawędziami.</translation>
     </message>
   </context>
   <context>
@@ -2003,8 +2125,8 @@ Obiekty dodane do tej warstwy mogą mieć te same właściwości wizualne, takie
     <message>
       <location filename="gui_lines.py" line="67"/>
       <source>Creates a 2-point line. CTRL to snap, SHIFT to constrain.</source>
-      <translation>Tworzy linię 2-punktową. 
-CTRL do przyciągania, SHIFT aby związać.</translation>
+      <translation>Tworzy linię dwupunktową. 
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
@@ -2049,7 +2171,7 @@ If the "copy" option is active, it will create displaced copies.
 CTRL to snap, SHIFT to constrain.</source>
       <translation>Przenosi zaznaczone obiekty z jednego punktu bazowego do innego punktu.
 Jeśli opcja "kopiuj" jest aktywna, to stworzy kopię przeniesionych.
-CTRL do przyciągania, SHIFT do ograniczenia.</translation>
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
@@ -2066,7 +2188,26 @@ It can also create an offset copy of the original object.
 CTRL to snap, SHIFT to constrain. Hold ALT and click to create a copy with each click.</source>
       <translation>Odsuwa od wybranego obiektu.
 Może również tworzyć odsuniętą kopię oryginalnego obiektu.
-CTRL, aby przyciągnąć, SHIFT, aby ograniczyć. Przytrzymaj ALT i kliknij, aby utworzyć kopię przy każdym kliknięciu.</translation>
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie. Przytrzymaj ALT i kliknij, aby utworzyć kopię przy każdym kliknięciu.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_OrthoArray</name>
+    <message>
+      <location filename="gui_orthoarray.py" line="65"/>
+      <source>Array</source>
+      <translation>Szyk</translation>
+    </message>
+    <message>
+      <location filename="gui_orthoarray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in an orthogonal pattern,
+meaning the copies follow the specified direction in the X, Y, Z axes.
+
+The array can be turned into a polar or a circular array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i umieszcza kopie w ortogonalnym wzorze,
+oznacza, że kopie przebiegają zgodnie z określonym kierunkiem w osiach X, Y, Z.
+
+Tablicę można przekształcić w tablicę polarną lub okrągłą, zmieniając jej typ.</translation>
     </message>
   </context>
   <context>
@@ -2083,7 +2224,7 @@ First select the object, and then select the path.
 The path can be a polyline, B-spline, Bezier curve, or even edges from other objects.</source>
       <translation>Tworzy kopie wybranego obiektu wzdłuż wybranej ścieżki.
 Najpierw wybierz obiekt, a następnie wybierz ścieżkę.
-Ścieżka może być polilinią, krzywą złożoną, krzywą Beziera lub nawet krawędziami innych obiektów.</translation>
+Ścieżka może być poliginia, krzywą złożoną, krzywą Béziera lub nawet krawędziami innych obiektów.</translation>
     </message>
   </context>
   <context>
@@ -2115,7 +2256,7 @@ First select the object, and then select the path.
 The path can be a polyline, B-spline, Bezier curve, or even edges from other objects.</source>
       <translation>Tworzy kopie wybranego obiektu wzdłuż wybranej ścieżki i dokonuje obrotu tych kopii.
 Najpierw wybierz obiekt, a następnie wybierz ścieżkę.
-Ścieżka może być polilinią, B-spline, krzywą Beziera lub nawet krawędziami innych obiektów.</translation>
+Ścieżka może być polilinią, krzywą złożoną, krzywą Béziera lub nawet krawędziami innych obiektów.</translation>
     </message>
   </context>
   <context>
@@ -2187,6 +2328,25 @@ Tablica „Link punktowy” jest bardziej efektywna przy obsłudze wielu kopii.<
     </message>
   </context>
   <context>
+    <name>Draft_PolarArray</name>
+    <message>
+      <location filename="gui_polararray.py" line="65"/>
+      <source>Polar array</source>
+      <translation>Szyk kołowy</translation>
+    </message>
+    <message>
+      <location filename="gui_polararray.py" line="68"/>
+      <source>Creates copies of the selected object, and places the copies in a polar pattern
+defined by a center of rotation and its angle.
+
+The array can be turned into an orthogonal or a circular array by changing its type.</source>
+      <translation>Tworzy kopie wybranego obiektu i umieszcza je we wzorze biegunowym 
+określonym przez środek obrotu i jego kąt.
+
+Szyk można zmienić w szyk ortogonalny lub kołowy poprzez zmianę jego typu.</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_Polygon</name>
     <message>
       <location filename="gui_polygons.py" line="57"/>
@@ -2229,7 +2389,7 @@ If the "copy" option is active, it will create rotated copies.
 CTRL to snap, SHIFT to constrain. Hold ALT and click to create a copy with each click.</source>
       <translation>Obraca wybrane obiekty. Wybierz środek obrotu, następnie kąt początkowy, a następnie kąt końcowy.
 Jeśli opcja "kopiuj" jest aktywna, to stworzy kopie obracane.
-CTRL, aby przyciągnąć, SHIFT, aby ograniczyć. Przytrzymaj ALT i kliknij aby utworzyć kopię za każdym kliknięciem.</translation>
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie. Przytrzymaj ALT i kliknij, aby utworzyć kopię za każdym kliknięciem.</translation>
     </message>
   </context>
   <context>
@@ -2268,7 +2428,7 @@ te, które są na tym samym poziomie co ten obiekt, łącznie z grupą nadrzędn
     <message>
       <location filename="gui_groups.py" line="167"/>
       <source>Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</source>
-      <translation type="unfinished">Selects the contents of selected groups. For selected non-group objects, the contents of the group they are in is selected.</translation>
+      <translation>Wybiera zawartość zaznaczonych grup. Dla wybranych obiektów nie należących do grupy, wybierana jest zawartość grupy, w której się znajdują.</translation>
     </message>
   </context>
   <context>
@@ -2368,19 +2528,6 @@ prostych linii projektowych, które są rysowane w płaszczyźnie XY. Wybrane ob
     </message>
   </context>
   <context>
-    <name>Draft_Snap</name>
-    <message>
-      <location filename="gui_snapper.py" line="1529"/>
-      <source>Toggles Grid On/Off</source>
-      <translation>Włącz / wyłącz wyświetlanie siatki</translation>
-    </message>
-    <message>
-      <location filename="gui_snapper.py" line="1530"/>
-      <source>Toggle Draft Grid</source>
-      <translation>Przełącz siatkę szkicu</translation>
-    </message>
-  </context>
-  <context>
     <name>Draft_Snap_Angle</name>
     <message>
       <location filename="gui_snaps.py" line="344"/>
@@ -2476,7 +2623,7 @@ prostych linii projektowych, które są rysowane w płaszczyźnie XY. Wybrane ob
     <message>
       <location filename="gui_snaps.py" line="133"/>
       <source>Main snapping toggle On/Off</source>
-      <translation>Włącz/wyłącz główną opcję przyciągania</translation>
+      <translation>Włącz/wyłącz globalną opcję przyciągania</translation>
     </message>
     <message>
       <location filename="gui_snaps.py" line="136"/>
@@ -2636,7 +2783,7 @@ aby można je było edytować za pomocą narzędzi przesuwania, obracania i skal
     <message>
       <location filename="gui_texts.py" line="63"/>
       <source>Creates a multi-line annotation. CTRL to snap.</source>
-      <translation>Tworzy adnotację wieloliniową. CTRL do przyciągnięcia.</translation>
+      <translation>Tworzy opis wieloliniowy. CTRL do przyciągnięcia.</translation>
     </message>
   </context>
   <context>
@@ -2698,7 +2845,7 @@ Jest przeznaczona do użytku z zamkniętymi kształtami i bryłami i nie ma wpł
     <message>
       <location filename="gui_grid.py" line="59"/>
       <source>Toggles the Draft grid on and off.</source>
-      <translation>Włącza/Wyłącza siatkę projektu.</translation>
+      <translation>Włącza / wyłącza siatkę projektu.</translation>
     </message>
   </context>
   <context>
@@ -2746,7 +2893,7 @@ przekształcać zamknięte krawędzie w wypełnione ściany i parametryczne wiel
       <location filename="gui_lines.py" line="313"/>
       <source>Creates a multiple-points line (polyline). CTRL to snap, SHIFT to constrain.</source>
       <translation>Tworzy wielopunktową linię (polilinię). 
-CTRL do przyciągania, SHIFT aby związać.</translation>
+CTRL, aby przyciągnąć, SHIFT, aby utworzyć wiązanie.</translation>
     </message>
   </context>
   <context>
@@ -2780,14 +2927,6 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
     </message>
   </context>
   <context>
-    <name>Gui::Dialog::DlgAddProperty</name>
-    <message>
-      <location filename="gui_groups.py" line="452"/>
-      <source>Group</source>
-      <translation>Grupa</translation>
-    </message>
-  </context>
-  <context>
     <name>ImportAirfoilDAT</name>
     <message>
       <location filename="importAirfoilDAT.py" line="186"/>
@@ -2811,9 +2950,69 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
   <context>
     <name>Workbench</name>
     <message>
+      <location filename="InitGui.py" line="104"/>
+      <source>Draft creation tools</source>
+      <translation>Rysunek Roboczy — kreślenie</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="107"/>
+      <source>Draft annotation tools</source>
+      <translation>Rysunek Roboczy — opisy</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="110"/>
+      <source>Draft modification tools</source>
+      <translation>Rysunek Roboczy — narzędzia modyfikujące</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="113"/>
+      <source>Draft utility tools</source>
+      <translation>Rysunek Roboczy — przybory</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="118"/>
+      <source>&amp;Drafting</source>
+      <translation>&amp;Kreślenie</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="121"/>
+      <source>&amp;Annotation</source>
+      <translation>&amp;Adnotacja</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="124"/>
+      <source>&amp;Modification</source>
+      <translation>&amp;Modyfikacja</translation>
+    </message>
+    <message>
+      <location filename="InitGui.py" line="127"/>
+      <source>&amp;Utilities</source>
+      <translation>&amp;Narzędzia</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="50"/>
+      <source>Arc tools</source>
+      <translation>Narzędzia łuku</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>BÃ©zier tools</source>
+      <translation>Narzędzia krzywych Béziera</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="58"/>
+      <source>Bezier tools</source>
+      <translation>Narzędzia Béziera</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="89"/>
+      <source>Array tools</source>
+      <translation>Narzędzia szyku</translation>
+    </message>
+    <message>
       <location filename="gui_snapper.py" line="1470"/>
       <source>Draft Snap</source>
-      <translation>Rysunek Roboczy - przyciąganie</translation>
+      <translation>Rysunek Roboczy — przyciąganie</translation>
     </message>
   </context>
   <context>
@@ -2911,7 +3110,7 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
     <message>
       <location filename="DraftGui.py" line="146"/>
       <source>Set Working Plane</source>
-      <translation>Ustaw Płaszczyznę Roboczą</translation>
+      <translation>Ustaw płaszczyznę roboczą</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="151"/>
@@ -2926,7 +3125,7 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
     <message>
       <location filename="DraftGui.py" line="330"/>
       <source>Draft Command Bar</source>
-      <translation>Pasek komend projektu</translation>
+      <translation>Pasek poleceń kreślarskich</translation>
     </message>
     <message>
       <location filename="gui_selectplane.py" line="369"/>
@@ -2949,14 +3148,14 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
       <translation>Automatycznie</translation>
     </message>
     <message>
-      <location filename="DraftGui.py" line="722"/>
-      <source>active command:</source>
-      <translation>aktywne polecenie:</translation>
-    </message>
-    <message>
       <location filename="gui_groups.py" line="299"/>
       <source>None</source>
       <translation>Brak</translation>
+    </message>
+    <message>
+      <location filename="DraftGui.py" line="722"/>
+      <source>active command:</source>
+      <translation>aktywne polecenie:</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="724"/>
@@ -3016,7 +3215,7 @@ Następnie można go użyć do zapisania innej pozycji ujęcia widoku i stanów 
     <message>
       <location filename="DraftGui.py" line="736"/>
       <source>Length of current segment</source>
-      <translation>Długość odcinka bieżącego</translation>
+      <translation>Długość aktualnego odcinka</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="737"/>
@@ -3152,7 +3351,7 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="DraftGui.py" line="799"/>
       <source>Text string to draw</source>
-      <translation>Krzywe tekstu do rysowania</translation>
+      <translation>Ciąg tekstu do nakreślenia</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="800"/>
@@ -3227,7 +3426,7 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="DraftGui.py" line="953"/>
       <source>DWire</source>
-      <translation>DWire</translation>
+      <translation>Polilinia</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="971"/>
@@ -3347,12 +3546,12 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="DraftGui.py" line="1496"/>
       <source>Invalid Size value. Using 200.0.</source>
-      <translation>Nieprawidłowa wartość rozmiaru. Użyj 200.0.</translation>
+      <translation>Nieprawidłowa wartość rozmiaru. Przyjęto 200.0.</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="1504"/>
       <source>Invalid Tracking value. Using 0.</source>
-      <translation>Nieprawidłowa wartość śledzenia. Użyj 0.</translation>
+      <translation>Nieprawidłowa wartość śledzenia. Przyjęto 0.</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="1518"/>
@@ -3367,7 +3566,7 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="DraftGui.py" line="1560"/>
       <source>Please enter a font file.</source>
-      <translation>Wprowadź plik czcionki.</translation>
+      <translation>Proszę wprowadzić plik czcionki.</translation>
     </message>
     <message>
       <location filename="DraftGui.py" line="2047"/>
@@ -3512,6 +3711,11 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
       <translation>Znaleziono kilka linii łamanych lub krawędzi: łączenie ich</translation>
     </message>
     <message>
+      <location filename="upgrade.py" line="541"/>
+      <source>Found several non-treatable objects: creating compound</source>
+      <translation>Znaleziono kilka nieobsługiwanych obiektów: utwórz obiekt złożony</translation>
+    </message>
+    <message>
       <location filename="upgrade.py" line="512"/>
       <source>trying: closing it</source>
       <translation>próba: zamknięcia</translation>
@@ -3530,11 +3734,6 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
       <location filename="upgrade.py" line="536"/>
       <source>Found points: creating compound</source>
       <translation>Znalezione punkty: tworzenie złożenia</translation>
-    </message>
-    <message>
-      <location filename="upgrade.py" line="541"/>
-      <source>Found several non-treatable objects: creating compound</source>
-      <translation>Znaleziono kilka nieobsługiwanych obiektów: utwórz obiekt złożony</translation>
     </message>
     <message>
       <location filename="upgrade.py" line="544"/>
@@ -4053,6 +4252,11 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
       <translation>Scalanie warstw:</translation>
     </message>
     <message>
+      <location filename="view_base.py" line="402"/>
+      <source>Please load the Draft Workbench to enable editing this object</source>
+      <translation>Proszę załadować środowisko pracy Rysunek Roboczy, aby włączyć edycję tego obiektu</translation>
+    </message>
+    <message>
       <location filename="InitGui.py" line="46"/>
       <source>Draft</source>
       <translation>Rysunek roboczy</translation>
@@ -4063,9 +4267,19 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
       <translation>niestandardowe</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="140"/>
+      <source>Unable to convert input into a  scale factor</source>
+      <translation>Nie można przekonwertować danych wejściowych na współczynnik skali</translation>
+    </message>
+    <message>
       <location filename="init_draft_statusbar.py" line="141"/>
       <source>Unable to convert input into a scale factor</source>
       <translation>Nie można przekonwertować danych wejściowych do współczynnika skali</translation>
+    </message>
+    <message>
+      <location filename="init_draft_statusbar.py" line="155"/>
+      <source>Set custom scale</source>
+      <translation>Ustaw skalę rysunku</translation>
     </message>
     <message>
       <location filename="init_draft_statusbar.py" line="159"/>
@@ -4073,9 +4287,14 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
       <translation>Ustaw niestandardową skalę dla adnotacji w formacie x:x, x=x</translation>
     </message>
     <message>
+      <location filename="init_draft_statusbar.py" line="214"/>
+      <source>Set the scale used by draft annotation tools</source>
+      <translation>Ustaw skalę używaną przez narzędzia do tworzenia opisów</translation>
+    </message>
+    <message>
       <location filename="utils.py" line="650"/>
       <source>Solids:</source>
-      <translation type="unfinished">Solids:</translation>
+      <translation>Bryły:</translation>
     </message>
     <message>
       <location filename="utils.py" line="651"/>
@@ -4085,17 +4304,17 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="utils.py" line="652"/>
       <source>Wires:</source>
-      <translation type="unfinished">Wires:</translation>
+      <translation>Polilinie:</translation>
     </message>
     <message>
       <location filename="utils.py" line="653"/>
       <source>Edges:</source>
-      <translation type="unfinished">Edges:</translation>
+      <translation>Krawędzie:</translation>
     </message>
     <message>
       <location filename="utils.py" line="654"/>
       <source>Vertices:</source>
-      <translation type="unfinished">Vertices:</translation>
+      <translation>Wierzchołki:</translation>
     </message>
     <message>
       <location filename="utils.py" line="658"/>
@@ -4110,57 +4329,137 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="utils.py" line="699"/>
       <source>different types</source>
-      <translation type="unfinished">different types</translation>
+      <translation>różne typy</translation>
     </message>
     <message>
       <location filename="utils.py" line="709"/>
       <source>Objects have different placements. Distance between the two base points: </source>
-      <translation type="unfinished">Objects have different placements. Distance between the two base points: </translation>
+      <translation>Obiekty posiadają różne umiejscowienia. Odległość między dwoma punktami bazowymi: </translation>
     </message>
     <message>
       <location filename="utils.py" line="712"/>
       <source>has a different value</source>
-      <translation type="unfinished">has a different value</translation>
+      <translation>posiada inną wartość</translation>
     </message>
     <message>
       <location filename="utils.py" line="715"/>
       <source>doesn't exist in one of the objects</source>
-      <translation type="unfinished">doesn't exist in one of the objects</translation>
+      <translation>nie istnieje w jednym z obiektów</translation>
     </message>
     <message>
       <location filename="utils.py" line="827"/>
       <source>%s shares a base with %d other objects. Please check if you want to modify this.</source>
-      <translation type="unfinished">%s shares a base with %d other objects. Please check if you want to modify this.</translation>
+      <translation>%s udostępnia bazę %d innym obiektom. Proszę sprawdź, czy chcesz to zmienić.</translation>
     </message>
     <message>
       <location filename="utils.py" line="833"/>
       <source>%s cannot be modified because its placement is readonly.</source>
-      <translation type="unfinished">%s cannot be modified because its placement is readonly.</translation>
+      <translation>%s nie może być zmodyfikowane ponieważ wartość umiejscowienia jest tylko do odczytu.</translation>
     </message>
     <message>
       <location filename="utils.py" line="977"/>
       <source>Wrong input: unknown document.</source>
-      <translation type="unfinished">Wrong input: unknown document.</translation>
+      <translation>Nieprawidłowy wpis: nieznany dokument.</translation>
     </message>
     <message>
       <location filename="utils.py" line="1055"/>
       <source>This function will be deprecated in </source>
-      <translation type="unfinished">This function will be deprecated in </translation>
+      <translation>Ta funkcja zostanie wycofana w </translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>Please use </source>
-      <translation type="unfinished">Please use </translation>
+      <translation>Proszę użyć </translation>
     </message>
     <message>
       <location filename="utils.py" line="1059"/>
       <source>This function will be deprecated. </source>
-      <translation type="unfinished">This function will be deprecated. </translation>
+      <translation>Ta funkcja zostanie wycofana. </translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="169"/>
+      <source>Snap Lock</source>
+      <translation>Zablokuj przyciąganie</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="170"/>
+      <source>Snap Endpoint</source>
+      <translation>Przyciągnij do końca</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="171"/>
+      <source>Snap Midpoint</source>
+      <translation>Przyciągnij do środka odcinka</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="172"/>
+      <source>Snap Center</source>
+      <translation>Przyciągnij do środka</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="173"/>
+      <source>Snap Angle</source>
+      <translation>Przyciągnij do kąta</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="174"/>
+      <source>Snap Intersection</source>
+      <translation>Przyciągnij do punktu przecięcia</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="175"/>
+      <source>Snap Perpendicular</source>
+      <translation>Przyciągnij prostopadle</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="176"/>
+      <source>Snap Extension</source>
+      <translation>Przyciągnij do wydłużenia</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="177"/>
+      <source>Snap Parallel</source>
+      <translation>Przyciągnij równolegle</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="178"/>
+      <source>Snap Special</source>
+      <translation>Przyciągnij specjalnie</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="179"/>
+      <source>Snap Near</source>
+      <translation>Przyciągnij do najbliższego</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="180"/>
+      <source>Snap Ortho</source>
+      <translation>Przyciągnij ortogonalnie</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="181"/>
+      <source>Snap Grid</source>
+      <translation>Przyciągnij do siatki</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="182"/>
+      <source>Snap WorkingPlane</source>
+      <translation>Przyciągnij do płaszczyzny roboczej</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="183"/>
+      <source>Snap Dimensions</source>
+      <translation>Przyciągnij do wymiaru</translation>
+    </message>
+    <message>
+      <location filename="init_tools.py" line="187"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Przełącz siatkę szkicu</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="81"/>
       <source>No graphical interface</source>
-      <translation type="unfinished">No graphical interface</translation>
+      <translation>Brak interfejsu graficznego</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="161"/>
@@ -4170,32 +4469,32 @@ Opcja jest niedostępna, jeśli opcja preferencji Rysunku Roboczego "używaj ele
     <message>
       <location filename="gui_utils.py" line="267"/>
       <source>Symbol not implemented. Using a default symbol.</source>
-      <translation type="unfinished">Symbol not implemented. Using a default symbol.</translation>
+      <translation>Symbol nie został zaimplementowany. Użyj domyślnego symbolu.</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="333"/>
       <source>Visibility off; removed from list: </source>
-      <translation type="unfinished">Visibility off; removed from list: </translation>
+      <translation>Widoczność wyłączona; usunięto z listy: </translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="603"/>
       <source>image is Null</source>
-      <translation type="unfinished">image is Null</translation>
+      <translation>obraz jest pusty</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="609"/>
       <source>filename does not exist on the system or in the resource file</source>
-      <translation type="unfinished">filename does not exist on the system or in the resource file</translation>
+      <translation>nazwa pliku nie istnieje w systemie lub w pliku źródłowym</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="668"/>
       <source>unable to load texture</source>
-      <translation type="unfinished">unable to load texture</translation>
+      <translation>nie można załadować tekstury</translation>
     </message>
     <message>
       <location filename="gui_utils.py" line="738"/>
       <source>Does not have 'ViewObject.RootNode'.</source>
-      <translation type="unfinished">Does not have 'ViewObject.RootNode'.</translation>
+      <translation>Nie ma "ViewObject.RootNode".</translation>
     </message>
     <message>
       <location filename="task_orthoarray.py" line="83"/>
@@ -4786,14 +5085,24 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
       <translation>Wybierz nową odległość od punktu bazowego</translation>
     </message>
     <message>
+      <location filename="gui_snapper.py" line="1543"/>
+      <source>(ON)</source>
+      <translation>(Włącz)</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1546"/>
+      <source>(OFF)</source>
+      <translation>(Wyłącz)</translation>
+    </message>
+    <message>
       <location filename="gui_shape2dview.py" line="109"/>
       <source>Create 2D view</source>
       <translation>Utwórz widok 2D</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="332"/>
-      <source>Bezier curve has been closed</source>
-      <translation>Krzywa Beziera została zamknięta</translation>
+      <source>BÃ©zier curve has been closed</source>
+      <translation>Krzywa Béziera została zamknięta</translation>
     </message>
     <message>
       <location filename="gui_splines.py" line="131"/>
@@ -4808,12 +5117,17 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
     <message>
       <location filename="gui_beziers.py" line="451"/>
       <source>Create BezCurve</source>
-      <translation>Utwórz krzywą Beziera</translation>
+      <translation>Utwórz krzywą Béziera</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="376"/>
       <source>Click and drag to define next knot</source>
       <translation>Kliknij i przeciągnij, aby zdefiniować następny węzeł</translation>
+    </message>
+    <message>
+      <location filename="gui_beziers.py" line="332"/>
+      <source>Bezier curve has been closed</source>
+      <translation>Krzywa Béziera została zamknięta</translation>
     </message>
     <message>
       <location filename="gui_beziers.py" line="382"/>
@@ -5113,7 +5427,7 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
     <message>
       <location filename="gui_groups.py" line="70"/>
       <source>Add new group</source>
-      <translation type="unfinished">Add new group</translation>
+      <translation>Dodaj nową grupę</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="183"/>
@@ -5123,7 +5437,7 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
     <message>
       <location filename="gui_groups.py" line="193"/>
       <source>No new selection. You must select non-empty groups or objects inside groups.</source>
-      <translation type="unfinished">No new selection. You must select non-empty groups or objects inside groups.</translation>
+      <translation>Brak nowego zaznaczenia. Musisz wybrać grupy, które nie są puste lub obiekty wewnątrz grup.</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="257"/>
@@ -5143,17 +5457,22 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
     <message>
       <location filename="gui_groups.py" line="355"/>
       <source>Add a new group with a given name</source>
-      <translation type="unfinished">Add a new group with a given name</translation>
+      <translation>Dodaj nową grupę o podanej nazwie</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="383"/>
       <source>Add group</source>
-      <translation type="unfinished">Add group</translation>
+      <translation>Dodaj grupę</translation>
     </message>
     <message>
       <location filename="gui_groups.py" line="385"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Nazwa grupy</translation>
+    </message>
+    <message>
+      <location filename="gui_groups.py" line="392"/>
+      <source>Group</source>
+      <translation>Grupa</translation>
     </message>
     <message>
       <location filename="gui_offset.py" line="76"/>
@@ -5173,7 +5492,7 @@ https://github.com/yorikvanhavre/Draft-dxf-importer
     <message>
       <location filename="gui_offset.py" line="123"/>
       <source>Offset of Bezier curves is currently not supported</source>
-      <translation>Przesunięcie krzywych Beziera nie jest obecnie obsługiwane</translation>
+      <translation>Odsunięcie krzywych Béziera nie jest obecnie obsługiwane</translation>
     </message>
     <message>
       <location filename="gui_arcs.py" line="448"/>
@@ -5317,6 +5636,27 @@ Kąt końcowy będzie równy kątowi podstawowemu plus ta wartość.</translatio
     </message>
   </context>
   <context>
+    <name>Gui::Dialog::DlgAddProperty</name>
+    <message>
+      <location filename="gui_groups.py" line="452"/>
+      <source>Group</source>
+      <translation>Grupa</translation>
+    </message>
+  </context>
+  <context>
+    <name>Draft_Snap</name>
+    <message>
+      <location filename="gui_snapper.py" line="1529"/>
+      <source>Toggles Grid On/Off</source>
+      <translation>Włącz / wyłącz wyświetlanie siatki</translation>
+    </message>
+    <message>
+      <location filename="gui_snapper.py" line="1530"/>
+      <source>Toggle Draft Grid</source>
+      <translation>Przełącz siatkę szkicu</translation>
+    </message>
+  </context>
+  <context>
     <name>Draft_CloseLine</name>
     <message>
       <location filename="gui_lineops.py" line="124"/>
@@ -5373,7 +5713,7 @@ Kąt końcowy będzie równy kątowi podstawowemu plus ta wartość.</translatio
     <message>
       <location filename="../ui/dialog_AnnotationStyleEditor.ui" line="14"/>
       <source>Annotation Styles Editor</source>
-      <translation>Edytor stylów adnotacji</translation>
+      <translation>Edytor stylów opisów</translation>
     </message>
     <message>
       <location filename="../ui/dialog_AnnotationStyleEditor.ui" line="20"/>
@@ -6734,7 +7074,7 @@ Zauważ, że nie jest to w pełni obsługiwane, a wiele obiektów nie będzie ed
     <message>
       <location filename="../ui/preferences-draftvisual.ui" line="54"/>
       <source>Draft classic style</source>
-      <translation>Styl klasyczny szkicu</translation>
+      <translation>Styl klasyczny rysunku</translation>
     </message>
     <message>
       <location filename="../ui/preferences-draftvisual.ui" line="59"/>

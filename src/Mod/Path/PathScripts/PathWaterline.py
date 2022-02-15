@@ -22,6 +22,7 @@
 # ***************************************************************************
 
 from __future__ import print_function
+import FreeCAD
 
 __title__ = "Path Waterline Operation"
 __author__ = "russ4262 (Russell Johnson), sliptonic (Brad Collette)"
@@ -33,26 +34,26 @@ import FreeCAD
 from PySide import QtCore
 import numpy
 from PathScripts.PathLevelMapOp import LevelMapOp, PathMeshBox
+translate = FreeCAD.Qt.translate
 
 # OCL must be installed
 try:
     import ocl
 except ImportError:
-    msg = QtCore.QCoreApplication.translate(
-        "PathWaterline", "This operation requires OpenCamLib to be installed."
+    msg = translate(
+        "path_waterline", "This operation requires OpenCamLib to be installed."
     )
     FreeCAD.Console.PrintError(msg + "\n")
     raise ImportError
-    # import sys
-    # sys.exit(msg)
 
 import Path
 import PathScripts.PathLog as PathLog
-import PathScripts.PathUtils as PathUtils
 import PathScripts.PathOp as PathOp
 import PathScripts.PathSurfaceSupport as PathSurfaceSupport
-import time
+import PathScripts.PathUtils as PathUtils
 import math
+import time
+from PySide.QtCore import QT_TRANSLATE_NOOP
 
 # lazily loaded modules
 from lazy_loader.lazy_loader import LazyLoader
@@ -62,13 +63,12 @@ Part = LazyLoader("Part", globals(), "Part")
 if FreeCAD.GuiUp:
     import FreeCADGui
 
-PathLog.setLevel(PathLog.Level.INFO, PathLog.thisModule())
-# PathLog.trackModule(PathLog.thisModule())
+if False:
+    PathLog.setLevel(PathLog.Level.DEBUG, PathLog.thisModule())
+    PathLog.trackModule(PathLog.thisModule())
+else:
+    PathLog.setLevel(PathLog.Level.INFO, PathLog.thisModule())
 
-
-# Qt translation handling
-def translate(context, text, disambig=None):
-    return QtCore.QCoreApplication.translate(context, text, disambig)
 
 
 class ObjectWaterline(PathOp.ObjectOp):
@@ -85,6 +85,79 @@ class ObjectWaterline(PathOp.ObjectOp):
             | PathOp.FeatureCoolant
             | PathOp.FeatureBaseFaces
         )
+
+    @classmethod
+    def propertyEnumerations(self, dataType="data"):
+        """propertyEnumerations(dataType="data")... return property enumeration lists of specified dataType.
+        Args:
+            dataType = 'data', 'raw', 'translated'
+        Notes:
+        'data' is list of internal string literals used in code
+        'raw' is list of (translated_text, data_string) tuples
+        'translated' is list of translated string literals
+        """
+
+        # Enumeration lists for App::PropertyEnumeration properties
+        enums = {
+            "Algorithm": [
+                (translate("path_waterline", "OCL Dropcutter"), "OCL Dropcutter"),
+                (translate("path_waterline", "Experimental"), "Experimental"),
+            ],
+            "BoundBox": [
+                (translate("path_waterline", "BaseBoundBox"), "BaseBoundBox"),
+                (translate("path_waterline", "Stock"), "Stock"),
+            ],
+            "PatternCenterAt": [
+                (translate("path_waterline", "CenterOfMass"), "CenterOfMass"),
+                (translate("path_waterline", "CenterOfBoundBox"), "CenterOfBoundBox"),
+                (translate("path_waterline", "XminYmin"), "XminYmin"),
+                (translate("path_waterline", "Custom"), "Custom"),
+            ],
+            "ClearLastLayer": [
+                (translate("path_waterline", "Off"), "Off"),
+                (translate("path_waterline", "Circular"), "Circular"),
+                (translate("path_waterline", "CircularZigZag"), "CircularZigZag"),
+                (translate("path_waterline", "Line"), "Line"),
+                (translate("path_waterline", "Offset"), "Offset"),
+                (translate("path_waterline", "Spiral"), "Spiral"),
+                (translate("path_waterline", "ZigZag"), "ZigZag"),
+            ],
+            "CutMode": [
+                (translate("path_waterline", "Conventional"), "Conventional"),
+                (translate("path_waterline", "Climb"), "Climb"),
+            ],
+            "CutPattern": [
+                (translate("path_waterline", "None"), "None"),
+                (translate("path_waterline", "Circular"), "Circular"),
+                (translate("path_waterline", "CircularZigZag"), "CircularZigZag"),
+                (translate("path_waterline", "Line"), "Line"),
+                (translate("path_waterline", "Offset"), "Offset"),
+                (translate("path_waterline", "Spiral"), "Spiral"),
+                (translate("path_waterline", "ZigZag"), "ZigZag"),
+            ],
+            "HandleMultipleFeatures": [
+                (translate("path_waterline", "Collectively"), "Collectively"),
+                (translate("path_waterline", "Individually"), "Individually"),
+            ],
+            "LayerMode": [
+                (translate("path_waterline", "Single-pass"), "Single-pass"),
+                (translate("path_waterline", "Multi-pass"), "Multi-pass"),
+            ],
+        }
+
+        if dataType == "raw":
+            return enums
+
+        data = list()
+        idx = 0 if dataType == "translated" else 1
+
+        PathLog.debug(enums)
+
+        for k, v in enumerate(enums):
+            data.append((v, [tup[idx] for tup in enums[v]]))
+        PathLog.debug(data)
+
+        return data
 
     def initOperation(self, obj):
         """initOperation(obj) ... Initialize the operation by
@@ -111,10 +184,10 @@ class ObjectWaterline(PathOp.ObjectOp):
 
         # Set enumeration lists for enumeration properties
         if len(self.addNewProps) > 0:
-            ENUMS = self.opPropertyEnumerations()
+            ENUMS = self.propertyEnumerations()
             for n in ENUMS:
-                if n in self.addNewProps:
-                    setattr(obj, n, ENUMS[n])
+                if n[0] in self.addNewProps:
+                    setattr(obj, n[0], n[1])
 
             if warn:
                 newPropMsg = translate("PathWaterline", "New property added to")
@@ -131,7 +204,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "ShowTempObjects",
                 "Debug",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Show the temporary path construction objects when module is in DEBUG mode.",
                 ),
@@ -140,7 +213,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "AngularDeflection",
                 "Mesh Conversion",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Smaller values yield a finer, more accurate the mesh. Smaller values increase processing time a lot.",
                 ),
@@ -149,7 +222,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "LinearDeflection",
                 "Mesh Conversion",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Smaller values yield a finer, more accurate the mesh. Smaller values do not increase processing time much.",
                 ),
@@ -158,7 +231,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyInteger",
                 "AvoidLastX_Faces",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Avoid cutting the last 'N' faces in the Base Geometry list of selected faces.",
                 ),
@@ -167,7 +240,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "AvoidLastX_InternalFeatures",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "Do not cut internal features on avoided faces."
                 ),
             ),
@@ -175,7 +248,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "BoundaryAdjustment",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Positive values push the cutter toward, or beyond, the boundary. Negative values retract the cutter away from the boundary.",
                 ),
@@ -184,7 +257,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "BoundaryEnforcement",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "If true, the cutter will remain inside the boundaries of the model or selected face(s).",
                 ),
@@ -193,7 +266,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "HandleMultipleFeatures",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Choose how to process multiple Base Geometry features.",
                 ),
@@ -202,7 +275,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "InternalFeaturesAdjustment",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Positive values push the cutter toward, or into, the feature. Negative values retract the cutter away from the feature.",
                 ),
@@ -211,7 +284,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "InternalFeaturesCut",
                 "Selected Geometry Settings",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Cut internal feature areas within a larger selected face.",
                 ),
@@ -220,7 +293,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "Algorithm",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Select the algorithm to use: OCL Dropcutter*, Grid Dropcutter, or Experimental (Not OCL based).",
                 ),
@@ -229,7 +302,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "BoundBox",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "Select the overall boundary for the operation."
                 ),
             ),
@@ -237,7 +310,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "ClearLastLayer",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set to clear last layer in a `Multi-pass` operation.",
                 ),
@@ -246,7 +319,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "CutMode",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set the direction for the cutting tool to engage the material: Climb (ClockWise) or Conventional (CounterClockWise)",
                 ),
@@ -255,7 +328,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "CutPattern",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set the geometric clearing pattern to use for the operation.",
                 ),
@@ -264,7 +337,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyFloat",
                 "CutPatternAngle",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "The yaw angle used for certain clearing patterns"
                 ),
             ),
@@ -272,7 +345,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "CutPatternReversed",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Reverse the cut order of the stepover paths. For circular cut patterns, begin at the outside and work toward the center.",
                 ),
@@ -281,7 +354,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "DepthOffset",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set the Z-axis depth offset from the target surface.",
                 ),
@@ -290,7 +363,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "IgnoreOuterAbove",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "Ignore outer waterlines above this height."
                 ),
             ),
@@ -298,7 +371,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "LayerMode",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Complete the operation in a single pass at depth, or mulitiple passes to final depth.",
                 ),
@@ -316,7 +389,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyVectorDistance",
                 "PatternCenterCustom",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "Set the start point for the cut pattern."
                 ),
             ),
@@ -324,7 +397,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyEnumeration",
                 "PatternCenterAt",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Choose location of the center point for starting the cut pattern.",
                 ),
@@ -333,7 +406,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "SampleInterval",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set the sampling resolution. Smaller values quickly increase processing time.",
                 ),
@@ -342,7 +415,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyFloat",
                 "StepOver",
                 "Clearing Options",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Set the stepover percentage, based on the tool's diameter.",
                 ),
@@ -351,7 +424,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "OptimizeLinearPaths",
                 "Optimization",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Enable optimization of linear paths (co-linear points). Removes unnecessary co-linear points from G-Code output.",
                 ),
@@ -360,7 +433,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "OptimizeStepOverTransitions",
                 "Optimization",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Enable separate optimization of transitions between, and breaks within, each step over path.",
                 ),
@@ -369,7 +442,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyDistance",
                 "GapThreshold",
                 "Optimization",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Collinear and co-radial artifact gaps that are smaller than this threshold are closed in the path.",
                 ),
@@ -378,7 +451,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyString",
                 "GapSizes",
                 "Optimization",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "Feedback: three smallest gaps identified in the path geometry.",
                 ),
@@ -387,7 +460,7 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyVectorDistance",
                 "StartPoint",
                 "Start Point",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property",
                     "The custom start point for the path of this operation",
                 ),
@@ -396,45 +469,11 @@ class ObjectWaterline(PathOp.ObjectOp):
                 "App::PropertyBool",
                 "UseStartPoint",
                 "Start Point",
-                QtCore.QT_TRANSLATE_NOOP(
+                QT_TRANSLATE_NOOP(
                     "App::Property", "Make True, if specifying a Start Point"
                 ),
             ),
         ]
-
-    def opPropertyEnumerations(self):
-        # Enumeration lists for App::PropertyEnumeration properties
-        return {
-            "Algorithm": ["OCL Dropcutter", "Grid Dropcutter", "Experimental"],
-            "BoundBox": ["BaseBoundBox", "Stock"],
-            "PatternCenterAt": [
-                "CenterOfMass",
-                "CenterOfBoundBox",
-                "XminYmin",
-                "Custom",
-            ],
-            "ClearLastLayer": [
-                "Off",
-                "Circular",
-                "CircularZigZag",
-                "Line",
-                "Offset",
-                "Spiral",
-                "ZigZag",
-            ],
-            "CutMode": ["Conventional", "Climb"],
-            "CutPattern": [
-                "None",
-                "Circular",
-                "CircularZigZag",
-                "Line",
-                "Offset",
-                "Spiral",
-                "ZigZag",
-            ],  # Additional goals ['Offset', 'Spiral', 'ZigZagOffset', 'Grid', 'Triangle']
-            "HandleMultipleFeatures": ["Collectively", "Individually"],
-            "LayerMode": ["Single-pass", "Multi-pass"],
-        }
 
     def opPropertyDefaults(self, obj, job):
         """opPropertyDefaults(obj, job) ... returns a dictionary
@@ -564,15 +603,16 @@ class ObjectWaterline(PathOp.ObjectOp):
         obj.setEditorMode("ShowTempObjects", mode)
 
         # Repopulate enumerations in case of changes
-        ENUMS = self.opPropertyEnumerations()
+
+        ENUMS = self.propertyEnumerations()
         for n in ENUMS:
             restore = False
-            if hasattr(obj, n):
-                val = obj.getPropertyByName(n)
+            if hasattr(obj, n[0]):
+                val = obj.getPropertyByName(n[0])
                 restore = True
-            setattr(obj, n, ENUMS[n])
+            setattr(obj, n[0], n[1])
             if restore:
-                setattr(obj, n, val)
+                setattr(obj, n[0], val)
 
         self.setEditorProperties(obj)
 

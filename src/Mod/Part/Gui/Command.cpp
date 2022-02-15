@@ -56,24 +56,25 @@
 #include <Gui/View3DInventor.h>
 #include <Gui/View3DInventorViewer.h>
 #include <Gui/WaitCursor.h>
-
-#include "../App/PartFeature.h"
 #include <Mod/Part/App/Part2DObject.h>
+#include <Mod/Part/App/PartFeature.h>
+
+#include "BoxSelection.h"
+#include "CrossSections.h"
 #include "DlgBooleanOperation.h"
 #include "DlgExtrusion.h"
-#include "DlgRevolution.h"
 #include "DlgFilletEdges.h"
 #include "DlgPrimitives.h"
 #include "DlgProjectionOnSurface.h"
-#include "CrossSections.h"
+#include "DlgRevolution.h"
 #include "Mirroring.h"
-#include "ViewProvider.h"
-#include "TaskShapeBuilder.h"
-#include "TaskLoft.h"
-#include "TaskSweep.h"
-#include "TaskDimension.h"
+#include "SectionCutting.h"
 #include "TaskCheckGeometry.h"
-#include "BoxSelection.h"
+#include "TaskDimension.h"
+#include "TaskLoft.h"
+#include "TaskShapeBuilder.h"
+#include "TaskSweep.h"
+#include "ViewProvider.h"
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2468,6 +2469,51 @@ bool CmdPartProjectionOnSurface::isActive(void)
     return (hasActiveDocument() && !Gui::Control().activeDialog());
 }
 
+//===========================================================================
+// Part_SectionCut
+//===========================================================================
+
+DEF_STD_CMD_AC(CmdPartSectionCut)
+
+CmdPartSectionCut::CmdPartSectionCut()
+    : Command("Part_SectionCut")
+{
+    sAppModule = "Part";
+    sGroup = QT_TR_NOOP("Part");
+    sMenuText = QT_TR_NOOP("Persistent section cut");
+    sToolTipText = QT_TR_NOOP("Creates a persistent section cut of visible part objects");
+    sWhatsThis = "Part_SectionCut";
+    sStatusTip = sToolTipText;
+    sPixmap = "Part_SectionCut";
+    eType = AlterDoc | Alter3DView;
+}
+
+Gui::Action* CmdPartSectionCut::createAction(void)
+{
+    Gui::Action* pcAction = (Gui::Action*)Gui::Command::createAction();
+#if 0
+    pcAction->setCheckable(true);
+#endif
+    return pcAction;
+}
+
+void CmdPartSectionCut::activated(int iMsg)
+{
+    Q_UNUSED(iMsg);
+    static QPointer<PartGui::SectionCut> sectionCut = nullptr;
+    if (!sectionCut) {
+        sectionCut = PartGui::SectionCut::makeDockWidget(Gui::getMainWindow());
+    }
+}
+
+bool CmdPartSectionCut::isActive(void)
+{
+    Gui::View3DInventor* view = dynamic_cast<Gui::View3DInventor*>(Gui::getMainWindow()->activeWindow());
+    return view ? true : false;
+}
+
+//---------------------------------------------------------------
+
 void CreatePartCommands(void)
 {
     Gui::CommandManager &rcCmdMgr = Gui::Application::Instance->commandManager();
@@ -2518,4 +2564,5 @@ void CreatePartCommands(void)
     rcCmdMgr.addCommand(new CmdMeasureToggleDelta());
     rcCmdMgr.addCommand(new CmdBoxSelection());
     rcCmdMgr.addCommand(new CmdPartProjectionOnSurface());
+    rcCmdMgr.addCommand(new CmdPartSectionCut());
 }

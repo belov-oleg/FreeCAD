@@ -49,9 +49,16 @@ TaskPadParameters::TaskPadParameters(ViewProviderPad *PadView, QWidget *parent, 
     ui->checkBoxReversed->setToolTip(tr("Reverses pad direction"));
 
     // set the history path
+    ui->lengthEdit->setEntryName(QByteArray("Length"));
     ui->lengthEdit->setParamGrpPath(QByteArray("User parameter:BaseApp/History/PadLength"));
+    ui->lengthEdit2->setEntryName(QByteArray("Length2"));
     ui->lengthEdit2->setParamGrpPath(QByteArray("User parameter:BaseApp/History/PadLength2"));
+    ui->offsetEdit->setEntryName(QByteArray("Offset"));
     ui->offsetEdit->setParamGrpPath(QByteArray("User parameter:BaseApp/History/PadOffset"));
+    ui->taperEdit->setEntryName(QByteArray("TaperAngle"));
+    ui->taperEdit->setParamGrpPath(QByteArray("User parameter:BaseApp/History/PadTaperAngle"));
+    ui->taperEdit2->setEntryName(QByteArray("TaperAngle2"));
+    ui->taperEdit2->setParamGrpPath(QByteArray("User parameter:BaseApp/History/PadTaperAngle2"));
 
     setupDialog();
 

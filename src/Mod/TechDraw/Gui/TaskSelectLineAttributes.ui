@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
-    <height>406</height>
+    <width>250</width>
+    <height>482</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -267,27 +267,45 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="horizontalGroupBox">
-     <layout class="QHBoxLayout" name="Spin001">
-      <item>
-       <widget class="QLabel" name="label_spacing">
-        <property name="text">
-         <string>Cascade spacing</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="sbSpacing">
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-        <property name="value">
-         <double>7.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <layout class="QGridLayout" name="cascadeValues" rowstretch="0,0" columnstretch="0,0">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_spacing">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Cascade spacing</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="sbSpacing">
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_stretch">
+       <property name="text">
+        <string>Delta distance</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="sbStretch">
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -296,12 +314,12 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="bgLineWidth">
+  <buttongroup name="bgLineStyles">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="bgLineStyles">
+  <buttongroup name="bgLineWidth">
    <property name="exclusive">
     <bool>true</bool>
    </property>

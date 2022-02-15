@@ -31,8 +31,6 @@
 #include <string>
 #include <vector>
 
-#define CCR_EPS  1.0e-5f
-
 namespace App
 {
 
@@ -45,211 +43,263 @@ public:
   virtual Color getColor(float fVal) const = 0;
 
 protected:
-  ValueFloatToRGB (void) {}
-  virtual ~ValueFloatToRGB () {}
+  ValueFloatToRGB () = default;
+  virtual ~ValueFloatToRGB () = default;
 };
 
 
 class AppExport ColorModel
 {
 public:
-  ColorModel (unsigned short usCt);
-  ColorModel (const ColorModel &rclM);
-  virtual ~ColorModel ();
-  ColorModel& operator = (const ColorModel &rclM);
-  unsigned short  _usColors;
-  Color  *_pclColors;
+  ColorModel() = default;
+  ColorModel (std::size_t usCt) {
+    colors.resize(usCt);
+  }
+  ColorModel(const ColorModel&) = default;
+  virtual ~ColorModel () = default;
+  ColorModel& operator = (const ColorModel&) = default;
+  std::size_t getCountColors() const {
+    return colors.size();
+  }
+  std::vector<Color>  colors;
 };
 
-class AppExport ColorModelTria : public ColorModel
+class AppExport ColorModelBlueGreenRed : public ColorModel
 {
 public:
-  ColorModelTria (void) : ColorModel(5)
+  ColorModelBlueGreenRed () : ColorModel(5)
   {
-    _pclColors[0] = Color( 0, 0, 1);
-    _pclColors[1] = Color( 0, 1, 1);
-    _pclColors[2] = Color( 0, 1, 0);
-    _pclColors[3] = Color( 1, 1, 0);
-    _pclColors[4] = Color( 1, 0, 0);
+    colors[0] = Color(0, 0, 1);
+    colors[1] = Color(0, 1, 1);
+    colors[2] = Color(0, 1, 0);
+    colors[3] = Color(1, 1, 0);
+    colors[4] = Color(1, 0, 0);
   }
 };
 
-class AppExport ColorModelTriaBottom : public ColorModel
+class AppExport ColorModelBlueCyanGreen : public ColorModel
 {
 public:
-  ColorModelTriaBottom (void) : ColorModel(3)
+  ColorModelBlueCyanGreen () : ColorModel(3)
   {
-    _pclColors[0] = Color( 0, 0, 1);
-    _pclColors[1] = Color( 0, 1, 1);
-    _pclColors[2] = Color( 0, 1, 0);
+    colors[0] = Color(0, 0, 1);
+    colors[1] = Color(0, 1, 1);
+    colors[2] = Color(0, 1, 0);
   }
 };
 
-class AppExport ColorModelTriaTop : public ColorModel
+class AppExport ColorModelGreenYellowRed : public ColorModel
 {
 public:
-  ColorModelTriaTop (void) : ColorModel(3)
+  ColorModelGreenYellowRed () : ColorModel(3)
   {
-    _pclColors[0] = Color( 0, 1, 0);
-    _pclColors[1] = Color( 1, 1, 0);
-    _pclColors[2] = Color( 1, 0, 0);
+    colors[0] = Color(0, 1, 0);
+    colors[1] = Color(1, 1, 0);
+    colors[2] = Color(1, 0, 0);
   }
 };
 
-class AppExport ColorModelInverseTria : public ColorModel
+class AppExport ColorModelRedGreenBlue : public ColorModel
 {
 public:
-  ColorModelInverseTria (void) : ColorModel(5)
+  ColorModelRedGreenBlue () : ColorModel(5)
   {
-    _pclColors[0] = Color( 1, 0, 0);
-    _pclColors[1] = Color( 1, 1, 0);
-    _pclColors[2] = Color( 0, 1, 0);
-    _pclColors[3] = Color( 0, 1, 1);
-    _pclColors[4] = Color( 0, 0, 1);
+    colors[0] = Color(1, 0, 0);
+    colors[1] = Color(1, 1, 0);
+    colors[2] = Color(0, 1, 0);
+    colors[3] = Color(0, 1, 1);
+    colors[4] = Color(0, 0, 1);
   }
 };
 
-class AppExport ColorModelInverseTriaTop : public ColorModel
+class AppExport ColorModelGreenCyanBlue : public ColorModel
 {
 public:
-  ColorModelInverseTriaTop (void) : ColorModel(3)
+  ColorModelGreenCyanBlue () : ColorModel(3)
   {
-    _pclColors[2] = Color( 0, 0, 1);
-    _pclColors[1] = Color( 0, 1, 1);
-    _pclColors[0] = Color( 0, 1, 0);
+    colors[0] = Color(0, 1, 0);
+    colors[1] = Color(0, 1, 1);
+    colors[2] = Color(0, 0, 1);
   }
 };
 
-class AppExport ColorModelInverseTriaBottom : public ColorModel
+class AppExport ColorModelRedYellowGreen : public ColorModel
 {
 public:
-  ColorModelInverseTriaBottom (void) : ColorModel(3)
+  ColorModelRedYellowGreen () : ColorModel(3)
   {
-    _pclColors[2] = Color( 0, 1, 0);
-    _pclColors[1] = Color( 1, 1, 0);
-    _pclColors[0] = Color( 1, 0, 0);
+    colors[0] = Color(1, 0, 0);
+    colors[1] = Color(1, 1, 0);
+    colors[2] = Color(0, 1, 0);
   }
 };
 
-class AppExport ColorModelGray : public ColorModel
+class AppExport ColorModelBlueWhiteRed : public ColorModel
 {
 public:
-  ColorModelGray (void) : ColorModel(2)
+  ColorModelBlueWhiteRed () : ColorModel(5)
   {
-    _pclColors[0] = Color( 0, 0, 0);
-    _pclColors[1] = Color( 1, 1, 1);
+    colors[0] = Color(0, 0, 1);
+    colors[1] = Color(float(85.0 / 255), float(170.0 / 255), 1);
+    colors[2] = Color(1, 1, 1);
+    colors[3] = Color(1, float(85.0 / 255), 0);
+    colors[4] = Color(1, 0, 0);
   }
 };
 
-class AppExport ColorModelGrayBottom : public ColorModel
+class AppExport ColorModelBlueWhite : public ColorModel
 {
 public:
-  ColorModelGrayBottom (void) : ColorModel(2)
+  ColorModelBlueWhite () : ColorModel(3)
   {
-    _pclColors[0] = Color( 0.0f, 0.0f, 0.0f);
-    _pclColors[1] = Color( 0.5f, 0.5f, 0.5f);
+    colors[0] = Color(0, 0, 1);
+    colors[1] = Color(float(85.0 / 255), float(170.0 / 255), 1);
+    colors[2] = Color(1, 1, 1);
   }
 };
 
-class AppExport ColorModelGrayTop : public ColorModel
+class AppExport ColorModelWhiteRed : public ColorModel
 {
 public:
-  ColorModelGrayTop (void) : ColorModel(2)
+  ColorModelWhiteRed () : ColorModel(3)
   {
-    _pclColors[0] = Color( 0.5f, 0.5f, 0.5f);
-    _pclColors[1] = Color( 1.0f, 1.0f, 1.0f);
+    colors[0] = Color(1, 1, 1);
+    colors[1] = Color(1, float(85.0 / 255), 0);
+    colors[2] = Color(0, 1, 0);
   }
 };
 
-class AppExport ColorModelInverseGray : public ColorModel
+class AppExport ColorModelBlackWhite : public ColorModel
 {
 public:
-  ColorModelInverseGray (void) : ColorModel(2)
+  ColorModelBlackWhite () : ColorModel(2)
   {
-    _pclColors[0] = Color( 1, 1, 1);
-    _pclColors[1] = Color( 0, 0, 0);
+    colors[0] = Color(0, 0, 0);
+    colors[1] = Color(1, 1, 1);
   }
 };
 
-class AppExport ColorModelInverseGrayBottom : public ColorModel
+class AppExport ColorModelBlackGray : public ColorModel
 {
 public:
-  ColorModelInverseGrayBottom (void) : ColorModel(2)
+  ColorModelBlackGray () : ColorModel(2)
   {
-    _pclColors[0] = Color( 1.0f, 1.0f, 1.0f);
-    _pclColors[1] = Color( 0.5f, 0.5f, 0.5f);
+    colors[0] = Color(0.0f, 0.0f, 0.0f);
+    colors[1] = Color(0.5f, 0.5f, 0.5f);
   }
 };
 
-class AppExport ColorModelInverseGrayTop : public ColorModel
+class AppExport ColorModelGrayWhite : public ColorModel
 {
 public:
-  ColorModelInverseGrayTop (void) : ColorModel(2)
+  ColorModelGrayWhite () : ColorModel(2)
   {
-    _pclColors[0] = Color( 0.5f, 0.5f, 0.5f);
-    _pclColors[1] = Color( 0.0f, 0.0f, 0.0f);
+    colors[0] = Color(0.5f, 0.5f, 0.5f);
+    colors[1] = Color(1.0f, 1.0f, 1.0f);
   }
+};
+
+class AppExport ColorModelWhiteBlack : public ColorModel
+{
+public:
+  ColorModelWhiteBlack () : ColorModel(2)
+  {
+    colors[0] = Color(1, 1, 1);
+    colors[1] = Color(0, 0, 0);
+  }
+};
+
+class AppExport ColorModelWhiteGray : public ColorModel
+{
+public:
+  ColorModelWhiteGray () : ColorModel(2)
+  {
+    colors[0] = Color(1.0f, 1.0f, 1.0f);
+    colors[1] = Color(0.5f, 0.5f, 0.5f);
+  }
+};
+
+class AppExport ColorModelGrayBlack : public ColorModel
+{
+public:
+  ColorModelGrayBlack () : ColorModel(2)
+  {
+    colors[0] = Color(0.5f, 0.5f, 0.5f);
+    colors[1] = Color(0.0f, 0.0f, 0.0f);
+  }
+};
+
+struct AppExport ColorModelPack
+{
+  ColorModel totalModel = ColorModelBlueGreenRed();
+  ColorModel topModel = ColorModelGreenYellowRed();
+  ColorModel bottomModel = ColorModelBlueCyanGreen();
+  std::string description;
+  static ColorModelPack createRedGreenBlue();
+  static ColorModelPack createBlueGreenRed();
+  static ColorModelPack createWhiteBlack();
+  static ColorModelPack createBlackWhite();
+  static ColorModelPack createRedWhiteBlue();
 };
 
 class AppExport ColorField
 {
 public:
-  ColorField (void);
+  ColorField ();
   ColorField (const ColorField &rclCF);
-  ColorField (const ColorModel &rclModel, float fMin, float fMax, unsigned short usCt);
-  virtual ~ColorField ();
+  ColorField (const ColorModel &rclModel, float fMin, float fMax, std::size_t usCt);
+  virtual ~ColorField () = default;
 
   ColorField& operator = (const ColorField &rclCF);
 
-  unsigned short getCountColors (void) const { return _usCtColors; }
-  void set (const ColorModel &rclModel, float fMin, float fMax, unsigned short usCt);
-  void setCountColors (unsigned short usCt) { set(_clModel, _fMin, _fMax, usCt); }
-  void setRange (float fMin, float fMax) { set(_clModel, fMin, fMax, _usCtColors); }
-  void getRange (float &rfMin, float &rfMax) { rfMin = _fMin; rfMax = _fMax; }
-  unsigned short getMinColors (void) const { return _clModel._usColors; }
+  std::size_t getCountColors () const { return ctColors; }
+  void set (const ColorModel &rclModel, float fMin, float fMax, std::size_t usCt);
+  void setCountColors (std::size_t usCt) { set(colorModel, fMin, fMax, usCt); }
+  void setRange (float fMin, float fMax) { set(colorModel, fMin, fMax, ctColors); }
+  void getRange (float &rfMin, float &rfMax) { rfMin = fMin; rfMax = fMax; }
+  std::size_t getMinColors () const { return colorModel.getCountColors(); }
   void setColorModel (const ColorModel &rclModel);
-  const ColorModel& getColorModel (void) const { return _clModel; }
-  void setDirect (unsigned short usInd, Color clCol) { _aclField[usInd] = clCol; }
-  float getMinValue (void) const { return _fMin; }
-  float getMaxValue (void) const { return _fMax; }
+  const ColorModel& getColorModel () const { return colorModel; }
+  void setDirect (std::size_t usInd, Color clCol) { colorField[usInd] = clCol; }
+  float getMinValue () const { return fMin; }
+  float getMaxValue () const { return fMax; }
 
-  Color getColor (unsigned short usIndex) const { return _aclField[usIndex]; }
+  Color getColor (std::size_t usIndex) const { return colorField[usIndex]; }
   inline Color  getColor (float fVal) const;
-  inline unsigned short getColorIndex (float fVal) const;
+  inline std::size_t getColorIndex (float fVal) const;
 
 protected:
-  ColorModel          _clModel;
-  float               _fMin, _fMax;
-  float               _fAscent, _fConstant;  // Index := _fConstant + _fAscent * WERT
-  unsigned short      _usCtColors;
-  std::vector<Color>  _aclField;
+  ColorModel colorModel;
+  float fMin, fMax;
+  float fAscent, fConstant;  // Index := _fConstant + _fAscent * WERT
+  std::size_t ctColors;
+  std::vector<Color> colorField;
 
-  void rebuild (void);
-  void interpolate (Color clCol1, unsigned short usPos1, Color clCol2, unsigned short usPos2);
+  void rebuild ();
+  void interpolate (Color clCol1, std::size_t usPos1, Color clCol2, std::size_t usPos2);
 };
 
 inline Color ColorField::getColor (float fVal) const
 {
-#if 1
   // if the value is outside or at the border of the range
-  unsigned short ct = _clModel._usColors-1;
-  if ( fVal <= _fMin )
-    return _clModel._pclColors[0];
-  else if ( fVal >= _fMax )
-    return _clModel._pclColors[ct];
+  std::size_t ct = colorModel.getCountColors() - 1;
+  if ( fVal <= fMin )
+    return colorModel.colors[0];
+  else if ( fVal >= fMax )
+    return colorModel.colors[ct];
 
   // get the color field position (with 0 < t < 1)
-  float t = (fVal-_fMin) / (_fMax-_fMin);
+  float t = (fVal - fMin) / (fMax - fMin);
   Color col(1.0f, 1.0f, 1.0f); // white as default
-  for ( unsigned short i=0; i<ct; i++ )
+  for ( std::size_t i=0; i<ct; i++ )
   {
     float r = (float)(i+1)/(float)ct;
     if ( t < r )
     {
       // calculate the exact position in the subrange
       float s = t*(float)ct-(float)i;
-      Color c1 = _clModel._pclColors[i];
-      Color c2 = _clModel._pclColors[i+1];
+      Color c1 = colorModel.colors[i];
+      Color c2 = colorModel.colors[i+1];
       col.r = (1.0f-s) * c1.r + s * c2.r;
       col.g = (1.0f-s) * c1.g + s * c2.g;
       col.b = (1.0f-s) * c1.b + s * c2.b;
@@ -258,14 +308,11 @@ inline Color ColorField::getColor (float fVal) const
   }
 
   return col;
-#else
-  return _aclField[getColorIndex(fVal)];
-#endif
 }
 
-inline unsigned short ColorField::getColorIndex (float fVal) const
+inline std::size_t ColorField::getColorIndex (float fVal) const
 {
-  return (unsigned short)(std::min<int>(std::max<int>(int(_fConstant + _fAscent * fVal), 0), int(_usCtColors-1)));
+  return (std::size_t)(std::min<int>(std::max<int>(int(fConstant + fAscent * fVal), 0), int(ctColors - 1)));
 }
 
 
@@ -273,51 +320,54 @@ class AppExport ColorGradient
 {
 public:
   enum TStyle { FLOW, ZERO_BASED };
-  enum TColorModel { TRIA, INVERSE_TRIA, GRAY, INVERSE_GRAY };
 
-  ColorGradient (void);
-  ColorGradient (float fMin, float fMax, unsigned short usCtColors, TStyle tS, bool bOG = false);
-  ColorGradient (const ColorGradient &rclCR);
+  ColorGradient ();
+  ColorGradient (float fMin, float fMax, std::size_t usCtColors, TStyle tS, bool bOG = false);
+  ColorGradient (const ColorGradient &) = default;
+  ColorGradient& operator = (const ColorGradient &) = default;
 
-  ColorGradient& operator = (const ColorGradient &rclCR);
-
-  void set (float fMin, float fMax, unsigned short usCt, TStyle tS, bool bOG);
-  void setRange (float fMin, float fMax) { set(fMin, fMax, _usCtColors, _tStyle, _bOutsideGrayed); }
+  void set (float fMin, float fMax, std::size_t usCt, TStyle tS, bool bOG);
+  void setRange (float fMin, float fMax) { set(fMin, fMax, ctColors, tStyle, outsideGrayed); }
   void getRange (float &rfMin, float &rfMax) const { rfMin = _fMin; rfMax = _fMax; }
-  unsigned short getCountColors (void) const { return _usCtColors; }
-  void setCountColors (unsigned short usCt) { set(_fMin, _fMax, usCt, _tStyle, _bOutsideGrayed); }
-  void setStyle (TStyle tS) { set(_fMin, _fMax, _usCtColors, tS, _bOutsideGrayed); }
-  unsigned short getMinColors (void) const;
-  TStyle getStyle (void) const { return _tStyle; }
-  void setOutsideGrayed (bool bGrayed) { _bOutsideGrayed = bGrayed; }
-  bool isOutsideGrayed (void) const { return _bOutsideGrayed; }
-  void setColorModel (TColorModel tModel);
-  TColorModel getColorModelType (void) const { return _tColorModel; }
-  inline const ColorModel& getColorModel (void) const;
-  float getMinValue (void) const { return _fMin; }
-  float getMaxValue (void) const { return _fMax; }
+  std::size_t getCountColors () const { return ctColors; }
+  void setCountColors (std::size_t usCt) { set(_fMin, _fMax, usCt, tStyle, outsideGrayed); }
+  void setStyle (TStyle tS) { set(_fMin, _fMax, ctColors, tS, outsideGrayed); }
+  std::size_t getMinColors () const;
+  TStyle getStyle () const { return tStyle; }
+  void setOutsideGrayed (bool bGrayed) { outsideGrayed = bGrayed; }
+  bool isOutsideGrayed () const { return outsideGrayed; }
+  void setColorModel (std::size_t tModel);
+  std::size_t getColorModelType () const { return tColorModel; }
+  inline const ColorModel& getColorModel () const;
+  std::vector<std::string> getColorModelNames() const;
+  float getMinValue () const { return _fMin; }
+  float getMaxValue () const { return _fMax; }
 
   inline Color  getColor (float fVal) const;
-  inline unsigned short getColorIndex (float fVal) const;
+  inline std::size_t getColorIndex (float fVal) const;
 
 protected:
-  ColorField  _clColFld1, _clColFld2;
-  TColorModel    _tColorModel;
-  TStyle         _tStyle;
-  float          _fMin, _fMax;
-  unsigned short        _usCtColors;
-  bool           _bOutsideGrayed;
-  ColorModel       _clTotal, _clTop, _clBottom;
+  void createStandardPacks();
 
-  void  rebuild (void);
-  void  setColorModel (void);
+protected:
+  ColorField     colorField1, colorField2;
+  TStyle         tStyle;
+  float          _fMin, _fMax;
+  std::size_t    ctColors;
+  bool           outsideGrayed;
+  std::size_t    tColorModel;
+  ColorModelPack currentModelPack;
+  std::vector<ColorModelPack> modelPacks;
+
+  void  rebuild ();
+  void  setColorModel ();
 };
 
 
 class AppExport ColorLegend
 {
 public:
-  ColorLegend (void);
+  ColorLegend ();
   ColorLegend (const ColorLegend &rclCL);
   virtual ~ColorLegend () {}
 
@@ -325,158 +375,158 @@ public:
   bool operator == (const ColorLegend &rclCL) const;
   bool operator != (const ColorLegend &rclCL) const { return !(*this == rclCL); }
 
-  void resize (unsigned long ulN);
-  bool addMin (const std::string &rclName);
-  bool addMax (const std::string &rclName);
-  bool remove (unsigned long ulPos);
-  void removeFirst (void);
-  void removeLast (void);
+  void resize (std::size_t ulN);
+  std::size_t addMin (const std::string &rclName);
+  std::size_t addMax (const std::string &rclName);
+  bool remove (std::size_t ulPos);
+  void removeFirst ();
+  void removeLast ();
 
-  Color getColor (unsigned long ulPos) const;
-  uint32_t  getPackedColor (unsigned long ulPos) const;
-  bool setColor (unsigned long ulPos, float ucRed, float ucGreen, float ucBlue);
-  bool setColor (unsigned long ulPos, unsigned long ulColor);
-  float getValue (unsigned long ulPos) const;
-  bool setValue (unsigned long ulPos, float fVal);
-  std::string getText (unsigned long ulPos) const;
-  bool setText (unsigned long ulPos, const std::string &rclName);
-  unsigned long hasNumberOfFields (void) const { return (unsigned long)_aclColorFields.size(); }
-  void setOutsideGrayed (bool bOS) { _bOutsideGrayed = bOS; }
-  bool isOutsideGrayed (void) const { return _bOutsideGrayed; }
-  inline float  getMinValue (void) const;
-  inline float  getMaxValue (void) const;
+  Color getColor (std::size_t ulPos) const;
+  uint32_t  getPackedColor (std::size_t ulPos) const;
+  bool setColor (std::size_t ulPos, float ucRed, float ucGreen, float ucBlue);
+  bool setColor (std::size_t ulPos, unsigned long ulColor);
+  float getValue (std::size_t ulPos) const;
+  bool setValue (std::size_t ulPos, float fVal);
+  std::string getText (std::size_t ulPos) const;
+  bool setText (std::size_t ulPos, const std::string &rclName);
+  std::size_t hasNumberOfFields () const { return colorFields.size(); }
+  void setOutsideGrayed (bool bOS) { outsideGrayed = bOS; }
+  bool isOutsideGrayed () const { return outsideGrayed; }
+  inline float  getMinValue () const;
+  inline float  getMaxValue () const;
 
   inline Color getColor (float fVal) const;
-  inline unsigned short getColorIndex (float fVal) const;
+  inline std::size_t getColorIndex (float fVal) const;
 
 protected:
-  std::deque<Color>  _aclColorFields;
-  std::deque<std::string> _aclNames;
-  std::deque<float> _aclValues;
-  bool _bOutsideGrayed;
+  std::deque<Color> colorFields;
+  std::deque<std::string> names;
+  std::deque<float> values;
+  bool outsideGrayed;
 };
 
 inline Color ColorLegend::getColor (float fVal) const
 {
   std::deque<float>::const_iterator pI;
-  for (pI = _aclValues.begin(); pI != _aclValues.end(); ++pI)
+  for (pI = values.begin(); pI != values.end(); ++pI)
   {
     if (fVal < *pI)
       break;
   }
 
-  if (_bOutsideGrayed == true)
+  if (outsideGrayed == true)
   {
-    if ((pI == _aclValues.begin()) || (pI == _aclValues.end()))
+    if ((pI == values.begin()) || (pI == values.end()))
       return Color(0.5f, 0.5f, 0.5f);
     else
-      return _aclColorFields[pI - _aclValues.begin() - 1];
+      return colorFields[pI - values.begin() - 1];
   }
 
-  if (pI == _aclValues.begin())
-    return *_aclColorFields.begin();
-  else if (pI == _aclValues.end())
-    return *(_aclColorFields.end()-1);
+  if (pI == values.begin())
+    return *colorFields.begin();
+  else if (pI == values.end())
+    return *(colorFields.end()-1);
   else
-    return _aclColorFields[pI - _aclValues.begin() - 1];
+    return colorFields[pI - values.begin() - 1];
 }
 
-inline unsigned short ColorLegend::getColorIndex (float fVal) const
+inline std::size_t ColorLegend::getColorIndex (float fVal) const
 {
   std::deque<float>::const_iterator pI;
-  for (pI = _aclValues.begin(); pI != _aclValues.end(); ++pI)
+  for (pI = values.begin(); pI != values.end(); ++pI)
   {
     if (fVal < *pI)
       break;
   }
 
-  if (pI == _aclValues.begin())
+  if (pI == values.begin())
     return 0;
-  else if (pI == _aclValues.end())
-    return (unsigned short)(_aclColorFields.size() - 1);
+  else if (pI == values.end())
+    return (std::size_t)(colorFields.size() - 1);
   else
-    return pI - _aclValues.begin() - 1;
+    return pI - values.begin() - 1;
 }
 
-inline float ColorLegend::getMinValue (void) const
+inline float ColorLegend::getMinValue () const
 {
-  return *_aclValues.begin();
+  return values.front();
 }
 
-inline float ColorLegend::getMaxValue (void) const
+inline float ColorLegend::getMaxValue () const
 {
-  return *(_aclValues.end()-1);
+  return values.back();
 }
 
 inline Color ColorGradient::getColor (float fVal) const
 {
-  if (_bOutsideGrayed == true)
+  if (outsideGrayed == true)
   {
     if ((fVal < _fMin) || (fVal > _fMax))
       return Color(0.5f, 0.5f, 0.5f);
   }
-  switch (_tStyle)
+  switch (tStyle)
   {
     case ZERO_BASED:
     {
       if ((_fMin < 0.0f) && (_fMax > 0.0f))
       {
         if (fVal < 0.0f)
-          return _clColFld1.getColor(fVal);
+          return colorField1.getColor(fVal);
         else
-          return _clColFld2.getColor(fVal);
+          return colorField2.getColor(fVal);
       }
       else
-        return _clColFld1.getColor(fVal);
+        return colorField1.getColor(fVal);
     }
 
     default:
     case FLOW:
     {
-      return _clColFld1.getColor(fVal);
+      return colorField1.getColor(fVal);
     }
   }
 }
 
-inline unsigned short ColorGradient::getColorIndex (float fVal) const
+inline std::size_t ColorGradient::getColorIndex (float fVal) const
 {
-  switch (_tStyle)
+  switch (tStyle)
   {
     case ZERO_BASED:
     {
       if ((_fMin < 0.0f) && (_fMax > 0.0f))
       {
         if (fVal < 0.0f)
-          return _clColFld1.getColorIndex(fVal);
+          return colorField1.getColorIndex(fVal);
         else
-          return (unsigned short)(_clColFld1.getCountColors() + _clColFld2.getColorIndex(fVal));
+          return (std::size_t)(colorField1.getCountColors() + colorField2.getColorIndex(fVal));
       }
       else
-        return _clColFld1.getColorIndex(fVal);
+        return colorField1.getColorIndex(fVal);
     }
 
     default:
     case FLOW:
     {
-      return _clColFld1.getColorIndex(fVal);
+      return colorField1.getColorIndex(fVal);
     }
   }
 }
 
-inline const ColorModel& ColorGradient::getColorModel (void) const
+inline const ColorModel& ColorGradient::getColorModel () const
 {
-  if ( _tStyle == ZERO_BASED )
+  if ( tStyle == ZERO_BASED )
   {
     if ( _fMax <= 0.0f )
-      return _clBottom;
+      return currentModelPack.bottomModel;
     else if ( _fMin >= 0.0f )
-      return _clTop;
+      return currentModelPack.topModel;
     else
-      return _clTotal;
+      return currentModelPack.totalModel;
   }
   else
   {
-    return _clTotal;
+    return currentModelPack.totalModel;
   }
 }
 
