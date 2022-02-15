@@ -22,10 +22,11 @@
 
     
 from PathScripts.PathLevelMap import LevelMap
+from PathScripts.PathContourMap import ContourMap
 import math
 import numpy
 
-class PathMesh():
+class PathMeshBox():
     # It is a replacement for BoundBox, but also it contain already tessellated
     # set of faces.
     def __init__( self, faces, rotation=None ):
@@ -80,7 +81,7 @@ class LevelMapOp():
         
         self.area = None
         if isinstance(bound_box, tuple) and len(bound_box[0]) > 0:
-            bound_box = PathMesh( bound_box[0] )
+            bound_box = PathMeshBox( bound_box[0] )
             self.area = bound_box
         
         max_size = max(bound_box.XMax - bound_box.XMin,
@@ -98,20 +99,26 @@ class LevelMapOp():
 
         border = max(2, int(numpy.ceil(self.radius / sample_interval)))
 
-        extra = 0.5 * sample_interval - boundary_adjustment
+        extra = 2.5 * sample_interval - boundary_adjustment
         self.levelMap = LevelMap(bound_box.XMin - extra, 
                                  bound_box.XMax + extra,
                                  bound_box.YMin - extra, 
                                  bound_box.YMax + extra,
                                  final_depth, sample_interval, border
                                  )
+        self.commonMap = None
   
-    def raiseModel(self, model ):   
-        # raise points of the map in accordance with the model
+    def raiseModel(self, model, common = False ):   
+        # raise points of the map (main or common) in accordance with the model
         if model.TypeId.startswith("Mesh"):
             if self.levelMap.includes(model.Mesh.BoundBox):
-                for fa, fb, fc in model.Mesh.Facets.Points:
-                    self.levelMap.add_facet(fa, fb, fc)  #TODO Not tested!!!
+                if not common:
+                    for fa, fb, fc in model.Mesh.Facets.Points:
+                        self.levelMap.add_facet(fa, fb, fc)  #TODO Not tested!!!
+                else:
+                    self.addCommonMap()
+                    for fa, fb, fc in model.Mesh.Facets.Points:
+                        self.commonMap.add_facet(fa, fb, fc)  #TODO Not tested!!!
         else:
             if hasattr(model, 'Shape'):
                 shape = model.Shape
@@ -121,10 +128,17 @@ class LevelMapOp():
                 vertices, facet_indices = shape.tessellate(
                                     0.25 * self.levelMap.sampleInterval)
 
-                for f in facet_indices:
-                    self.levelMap.add_facet(vertices[f[0]], 
-                                            vertices[f[1]], 
-                                            vertices[f[2]])
+                if not common:
+                    for f in facet_indices:
+                        self.levelMap.add_facet(vertices[f[0]], 
+                                                vertices[f[1]], 
+                                                vertices[f[2]])
+                else:
+                    self.addCommonMap()
+                    for f in facet_indices:
+                        self.commonMap.add_facet(vertices[f[0]], 
+                                                 vertices[f[1]], 
+                                                 vertices[f[2]])
 
     def raisePathMesh(self, path_mesh ):
         for vertices, facet_indices in path_mesh.tessellated_faces:
@@ -158,14 +172,60 @@ class LevelMapOp():
                 profile.append((i * sample_interval, -tool_level_map.z[0, i]))
                 
             self.levelMap.applyTool( radius, profile )
+            if not self.commonMap is None:
+                self.commonMap.applyTool( radius, profile )
             
         else:
             # For end mill:
             self.levelMap.applyTool( radius, None ) 
-            
+            if not self.commonMap is None:
+                self.commonMap.applyTool( radius, None )
 
-    def getContourMap(self, z, dep_offset = 0 ):
-        m = self.levelMap.getContourMap( z )
+    def getContourMap(self, z, dep_offset = 0, out = None ):
+        m = self.levelMap.getContourMap( z, out = out )
         m.z += dep_offset
         return m
       
+    def addCommonMap(self):
+        if self.commonMap is None:
+            self.commonMap = self.levelMap.empty_copy()
+            
+    def cleanupCommonMap(self):
+        if not self.commonMap is None:
+            if numpy.all( self.commonMap.z <= self.commonMap.zmin):
+                self.commonMap = None
+      
+            
+    def excludeCommonFrom(self, contour_map):
+        if not self.commonMap is None:
+            cmb = self.commonMap.border
+            numpy.maximum(contour_map.m[1:-1, 1:-1],
+                          (self.commonMap.z[cmb:-cmb, cmb:-cmb] >= contour_map.z) * 4,
+                          out = contour_map.m[1:-1, 1:-1])
+            
+    def exactShift(self, mask, distance, state = 3):
+        border = int(math.ceil(distance / mask.sampleInterval) + 1)
+        R, C = mask.m.shape
+        lm = LevelMap(mask.xmin, mask.xmin,
+                      mask.ymin, mask.ymin,
+                      0, mask.sampleInterval, border,
+                      cols = C, rows = R)
+        if distance > 0: # expand material
+            lm.z[border:-border, border:-border] = mask.m
+            lm.applyTool(distance, None)
+            mask.m[1:-1, 1:-1] = (lm.z[border+1:-border-1, border+1:-border-1] > 0) * state
+        else:            # contract material
+            lm.z[border:-border, border:-border] = (mask.m == 0)
+            lm.applyTool(distance, None)
+            mask.m[1:-1, 1:-1] = (lm.z[border+1:-border-1, border+1:-border-1] == 0) * state
+            
+    def testBigShift(self):
+        cm = ContourMap( 0, 0, 0, -0.01, numpy.zeros((30,30)))
+        cm.m[1,1] = 1
+        cm.m[1,30] = 1
+        cm.m[30,1] = 1
+        cm.m[30,30] = 1
+        cm.m[16,16] = 1
+        cm.bigShift()
+        for ml in cm.m:
+            print(list(ml))

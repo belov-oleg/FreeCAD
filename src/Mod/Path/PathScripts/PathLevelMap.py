@@ -27,6 +27,15 @@ from PathScripts.PathContourMap import ContourMap
 #except:
 #    pass  # In case of stanalone test
 
+import platform
+import re
+
+if platform.system() == "Windows":
+    try:
+        import subprocess
+    except:
+        pass
+
 # This is a square grid of elevations in given direction.
 # Each cell [i,j] holds a maximum value of the model elevation in a square region
 # with coordinates
@@ -34,17 +43,22 @@ from PathScripts.PathContourMap import ContourMap
 #    ymin + (j - border) * sample_interval .. ymin + (j - border + 1) * sample_interval)
 
 class LevelMap():
-    def __init__( self, xmin, xmax, ymin, ymax, zmin, sample_interval, border ):
+    L2size = None
+  
+    def __init__( self, xmin, xmax, ymin, ymax, zmin, sample_interval, border,
+                  cols = None, rows = None):
         self.sampleInterval = sample_interval
         if xmax < xmin:
           xmax, xmin = xmin, xmax
         if ymax < ymin:
           ymax, ymin = ymin, ymax
         self.xmin = xmin
-        cols = int(math.ceil((xmax - xmin) / sample_interval) + 1)
+        if cols is None:
+            cols = int(math.ceil((xmax - xmin) / sample_interval) + 1)
         self.xmax = self.xmin + cols * sample_interval
         self.ymin = ymin
-        rows = int(math.ceil((ymax - ymin) / sample_interval) + 1)
+        if rows is None:
+            rows = int(math.ceil((ymax - ymin) / sample_interval) + 1)
         self.ymax = self.ymin + rows * sample_interval
         self.zmin = zmin
         self.matrix = None
@@ -54,6 +68,40 @@ class LevelMap():
                              dtype = numpy.single
                             )
         self.kk = numpy.zeros(max(rows, cols) + 2 * border, dtype=int)
+        self.tool_radius = 5
+        self.tool_profile = None   # sorted list of (radius, elevation)
+
+        if LevelMap.L2size is None:
+            try:
+                if platform.system() == "Windows":
+                    for line in subprocess.Popen('wmic cpu get L2CacheSize').split("\n"):
+                        if str.isdigit(line):
+                            LevelMap.L2size = max(256, int(line)) * 1024
+                            break
+                else: #  platform.system() == "Linux":
+                    fp = open("/proc/cpuinfo", "r")
+                    info = fp.read().split("\n")
+                    fp.close()
+                    r = re.compile("cache size\s*:\s*(\d+)\s*(\w)")
+                    for line in info:
+                        rm = r.match(line)
+                        if not rm is None:
+                            LevelMap.L2size = int(rm.group(1)) * (
+                                1024 * 1024 if rm.group(2) == "M" else 1024)
+                            break
+            except:
+                pass
+        if LevelMap.L2size is None:
+            LevelMap.L2size = 256 * 1024
+        
+    def empty_copy(self):
+        R, C = self.z.shape
+        ans = LevelMap(self.xmin, self.xmax, self.ymin, self.ymax, 
+                       self.zmin, self.sampleInterval, self.border,
+                       cols = C - 2 * self.border,
+                       rows = R - 2 * self.border)
+        ans.matrix = self.matrix
+        return ans
         
     def set_rotation(self):
         pass
@@ -90,6 +138,13 @@ class LevelMap():
             return True
         else:
             return True    #TODO Make exact decision
+          
+    def activeRadius(self, z ):
+        if not self.tool_profile is None:
+            for rad, elev in self.tool_profile[::-1]:
+                if elev < z:
+                    return rad
+        return self.tool_radius
       
     def add_facet( self, va, vb, vc ):
         if not self.matrix is None:
@@ -123,7 +178,11 @@ class LevelMap():
         if b1 or b2 or b3:
             self._add_triangle( xva, yva, zva, xvb, yvb, zvb, xvc, yvc, zvc ) 
             
-    def getContourMap( self, z ):
+    def getContourMap( self, z, out = None ):
+        if not out is None:
+            out.setContourMap(self.xmin, self.ymin, z, self.sampleInterval,
+                       self.z[self.border:-self.border, self.border:-self.border])
+            return out
         return ContourMap(self.xmin, self.ymin, z, self.sampleInterval,
                           self.z[self.border:-self.border, self.border:-self.border])
       
@@ -465,8 +524,8 @@ class LevelMap():
             job.append(( i, index, -j - bs + 1, 0, -d3, -d2, d0, d1 ))
         else:
             job.append(( -j, index, i, 0, d0, d1, -d3, -d2 ))
-            job.append(( j, index, -i - (bs - 1) * 2, 0 ), -d1, -d0, d2, d3)
-            job.append(( -j, index, -i - (bs - 1) * 2, 0 ), -d1, -d0, -d3, -d2)
+            job.append(( j, index, -i - (bs - 1) * 2, 0, -d1, -d0, d2, d3))
+            job.append(( -j, index, -i - (bs - 1) * 2, 0, -d1, -d0, -d3, -d2))
 
     def _paint_job(self, job, irt, filled = None):
         # return numpy boolean array (irt*2+1, irt*2+1)
@@ -525,22 +584,22 @@ class LevelMap():
             if (r == irt - 1 or r < min_full_covered_row or 
                 r == top and min_full_covered_row > hw[min_full_covered_row]):
                 while width > 0:
-                    dzxmin = 0 if i > 0 else -MAX
-                    dzxmax = 0 if i + bs - 1 < 0 else MAX
+                    dzdxmin = 0 if i > 0 else -MAX
+                    dzdxmax = 0 if i + bs - 1 < 0 else MAX
                     self._symmetric_append( job, i, r - bs + 2, ind,
                                             dzdxmin, dzdxmax, 0, MAX )
                     width -= bs
                     i += bs
                     if width > 0 and width < bs:
-                        dzxmin = 0 if i + width - bs > 0 else -MAX
+                        dzdxmin = 0 if i + width - bs > 0 else -MAX
                         self._symmetric_append( job, i + width - bs, 
                                                 r - bs + 2, ind,
                                                 dzdxmin, MAX, 0, MAX)
                         break
                 min_full_covered_row = r - bs + 1
             else:
-                dzxmax = 0 if width > bs else MAX
-                self._symmetric_append( job, i, r - bs + 2, ind, -MAX, dzxmax, 0, MAX )
+                dzdxmax = 0 if width > bs else MAX
+                self._symmetric_append( job, i, r - bs + 2, ind, -MAX, dzdxmax, 0, MAX )
                 if width > bs:
                     self._symmetric_append( job, hw[r] - bs + 1, 
                                             r - bs + 2, ind, 0, MAX, 0, MAX )
@@ -644,6 +703,8 @@ class LevelMap():
                          
     def applyTool( self, radius, profile ):
         # profile is None for square end mill or sorted list of (radius, elevation)
+        self.tool_radius = radius
+        self.tool_profile = profile
         rt = radius / self.sampleInterval
         border = self.border
         job = []
@@ -749,6 +810,7 @@ class LevelMap():
             PC = cols+2*border
             for k in range(1, len(partial)):
                 if k == 2:
+                    this = partial[2]
                     base = partial[1]
                     orig = partial[0]
                     for j in range(2, RA-2):
@@ -756,21 +818,11 @@ class LevelMap():
                                                 base[j-1,1:PC-1],     
                                                 base[j-1,2:PC])     
                     for j in range(2, RA-2):
-                        numpy.maximum(partial[2][j,:],       
-                                      partial[2][j+1,:],              
-                                      out=partial[2][j,:])   
-                        numpy.maximum(partial[2][j,:PC],
-                                      orig[j,:PC],
-                                      out=partial[2][j,:PC])
-                        numpy.maximum(partial[2][j,:PC-4],
-                                      orig[j,4:PC],
-                                      out=partial[2][j,:PC-4])
-                        numpy.maximum(partial[2][j,:PC-2],
-                                      orig[j-2,2:PC],
-                                      out=partial[2][j,:PC-2])
-                        numpy.maximum(partial[2][j,:PC-2],
-                                      orig[j+2,2:PC],
-                                      out=partial[2][j,:PC-2])
+                        numpy.maximum(this[j,:],     this[j+1,:],    out=this[j,:])   
+                        numpy.maximum(this[j,:PC],   orig[j,:PC],    out=this[j,:PC])
+                        numpy.maximum(this[j,:PC-4], orig[j,4:PC],   out=this[j,:PC-4])
+                        numpy.maximum(this[j,:PC-2], orig[j-2,2:PC], out=this[j,:PC-2])
+                        numpy.maximum(this[j,:PC-2], orig[j+2,2:PC], out=this[j,:PC-2])
 
                 else:
                     if k == 1:
@@ -825,17 +877,114 @@ class LevelMap():
        #     for ddi in dd:
        #         fd.write( "%.3f, %.3f, %.3f, %.3f" % list(ddi))
        #     fd.close
-            
-            for m in range(R0+border, R1-border):
-                for j, k, i, z, dzdxmin, dzdxmax, dzdymin, dzdymax in job:
-                    ddi = dd[m-R0+j, :]
-                    if (dzdxmin > ddi[1] or dzdxmax < -ddi[0] or 
-                        dzdymin > ddi[3] or dzdymax < -ddi[2]):
-                        continue
-                    numpy.maximum(
-                        self.z[m, offs:offs+cols],
-                        partial[k][m-R0+j, border+i:cols+border+i] + z,
-                        out = self.z[m, offs:offs+cols]
-                        )
+            jb = 0
+            l2_items = LevelMap.L2size // (cols + 2 * border) - 1
+            while jb < len(job):
+                je = jb
+                counter = set()
+                while je < len(job):
+                    counter.add(job[je][0:2])
+                    if len(counter) > l2_items:
+                        break
+                    je += 1
+                for m in range(R0+border, R1-border):
+                    for j, k, i, z, dzdxmin, dzdxmax, dzdymin, dzdymax in job[jb:je]:
+                        ddi = dd[m-R0+j, :]
+                        if (dzdxmin > ddi[1] or dzdxmax < -ddi[0] or 
+                            dzdymin > ddi[3] or dzdymax < -ddi[2]):
+                            continue
+                        numpy.maximum(
+                            self.z[m, offs:offs+cols],
+                            partial[k][m-R0+j, border+i:cols+border+i] + z,
+                            out = self.z[m, offs:offs+cols]
+                            )
+                jb = je
             offs += cols
- 
+            
+    def profileAlongPath(self, nodes, tolerance, shift_z, min_z):
+        # return profile along the given path. The existed nodes are included with
+        # a changed z coordinate (node[2]). New nodes can be inserted. 
+        # The elevation of the created path above the map is in range 0..tolerance,
+        # but points (crosses of the path and the grid) which are below min_z level 
+        # are shifted upto this level.
+        ans = []
+        border = self.border
+        ln = len(nodes)
+        cycled = ln > 3 and nodes[0] == nodes[-1]
+        zs = min_z   # z value of the current point shifted down by shift_z
+        for i in range(0, ln):
+            c, r = nodes[i][0:2]
+            # pick z of endpoint from the map
+            if c != int(c) or r != int(r):
+                z = self.z[int(r) + border, int(c) + border]
+            elif i == ln - 1 and cycled:
+                z = ans[0][2]
+            else:
+                for j in (max(-cycled, i - 1), min(ln - 1, i + 1)):
+                    # choose one of four cells where the edge is located
+                    pc = (nodes[j][0] - c) < 0
+                    pr = (nodes[j][1] - r) < 0
+                    z = self.z[int(r) - pr + border, int(c) - pc + border]
+            if len(nodes[i]) > 2:
+                zs = nodes[i][2] - shift_z
+                z = max(z, zs)
+            if i == 0:
+                ans.append(nodes[i][0:2] + (max(z, min_z),) + nodes[i][3:])
+            else:
+                # create all intermediate crosses with the grid and optimize them
+                c0, r0 = ans[-1][0:2]
+                part = [ans[-1]]
+                if c0 == c and r0 == r:
+                    continue            # duplicates are not inserted
+                dc = c - c0
+                dr = r - r0
+                dz = zs - zprev
+                if abs(dc) > abs(dr):
+                    ic = 1 if c > c0 else -1
+                    for ci in range(int(c0) + ic, int(c) + ic, ic):
+                        k   = (ci - c0) / dc
+                        ri  = r0 + k * dr
+                        zis = zprev + k * dz
+                        z = max(self.z[int(ri) + border, ci + border],
+                                self.z[int(ri) + border, ci + border - 1],
+                                zis,
+                                min_z)
+                        part.append((ci, ri, z))
+                else:
+                    ir = 1 if r > r0 else -1
+                    for ri in range(int(r0) + ir, int(r) + ir, ir):
+                        k   =  (ri - r0) / dr
+                        ci  = c0 + k * dc
+                        zic = zprev + k * dz
+                        z = max(self.z[ri + border, int(ci) + border],
+                                self.z[ri + border - 1, int(ci) + border],
+                                zic,
+                                min_z)
+                        part.append((ci, ri, z))
+                # Optimization
+                ans.extend(self.optimize(part, tolerance))
+            zprev = zs        
+        return ans
+      
+    def optimize(self, part, tolerance):
+        # recursive procedure. Returns optimized path without the first node.
+        x0, y0, z0 = part[0][0:3]
+        al = abs(x0 - part[-1][0]) + abs(y0 - part[-1][1])
+        dzdal = (part[-1][2] - z0) / al
+        max_dev = 0
+        peak_ind = None
+        for i in range(1, len(part)-1):
+            x, y, z = part[i][0:3]
+            ax = abs(x0 - x) + abs(y0 - y)
+            ze = z0 + dzdal * ax
+            if ze > z + tolerance + max_dev:
+                max_dev = ze - z - tolerance
+                peak_ind = i
+            elif ze < z - max_dev:
+                max_dev = z - ze
+                peak_ind = i
+        if peak_ind is None:
+            return [part[-1]]
+        return (self.optimize(part[0:peak_ind+1], tolerance) + 
+                self.optimize(part[peak_ind:-1], tolerance))
+                

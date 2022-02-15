@@ -32,7 +32,7 @@ __contributors__ = ""
 import FreeCAD
 from PySide import QtCore
 import numpy
-from PathScripts.PathLevelMapOp import LevelMapOp, PathMesh
+from PathScripts.PathLevelMapOp import LevelMapOp, PathMeshBox
 
 # OCL must be installed
 try:
@@ -305,7 +305,7 @@ class ObjectWaterline(PathOp.ObjectOp):
             ),
             (
                 "App::PropertyBool",
-                "FinishingEnabled",
+                "FinishingProfile",
                 "Clearing Options",
                 QtCore.QT_TRANSLATE_NOOP(
                     "App::Property",
@@ -451,7 +451,7 @@ class ObjectWaterline(PathOp.ObjectOp):
             "StartPoint": FreeCAD.Vector(0.0, 0.0, obj.ClearanceHeight.Value),
             "Algorithm": "OCL Dropcutter",
             "LayerMode": "Single-pass",
-            "FinishingEnabled": False,
+            "FinishingProfile": False,
             "CutMode": "Conventional",
             "CutPattern": "None",
             "HandleMultipleFeatures": "Collectively",
@@ -507,9 +507,9 @@ class ObjectWaterline(PathOp.ObjectOp):
         obj.setEditorMode("GapSizes", hide)
 
         if obj.Algorithm == "OCL Dropcutter":
-            obj.setEditorMode("FinishingEnabled", hide)
+            obj.setEditorMode("FinishingProfile", hide)
         elif obj.Algorithm == "Grid Dropcutter":
-            obj.setEditorMode("FinishingEnabled", 0)
+            obj.setEditorMode("FinishingProfile", 0)
             obj.setEditorMode("BoundaryAdjustment", 0)
             obj.setEditorMode("BoundaryEnforcement", 0)
             obj.setEditorMode("AvoidLastX_Faces", 0)
@@ -1754,12 +1754,6 @@ class ObjectWaterline(PathOp.ObjectOp):
             return True
         self.stockZMin = JOB.Stock.Shape.BoundBox.ZMin
 
-    #    self.toolDiam = self.cutter.getDiameter()
-            
-    #    self.radius = self.toolDiam / 2.0
-    #    self.cutOut = self.toolDiam * (float(obj.StepOver) / 100.0)
-    #    self.gaps = [self.toolDiam, self.toolDiam, self.toolDiam]
-
         # Begin GCode for operation with basic information
         # ... and move cutter to clearance height and startpoint
         if obj.Comment != "":
@@ -1805,13 +1799,16 @@ class ObjectWaterline(PathOp.ObjectOp):
         self.ClearHeightOffset = JOB.SetupSheet.ClearanceHeightOffset.Value
 
         # Calculate default depthparams for operation
+        self.finish_depth = 0
+        if hasattr(obj, "FinishDepth"):
+            self.finish_depth = obj.FinishDepth.Value         
         self.depthParams = PathUtils.depth_params(
             obj.ClearanceHeight.Value,
             obj.SafeHeight.Value,
             obj.StartDepth.Value,
             obj.StepDown.Value,
             0.0,
-            obj.FinalDepth.Value,
+            obj.FinalDepth.Value - self.finish_depth,
         )
 
         # ######  MAIN COMMANDS FOR OPERATION ######
@@ -1870,7 +1867,7 @@ class ObjectWaterline(PathOp.ObjectOp):
         # we use direct estimation of bounding box in this method.
         
         # The user has selected subobjects from the base.  Pre-Process
-        #TODO Allow selection of whole model group
+        #TODO Allow selection of whole model group in GUI
         selection = list()
         for (base, SBS) in obj.Base:
             for sb in SBS:  # Names of selected faces
@@ -1935,12 +1932,6 @@ class ObjectWaterline(PathOp.ObjectOp):
         base = JOB.Model.Group[mdlIdx]
         depOfst = obj.DepthOffset.Value
 
-        # Prepare global holdpoint and layerEndPnt containers
-        #if self.holdPoint is None:
-        #    self.holdPoint = FreeCAD.Vector(0.0, 0.0, 0.0)
-        #if self.layerEndPnt is None:
-        #    self.layerEndPnt = FreeCAD.Vector(0.0, 0.0, 0.0)
-
         if subShp is None:
             # Get correct boundbox
             if obj.BoundBox == 'Stock':
@@ -1952,7 +1943,7 @@ class ObjectWaterline(PathOp.ObjectOp):
         elif isinstance(subShp, tuple):
             bb = subShp
         else:
-            bb = subShp.BoundBox
+            bb = subShp.BoundBox     # not used now
 
         model = JOB.Model.Group[mdlIdx]
 
@@ -1963,86 +1954,212 @@ class ObjectWaterline(PathOp.ObjectOp):
         # Create LevelMap operations
         t0 = time.time()
         MIN = -1e37
-        z0 = obj.FinalDepth.Value
-        if isinstance(bb, tuple) and len(bb[0]) > 0: # There are selected faces
-            z0 = MIN
-        op = LevelMapOp(bb, obj.SampleInterval.Value, z0, self.tool,
+        z_min = obj.FinalDepth.Value
+        op = LevelMapOp(bb, obj.SampleInterval.Value, MIN, self.tool,
                         boundary_adjustment=obj.BoundaryAdjustment.Value)
 
+        # Select a slope for ramps
+        slope = 0.1 * op.levelMap.sampleInterval
+        if self.vertFeed > 0:
+            slope = (self.vertFeed / max(self.vertFeed, self.horizFeed) *
+                      op.levelMap.sampleInterval)
+
         mask = None
-        if isinstance(op.area, PathMesh):   # Create the mask by selected facets
+        if isinstance(op.area, PathMeshBox):   # Create the mask by selected facets
             op.raisePathMesh( op.area )
             mask = op.getContourMap( 0.5 * MIN )
             op.levelMap.reset(MIN)
 
         void_mask = None
-        if isinstance(bb, tuple) and len(bb[1]) > 0:  # Exclude faces
-            op.raisePathMesh( PathMesh(bb[1]))
+        if isinstance(bb, tuple) and len(bb[1]) > 0:  
+            # Create the mask by excluded faces
+            op.raisePathMesh( PathMeshBox(bb[1]))
             void_mask = op.getContourMap( 0.5 * MIN )
             op.levelMap.reset(MIN)
             
         op.raiseModel( base )
-        if mask is None:
-            mask = op.getContourMap( 0.5 * MIN )  # 2 - inside, 
+        
+        # If there are selected faces but whole base is below FinalDepth level 
+        # that it is used only for selection of the working area, 
+        # in this case trace all models, otherwise only the base will be traced.
+        base_only = True
+        if numpy.all( op.levelMap.z < z_min):
+            if mask is None:
+                return []     # Nothing to process here
+            base_only = False
+        elif mask is None:
+            mask = op.getContourMap( 0.5 * MIN )  # 3 - inside, 
                                                   # 0 - outside
 
-        if not void_mask is None:
-            if obj.BoundaryEnforcement:
-                mask.shiftBorder( -obj.BoundaryAdjustment.Value )
-                void_mask.shiftBorder( -op.radius )
+        # Adjust the mask, only cells where mask != 0 should be traced
+        if obj.BoundaryEnforcement:
+            if obj.BoundaryAdjustment >= 0:
                 mask.subtract( void_mask )
+                op.exactShift( mask, -max(obj.BoundaryAdjustment.Value, op.radius)) 
             else:
-                mask.subtract( void_mask )
                 mask.shiftBorder( -obj.BoundaryAdjustment.Value )
+                if not void_mask is None:
+                    op.exactShift( void_mask, op.radius )
+                    mask.subtract( void_mask )
         else:
-            mask.shiftBorder( -obj.BoundaryAdjustment.Value )               
-        mask.highlightBorders()
+            mask.subtract( void_mask )
+            mask.shiftBorder( -obj.BoundaryAdjustment.Value )
+        # Add one row of cells more for gray zone   
+        mask.highlightBorders(new_state=2)
+        mask.highlightBorders(threshold=2, new_state=2)
         
         for m in range(0, len(JOB.Model.Group)):
             if m != mdlIdx:
-                op.raiseModel( JOB.Model.Group[m] )
+                op.raiseModel( JOB.Model.Group[m], common = base_only )
+        op.cleanupCommonMap()
         PathLog.info("LevelMap creation %.3f s" % (time.time() - t0))
         
         t0 = time.time()       
         op.applyTool( self.tool )
         PathLog.info("The tool application %.3f s" % (time.time() - t0))
         
-     #   if obj.LayerMode != 'Single-pass':
-     #       outerMask = op.getContourMap( obj.FinalDepth.Value )
-     #       outerMask.highlightBorders()
-
         # Extract layers per depthparams
         layTime = time.time()
+        prevLayDep = obj.StartDepth.Value
+        contourMap = None
+        previousMap = None
+        all_traces = []
+        max_dist_m = ((self.horizFeed * self.horizRapid) / 
+                      max(self.horizFeed - self.horizRapid, 0.1) * 2 /
+                      max(self.vertRapid, 0.1)
+                     )
+        max_dist_c = (obj.StepDown.Value * self.vertRapid / max(self.vertFeed, 1) + 
+                       obj.SafeHeight.Value)
+        
         for layDep in depthparams:
             loopList = []
 
-            contourMap = op.getContourMap( layDep, obj.DepthOffset.Value )
+            contourMap = op.getContourMap(layDep, obj.DepthOffset.Value,
+                                          out = contourMap  )
             
             traces = []
             while True:  # Collect traces of the single layer
-                contourMap.highlightBorders()
-                contourMap.or_not( mask )  # simulate material around the work area
-                # Extract waterline and convert to gcode
+                if obj.LayerMode == "Single-pass":
+                    contourMap.highlightBorders()
+                    op.excludeCommonFrom(contourMap)
+                    contourMap.or_not( mask )  # simulate material around the work area
+                else:
+                    contourMap.or_not( mask )  # simulate material around the work area
+                    op.excludeCommonFrom(contourMap)
+                    contourMap.highlightBorders()
+
+                # Extract waterline               
                 nothing = True
                 while True:
-                    nodes = contourMap.getBorder( obj.CutMode == "Climb" )
+                    nodes = contourMap.getBorder(obj.CutMode == "Climb")
                     if nodes == []:
                         break
                     traces.append(nodes)
                     nothing = False
                     
-                if nothing:
-                    break
-                      
-                if obj.LayerMode == 'Single-pass':
+                if nothing or obj.LayerMode == "Single-pass":
                     break
                   
                 contourMap.shiftBorder( self.radius * (float(obj.StepOver) / 50.0) )
+                
+            if len(traces) > 0 and len(all_traces) > 0 and not previousMap is None:
+                # the last trace can be joined with the last trace from the previous level
+                max_distance = (max_dist_c - layDep) * max_dist_m
+                head = all_traces[-1]
+                tail = traces[-1]
+                point = None
+                if tail[0] == tail[-1]:    # cyclic list
+                    distance, index, point = previousMap.nearestPoint(tail, head[-1])
+                else:
+                    distance = math.sqrt((head[-1][0]-tail[0][0]) ** 2 +
+                                        (head[-1][1]-tail[0][1]) ** 2)
+                if distance * previousMap.sampleInterval < max_distance:
+                    # Prepend ramp to the tail
+                    if previousMap.appendNodes(
+                            head, 
+                            contourMap.prependRamp(tail, previousMap.z, slope, point),
+                            max_distance) :
+                        traces.pop(-1)
+                        traces.append(all_traces.pop(-1))
+            
+            if len(traces) > 0:
+                # make junctions
+                for i in range(len(traces)-1, 0, -1):
+                    for j in range(i-1, -1, -1):
+                        if contourMap.appendNodes(traces[i], traces[j], self.radius * 2):
+                            traces.pop( j )
+                            break
 
-            for trace in traces[::-1]:
+                for trace in traces[::-1]:
+                    all_traces.append(contourMap.prependRamp(trace, prevLayDep, slope))
+                 
+                prevLayDep = layDep
+                previousMap, contourMap = contourMap, previousMap
+        # end of loop by layDep
+        
+        for trace in all_traces:
+            commands.extend(
+                contourMap.nodesToPath( 
+                      trace,
+                      obj.ClearanceHeight.Value,
+                      self ))
+
+        if obj.FinishingProfile:
+            all_traces = []
+            layDep = obj.FinalDepth.Value
+            previousMap = None
+            workMap = None
+            while layDep < obj.StartDepth.Value:
+                max_distance = (max_dist_c - layDep) * max_dist_m
+                contourMap = op.getContourMap(layDep,
+                                              out = contourMap)
+                contourMap.highlightBorders()
+                op.excludeCommonFrom(contourMap)
+                contourMap.or_not( mask )
+                workMap = contourMap.copy(out = workMap)
+                traces = []
+                while True:
+                    # Extract waterline
+                    nothing = True
+                    while True:
+                        nodes = workMap.getBorder(obj.CutMode == "Climb")
+                        if nodes == []:
+                            break
+                        traces.append(nodes)
+                        nothing = False
+                     
+                    if nothing or previousMap is None:
+                        break
+                      
+                    workMap.shiftBorder(max(
+                       op.levelMap.activeRadius(obj.FinishDepth.Value),
+                       workMap.sampleInterval * 2))
+                    workMap.highlightBorders()
+                    workMap.or_not( previousMap )
+  
+                # Combine adjacent traces
+                if len(traces) > 0:
+                    for i in range(len(traces)-1, 0, -1):
+                        for j in range(i-1, -1, -1):
+                            if contourMap.appendNodes(traces[i], traces[j], self.radius * 2):
+                                traces.pop( j )
+                                break
+
+                all_traces.extend( traces[::-1] )
+  
+                previousMap, contourMap = contourMap, previousMap
+                layDep += max(0.1, obj.FinishDepth.Value)
+
+            for trace in all_traces:
                 commands.extend(
-                    contourMap.nodesToPath( trace, obj.ClearanceHeight.Value,
-                                            self ))
+                    contourMap.nodesToPath( 
+                        op.levelMap.profileAlongPath(
+                             trace, 
+                             tolerance = contourMap.sampleInterval * 0.25, 
+                             shift_z = obj.FinishDepth.Value + contourMap.sampleInterval * 0.5,
+                             min_z = obj.FinalDepth.Value),
+                        obj.ClearanceHeight.Value,
+                        self ))
 
         PathLog.debug("--All layer scans combined took " + str(time.time() - layTime) + " s")
 
