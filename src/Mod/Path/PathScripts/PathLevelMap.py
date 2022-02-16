@@ -550,7 +550,8 @@ class LevelMap():
         return ans
 
 
-    def _create_coverage(self, job, partial, rt):  
+    def _create_coverage(self, job, partial, rt):
+        print("rt=",rt)
         irt = min(self.border, int(numpy.ceil(rt)))
         # calculate row half width:
         # Each row contains odd number of cells, and there are irt * 2 + 1 rows.

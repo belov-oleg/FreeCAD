@@ -204,7 +204,7 @@ class LevelMapOp():
                           out = contour_map.m[1:-1, 1:-1])
             
     def exactShift(self, mask, distance, state = 3):
-        border = int(math.ceil(distance / mask.sampleInterval) + 1)
+        border = int(math.ceil(abs(distance) / mask.sampleInterval) + 1)
         R, C = mask.m.shape
         lm = LevelMap(mask.xmin, mask.xmin,
                       mask.ymin, mask.ymin,
@@ -216,7 +216,7 @@ class LevelMapOp():
             mask.m[1:-1, 1:-1] = (lm.z[border+1:-border-1, border+1:-border-1] > 0) * state
         else:            # contract material
             lm.z[border:-border, border:-border] = (mask.m == 0)
-            lm.applyTool(distance, None)
+            lm.applyTool(-distance, None)
             mask.m[1:-1, 1:-1] = (lm.z[border+1:-border-1, border+1:-border-1] == 0) * state
             
     def testBigShift(self):
