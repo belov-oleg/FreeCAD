@@ -23,6 +23,7 @@
     
 from PathScripts.PathLevelMap import LevelMap
 from PathScripts.PathContourMap import ContourMap
+from itertools import permutations
 import math
 import numpy
 
@@ -181,8 +182,8 @@ class LevelMapOp():
             if not self.commonMap is None:
                 self.commonMap.applyTool( radius, None )
 
-    def getContourMap(self, z, dep_offset = 0, out = None ):
-        m = self.levelMap.getContourMap( z, out = out )
+    def getContourMap(self, z, dep_offset = 0, out = None, air = 0 ):
+        m = self.levelMap.getContourMap( z, out = out, air = air )
         m.z += dep_offset
         return m
       
@@ -200,11 +201,13 @@ class LevelMapOp():
         if not self.commonMap is None:
             cmb = self.commonMap.border
             numpy.maximum(contour_map.m[1:-1, 1:-1],
-                          (self.commonMap.z[cmb:-cmb, cmb:-cmb] >= contour_map.z) * 4,
+                          (self.commonMap.z[cmb:-cmb, cmb:-cmb] >= contour_map.z) * 3,
                           out = contour_map.m[1:-1, 1:-1])
             
     def exactShift(self, mask, distance, state = 3):
         border = int(math.ceil(abs(distance) / mask.sampleInterval) + 1)
+        if border < 3:
+            return
         R, C = mask.m.shape
         lm = LevelMap(mask.xmin, mask.xmin,
                       mask.ymin, mask.ymin,
@@ -218,6 +221,92 @@ class LevelMapOp():
             lm.z[border:-border, border:-border] = (mask.m == 0)
             lm.applyTool(-distance, None)
             mask.m[1:-1, 1:-1] = (lm.z[border+1:-border-1, border+1:-border-1] == 0) * state
+            
+    def closeHoles(self, mask):
+        # Mark holes in mask as material (3). 
+        # Pre: air is marked as 1. Border is 0.
+        # Post: Air cells connected with border (including diagonal connection)
+        #       are marked as 0. 
+        #       Air cells in closed areas are marked as 3.
+        p = 0;
+        i = 1;
+        R, C = mask.m.shape 
+        while True:
+            changed = mask.m[i,1:-1] == 1 & (
+                 mask.m[i,:-2] * mask.m[i, 2:] *
+                 mask.m[p,1:-1] * mask.m[p,:-2] * mask.m[p, 2:] == 0)
+            p = i
+            if numpy.any(changed):
+                mask.m[i,1:-1][changed] = 0
+                if i > 0:
+                    i -= 1   # propagate changes to the previous row
+                else:
+                    i += 1   # first row always is corrected in one step
+            else:
+                if i == R - 2:
+                    break
+                i += 1
+        numpy.minimum(3, mask.m * 3, out = mask.m)
+        
+    def optimizeConnections(self, traces, start_point = None ):  
+        # return list of indices
+        nt = len(traces)
+        if nt == 1:
+            return [0]
+        if nt == 2 and start_point is None:
+            return [0, 1]
+        dist = numpy.empty((nt, nt))
+        to_first = []
+        for i in range(0, nt):
+            if not start_point is None:
+                dx = traces[i][0][0] - start_point[0]
+                dy = traces[i][0][1] - start_point[1]
+                to_first.append(math.sqrt(dx * dx + dy * dy)) 
+            for j in range(0, nt):
+                if j == i:
+                    dist[i, j] = 1.0e37
+                else:
+                    dx = traces[i][-1][0] - traces[j][0][0]
+                    dy = traces[i][-1][1] - traces[j][0][1]
+                    dist[i, j] = math.sqrt(dx * dx + dy * dy)
+        return self.TSPsolver( dist, to_first )
+      
+    def TSPsolver(self, distances, to_first ):
+        # Solve travelling salesman problem,
+        # return list if indices.
+        nt = distances.shape[0]
+        group = [[i] for i in range(0, nt)]
+        
+        MAX_BRUTE_FORCE = 7
+        while nt > MAX_BRUTE_FORCE:
+            ind = numpy.argmin(distances)
+            first, last = ind // nt, ind % nt
+            if to_first != []:
+                to_first.pop( last )
+            group[first].extend(group[last])
+            group.pop(last)
+            distances[first,:] = distances[last,:] + distances[first, last]
+            distances = numpy.delete(numpy.delete(distances, last, 0), last, 1)
+            nt -= 1
+            
+        # Brute force part of the algorithm
+        best_ii = list(range(0, len(group)))
+        best_s  = 1.0e37
+        # The maximum number of points allowed for brute force is
+        if nt < 12:
+            for ii in permutations(range(0, nt)):
+                s = 0 if to_first == [] else to_first[ii[0]]
+                for j in range(1, nt):
+                    s += distances[ii[j-1], ii[j]]
+                    if s > best_s:
+                        break
+                if s < best_s:
+                    best_s = s
+                    best_ii = ii
+        ans = []
+        for i in best_ii:
+            ans.extend(group[i])
+        return ans
             
     def testBigShift(self):
         cm = ContourMap( 0, 0, 0, -0.01, numpy.zeros((30,30)))

@@ -31,16 +31,16 @@ class ContourMap():
     # 1 - gray zone, a bound planned for tracing,
     # 2 - expanded, the material with the appropiate shift of the bound.
     # 3 - material. Don't touch it.
-    def __init__( self, xmin, ymin, z, sample_interval, data ):
+    def __init__( self, xmin, ymin, z, sample_interval, data, air = 0 ):
         self.m = None
         self.sampleInterval = sample_interval
         self.xmin = xmin
         self.ymin = ymin
         self.z = z
         self.tmp = None
-        self.setContourMap( xmin, ymin, z, sample_interval, data )
+        self.setContourMap( xmin, ymin, z, sample_interval, data, air )
             
-    def setContourMap(self, xmin, ymin, z, sample_interval, data ):
+    def setContourMap(self, xmin, ymin, z, sample_interval, data, air = 0 ):
         if not isinstance(data, numpy.ndarray):
             raise TypeError
         self.sampleInterval = sample_interval
@@ -56,7 +56,10 @@ class ContourMap():
         elif data.dtype.name == "int8":
             self.m[1:-1, 1:-1] = data
         else:
-            self.m[:, :] = 0
+            if air == 0:
+                self.m[:, :] = 0
+            else:
+                self.m[1:-1, 1:-1] = air
             self.m[1:-1, 1:-1][data > z] = 3
         
     def highlightBorders(self, threshold = 0, new_state = 1):
@@ -119,26 +122,40 @@ class ContourMap():
                           out = self.m[1:-1, 1:-1] )
         
     def getBorder(self, climb = False ):  # return list of (i,j,z) or empty list
+        debug = False
+            
         while True:
             index = numpy.where(self.m == 1)
             if len(index[0]) == 0:
                 return []
             r, c = index[0][0], index[1][0]
-            ccw = climb == (self.m[r+1, c+1] == 0)
+            #if abs(75 - r) + abs(105 - c) < 10:   # debug
+            #debug = True
+            ccw = True   #  climb != (self.m[r, c-1] == 0)
             nodes = self._traceWaterLine(self.m, r, c, self.z, ccw )
+            if debug:
+                print(nodes)
             if self.m[r, c] == 1:
                 nodes = self._traceWaterLine(self.m, r, c, self.z, 
                                             not ccw )[::-1] + nodes
+                if debug:
+                    print("Second: ", nodes)
             elif nodes[-1][0:2] == (r+1, c+1):
                 nodes.append(nodes[0])
+                if debug:
+                    print("Append ", nodes)
             
             self.m[r, c] = 0
 
             while len(nodes) > 2 and nodes[-1] == nodes[-2]:
                 nodes.pop(-1)
+
+            while len(nodes) > 2 and nodes[0] == nodes[1]:
+                nodes.pop(0)
                 
-            if len(nodes) > 2:
+            if len(nodes) > 1:
                 break
+              
         # adjust climb/conventional
         for i in range(1, len(nodes)):
             ca, ra = nodes[i-1][0:2]
@@ -149,8 +166,12 @@ class ContourMap():
             k = (cb - ca) * dmr - (rb - ra) * dmc
             if k != 0:
                 if (k < 0) != climb:
+                    if debug:
+                        print("Adjust ", nodes[::-1])
                     return nodes[::-1]
                 break
+        if debug:
+            print("Answer ", nodes)
         return nodes
       
     #          ro  co  rd  cd
@@ -176,46 +197,93 @@ class ContourMap():
             if m[r+1, c] == 1:         # vertical direction expected
                 ans.append((c, r, z))
         dro, dco, drd, dcd = self.DELTAS[d]
+        
+        debug = False
+        #if abs(75 - r0) + abs(105 - c0) < 10:   # debug
+        #print("d %i c %i  r %i ccw %i" % (d,c,r,ccw))
+        #debug = True
+        
+        tr = None
+        
         while True:
             t = 0
+            if debug:
+                print("%i, %i" % (c, r))
             while True:
+                if debug:
+                    print("  d = %i" % d)
                 # check diagonal
                 if m[r + drd, c + dcd] == 1:
                     ans.append((c + (dcd + 1)//2 - 1, 
                                 r + (drd + 1)//2 - 1,
                                 z))
-                    if m[r + dro, c + dro] == 1:
-                        m[r + dro, c + dro] = 0
+                    if debug:
+                        print( "  diag %i, %i" % (ans[-1][0] + 1, ans[-1][1] + 1))
+                    if m[r + dro, c + dco] == 1:
+                        m[r + dro, c + dco] = 0
                     r += drd
                     c += dcd
+                    tr = r
+                    tc = c
                     break
                 # check horizontal or vertical direction
                 elif m[r + dro, c + dco] == 1:
-                    if t > 1:
+                    if t > 1:    # turn to +-90 degrees found
                         ans.append((c + (2 * dco > dcd) - 1, 
                                     r + (2 * dro > drd) - 1,
                                     z))
+                        if debug:
+                            print( "  orth %i, %i" % (ans[-1][0] + 1, ans[-1][1] + 1))
                     r += dro
                     c += dco
                     break
                 elif t == 7:
-                    if r == r0 and c == c0 and ans != []:
+                    if r == r0 and c == c0 and len(ans) > 2:
                         ans.append(ans[0])
+                        if debug:
+                            print("Cycle: ", ans)
+                        return ans
                     else:
                         ans.append((c + (dcd + 1)//2 - 1, 
                                     r + (drd + 1)//2 - 1,
                                     z))
+                    if debug:
+                        print( "  t7 %i, %i" % (ans[-1][0] + 1, ans[-1][1] + 1))
+                        
                     m[r, c] = 0
-                    # Look for continuation near the last turn
-                    if len(ans) > 3:  # far enough from the start point
-                        c = ans[-2][0] + 1
-                        r = ans[-2][1] + 1
-                        if dcd < 0:
-                            c -= 1
-                        if drd < 0:
-                            r -= 1
-                        if m[r,c] == 1:
+                    if not tr is None:
+                        while r != tr or c != tc:
+                            if tr < r:
+                                r -= 1
+                            elif tr > r:
+                                r += 1
+                            if tc < c:
+                                c -= 1
+                            elif tc > c:
+                                c += 1
+                            if debug:
+                                print("  back %i, %i" % (c, r))
+                            if (m[r+1, c+1] == 1 or m[r+1, c-1] == 1 or
+                                m[r-1, c+1] == 1 or m[r-1, c-1] == 1):
+                                tr = None
+                                break  # Continue from this point
+                        if tr is None:
                             break
+                    # Look for continuation near the last turn
+                    #if len(turns) > 1:
+                    #    c, r = turns[-2]
+                    #    turns = []
+                    #    break
+                    
+                    #if len(ans) > 3:  # far enough from the start point
+                    #    c = ans[-2][0] + 1
+                    #    r = ans[-2][1] + 1
+                    #    if dcd < 0:
+                    #        c -= 1
+                    #    if drd < 0:
+                    #        r -= 1
+                    #    if m[r,c] == 1:
+                    #        break
                     return ans
                 else:
                     if t == 0:
@@ -280,6 +348,7 @@ class ContourMap():
         # start_point is used only for cyclic path. If this parameter given
         # the ramp will start at the point nearest to the start point.
         # Return a new list of nodes.
+        # print("Before ramp: ", nodes)
         if len(nodes) < 2 or slope <= 0 or nodes[0][2] >= z0:
             return nodes
         ramp = []
@@ -295,7 +364,7 @@ class ContourMap():
         if cycle == len(nodes) - 1:   # all nodes form a one big cycle
             if not start_point is None:
                 distance, index, point = self.nearestPoint( nodes, start_point )
-                nodes = nodes[:-2]   # remove duplicated node from the tail
+                nodes = nodes[:-1]   # remove duplicated node from the tail
                                      # but not touch the original nodes
                 # break line in this point
                 if index > 0:
@@ -303,8 +372,8 @@ class ContourMap():
                 if not point is None:
                     nodes.insert(0, point + nodes[0][2:])
             else:
-                nodes = nodes[:-2]   # remove duplicated node from the tail
-            
+                nodes = nodes[:-1]   # remove duplicated node from the tail
+            # print("In ramp: ", nodes)
             # Now start from the first node.
             # Remember, that we should return to the first node.
             while True:
@@ -395,19 +464,38 @@ class ContourMap():
         if index > 0:  #             Tail is cyclic
             head.extend( tail[1:index+1] )   # Tail.last == Tail.first, skip it
         return True
+
+    def prependNodes(self, target, source, max_distance ):
+        max_distance /= self.sampleInterval
+        distance1 = math.sqrt((target[0][0]-source[0][0]) ** 2 +
+                              (target[0][1]-source[0][1]) ** 2)
+        distance2 = math.sqrt((target[0][0]-source[-1][0]) ** 2 +
+                              (target[0][1]-source[-1][1]) ** 2)
+        if distance1 < distance2:
+            if distance1 > max_distance or not self.freePass(target[0], source[0]):
+                return False
+            for node in source:
+                target.insert(0, node)
+        else:
+            if distance2 > max_distance or not self.freePass(target[0], source[-1]):
+                return False
+            for node in source[::-1]:
+                target.insert(0, node)
+        return true
       
     def freePass(self, a, b):  
-        # check if free stright pass by zones 0,1 or 2 from point a to point b exists 
+        # check if free stright pass by zones 0,1 or 2 from point a to point b exists.
+        # a & b are point coordinates (m.b. float), but not cell indices.
         if a[0] > b[0]:
             a, b = b, a
-        for i in range(int(math.ceil( a[0] )), int(math.ceil( b[0] ))):
-            j = int(math.ceil(a[1] + (i - a[0]) * (b[1] - a[1]) / (b[0] - a[0])))
+        for i in range(int(math.ceil( a[0] )), int(math.ceil( b[0] - 0.01 ))):
+            j = int(math.floor(a[1] + (i - a[0]) * (b[1] - a[1]) / (b[0] - a[0])))
             if self.m[j+1, i+1] > 2:
                 return False
         if a[1] > b[1]:
             a, b = b, a
-        for j in range(int(math.ceil( a[1] )), int(math.ceil( b[1] ))):
-            i = int(math.ceil(a[0] + (j - a[1]) * (b[0] - a[0]) / (b[1] - a[1])))
+        for j in range(int(math.ceil( a[1] )), int(math.ceil( b[1] - 0.01 ))):
+            i = int(math.floor(a[0] + (j - a[1]) * (b[0] - a[0]) / (b[1] - a[1])))
             if self.m[j+1, i+1] > 2:
                 return False
         return True
@@ -417,7 +505,7 @@ class ContourMap():
         output = []
         if len(nodes) <= 1:
             return []
-
+          
         xmin = self.xmin
         ymin = self.ymin
         si   = self.sampleInterval
@@ -445,7 +533,6 @@ class ContourMap():
                     (nxt[0] - this[0]) * (this[0] - prev[0]) > 0 and 
                     (nxt[0] - this[0]) * (this[2] - prev[2]) ==
                     (nxt[2] - this[2]) * (this[0] - prev[0]) ):
-                    #TODO check z here
                     continue
             output.append(
                 Path.Command("G1", {"X": float(xmin + this[0] * si),
@@ -471,3 +558,56 @@ class ContourMap():
             return out
         return ContourMap(self.xmin, self.ymin, self.z, self.sampleInterval, 
                           self.m[1:-1, 1:-1] )
+      
+      
+    def traceInTrace(self, needle, trace, exact = False):
+        shift = len(trace) - len(needle)
+        if shift < 0:
+            return False
+        if needle[0] == needle[-1] and not exact:   
+            # trace is circular, check multiple variants
+            ln1 = len(needle)-1
+            for i in range(0, ln1):
+                if (trace[shift][0:2] == needle[i][0:2]):
+                    # last point of the trace may be a connection point,
+                    # don't check it.
+                    for j in range(1, ln1):
+                        if (trace[shift+j][0:2] != needle[(i + j) % ln1][0:2]):
+                            break
+                        if j == ln1 - 1:
+                            return True
+            return False
+        else:
+            for i in range(0, len(needle)):
+                if needle[i][0:2] != trace[i + shift][0:2]:
+                    return False
+            return True
+      
+
+    def interlayerAppend(self, trace, nodes, slope, max_distance):
+        point = None
+        if nodes[0] == nodes[-1]:    # cyclic list
+            distance, index, point = self.nearestPoint(nodes, trace[-1])
+        else:
+            distance = math.sqrt((trace[-1][0]-nodes[0][0]) ** 2 +
+                                (trace[-1][1]-nodes[0][1]) ** 2)
+        if distance * self.sampleInterval < max_distance:
+            # Prepend ramp to the tail
+            if self.appendNodes(
+                    trace, 
+                    self.prependRamp(nodes, self.z, slope, point),
+                    max_distance):
+                return True
+        return False
+      
+    def dump(self, filename = "map.txt"):
+        fd = open(filename, "w")
+        R, C = self.m.shape
+        nr = R - 1
+        fd.write("    " + 
+                 "".join(["%1i    |    " % (c % 10) for c in range(0, (C+9) // 10)]) +
+                 "\n")
+        for l in self.m[::-1]:
+            fd.write(("%3i " % nr) + "".join([".+*#"[v] for v in l]) + "\n")
+            nr -= 1
+        fd.close()

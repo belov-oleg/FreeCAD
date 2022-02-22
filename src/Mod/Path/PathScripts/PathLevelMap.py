@@ -178,13 +178,15 @@ class LevelMap():
         if b1 or b2 or b3:
             self._add_triangle( xva, yva, zva, xvb, yvb, zvb, xvc, yvc, zvc ) 
             
-    def getContourMap( self, z, out = None ):
+    def getContourMap( self, z, out = None, air = 0 ):
         if not out is None:
             out.setContourMap(self.xmin, self.ymin, z, self.sampleInterval,
-                       self.z[self.border:-self.border, self.border:-self.border])
+                       self.z[self.border:-self.border, self.border:-self.border], 
+                       air = air)
             return out
         return ContourMap(self.xmin, self.ymin, z, self.sampleInterval,
-                          self.z[self.border:-self.border, self.border:-self.border])
+                          self.z[self.border:-self.border, self.border:-self.border], 
+                          air = air)
       
     def _add_edge( self, xa, ya, za, xb, yb, zb ):
         # This algorithm should be coded in C
@@ -550,8 +552,7 @@ class LevelMap():
         return ans
 
 
-    def _create_coverage(self, job, partial, rt):
-        print("rt=",rt)
+    def _create_coverage(self, job, partial, rt):  
         irt = min(self.border, int(numpy.ceil(rt)))
         # calculate row half width:
         # Each row contains odd number of cells, and there are irt * 2 + 1 rows.
@@ -915,53 +916,71 @@ class LevelMap():
         zs = min_z   # z value of the current point shifted down by shift_z
         for i in range(0, ln):
             c, r = nodes[i][0:2]
+            if len(nodes[i]) > 2:
+                zs = nodes[i][2] - shift_z  # original z shifted down
             # pick z of endpoint from the map
             if c != int(c) or r != int(r):
                 z = self.z[int(r) + border, int(c) + border]
             elif i == ln - 1 and cycled:
                 z = ans[0][2]
             else:
-                for j in (max(-cycled, i - 1), min(ln - 1, i + 1)):
-                    # choose one of four cells where the edge is located
-                    pc = (nodes[j][0] - c) < 0
-                    pr = (nodes[j][1] - r) < 0
-                    z = self.z[int(r) - pr + border, int(c) - pc + border]
-            if len(nodes[i]) > 2:
-                zs = nodes[i][2] - shift_z
-                z = max(z, zs)
+                zp = self.z[int(r) + border - 1: int(r) + border + 1, 
+                            int(c) + border - 1: int(c) + border + 1]
+                if len(nodes[i]) > 2:
+                    z = max(list(zp[zp <= nodes[i][2]]) + [min_z])
+                else:
+                    z = numpy.max(zp)
             if i == 0:
-                ans.append(nodes[i][0:2] + (max(z, min_z),) + nodes[i][3:])
+                ans.append(nodes[i][0:2] + (max(z, zs, min_z),) + nodes[i][3:])
             else:
                 # create all intermediate crosses with the grid and optimize them
                 c0, r0 = ans[-1][0:2]
+                #if abs(r0 - 262) + abs(c0 - 380) < 5:
+                #    print(c0, r0)
+                #    print(self.z[int(r0) - 5 + border:int(r0) + 6 + border,
+                #                 int(c0) - 5 + border:int(c0) + 6 + border])
                 part = [ans[-1]]
                 if c0 == c and r0 == r:
                     continue            # duplicates are not inserted
                 dc = c - c0
                 dr = r - r0
                 dz = zs - zprev
+                zz = nodes[i-1][2:3] + nodes[i][2:3]
                 if abs(dc) > abs(dr):
-                    ic = 1 if c > c0 else -1
-                    for ci in range(int(c0) + ic, int(c) + ic, ic):
+                    if c > c0:
+                        rc = range(int(numpy.floor(c0)) + 1, int(numpy.ceil(c)))
+                    else:
+                        rc = range(int(numpy.ceil(c0) - 1), int(numpy.floor(c)), -1)
+                    for ci in rc:
                         k   = (ci - c0) / dc
                         ri  = r0 + k * dr
                         zis = zprev + k * dz
-                        z = max(self.z[int(ri) + border, ci + border],
-                                self.z[int(ri) + border, ci + border - 1],
-                                zis,
-                                min_z)
-                        part.append((ci, ri, z))
+                        zp = self.z[int(numpy.ceil(ri)) - 1 + border : 
+                                                int(ri) + 1 + border, 
+                                    ci + border - 1 : ci + border + 1]
+                        if len(zz) > 0:
+                            z = max(list(zp[zp <= max(zz)]) + [min_z])
+                        else:
+                            z = numpy.max(zp)
+                        part.append((ci, ri, max(z, zis, min_z)))
                 else:
-                    ir = 1 if r > r0 else -1
-                    for ri in range(int(r0) + ir, int(r) + ir, ir):
+                    if r > r0:
+                        rr = range(int(numpy.floor(r0)) + 1, int(numpy.ceil(r)))
+                    else:
+                        rr = range(int(numpy.ceil(r0) - 1), int(numpy.floor(r)), -1)
+                    for ri in rr:
                         k   =  (ri - r0) / dr
                         ci  = c0 + k * dc
-                        zic = zprev + k * dz
-                        z = max(self.z[ri + border, int(ci) + border],
-                                self.z[ri + border - 1, int(ci) + border],
-                                zic,
-                                min_z)
-                        part.append((ci, ri, z))
+                        zis = zprev + k * dz
+                        zp = self.z[ri + border - 1 : ri + border + 1, 
+                                    int(numpy.ceil(ci)) - 1 + border : 
+                                               int(ci) + 1 + border]
+                        if len(zz) > 0:
+                            z = max(list(zp[zp <= max(zz)]) + [min_z])
+                        else:
+                            z = numpy.max(zp)
+                        part.append((ci, ri, max(z, zis, min_z)))
+                part.append(nodes[i][0:2] + (max(z, zs, min_z),) + nodes[i][3:])
                 # Optimization
                 ans.extend(self.optimize(part, tolerance))
             zprev = zs        
@@ -971,6 +990,8 @@ class LevelMap():
         # recursive procedure. Returns optimized path without the first node.
         x0, y0, z0 = part[0][0:3]
         al = abs(x0 - part[-1][0]) + abs(y0 - part[-1][1])
+        if al == 0:
+            return []
         dzdal = (part[-1][2] - z0) / al
         max_dev = 0
         peak_ind = None
@@ -986,6 +1007,14 @@ class LevelMap():
                 peak_ind = i
         if peak_ind is None:
             return [part[-1]]
+        if len(part) == 3:
+            return part[1:]
+        if peak_ind == 1:
+            return ([part[peak_ind]] + 
+                    self.optimize(part[peak_ind:-1], tolerance))
+        if peak_ind == len(part)-2:
+            return (self.optimize(part[0:peak_ind+1], tolerance) + 
+                    part[peak_ind:-1])
         return (self.optimize(part[0:peak_ind+1], tolerance) + 
                 self.optimize(part[peak_ind:-1], tolerance))
                 

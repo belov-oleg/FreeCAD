@@ -2029,8 +2029,10 @@ class ObjectWaterline(PathOp.ObjectOp):
                 return []     # Nothing to process here
             base_only = False
         elif mask is None:
-            mask = op.getContourMap( 0.5 * MIN )  # 3 - inside, 
-                                                  # 0 - outside
+            mask = op.getContourMap( 0.5 * MIN, air = 1 )  # 3 - inside (material), 
+                                                           # 1 - outside
+            op.closeHoles( mask )   # Mark through holes as material (3)
+                                    # and air as 0
 
         # Adjust the mask, only cells where mask != 0 should be traced
         if obj.BoundaryEnforcement:
@@ -2064,21 +2066,21 @@ class ObjectWaterline(PathOp.ObjectOp):
         prevLayDep = obj.StartDepth.Value
         contourMap = None
         previousMap = None
-        all_traces = []
-        max_dist_m = ((self.horizFeed * self.horizRapid) / 
-                      max(self.horizFeed - self.horizRapid, 0.1) * 2 /
-                      max(self.vertRapid, 0.1)
+        all_traces = []     # list of traces, each trace is a list of nodes
+        max_dist_m = (max(self.horizFeed * self.horizRapid, 0.1) / 
+                      max(self.horizRapid - self.horizFeed, 0.01) * 2 /
+                      max(self.vertRapid, 0.01)
                      )
-        max_dist_c = (obj.StepDown.Value * self.vertRapid / max(self.vertFeed, 1) + 
+        max_dist_c = (obj.StepDown.Value * self.vertRapid / max(self.vertFeed, 0.01) + 
                        obj.SafeHeight.Value)
         
         for layDep in depthparams:
-            loopList = []
+            max_distance = (max_dist_c - layDep) * max_dist_m
 
             contourMap = op.getContourMap(layDep, obj.DepthOffset.Value,
-                                          out = contourMap  )
+                                          out = contourMap)
             
-            traces = []
+            traces = []   # list of traces, each trace is a list of nodes
             while True:  # Collect traces of the single layer
                 if obj.LayerMode == "Single-pass":
                     contourMap.highlightBorders()
@@ -2088,69 +2090,90 @@ class ObjectWaterline(PathOp.ObjectOp):
                     contourMap.or_not( mask )  # simulate material around the work area
                     op.excludeCommonFrom(contourMap)
                     contourMap.highlightBorders()
-
+                
                 # Extract waterline               
                 nothing = True
                 while True:
                     nodes = contourMap.getBorder(obj.CutMode == "Climb")
                     if nodes == []:
                         break
-                    traces.append(nodes)
                     nothing = False
+                    traces.append(nodes)
                     
+                contourMap.dump("square_map_%i_%.1f_%i.txt" % (mdlIdx, layDep, len(traces)))
                 if nothing or obj.LayerMode == "Single-pass":
                     break
-                  
+
                 contourMap.shiftBorder( self.radius * (float(obj.StepOver) / 50.0) )
-                
-            if len(traces) > 0 and len(all_traces) > 0 and not previousMap is None:
+            
+                    
+            #if len(traces) > 0 and len(all_traces) > 0 and not previousMap is None:
                 # the last trace can be joined with the last trace from the previous level
-                max_distance = (max_dist_c - layDep) * max_dist_m
-                head = all_traces[-1]
-                tail = traces[-1]
-                point = None
-                if tail[0] == tail[-1]:    # cyclic list
-                    distance, index, point = previousMap.nearestPoint(tail, head[-1])
-                else:
-                    distance = math.sqrt((head[-1][0]-tail[0][0]) ** 2 +
-                                        (head[-1][1]-tail[0][1]) ** 2)
-                if distance * previousMap.sampleInterval < max_distance:
-                    # Prepend ramp to the tail
-                    if previousMap.appendNodes(
-                            head, 
-                            contourMap.prependRamp(tail, previousMap.z, slope, point),
-                            max_distance) :
-                        traces.pop(-1)
-                        traces.append(all_traces.pop(-1))
+                # Instead it will be better to find areas covered on the previous level
+                # and join traces to the last traces from these areas.
+                #if previousMap.interlayerAppend(all_traces[-1][-1], traces[-1]):
+                #    traces.pop(-1)
+                #    traces.append(all_traces[-1].pop(-1))
             
             if len(traces) > 0:
-                # make junctions
+                # make junctions between adjacent traces
                 for i in range(len(traces)-1, 0, -1):
                     for j in range(i-1, -1, -1):
                         if contourMap.appendNodes(traces[i], traces[j], self.radius * 2):
                             traces.pop( j )
                             break
 
-                for trace in traces[::-1]:
-                    all_traces.append(contourMap.prependRamp(trace, prevLayDep, slope))
-                 
-                prevLayDep = layDep
-                previousMap, contourMap = contourMap, previousMap
+            # If any trace is strictly under the trace of the previous layer
+            # (vertical walls) they can be joined immediately,
+            # if the direct path by the previous layer exists.
+            for i in range(len(traces)-1, -1, -1): 
+                nodes = traces[i]
+                for trace in all_traces[::-1]:
+                    if (previousMap.traceInTrace(nodes, trace) and
+                        previousMap.interlayerAppend(trace, nodes, 
+                                                     slope, max_distance)):
+                        traces.pop(i)
+                        break
+
+            for trace in traces[::-1]:
+                all_traces.append(contourMap.prependRamp(trace, prevLayDep, slope))
+            # The best order in the layer will be calculated later, because the
+            # tail position of some traces can be changed.
+            
+            prevLayDep = layDep
+            previousMap, contourMap = contourMap, previousMap
         # end of loop by layDep
         
-        for trace in all_traces:
-            commands.extend(
-                contourMap.nodesToPath( 
-                      trace,
-                      obj.ClearanceHeight.Value,
-                      self ))
+        if contourMap is None:
+            contourMap = previousMap
+        
+        # Take traces layer by layer, reorder them and convert to commands.
+        start_point = None
+        while len(all_traces) > 0:
+            traces = [all_traces.pop(0)]
+            while (len(all_traces) > 0 
+                   and traces[0][0][2] - 0.01 < all_traces[0][0][2]):
+                traces.append(all_traces.pop(0))
+            
+            ts = time.time()
+                    
+            for i in op.optimizeConnections(traces, start_point):
+                commands.extend(
+                    contourMap.nodesToPath(traces[i],
+                                           obj.ClearanceHeight.Value,
+                                           self))
+                start_point = traces[i][-1]
+            PathLog.info("TSP for %i - %.3f s" % (len(traces), time.time() - ts))
 
         if obj.FinishingProfile:
             all_traces = []
             layDep = obj.FinalDepth.Value
             previousMap = None
             workMap = None
-            while layDep < obj.StartDepth.Value:
+            shift = max(op.levelMap.activeRadius(
+                                 max(0.1, obj.FinishDepth.Value)),
+                        op.levelMap.sampleInterval * 2)
+            while layDep <= obj.StartDepth.Value:
                 max_distance = (max_dist_c - layDep) * max_dist_m
                 contourMap = op.getContourMap(layDep,
                                               out = contourMap)
@@ -2166,36 +2189,40 @@ class ObjectWaterline(PathOp.ObjectOp):
                         nodes = workMap.getBorder(obj.CutMode == "Climb")
                         if nodes == []:
                             break
-                        traces.append(nodes)
                         nothing = False
+                        for trace in all_traces[::-1]:
+                            if workMap.traceInTrace(nodes, trace, True):
+                                nodes = None
+                                break
+                        if not nodes is None:
+                            traces.append(nodes)
                      
                     if nothing or previousMap is None:
                         break
                       
-                    workMap.shiftBorder(max(
-                       op.levelMap.activeRadius(obj.FinishDepth.Value),
-                       workMap.sampleInterval * 2))
+                    workMap.shiftBorder(shift)
                     workMap.highlightBorders()
                     workMap.or_not( previousMap )
-  
-                # Combine adjacent traces
-                if len(traces) > 0:
-                    for i in range(len(traces)-1, 0, -1):
-                        for j in range(i-1, -1, -1):
-                            if contourMap.appendNodes(traces[i], traces[j], self.radius * 2):
-                                traces.pop( j )
-                                break
 
-                all_traces.extend( traces[::-1] )
-  
+                all_traces.extend( traces[::-1] ) 
                 previousMap, contourMap = contourMap, previousMap
                 layDep += max(0.1, obj.FinishDepth.Value)
+  
+            # Combine adjacent traces
+            i = 0
+            while i < len(all_traces) -1:
+                for j in range(i + 1, len(all_traces)):
+                    if contourMap.appendNodes(all_traces[i], all_traces[j], shift * 1.7):
+                        all_traces.pop( j )
+                        i -= 1
+                        break
+                i += 1
 
-            for trace in all_traces:
+            for i in op.optimizeConnections(all_traces, start_point):
                 commands.extend(
                     contourMap.nodesToPath( 
                         op.levelMap.profileAlongPath(
-                             trace, 
+                             all_traces[i], 
                              tolerance = contourMap.sampleInterval * 0.25, 
                              shift_z = obj.FinishDepth.Value + contourMap.sampleInterval * 0.5,
                              min_z = obj.FinalDepth.Value),
